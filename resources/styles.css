@@ -1,0 +1,310 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&display=swap");
+
+html, body {
+    overflow-x: hidden;
+    width: 100vw;
+    font-family: 'Poppins', 'Roboto', sans-serif;
+    transition: all 0.3s ease;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    user-select: none;
+    transition: all 0.3s ease;
+}
+
+body {
+    display: flex; /* Para o layout lateral (sidebar + content) */
+    background-color: #121212; /* Cor de fundo escura */
+    color: #fff;
+    min-height: 100vh;
+}
+
+.sidebar {
+    width: 250px; 
+    background-color: rgb(17, 17, 17);
+    padding: 20px 0;
+    position: fixed; 
+    height: 100vh;
+    overflow-y: auto; 
+    /* box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5);  */
+    z-index: 200; 
+    /* font-family: 'Poppins', sans-serif; */
+}
+
+.logo {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var( --color-text_logo); 
+    padding: 0 25px 25px; 
+    letter-spacing: 0.5px;
+    display: flex;
+    align-items: center;
+}
+
+.logo i {
+    color: var( --color-text_icon); 
+    margin-right: 8px;
+    font-size: 1.6rem;
+}
+
+.section-title {
+    color: var(--color-sidebar_title); 
+    padding: 15px 25px 5px; 
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    margin-top: 10px;
+}
+
+.section-title::before {
+    content: '';
+    display: block;
+    height: 1px;
+    background-color: var(--color-sidebar_divider);
+    margin: -30px 0 25px;
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+    margin-top: 10px;
+}
+
+.sidebar li a {
+    display: flex;
+    align-items: center;
+    padding: 12px 25px; 
+    color: var(--color-sidebar_text);
+    text-decoration: none;
+    font-size: 0.95rem;
+    transition: background-color 0.3s, color 0.3s, all 0.3s ease, margin 0.3s ease;
+}
+
+.custom-icon {
+    width: 20px; 
+    height: 20px;
+    margin-right: 10px; 
+    vertical-align: middle; 
+    filter: invert(100%);
+}
+
+.custom-icon {
+    /* filter: invert(40%) sepia(80%) saturate(1000%) hue-rotate(80deg);  */
+}
+
+.sidebar li a i {
+    /* Não aparece ícone nos links da imagem, então podemos remover o estilo do ícone ou escondê-lo */
+    /* Se você quiser ícones no futuro, remova o 'display: none' */
+    /* display: none;  */
+    margin-right: 10px; 
+    width: 20px; 
+    text-align: center;
+}
+
+#main-menu-list {
+    margin-bottom: 0px;
+    position: relative;
+    padding-bottom: 20px;
+}
+
+.sidebar li.active a {
+    background-color:color-mix(in srgb, var(--color-sidebar_button) 50%, transparent); 
+    color: var(--text-active);
+    font-weight: 600;
+    border-radius: 5px; 
+    margin: 0 10px;
+    /* padding: 12px calc(25px - 10px); */
+}
+
+.sidebar li a:hover:not(.active a) {
+    background-color: color-mix(in srgb, var(--color-sidebar_button_h) 100%, transparent);
+    color: var(--text-active);
+    border-radius: 5px; 
+    margin: 0 10px;
+}
+
+.sidebar li {
+    padding: 5px;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    position: fixed; 
+    top: 0;
+    left: 250px;
+    right: 0;
+    background-color: #121212;
+    z-index: 100;
+    margin-bottom: 0; 
+}
+
+.content {
+    margin-left: 250px; 
+    flex-grow: 1;
+    padding: 20px;
+    padding-top: 80px; 
+}
+
+.search-bar {
+    display: flex;
+    background: #1d1d1d;
+    border-radius: 5px;
+    overflow: hidden;
+    width: 400px;
+}
+
+.search-bar input {
+    flex-grow: 1;
+    border: none;
+    padding: 10px 15px;
+    background: transparent;
+    color: #fff;
+    outline: none;
+}
+
+.search-bar button {
+    background: #333;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    color: #fff;
+}
+
+.btn-assinatura, .btn-login {
+    padding: 8px 15px;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-left: 10px;
+}
+
+.btn-assinatura {
+    background-color: transparent;
+    border: 1px solid #4CAF50;
+    color: #4CAF50;
+}
+
+.btn-login {
+    background-color: #4CAF50;
+    color: #0b0b0b;
+}
+
+/* -------------------- HERO BANNER -------------------- */
+.hero-banner {
+    position: relative;
+    height: 350px; /* Altura do banner */
+    background: linear-gradient(to right, #000 30%, transparent 100%), url('caminho/para/imagem-minions.jpg') no-repeat center right; 
+    /* Você terá que ajustar o background para replicar o efeito */
+    background-size: cover;
+    border-radius: 10px;
+    margin-bottom: 30px;
+    display: flex;
+    align-items: center;
+    padding-left: 50px;
+}
+
+.hero-info h1 {
+    font-size: 4rem;
+    margin-bottom: 15px;
+    color: #FFD700; /* Dourado */
+}
+
+.hero-actions button {
+    padding: 10px 25px;
+    border: none;
+    border-radius: 50px;
+    margin-right: 15px;
+    font-size: 1rem;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.btn-primary {
+    background-color: #fff;
+    color: #000;
+}
+
+.btn-secondary {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+/* -------------------- HIGHLIGHT CARDS -------------------- */
+.highlight-cards {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    margin-bottom: 40px;
+}
+
+.card {
+    height: 120px;
+    border-radius: 10px;
+    padding: 15px;
+    /* Estilos de fundo e texto serão específicos para cada card */
+    background-color: #222;
+}
+
+/* -------------------- EM ALTA (Carrossel) -------------------- */
+.em-alta h2 {
+    margin-bottom: 20px;
+    font-size: 1.5rem;
+}
+
+.carousel {
+    display: flex;
+    gap: 20px;
+    overflow-x: auto; /* Para simular o carrossel (deslize) */
+    padding-bottom: 10px;
+}
+
+.media-item {
+    position: relative;
+    min-width: 200px; /* Largura dos cards de mídia */
+    border-radius: 10px;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.media-item img {
+    width: 100%;
+    display: block;
+    height: auto;
+}
+
+.item-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 5px;
+    font-size: 0.7rem;
+    font-weight: bold;
+}
+
+.ep-info, .season-info {
+    background-color: #4CAF50; /* Verde */
+    padding: 3px 6px;
+    border-radius: 3px;
+}
+
+.item-title, .item-ep {
+    padding: 5px 10px;
+    background-color: rgba(0, 0, 0, 0.7);
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+}
