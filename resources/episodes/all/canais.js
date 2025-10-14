@@ -13,7 +13,11 @@ export const channelData = [
                 youtube: false,
                 visible: true,
                 title: "", //TEXTO DO BOTÃO ENABLED OFF
-                thumb_buttons: ["https://i.imgur.com/53B8dup.jpeg"],
+                thumb_buttons: {
+                    url: [
+                        "https://i.imgur.com/53B8dup.jpeg"
+                    ]
+                },
                 carrousel: {
                     enabled: false,
                     title: "ESPN",
@@ -71,14 +75,19 @@ export const channelData = [
             //SPORTV
             {
                 name: "SporTv",
+                enabled: true,
+                thumb_buttons: {
+                    url: [
+                        "https://i.imgur.com/m8tPb5P.jpeg"
+                    ],
+                },
                 badge: "",
                 type: "Canais",
-                enabled: true,
                 canais: true,
                 youtube: false,
                 visible: true,
                 title: "", //TEXTO DO BOTÃO ENABLED OFF
-                thumb_buttons: ["https://i.imgur.com/m8tPb5P.jpeg"],
+
                 carrousel: {
                     enabled: false,
                     title: "SPORTV",
@@ -135,14 +144,18 @@ export const channelData = [
             //PREMIERE
             {
                 name: "Premiere",
+                enabled: true,
+                thumb_buttons: {
+                    url: [
+                        "https://i.imgur.com/NLvBCb3.jpeg"
+                    ],
+                },
                 badge: "",
                 type: "Canais",
-                enabled: true,
                 canais: true,
                 youtube: false,
                 visible: true,
                 title: "", //TEXTO DO BOTÃO ENABLED OFF
-                thumb_buttons: ["https://i.imgur.com/NLvBCb3.jpeg"],
                 carrousel: {
                     enabled: false,
                     title: "PREMIERE",
@@ -198,6 +211,7 @@ export const channelData = [
                     },
                 ]
             },
+            
         ]
     },
 ];

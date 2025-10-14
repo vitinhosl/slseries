@@ -6,7 +6,6 @@ export const seriesData = [
         //ALQUIMIA DAS ALMAS
         {
             name: "Alquimia das Almas",
-            thumb_page: "",
             thumb_buttons: {
               url: [
                 "https://i.imgur.com/kg0eddJ.jpeg",
@@ -98,7 +97,6 @@ export const seriesData = [
         //GAME OF THRONES
         {
           name: "Game of Thrones",
-          thumb_page: "",
           thumb_buttons: {
             url: [
               "https://i.imgur.com/KLwmxCI.jpeg",
@@ -160,7 +158,6 @@ export const seriesData = [
         //A RODA DO TEMPO
         {
             name: "A Roda do Tempo",
-            thumb_page: "",
             thumb_buttons: {
               url: [
                 "https://i.imgur.com/LLWJSeR.jpeg",
@@ -215,7 +212,6 @@ export const seriesData = [
         //SOMBRA E OSSOS
         {
           name: "Sombra e Ossos",
-          thumb_page: "",
           thumb_buttons: {
             url: [
               "https://i.imgur.com/g4rzDUb.png",
@@ -270,7 +266,6 @@ export const seriesData = [
         //O SENHOR DOS ANÉIS:OS ANÉIS DE PODER
         {
           name: "Os Anéis de Poder",
-          thumb_page: "",
           thumb_buttons: {
             url: [
               "https://i.imgur.com/SKEOHMc.jpeg",
@@ -349,7 +344,6 @@ export const seriesData = [
         //GREYS ANATOMY
         {
           name: "Grey's Anatomy",
-          thumb_page: "",
           thumb_buttons: {
             url: [
               "https://i.imgur.com/ef7S2Nv.jpeg",
@@ -406,7 +400,6 @@ export const seriesData = [
         //A CASA DO DRAGÃO
         {
           name: "A Casa do Dragão",
-          thumb_page: "",
           thumb_buttons: {
             url: [
               "https://i.imgur.com/5fvFZ7s.png",

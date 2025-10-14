@@ -6,15 +6,17 @@ export const minecraftData = [
             //EM BUSCA DA CASA AUTOMÁTICA
             {
                 name: "Casa Automática",
-                thumb_buttons: [
-                    "https://i.imgur.com/bG5XyaM.png", 
-                    "https://i.imgur.com/EOc9RN1.png", //MESMA DE CIMA SEM LOGO
-                    "https://i.imgur.com/RuLrytN.png",
-                ],
+                enabled: true,
+                thumb_buttons: {
+                    url: [
+                        "https://i.imgur.com/bG5XyaM.png", 
+                        "https://i.imgur.com/EOc9RN1.png", //MESMA DE CIMA SEM LOGO
+                        "https://i.imgur.com/RuLrytN.png",
+                    ],
+                },
                 badge: "",
                 type: "",
                 canais: false,
-                enabled: true,
                 youtube: false,
                 visible: true,
                 title: "", //TEXTO DO BOTÃO ENABLED OFF
@@ -466,16 +468,17 @@ export const minecraftData = [
             //CRAFT GAMES
             {
                 name: "Craft Games",
-                thumb_page: "",
-                thumb_buttons: [
-                    "https://i.imgur.com/2HtrltH.png",
-                    "https://i.imgur.com/7A5rAwe.png", //MESMA DE CIMA SEM LOGO
-                    "https://i.imgur.com/r9JKRFi.png",
-                ],
+                enabled: false,
+                thumb_buttons: {
+                    url: [
+                        "https://i.imgur.com/2HtrltH.png",
+                        "https://i.imgur.com/7A5rAwe.png", //MESMA DE CIMA SEM LOGO
+                        "https://i.imgur.com/r9JKRFi.png",
+                    ],
+                },
                 badge: "",
                 type: "",
                 canais: false,
-                enabled: false,
                 youtube: false,
                 visible: true,
                 title: "", //TEXTO DO BOTÃO ENABLED OFF

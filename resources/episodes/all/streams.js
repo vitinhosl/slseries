@@ -1,12 +1,11 @@
 export const streamsData = [
     {
-      group_name: "Stream",
+      group_name: "Streams",
       visible: true,
       group: [
         //STREAM
         {
             name: "Baiano",
-            thumb_page: "",
             thumb_buttons: {
               url: [
                 "",

@@ -5,35 +5,87 @@ const seriesData = [
     {
       group_name: "Filmes",
       visible: true,
-       group: [
-          //HARRY POTTER
-          {
-            name: "Harry Potter",
-            enabled: true,
-            thumb_page: "",
-            thumb_buttons: {
-                url: [
-                  "https://i.imgur.com/wdXyskp.png", //HARRY POTTER 1: EA PEDRA FILOSOFAL
-                  "https://i.imgur.com/SJYo00O.png", //HARRY POTTER 2: EA CÂMARA SECRETA
-                  "https://i.imgur.com/zmMRzon.png", //HARRY POTTER 3: EO CÁLICE DE FOGO
-                  "https://i.imgur.com/bqh8keV.png", //HARRY POTTER 4: EO PRISIONEIRO DE AZKABAN
-                  "https://i.imgur.com/IdOkjj3.png", //HARRY POTTER 5: EA ORDEM DA FÊNIX
-                  "https://i.imgur.com/RWt83mC.png", //HARRY POTTER 6: EO ENIGMA DO PRÍNCIPE
-                  "https://i.imgur.com/csXAXhz.png", //HARRY POTTER 7: EAS RELIQUIAS DA MORTE PT 1
-                  "https://i.imgur.com/N6aK9dg.png", //HARRY POTTER 8: EAS RELIQUIAS DA MORTE PT 2
-
-                  "https://i.imgur.com/8xGK1SM.png", //HARRY POTTER 1: EA PEDRA FILOSOFAL
-                  "https://i.imgur.com/C76mOFX.png", //HARRY POTTER 2: EA CÂMARA SECRETA
-                  "https://i.imgur.com/SzZpgyk.png", //HARRY POTTER 3: EO CÁLICE DE FOGO
-                  "https://i.imgur.com/E4sncKt.png", //HARRY POTTER 4: EO PRISIONEIRO DE AZKABAN
-                  "https://i.imgur.com/ClbbCiS.png", //HARRY POTTER 5: EA ORDEM DA FÊNIX
-                  "https://i.imgur.com/JVYBDl1.png", //HARRY POTTER 6: EO ENIGMA DO PRÍNCIPE
-                  "https://i.imgur.com/df4o6Du.png", //HARRY POTTER 7: EAS RELIQUIAS DA MORTE PT 1
-                  "https://i.imgur.com/4vclUJV.png", //HARRY POTTER 8: EAS RELIQUIAS DA MORTE PT 2
-                ],
-            },
+      group: [
+        //HARRY POTTER
+        {
+          name: "Tropa de Elite",
+          enabled: true,
+          visible: true,
+          thumb_buttons: {
+              url: [
+                "https://i.imgur.com/l8BHSFw.jpeg",
+              ],
           },
-       ],
+
+          carrousel: {
+              enabled: true,
+              title: "NOME TEST",
+              logo: { 
+                enabled: true, 
+                url: "https://i.imgur.com/B6tMcLM.png",
+                minimalist: true,
+              },
+              thumb: [
+                  "https://pp-vod-img-aws.akamaized.net/0068571/playplus_thumb_1600.jpg",
+                  "https://i.imgur.com/H7LkieU.png",
+              ],
+              text: "Destaque",
+              description: `
+                Após a morte de Moisés, Josué é o novo líder dos hebreus e terá que cumprir uma difícil missão ordenada por Deus: Comandar as 12 tribos de Israel na conquista de Canaã, a Terra Prometida. Continuação da saga Os Dez Mandamentos.
+              `
+          },
+
+          season: [
+            {
+              name: "Temporada 01",
+              thumb_season: "https://i.imgur.com/dRR1C5K.jpeg",
+              movies: false,
+              episodes: [
+                { title: "Episódio 001", subtitle: "", duration: "1:09:48", thumb: "https://i.imgur.com/wSPSsZz.jpeg", url: [ "https://filemoon.to/e/fohv33go6fjl/2Efu4ZQADExGVxxV",                   "https://mixdrop.sn/e/gjojl1pptpow89",  "https://streamtape.com/get_video?id=kpZO7OpaKbF6l2&expires=1755927970&ip=FRuOExyNRxSNFt&token=j1EN2K21sdWR&stream=1",  "https://www.secvideo1.online/get_file/12/3b370c31cd091769c32c56cc419d14d100d7961945/799000/799756/799756_720p.mp4"] },
+              ]
+            }
+          ],
+        },
+
+        //TEST 2
+        {
+          name: "Animais Fantasticos",
+          enabled: false,
+          visible: true,
+          thumb_buttons: {
+            url: [
+              "https://i.imgur.com/69wXwwB.png",
+            ],
+          },
+          carrousel: {
+              enabled: true,
+              title: "NOME TEST 2",
+              logo: {
+                enabled: false,
+                url: "https://i.imgur.com/jpGZXos.png", //https://i.imgur.com/nQfnOXD.png
+                minimalist: false,
+              },
+              thumb: [
+                "https://pp-vod-img-aws.akamaized.net/0090405/playplus_thumb_1600.jpg",
+                "https://i.imgur.com/v0uF3s6.png",
+              ],
+              text: "",
+              description: `
+                Grande sucesso da televisão brasileira, este épico bíblico narra a saga de Moisés, o hebreu que escapou da morte ainda bebê, virou príncipe do Egito e acabou se transformando no líder escolhido por Deus para libertar seu povo da escravidão.
+              `
+          },
+          season: [
+            {
+              name: "Temporada 01",
+              thumb_season: "https://i.imgur.com/dRR1C5K.jpeg",
+              movies: false,
+              episodes: [
+                { title: "Episódio 001", subtitle: "", duration: "1:09:48", thumb: "https://i.imgur.com/wSPSsZz.jpeg", url: [ "https://filemoon.to/e/fohv33go6fjl/2Efu4ZQADExGVxxV",                   "https://mixdrop.sn/e/gjojl1pptpow89",  "https://streamtape.com/get_video?id=kpZO7OpaKbF6l2&expires=1755927970&ip=FRuOExyNRxSNFt&token=j1EN2K21sdWR&stream=1",  "https://www.secvideo1.online/get_file/12/3b370c31cd091769c32c56cc419d14d100d7961945/799000/799756/799756_720p.mp4"] },
+              ]
+            }
+          ],
+        },
+      ],
     }
 ];
 
@@ -42,6 +94,7 @@ const seriesData = [
 //=======================================================================
 let iconsAnimated           = false; //ATIVA AS ANIMAÇÕES DOS ICONES
 let randomImagesCards       = false; //AS IMAGENS ALEATÓRIAS DOS BOTÕES
+let randomImagesCarrousel   = false; //AS IMAGENS ALEATÓRIAS DO CARROUSEL
 
 const homeIconBase64        = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGAAAABgCAYAAADimHc4AAAACXBIWXMAAAsTAAALEwEAmpwYAAADEUlEQVR4nO2c24tNcRiGn3Em5RQKERnjhguSJCkkpORGrqQ0pST/gn+BK7lxIYm0c+VKkyTJhZRERIxyyjAzTuP4atda0ST2zF57/771re+pp6ZpLt733dP01awWBEEQBEEQBEEQlIMuoAYMZta/XpY6VFXYDLwDNMz69zalDuedfcCXv4yf+w3oTh3SK0eAn/8YP7f+M0eBjtSBvTAOONHA8MM9BYxPHb7sTAUujWL83MvAtNQlyso84FYT4+feARamLlM2VgC9BYyf+xxYlbpUWdgC9Bc4fu57YEfqctbZD3xtwfh/nqkHU5e0SEd2OqpNHosz9TcTgNNtHD/3PDCJijMd6Ekwfm5PlqGSzAduJxw/9y6wiIqxEnhmYPzcF8BqKsJWYMDA6BrmB2AnzjmQnYIy6nfgEA5p95mpAs7UMThhInDGwKgaoReAyZScGcAVA2NqlF4HZlNSFgP3DIyoJn0IdFIy1gAvDYyngnwDrKck7AI+GhhNBfsZ2INxuo2fmSrgTD2MQcp2ZsrTmVo/M88aGEVttmbhTJ0JXDUwhhJ5A5iTavwlwH0DIyixj7JHJdvKWuCVgfIyYh+woV3j7wY+GSgtYw4Be9vxeOAPA2Vl1PyxyMIZCxw3UFAl8WT2SGUh1P9xfc5AKZXMi8CUZsefBVwzUEYl9SYwd7TjLwUeGCihkvsYWD7S8dcBrw2ElxPfAhsbHX97dlKlDi1nDmXb/penBsLKqU8a+QAsPa8jZ/Y2+icoPgRaMv42WoAqbnJUcZOjipscVdzkqOImRxU3Oaq4yVHFTY71gjKez31BGc/nvqCM53NfUMbzuS8o4/ncF5TxfO4Lyng+9wVlPJ/7gjKez31BGc/nvqCM53NfUMbzuS8o4/ncF5TxfO4Lyng+9wVlPJ/7gjKez31BGc/nvqCM53NfUMbzuS8o4/ncF5TxfO4Lyng+9wVlPF/TDLawXH8F8jVNrcWvjvSer2m6sreFFF2ur6C3FVrPVwgLsvfxF/FO6IHsN6uzQvmCIAiCIAiCIAiCIAgC/PMLPuW3uHQ1X/MAAAAASUVORK5CYII=';
 const historyIconBase64     = 'data:image/png;base64,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';
@@ -60,7 +113,23 @@ const kickIconSvg           = `<svg role="img" viewBox="-5 0 30 30" xmlns="http:
 
 const homeIconImg           = 'https://i.imgur.com/xS20AuN.png';
 const historyIconImg        = 'https://i.imgur.com/nxaxTS3.png';
-const favoritesIconImg      = 'https://i.imgur.com/UmEAJ1G.png';
+const favoritesIconImg      = 'https://i.imgur.com/LAcxXkU.png'; //'https://i.imgur.com/UmEAJ1G.png';
+
+function hideLoader(startTime) {
+    const loader = document.getElementById('page-loader');
+    if (!loader) return;
+
+    const loadTime = Date.now() - startTime; 
+    const minDisplayTime = 500; 
+    const delay = Math.max(0, minDisplayTime - loadTime); 
+
+    setTimeout(() => {
+        loader.classList.add('hidden');
+        setTimeout(() => {
+            loader.remove(); 
+        }, 500); 
+    }, delay);
+}
 
 function generateSlug(name) {
   return name.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/\s+/g, '-');
@@ -76,7 +145,7 @@ function getIcon(groupName) {
   if (name.includes('minecraft')) return { type: 'base64', value: minecraftIconBase64, alt: 'minecraft' };
   if (name.includes('bíblicas'))  return { type: 'base64', value: biblicalIconBase64,  alt: 'séries bíblicas' };
   if (name.includes('séries'))    return { type: 'base64', value: seriesIconBase64,    alt: 'séries' };
-  if (name.includes('stream'))    return { type: 'base64', value: twitchIconBase64,    alt: 'streams' };
+  if (name.includes('streams'))   return { type: 'base64', value: twitchIconBase64,    alt: 'streams' };
 
   return { type: 'fa', value: 'fas fa-layer-group' }; 
 }
@@ -84,9 +153,9 @@ function getIcon(groupName) {
 function setupStreamIcons(link) {
   const text = "Streams";
   const icons = [
-    { type: 'base64', value: twitchIconBase64, alt: 'twitch' },
-    { type: 'svg', value: kickIconSvg, alt: 'kick' },
-    { type: 'base64', value: youtubeIconBase64, alt: 'youtube' }
+    { type: 'base64', value: twitchIconBase64,  alt: 'twitch'  },
+    { type: 'svg',    value: kickIconSvg,       alt: 'kick'    },
+    { type: 'base64', value: youtubeIconBase64, alt: 'youtube' },
   ];
   let currentIndex = 0;
 
@@ -172,22 +241,7 @@ async function loadPageContent(path) {
   const contentContainer = document.getElementById('page-content');
   let html = '';
   const filteredGroups = getFilteredItems(path);
-  const showHero = path === generateSlug('Início');
   const isFavoritesPage = path === generateSlug('Favoritos');
-
-  if (showHero) {
-    html += `
-    <section class="hero-banner">
-      <div class="hero-info">
-        <h1>Minions</h1>
-        <div class="hero-actions">
-          <button class="btn-primary"><i class="fas fa-play"></i> Assistir agora</button>
-          <button class="btn-secondary"><i class="fas fa-info-circle"></i> Ver informações</button>
-        </div>
-      </div>
-    </section>
-    `;
-  }
 
   if (filteredGroups.length > 0) { 
     if (isFavoritesPage) {
@@ -227,48 +281,50 @@ async function loadPageContent(path) {
         
     html += `<header class="group-cards-header">`;
     groupItem.group.forEach(item => {
-      if (item.name && item.thumb_buttons && item.thumb_buttons.url && item.thumb_buttons.url.length > 0) {
-      const urls = item.thumb_buttons.url;
-      const selectedThumb = randomImagesCards 
-        ? urls[Math.floor(Math.random() * urls.length)] 
-        : urls[0];
-      const firstThumb = selectedThumb;
-      const isEnabled = item.enabled !== false;
-      const cardMediaStyle = isEnabled ? `background-image: url('${firstThumb}')` : `background-image: url('${firstThumb}'); filter: grayscale(100%);`;
-      const watchButtonClass = isEnabled ? 'watch-button' : 'watch-button disabled';
-      const watchButtonText = isEnabled ? 'ASSISTIR' : (item.name || 'INDISPONÍVEL');
-      const currentIsFavorite = isFavorite(item.name);
-      html += `
-        <div id="group-series-button">
-        <div class="card-media" style="${cardMediaStyle}"></div>
-        <div class="info">
-          <h1>${item.name}</h1>
-          <p>TEST</p>
-          <button class="${watchButtonClass}">${watchButtonText}</button>
-        </div>
-        <button class="favorite-button ${currentIsFavorite ? 'favorited' : ''}" data-serie='${JSON.stringify(item)}'>
-          <svg class="rating__star" width="24" height="24" viewBox="0 0 32 32" aria-hidden="true">
-            <g transform="translate(16,16)">
-              <circle class="rating__star-ring" fill="none" stroke="#000" stroke-width="16" r="8" transform="scale(0)" />
-            </g>
-            <g stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <g transform="translate(16,16) rotate(180)">
-                <polygon class="rating__star-stroke" points="0,15 4.41,6.07 14.27,4.64 7.13,-2.32 8.82,-12.14 0,-7.5 -8.82,-12.14 -7.13,-2.32 -14.27,4.64 -4.41,6.07" fill="none" />
-                <polygon class="rating__star-fill" points="0,15 4.41,6.07 14.27,4.64 7.13,-2.32 8.82,-12.14 0,-7.5 -8.82,-12.14 -7.13,-2.32 -14.27,4.64 -4.41,6.07" fill="#000" />
+      if (item.visible !== false && item.name && item.thumb_buttons && item.thumb_buttons.url && item.thumb_buttons.url.length > 0) {
+        const urls = item.thumb_buttons.url;
+        const selectedThumb = randomImagesCards 
+          ? urls[Math.floor(Math.random() * urls.length)] 
+          : urls[0];
+        const firstThumb = selectedThumb;
+        const isEnabled = item.enabled !== false;
+        const cardMediaStyle = `background-image: url('${firstThumb}')`;  // Remove o inline filter, deixa pro CSS
+        const watchButtonClass = isEnabled ? 'watch-button' : 'watch-button disabled';
+        const watchButtonText = isEnabled ? 'ASSISTIR' : 'INDISPONÍVEL';
+        const currentIsFavorite = isFavorite(item.name);
+        const containerClass = isEnabled ? '' : 'disabled';  // Adiciona classe 'disabled' no container pra ativar o CSS
+
+        html += `
+          <div id="group-series-button" class="${containerClass}">
+          <div class="card-media" style="${cardMediaStyle}"></div>
+          <div class="info">
+            <h1>${item.name}</h1>
+            <p>TEST</p>
+            <button class="${watchButtonClass}">${watchButtonText}</button>
+          </div>
+          <button class="favorite-button ${currentIsFavorite ? 'favorited' : ''}" data-serie='${JSON.stringify(item)}'>
+            <svg class="rating__star" width="24" height="24" viewBox="0 0 32 32" aria-hidden="true">
+              <g transform="translate(16,16)">
+                <circle class="rating__star-ring" fill="none" stroke="#000" stroke-width="16" r="8" transform="scale(0)" />
               </g>
-              <g transform="translate(16,16)" stroke-dasharray="12 12" stroke-dashoffset="12">
-                <polyline class="rating__star-line" transform="rotate(0)" points="0 4,0 16" />
-                <polyline class="rating__star-line" transform="rotate(72)" points="0 4,0 16" />
-                <polyline class="rating__star-line" transform="rotate(144)" points="0 4,0 16" />
-                <polyline class="rating__star-line" transform="rotate(216)" points="0 4,0 16" />
-                <polyline class="rating__star-line" transform="rotate(288)" points="0 4,0 16" />
+              <g stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <g transform="translate(16,16) rotate(180)">
+                  <polygon class="rating__star-stroke" points="0,15 4.41,6.07 14.27,4.64 7.13,-2.32 8.82,-12.14 0,-7.5 -8.82,-12.14 -7.13,-2.32 -14.27,4.64 -4.41,6.07" fill="none" />
+                  <polygon class="rating__star-fill" points="0,15 4.41,6.07 14.27,4.64 7.13,-2.32 8.82,-12.14 0,-7.5 -8.82,-12.14 -7.13,-2.32 -14.27,4.64 -4.41,6.07" fill="#000" />
+                </g>
+                <g transform="translate(16,16)" stroke-dasharray="12 12" stroke-dashoffset="12">
+                  <polyline class="rating__star-line" transform="rotate(0)" points="0 4,0 16" />
+                  <polyline class="rating__star-line" transform="rotate(72)" points="0 4,0 16" />
+                  <polyline class="rating__star-line" transform="rotate(144)" points="0 4,0 16" />
+                  <polyline class="rating__star-line" transform="rotate(216)" points="0 4,0 16" />
+                  <polyline class="rating__star-line" transform="rotate(288)" points="0 4,0 16" />
+                </g>
               </g>
-            </g>
-          </svg>
-          <span class="tooltip-text black tooltip-top">${currentIsFavorite ? 'Remover dos favoritos' : 'Adicionar aos favoritos'}</span>
-        </button>
-        </div>
-      `;
+            </svg>
+            <span class="tooltip-text black tooltip-top">${currentIsFavorite ? 'Remover dos favoritos' : 'Adicionar aos favoritos'}</span>
+          </button>
+          </div>
+        `;
       }
     });
     html += `</header>`;
@@ -294,44 +350,44 @@ async function loadPageContent(path) {
    const serieData = JSON.parse(this.getAttribute('data-serie'));
    const nowFavorite = toggleFavorite(serieData);
 
-    if (currentPath === generateSlug('Favoritos') || currentPath === generateSlug('Início')) {
-      loadPageContent(currentPath);
-      return; 
-    }
+  if (currentPath === generateSlug('Favoritos') || currentPath === generateSlug('Início')) {
+    loadPageContent(currentPath);
+    return; 
+  }
 
  this.classList.toggle('favorited', nowFavorite);
 
-    const star = this.querySelector('.rating__star');
-    const ring = this.querySelector('.rating__star-ring');
-    const stroke = this.querySelector('.rating__star-stroke');
-    const fill = this.querySelector('.rating__star-fill');
-    const lines = this.querySelectorAll('.rating__star-line');
+  const star = this.querySelector('.rating__star');
+  const ring = this.querySelector('.rating__star-ring');
+  const stroke = this.querySelector('.rating__star-stroke');
+  const fill = this.querySelector('.rating__star-fill');
+  const lines = this.querySelectorAll('.rating__star-line');
 
-    [ring, stroke, fill, ...lines].forEach(el => {
-      if (el) el.style.animation = 'none';
-    });
+  [ring, stroke, fill, ...lines].forEach(el => {
+    if (el) el.style.animation = 'none';
+  });
 
-    this.offsetHeight;
+  this.offsetHeight;
 
-    if (nowFavorite) {
-      if (ring) ring.style.animation = 'starRing 1s ease-in-out forwards';
-      if (stroke) stroke.style.animation = 'starStroke 1s ease-in-out forwards';
-      if (fill) fill.style.animation = 'starFill 1s ease-in-out forwards';
-      lines.forEach(line => line.style.animation = 'starLine 1s ease-in-out forwards');
-    } else {
-      if (ring) ring.style.animation = 'starRing 1s ease-in-out reverse forwards';
-      if (stroke) stroke.style.animation = 'starStroke 1s ease-in-out reverse forwards';
-      if (fill) fill.style.animation = 'starFill 1s ease-in-out reverse forwards';
-      lines.forEach(line => line.style.animation = 'starLine 1s ease-in-out reverse forwards');
-    }
+  if (nowFavorite) {
+    if (ring) ring.style.animation = 'starRing 1s ease-in-out forwards';
+    if (stroke) stroke.style.animation = 'starStroke 1s ease-in-out forwards';
+    if (fill) fill.style.animation = 'starFill 1s ease-in-out forwards';
+    lines.forEach(line => line.style.animation = 'starLine 1s ease-in-out forwards');
+  } else {
+    if (ring) ring.style.animation = 'starRing 1s ease-in-out reverse forwards';
+    if (stroke) stroke.style.animation = 'starStroke 1s ease-in-out reverse forwards';
+    if (fill) fill.style.animation = 'starFill 1s ease-in-out reverse forwards';
+    lines.forEach(line => line.style.animation = 'starLine 1s ease-in-out reverse forwards');
+  }
 
-    const tooltip = this.querySelector('.tooltip-text');
-    if (tooltip) {
-      tooltip.textContent = nowFavorite ? 'Remover dos favoritos' : 'Adicionar aos favoritos';
-    }
+  const tooltip = this.querySelector('.tooltip-text');
+  if (tooltip) {
+    tooltip.textContent = nowFavorite ? 'Remover dos favoritos' : 'Adicionar aos favoritos';
+  }
 
-    this.classList.add('pulse');
-    setTimeout(() => {this.classList.remove('pulse');}, 600);});
+  this.classList.add('pulse');
+  setTimeout(() => {this.classList.remove('pulse');}, 600);});
  });
 }
 
@@ -354,7 +410,151 @@ function getCurrentPath() {
   return generateSlug('Início');
 }
 
+function renderCarrousel() {
+  let allCarouselSlides = [];
+
+  seriesData.forEach(groupItem => {
+      if (groupItem.group && Array.isArray(groupItem.group)) {
+          groupItem.group.forEach(series => {
+              const carousel = series.carrousel;
+              
+              if (carousel && carousel.enabled === true && carousel.thumb && Array.isArray(carousel.thumb) && carousel.thumb.length > 0) {
+                  
+                  allCarouselSlides.push({
+                      title: carousel.title || series.name, 
+                      description: carousel.description || '',
+                      imageUrl: carousel.thumb[0],
+                      seriesData: series
+                  });
+              }
+          });
+      }
+  });
+
+  const carouselSection = document.querySelector('.content-carousel');
+  if (allCarouselSlides.length === 0) {
+    if (carouselSection) carouselSection.style.display = 'none';
+    return;
+  }
+  if (carouselSection) carouselSection.style.display = 'block';
+
+  const slidesContainer = document.querySelector('.carousel-slides');
+  const dotsContainer = document.querySelector('.carousel-dots');
+  const prevButton = document.querySelector('.carousel-control.prev');
+  const nextButton = document.querySelector('.carousel-control.next');
+
+  let currentSlide = 0;
+  let slidesHTML = '';
+  let dotsHTML = '';
+
+  allCarouselSlides.forEach((slide, index) => {
+    const isActive = index === 0 ? 'active' : '';
+    const seriesName = slide.seriesData.name;
+    const currentIsFavorite = typeof isFavorite === 'function' && isFavorite(seriesName); 
+    const carousel = slide.seriesData.carrousel;
+    const logo = carousel.logo;
+    let titleHTML = `<h1>${slide.title}</h1>`;
+    
+    if (logo && logo.enabled === true && logo.url && logo.url.trim() !== '') {
+      const logoClass = logo.minimalist ? 'carousel-logo minimalist-logo' : 'carousel-logo';
+      titleHTML = `<img src="${logo.url.trim()}" class="${logoClass}" alt="${slide.title}">`;
+    }
+    
+    slidesHTML += `
+      <div class="carousel-slide ${isActive}" style="background-image: url('${slide.imageUrl.trim()}');">
+        <div class="carousel-caption">
+          ${titleHTML}
+          <p>${slide.description.trim()}</p>
+          
+          <div class="carousel-actions">
+            <button class="btn btn-primary btn-watch-now">
+                <i class="fas fa-play"></i> Assistir Agora
+            </button>
+            
+            <button 
+                class="favorite-button-s2 ${currentIsFavorite ? 'active' : ''}" 
+                data-serie='${JSON.stringify(slide.seriesData)}'
+            ></button>
+          </div>
+        </div>
+      </div>
+    `;
+    dotsHTML += `<span class="dot ${isActive}" data-slide-index="${index}"></span>`;
+  });
+
+  slidesContainer.innerHTML = slidesHTML;
+  dotsContainer.innerHTML = dotsHTML;
+
+  const slides = document.querySelectorAll('.carousel-slide');
+  const dots = document.querySelectorAll('.dot');
+  const totalSlides = slides.length;
+
+  function updateCarousel(newIndex) {
+      // Remove 'active' do slide e dot atual
+      slides[currentSlide].classList.remove('active');
+      dots[currentSlide].classList.remove('active');
+      
+      // Calcula o novo índice
+      if (newIndex >= totalSlides) {
+          currentSlide = 0;
+      } else if (newIndex < 0) {
+          currentSlide = totalSlides - 1;
+      } else {
+          currentSlide = newIndex;
+      }
+
+      // Adiciona 'active' ao novo slide e dot
+      slides[currentSlide].classList.add('active');
+      dots[currentSlide].classList.add('active');
+  }
+
+  prevButton.addEventListener('click', () => updateCarousel(currentSlide - 1));
+  nextButton.addEventListener('click', () => updateCarousel(currentSlide + 1));
+
+  dots.forEach(dot => {
+      dot.addEventListener('click', function() {
+          const index = parseInt(this.getAttribute('data-slide-index'));
+          updateCarousel(index);
+      });
+  });
+
+  const autoplayInterval = 5000;
+  let autoPlayTimer = setInterval(() => {
+    updateCarousel(currentSlide + 1);
+  }, autoplayInterval);
+
+  const carouselContainer = document.getElementById('hero-carousel');
+  carouselContainer.addEventListener('mouseenter', () => clearInterval(autoPlayTimer));
+  carouselContainer.addEventListener('mouseleave', () => {
+    autoPlayTimer = setInterval(() => {
+      updateCarousel(currentSlide + 1);
+    }, autoplayInterval);
+  });
+
+  const favoriteButtons = document.querySelectorAll('.favorite-button-s2');
+
+  favoriteButtons.forEach(button => {
+    button.addEventListener('click', function(e) {
+      e.preventDefault();
+      const serieData = JSON.parse(this.getAttribute('data-serie'));
+      const nowFavorite = toggleFavorite(serieData); 
+
+      this.classList.toggle('active', nowFavorite);
+      this.classList.add('heart-pulse');
+      this.addEventListener('animationend', () => {
+          this.classList.remove('heart-pulse');
+      }, { once: true });
+
+      const currentPath = getCurrentPath();
+      if (currentPath === generateSlug('Início') || currentPath === generateSlug('Favoritos')) {
+          loadPageContent(currentPath);
+      }
+    });
+  });
+}
+
 document.addEventListener('DOMContentLoaded', () => {
+  renderCarrousel();
   const menuContainer = document.getElementById('dynamic-content-menu');
   const mainMenuList = document.getElementById('main-menu-list');
   let seriesHtml = '';
@@ -455,4 +655,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const streamsLink = document.querySelector('a[data-group="' + generateSlug('Streams') + '"]');
     if (streamsLink) setupStreamIcons(streamsLink);
+
+    loadPageContent(currentPath).then(() => {
+      hideLoader();
+    });
 });

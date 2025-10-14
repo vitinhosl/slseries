@@ -6,10 +6,30 @@
     <title>SL SÉRIES</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="resources/styles.css">
+    <link rel="stylesheet" href="resources/loading.css">
     <link rel="stylesheet" href="resources/theme/ruined.css">
     <link rel="stylesheet" href="resources/theme/default.css">
 </head>
 <body>
+
+    <div id="page-loader" aria-hidden="true">
+        <div class="container-load">
+            <svg class="diamond-load small" viewBox="0 0 30 30">
+            <path class="path-load" d="M1.56502 15L15 1.56502L28.4351 15L15 28.4351L1.56502 15Z"/>
+            </svg>
+            <svg class="diamond-load small rotated-load" viewBox="0 0 30 30">
+            <path class="path-load" d="M1.56502 15L15 1.56502L28.4351 15L15 28.4351L1.56502 15Z"/>
+            </svg>
+            <div class="square-load centered-load"></div>
+            <svg class="diamond-load large" viewBox="0 0 58 58">
+            <path class="path-load" d="M1.42293 29L29 1.42293L56.5771 29L29 56.5771L1.42293 29Z"/>
+            </svg>
+            <svg class="diamond-load large rotated-load" viewBox="0 0 58 58">
+            <path class="path-load" d="M1.42293 29L29 1.42293L56.5771 29L29 56.5771L1.42293 29Z"/>
+            </svg>
+            <div class="circle-load centered-load"></div>
+        </div>
+    </div>
 
     <aside class="sidebar">
         <div class="logo">
@@ -43,10 +63,25 @@
             </div>
         </header>
 
+        <section class="content-carousel">
+            <div id="hero-carousel" class="carousel-container">
+                <div class="carousel-slides"></div>
+
+                <button class="carousel-control prev" aria-label="Slide Anterior">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <button class="carousel-control next" aria-label="Próximo Slide">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+
+                <div class="carousel-dots"></div>
+            </div>
+        </section>
+
         <div id="page-content"></div>
     </main>
 
     <script src="resources/scripts.js"></script>
-    <script type="module" src="resources/scripts.js"></script>
+    <!-- <script type="module" src="resources/scripts.js"></script> -->
 </body>
 </html>

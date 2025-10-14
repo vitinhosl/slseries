@@ -1860,7 +1860,6 @@ export const biblicalData = [
           //A RAINHA DA PÉRSIA
           {
             name: "A Rainha da Pérsia",
-            thumb_page: "",
             thumb_buttons: {
                 url: [
                     "https://i.imgur.com/FvREJ6n.jpeg",
@@ -2048,7 +2047,6 @@ export const biblicalData = [
           //APOCALIPSE
           {
             name: "Apocalipse",
-            thumb_page: "",
             thumb_buttons: {
                 url: [
                     "https://i.imgur.com/gEPrg5k.jpeg",
@@ -3039,7 +3037,6 @@ export const biblicalData = [
           //SANSÃO E DALILA
           {
             name: "Sansão e Dalila",
-            thumb_page: "",
             thumb_buttons: {
                 url: [
                     "https://pp-vod-img-aws.akamaized.net/0069029/0069029_200.jpg",
@@ -3133,7 +3130,6 @@ export const biblicalData = [
           //LIA
           {
             name: "Lia",
-            thumb_page: "",
             thumb_buttons: {
                 url: [
                     "https://i.imgur.com/9vEih6n.jpeg",
@@ -3214,7 +3210,6 @@ export const biblicalData = [
           //NEEMIAS
           {
             name: "Neemias",
-            thumb_page: "",
             thumb_buttons: {
                 url: [
                     "https://i.imgur.com/PIyJSbp.jpeg",
@@ -3286,7 +3281,6 @@ export const biblicalData = [
           //A BÍBLIA
           {
             name: "A Bíblia",
-            thumb_page: "",
             thumb_buttons: {
                 url: [
                     // "https://i.imgur.com/clkVNbb.jpeg",
@@ -3449,7 +3443,6 @@ export const biblicalData = [
           //MILAGRES DE JESUS
           {
             name: "Milagres de Jesus",
-            thumb_page: "",
             thumb_buttons: {
                 url: [
                     "https://i.imgur.com/u8ldcJl.png",
@@ -3679,7 +3672,6 @@ export const biblicalData = [
           //A VIDA DE JÓ
           {
             name: "A Vida de Jó",
-            thumb_page: "",
             thumb_buttons: {
                 url: [
                     "https://i.imgur.com/3RfyOs1.png",
@@ -3752,7 +3744,6 @@ export const biblicalData = [
           //O SENHOR E A SERVA
           {
             name: "O Senhor e a Serva",
-            thumb_page: "",
             thumb_buttons: {
                 url: [
                     "https://i.imgur.com/5RLytoA.jpeg",

@@ -5,82 +5,80 @@ export const moviesData = [
         group: [
             //HARRY POTTER
             {
-            name: "Harry Potter",
-            thumb_page: "",
-            thumb_buttons: {
-                url: [
-                "https://i.imgur.com/wdXyskp.png", //HARRY POTTER 1: EA PEDRA FILOSOFAL
-                "https://i.imgur.com/SJYo00O.png", //HARRY POTTER 2: EA CÂMARA SECRETA
-                "https://i.imgur.com/zmMRzon.png", //HARRY POTTER 3: EO CÁLICE DE FOGO
-                "https://i.imgur.com/bqh8keV.png", //HARRY POTTER 4: EO PRISIONEIRO DE AZKABAN
-                "https://i.imgur.com/IdOkjj3.png", //HARRY POTTER 5: EA ORDEM DA FÊNIX
-                "https://i.imgur.com/RWt83mC.png", //HARRY POTTER 6: EO ENIGMA DO PRÍNCIPE
-                "https://i.imgur.com/csXAXhz.png", //HARRY POTTER 7: EAS RELIQUIAS DA MORTE PT 1
-                "https://i.imgur.com/N6aK9dg.png", //HARRY POTTER 8: EAS RELIQUIAS DA MORTE PT 2
+                name: "Harry Potter",
+                thumb_buttons: {
+                    url: [
+                    "https://i.imgur.com/wdXyskp.png", //HARRY POTTER 1: EA PEDRA FILOSOFAL
+                    "https://i.imgur.com/SJYo00O.png", //HARRY POTTER 2: EA CÂMARA SECRETA
+                    "https://i.imgur.com/zmMRzon.png", //HARRY POTTER 3: EO CÁLICE DE FOGO
+                    "https://i.imgur.com/bqh8keV.png", //HARRY POTTER 4: EO PRISIONEIRO DE AZKABAN
+                    "https://i.imgur.com/IdOkjj3.png", //HARRY POTTER 5: EA ORDEM DA FÊNIX
+                    "https://i.imgur.com/RWt83mC.png", //HARRY POTTER 6: EO ENIGMA DO PRÍNCIPE
+                    "https://i.imgur.com/csXAXhz.png", //HARRY POTTER 7: EAS RELIQUIAS DA MORTE PT 1
+                    "https://i.imgur.com/N6aK9dg.png", //HARRY POTTER 8: EAS RELIQUIAS DA MORTE PT 2
 
-                "https://i.imgur.com/8xGK1SM.png", //HARRY POTTER 1: EA PEDRA FILOSOFAL
-                "https://i.imgur.com/C76mOFX.png", //HARRY POTTER 2: EA CÂMARA SECRETA
-                "https://i.imgur.com/SzZpgyk.png", //HARRY POTTER 3: EO CÁLICE DE FOGO
-                "https://i.imgur.com/E4sncKt.png", //HARRY POTTER 4: EO PRISIONEIRO DE AZKABAN
-                "https://i.imgur.com/ClbbCiS.png", //HARRY POTTER 5: EA ORDEM DA FÊNIX
-                "https://i.imgur.com/JVYBDl1.png", //HARRY POTTER 6: EO ENIGMA DO PRÍNCIPE
-                "https://i.imgur.com/df4o6Du.png", //HARRY POTTER 7: EAS RELIQUIAS DA MORTE PT 1
-                "https://i.imgur.com/4vclUJV.png", //HARRY POTTER 8: EAS RELIQUIAS DA MORTE PT 2
-                ],
-            },
-            badge: "",
-            type: "",
-            canais: false,
-            enabled: false,
-            youtube: false,
-            visible: true,
-            title: "", //TEXTO DO BOTÃO ENABLED OFF
-            carrousel: {
+                    "https://i.imgur.com/8xGK1SM.png", //HARRY POTTER 1: EA PEDRA FILOSOFAL
+                    "https://i.imgur.com/C76mOFX.png", //HARRY POTTER 2: EA CÂMARA SECRETA
+                    "https://i.imgur.com/SzZpgyk.png", //HARRY POTTER 3: EO CÁLICE DE FOGO
+                    "https://i.imgur.com/E4sncKt.png", //HARRY POTTER 4: EO PRISIONEIRO DE AZKABAN
+                    "https://i.imgur.com/ClbbCiS.png", //HARRY POTTER 5: EA ORDEM DA FÊNIX
+                    "https://i.imgur.com/JVYBDl1.png", //HARRY POTTER 6: EO ENIGMA DO PRÍNCIPE
+                    "https://i.imgur.com/df4o6Du.png", //HARRY POTTER 7: EAS RELIQUIAS DA MORTE PT 1
+                    "https://i.imgur.com/4vclUJV.png", //HARRY POTTER 8: EAS RELIQUIAS DA MORTE PT 2
+                    ],
+                },
+                badge: "",
+                type: "",
+                canais: false,
                 enabled: false,
-                title: "HARRY POTTER",
-                logo: {
+                youtube: false,
+                visible: true,
+                title: "", //TEXTO DO BOTÃO ENABLED OFF
+                carrousel: {
                     enabled: false,
-                    url: "",
-                    minimalist: false,
+                    title: "HARRY POTTER",
+                    logo: {
+                        enabled: false,
+                        url: "",
+                        minimalist: false,
+                    },
+                    thumb: [""],
+                    text: "",
+                    description: `
+                        
+                    `
                 },
-                thumb: [""],
-                text: "",
-                description: `
-                    
-                `
-            },
-            description: {
-                title: "HARRY POTTER",
-                thumb: [
-                    "https://i.imgur.com/UPY13oJ.png",
-                ],
-                sinopse:  `
-                    Quem se senta no trono de ferro controla os sete reinos. Game of Thrones segue a luta das famílias nobres que cobiçam esse poder. Nove famílias nobres lutam pelo controle sobre as terras míticas de Westeros, enquanto um antigo inimigo retorna depois de estar adormecido por milhares de anos.
-                `
-            },
-            season: [
-                {
-                    name: "Filmes",
-                    thumb_season: "https://i.imgur.com/sWx8cad.png",
-                    movies: true,
-                    episodes: [
-                    { title: "Episódio 001"   , subtitle: "", duration: "", thumb: "https://beam-images.warnermediacdn.com/BEAM_LWM_DELIVERABLES/4b990c5d-38ab-4daf-8092-2617cbc6d062/e1b7b1e8-6659-11f0-be5e-0afff99ad1ad?host=wbd-images.prod-vod.h264.io&partner=beamcom&w=320", url: [""] },
-                    { title: "Episódio 002"   , subtitle: "", duration: "", thumb: "https://beam-images.warnermediacdn.com/BEAM_LWM_DELIVERABLES/48674b82-9076-4080-a40c-379efad5eb89/80cd8de7-a391-44dc-b03b-0035bddc770e?host=wbd-images.prod-vod.h264.io&partner=beamcom&w=320", url: [""] },
-                    { title: "Episódio 003"   , subtitle: "", duration: "", thumb: "https://is1-ssl.mzstatic.com/image/thumb/Video221/v4/f8/76/0d/f8760df5-55d1-c54f-c74f-593384d4a264/4aa21897-d969-4938-a0e4-d056057958ba_HP3_AZKABAN_2024_H_DD_KA_TT_3840x2160_300dpi_BR.jpg/340x191.webp", url: [""] },
-                    { title: "Episódio 004"   , subtitle: "", duration: "", thumb: "https://is1-ssl.mzstatic.com/image/thumb/Video211/v4/55/bf/98/55bf9850-7421-9b54-b1d2-41dc277bcb8b/c3c9a44f-ab59-498c-a320-f8e75467abfb_HP4_GOBLET_2024_H_DD_KA_TT_3840x2160_300dpi_BR.jpg/340x191.webp", url: [""] },
-                    { title: "Episódio 005"   , subtitle: "", duration: "", thumb: "https://is1-ssl.mzstatic.com/image/thumb/Video211/v4/79/12/03/79120352-f816-3c4c-700c-b9f8c2fac24b/37d7be2c-929c-4c61-8054-988f8305e6cd_HP5_PHOENIX_2024_H_DD_KA_TT_3840x2160_300dpi_BR.jpg/340x191.webp", url: [""] },
-                    { title: "Episódio 006"   , subtitle: "", duration: "", thumb: "https://is1-ssl.mzstatic.com/image/thumb/Video211/v4/a4/67/06/a46706c7-fffb-918d-06ae-9d365d4379e1/5041760a-c4cf-4cdc-b63d-506e744d28ce_HP6_PRINCE_2024_H_DD_KA_TT_3840x2160_300dpi_BR.jpg/340x191.webp", url: [""] },
-                    { title: "Episódio 007"   , subtitle: "", duration: "", thumb: "https://is1-ssl.mzstatic.com/image/thumb/Video211/v4/f9/75/34/f97534aa-0f55-1910-272c-4f5f5b31690e/0db903be-4dba-4d7e-babd-17667fea2129_HP7_PART1_2024_H_DD_KA_TT_3840x2160_300dpi_BR.jpg/340x191.webp", url: [""] },
-                    { title: "Episódio 007 II", subtitle: "", duration: "", thumb: "https://is1-ssl.mzstatic.com/image/thumb/Video221/v4/21/90/24/21902420-c5ca-1b58-4cc2-dfc6ac49a93f/f86c1590-9f59-4e5e-bad7-95a3c36f4dcd_HP7_PART2_2024_H_DD_KA_TT_3840x2160_300dpi_BR.jpg/340x191.webp", url: [""] },
-                    ]
+                description: {
+                    title: "HARRY POTTER",
+                    thumb: [
+                        "https://i.imgur.com/UPY13oJ.png",
+                    ],
+                    sinopse:  `
+                        Quem se senta no trono de ferro controla os sete reinos. Game of Thrones segue a luta das famílias nobres que cobiçam esse poder. Nove famílias nobres lutam pelo controle sobre as terras míticas de Westeros, enquanto um antigo inimigo retorna depois de estar adormecido por milhares de anos.
+                    `
                 },
-            ]
+                season: [
+                    {
+                        name: "Filmes",
+                        thumb_season: "https://i.imgur.com/sWx8cad.png",
+                        movies: true,
+                        episodes: [
+                        { title: "Episódio 001"   , subtitle: "", duration: "", thumb: "https://beam-images.warnermediacdn.com/BEAM_LWM_DELIVERABLES/4b990c5d-38ab-4daf-8092-2617cbc6d062/e1b7b1e8-6659-11f0-be5e-0afff99ad1ad?host=wbd-images.prod-vod.h264.io&partner=beamcom&w=320", url: [""] },
+                        { title: "Episódio 002"   , subtitle: "", duration: "", thumb: "https://beam-images.warnermediacdn.com/BEAM_LWM_DELIVERABLES/48674b82-9076-4080-a40c-379efad5eb89/80cd8de7-a391-44dc-b03b-0035bddc770e?host=wbd-images.prod-vod.h264.io&partner=beamcom&w=320", url: [""] },
+                        { title: "Episódio 003"   , subtitle: "", duration: "", thumb: "https://is1-ssl.mzstatic.com/image/thumb/Video221/v4/f8/76/0d/f8760df5-55d1-c54f-c74f-593384d4a264/4aa21897-d969-4938-a0e4-d056057958ba_HP3_AZKABAN_2024_H_DD_KA_TT_3840x2160_300dpi_BR.jpg/340x191.webp", url: [""] },
+                        { title: "Episódio 004"   , subtitle: "", duration: "", thumb: "https://is1-ssl.mzstatic.com/image/thumb/Video211/v4/55/bf/98/55bf9850-7421-9b54-b1d2-41dc277bcb8b/c3c9a44f-ab59-498c-a320-f8e75467abfb_HP4_GOBLET_2024_H_DD_KA_TT_3840x2160_300dpi_BR.jpg/340x191.webp", url: [""] },
+                        { title: "Episódio 005"   , subtitle: "", duration: "", thumb: "https://is1-ssl.mzstatic.com/image/thumb/Video211/v4/79/12/03/79120352-f816-3c4c-700c-b9f8c2fac24b/37d7be2c-929c-4c61-8054-988f8305e6cd_HP5_PHOENIX_2024_H_DD_KA_TT_3840x2160_300dpi_BR.jpg/340x191.webp", url: [""] },
+                        { title: "Episódio 006"   , subtitle: "", duration: "", thumb: "https://is1-ssl.mzstatic.com/image/thumb/Video211/v4/a4/67/06/a46706c7-fffb-918d-06ae-9d365d4379e1/5041760a-c4cf-4cdc-b63d-506e744d28ce_HP6_PRINCE_2024_H_DD_KA_TT_3840x2160_300dpi_BR.jpg/340x191.webp", url: [""] },
+                        { title: "Episódio 007"   , subtitle: "", duration: "", thumb: "https://is1-ssl.mzstatic.com/image/thumb/Video211/v4/f9/75/34/f97534aa-0f55-1910-272c-4f5f5b31690e/0db903be-4dba-4d7e-babd-17667fea2129_HP7_PART1_2024_H_DD_KA_TT_3840x2160_300dpi_BR.jpg/340x191.webp", url: [""] },
+                        { title: "Episódio 007 II", subtitle: "", duration: "", thumb: "https://is1-ssl.mzstatic.com/image/thumb/Video221/v4/21/90/24/21902420-c5ca-1b58-4cc2-dfc6ac49a93f/f86c1590-9f59-4e5e-bad7-95a3c36f4dcd_HP7_PART2_2024_H_DD_KA_TT_3840x2160_300dpi_BR.jpg/340x191.webp", url: [""] },
+                        ]
+                    },
+                ]
             },
 
             //ANIMAIS FANTASTICOS
             {
             name: "Animais Fantasticos",
-            thumb_page: "",
             thumb_buttons: {
                 url: [
                 "https://i.imgur.com/69wXwwB.png", //ANIMAIS FANTÁSTICOS 1: E ONDE HABITAM
@@ -141,7 +139,6 @@ export const moviesData = [
             //VELOZES E FURIOSOS
             {
                 name: "Velozes e Furiosos",
-                thumb_page: "",
                 thumb_buttons: {
                 url: [
                     "https://i.imgur.com/y8FBSks.jpeg", //VELOZES E FURIOSOS 1
@@ -226,7 +223,6 @@ export const moviesData = [
             //TROPA DE ELITE
             {
                 name: "Tropa de Elite",
-                thumb_page: "",
                 thumb_buttons: {
                     url: [
                         "https://i.imgur.com/l8BHSFw.jpeg", //TROPA DE ELITE 1

@@ -5,7 +5,6 @@ export const OldnovelsData= [
             //REBELDE MEXICANO
             {
                 name: "Rebelde",
-                thumb_page: "",
                 thumb_buttons: ["https://i.imgur.com/SEnkwUw.jpeg"],
                 badge: "NOVO",
                 type: "Temporadas",
@@ -490,7 +489,6 @@ export const novelsData= [
             //REBELDE MEXICANO (RBD)
             {
                 name: "Rebelde",
-                thumb_page: "",
                 thumb_buttons: {
                     url: [
                         "https://image.tmdb.org/t/p/original/p5VjPouEYqRhHsWidIqd65q04Qt.jpg",
@@ -1017,7 +1015,6 @@ export const novelsData= [
             //REBELDE BRASILEIRO
             {
                 name: "Rebelde Brasileiro",
-                thumb_page: "",
                 thumb_buttons: {
                     url: [
                         "https://pp-vod-img-aws.akamaized.net/0069081/0069081_200.jpg",
@@ -1089,7 +1086,6 @@ export const novelsData= [
             //A USURPADORA
             {
                 name: "A Usurpadora",
-                thumb_page: "",
                 thumb_buttons: {
                     url: [
                         "https://i.imgur.com/AcQ1Pm2.png",

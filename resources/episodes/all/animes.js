@@ -6,6 +6,7 @@ export const animesData = [
             //SOLO LEVELING
             {
                 name: "Solo Leveling",
+                enabled: true,
                 thumb_buttons: {
                     url: [
                         // "https://animesbr.tv/wp-content/uploads/2025/01/vTCjCkwHn3bfqVLdQjZke3c8w7l-200x300.jpg",
@@ -16,7 +17,6 @@ export const animesData = [
                 badge: "",
                 type: "Temporadas",
                 canais: false,
-                enabled: true,
                 youtube: false,
                 visible: true,
                 title: "", //TEXTO DO BOTÃO ENABLED OFF
@@ -112,16 +112,15 @@ export const animesData = [
             //GACHIAKUTA
             {
                 name: "Gachiakuta",
-                thumb_page: "",
+                enabled: true,
                 thumb_buttons: {
-                url: [
-                    "https://i.imgur.com/ooWl5H3.jpeg",
-                ],
+                    url: [
+                        "https://i.imgur.com/ooWl5H3.jpeg",
+                    ],
                 },
                 badge: "",
                 type: "",
                 canais: false,
-                enabled: true,
                 youtube: false,
                 visible: true,
                 title: "", //TEXTO DO BOTÃO ENABLED OFF
@@ -178,6 +177,7 @@ export const animesData = [
             //KAIJU NO 8
             {
                 name: "Kaiju no. 8",
+                enabled: true,
                 thumb_buttons: {
                     url: [
                         "https://i.imgur.com/P099HnZ.jpeg",
@@ -186,7 +186,6 @@ export const animesData = [
                 badge: "",
                 type: "Temporadas",
                 canais: false,
-                enabled: true,
                 youtube: false,
                 visible: true,
                 title: "", //TEXTO DO BOTÃO ENABLED OFF
@@ -272,6 +271,7 @@ export const animesData = [
             //HAIKYU
             {
                 name: "Haikyu",
+                enabled: false,
                 thumb_buttons: {
                     url: [
                         // "https://animesbr.tv/wp-content/uploads/2025/01/vTCjCkwHn3bfqVLdQjZke3c8w7l-200x300.jpg",
@@ -282,7 +282,6 @@ export const animesData = [
                 badge: "",
                 type: "Temporadas",
                 canais: false,
-                enabled: false,
                 youtube: false,
                 visible: true,
                 title: "", //TEXTO DO BOTÃO ENABLED OFF

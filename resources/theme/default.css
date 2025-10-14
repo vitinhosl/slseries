@@ -1,14 +1,19 @@
 :root {
     --color-background:         rgb(18, 18, 18);
     --color-text:               rgb(239, 239, 239);
+    --color-top_bar:            var(--color-background);
     --color-logo_text:          rgb(255, 2, 102);
     --color-logo_icon:          rgb(255, 2, 102);
+    --color-loading_color:      rgb(255, 2, 102);
+    --color-loading_background: rgb(18, 18, 18);
 
+    --color-sidebar_background: rgb(17, 17, 17);
     --color-sidebar_title:      rgb(255, 2, 102);
     --color-sidebar_text:       rgb(224, 224, 224);
     --color-sidebar_divider:    rgb(51, 51, 51);
     --color-sidebar_button:     rgb(255, 2, 102);
     --color-sidebar_button_h:   rgb(41, 41, 41);
+    --color-sidebar_scroll:     rgb(41, 41, 41);
 
     --color-groupcard_title:    rgb(34, 33, 33);
     --color-groupcard_button:   rgb(187, 0, 73);
