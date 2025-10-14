@@ -18,7 +18,7 @@ const seriesData = [
           },
 
           carrousel: {
-              enabled: true,
+              enabled: false,
               title: "NOME TEST",
               logo: { 
                 enabled: true, 
@@ -58,7 +58,7 @@ const seriesData = [
             ],
           },
           carrousel: {
-              enabled: true,
+              enabled: false,
               title: "NOME TEST 2",
               logo: {
                 enabled: false,
@@ -295,34 +295,46 @@ async function loadPageContent(path) {
         const containerClass = isEnabled ? '' : 'disabled';  // Adiciona classe 'disabled' no container pra ativar o CSS
 
         html += `
-          <div id="group-series-button" class="${containerClass}">
-          <div class="card-media" style="${cardMediaStyle}"></div>
-          <div class="info">
-            <h1>${item.name}</h1>
-            <p>TEST</p>
-            <button class="${watchButtonClass}">${watchButtonText}</button>
-          </div>
-          <button class="favorite-button ${currentIsFavorite ? 'favorited' : ''}" data-serie='${JSON.stringify(item)}'>
-            <svg class="rating__star" width="24" height="24" viewBox="0 0 32 32" aria-hidden="true">
-              <g transform="translate(16,16)">
-                <circle class="rating__star-ring" fill="none" stroke="#000" stroke-width="16" r="8" transform="scale(0)" />
-              </g>
-              <g stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <g transform="translate(16,16) rotate(180)">
-                  <polygon class="rating__star-stroke" points="0,15 4.41,6.07 14.27,4.64 7.13,-2.32 8.82,-12.14 0,-7.5 -8.82,-12.14 -7.13,-2.32 -14.27,4.64 -4.41,6.07" fill="none" />
-                  <polygon class="rating__star-fill" points="0,15 4.41,6.07 14.27,4.64 7.13,-2.32 8.82,-12.14 0,-7.5 -8.82,-12.14 -7.13,-2.32 -14.27,4.64 -4.41,6.07" fill="#000" />
-                </g>
-                <g transform="translate(16,16)" stroke-dasharray="12 12" stroke-dashoffset="12">
-                  <polyline class="rating__star-line" transform="rotate(0)" points="0 4,0 16" />
-                  <polyline class="rating__star-line" transform="rotate(72)" points="0 4,0 16" />
-                  <polyline class="rating__star-line" transform="rotate(144)" points="0 4,0 16" />
-                  <polyline class="rating__star-line" transform="rotate(216)" points="0 4,0 16" />
-                  <polyline class="rating__star-line" transform="rotate(288)" points="0 4,0 16" />
-                </g>
-              </g>
-            </svg>
-            <span class="tooltip-text black tooltip-top">${currentIsFavorite ? 'Remover dos favoritos' : 'Adicionar aos favoritos'}</span>
-          </button>
+          <div class="card-container ${containerClass}">
+            <div class="inner-container">
+                <div class="border-outer"></div> 
+                <div class="main-card" style="background-image: url('${firstThumb}')"></div>
+                <div class="glow-layer-1"></div>
+                <div class="glow-layer-2"></div>
+            </div>
+
+            <div class="overlay-1"></div>
+            <div class="overlay-2"></div>
+            <div class="background-glow"></div>
+
+            <div id="group-series-button">
+              <div class="info">
+                <h2>${item.name}</h2>
+                <p>TEST</p>
+                <button class="${watchButtonClass}">${watchButtonText}</button>
+              </div>
+              <button class="favorite-button ${currentIsFavorite ? 'favorited' : ''}" data-serie='${JSON.stringify(item)}'>
+                <svg class="rating__star" width="24" height="24" viewBox="0 0 32 32" aria-hidden="true">
+                  <g transform="translate(16,16)">
+                    <circle class="rating__star-ring" fill="none" stroke="#000" stroke-width="16" r="8" transform="scale(0)" />
+                  </g>
+                  <g stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <g transform="translate(16,16) rotate(180)">
+                      <polygon class="rating__star-stroke" points="0,15 4.41,6.07 14.27,4.64 7.13,-2.32 8.82,-12.14 0,-7.5 -8.82,-12.14 -7.13,-2.32 -14.27,4.64 -4.41,6.07" fill="none" />
+                      <polygon class="rating__star-fill" points="0,15 4.41,6.07 14.27,4.64 7.13,-2.32 8.82,-12.14 0,-7.5 -8.82,-12.14 -7.13,-2.32 -14.27,4.64 -4.41,6.07" fill="#000" />
+                    </g>
+                    <g transform="translate(16,16)" stroke-dasharray="12 12" stroke-dashoffset="12">
+                      <polyline class="rating__star-line" transform="rotate(0)" points="0 4,0 16" />
+                      <polyline class="rating__star-line" transform="rotate(72)" points="0 4,0 16" />
+                      <polyline class="rating__star-line" transform="rotate(144)" points="0 4,0 16" />
+                      <polyline class="rating__star-line" transform="rotate(216)" points="0 4,0 16" />
+                      <polyline class="rating__star-line" transform="rotate(288)" points="0 4,0 16" />
+                    </g>
+                  </g>
+                </svg>
+                <span class="tooltip-text black tooltip-top">${currentIsFavorite ? 'Remover dos favoritos' : 'Adicionar aos favoritos'}</span>
+              </button>
+            </div>
           </div>
         `;
       }

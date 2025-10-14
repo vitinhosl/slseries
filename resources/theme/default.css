@@ -18,6 +18,10 @@
     --color-groupcard_title:    rgb(34, 33, 33);
     --color-groupcard_button:   rgb(187, 0, 73);
     --color-groupcard_button_h: rgb(255, 2, 102);
+    --color-groupcard_border:   rgb(50, 50, 50);
+    --color-groupcard_border_c: rgb(187, 0, 73); 
+    --color-groupcard_electric: rgb(255, 2, 102); 
+    /* --color-groupcard_electric: rgb(99, 72, 221);  */
 
     --color-favorite_text:      rgb(255, 2, 102);
     --color-favorite_button:    rgb(255, 2, 102);
