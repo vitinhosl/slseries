@@ -19,8 +19,8 @@ html, body {
 
 body {
     display: flex;
-    background-color: #121212;
-    color: #fff;
+    background-color: var(--color-background);
+    color: var(--color-text);
     min-height: 100vh;
 }
 
@@ -204,6 +204,7 @@ body {
     background-size: cover;
     border-radius: 10px;
     margin-bottom: 30px;
+    margin-bottom: 10px;
     display: flex;
     align-items: center;
     padding-left: 50px;
@@ -305,8 +306,26 @@ body {
     text-align: center;
 }
 
-#group-series-header {
-    margin-bottom: 20px;
+.group-title-header {
+    margin: 20px 0 10px 0;
+}
+
+.group-title-header h2 {
+    position: relative;
+    display: flex;
+    align-items: center;
+    font-size: 1.11rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    border-radius: 7px;
+    padding: 4px 8px;
+    /* border: 1px solid color-mix(in srgb, var(--color-groupcard_title) 70%, transparent); */
+    background-color: color-mix(in srgb, var(--color-groupcard_title) 30%, transparent);
+    background: linear-gradient(to right, var(--color-groupcard_title) 0%, var(--color-background) 50%);
+}
+
+.group-title-header button {
+
 }
 
 #group-series-button {
@@ -547,6 +566,10 @@ body {
 .favorite-button:hover .tooltip-text {
     visibility: visible;
     opacity: 1;
+}
+
+.favorites-header {
+    color: var(--color-favorite_text);
 }
 
 #group-series-button:hover .favorite-button {

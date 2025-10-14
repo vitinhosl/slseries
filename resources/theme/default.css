@@ -1,4 +1,6 @@
 :root {
+    --color-background:         rgb(18, 18, 18);
+    --color-text:               rgb(239, 239, 239);
     --color-logo_text:          rgb(255, 2, 102);
     --color-logo_icon:          rgb(255, 2, 102);
 
@@ -8,9 +10,11 @@
     --color-sidebar_button:     rgb(255, 2, 102);
     --color-sidebar_button_h:   rgb(41, 41, 41);
 
+    --color-groupcard_title:    rgb(34, 33, 33);
     --color-groupcard_button:   rgb(187, 0, 73);
     --color-groupcard_button_h: rgb(255, 2, 102);
 
+    --color-favorite_text:      rgb(255, 2, 102);
     --color-favorite_button:    rgb(255, 2, 102);
     --color-favorite_button_h:  rgb(187, 0, 73);
     --color-favorite_button:    rgb(244, 168, 37);
