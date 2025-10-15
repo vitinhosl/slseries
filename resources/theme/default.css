@@ -11,17 +11,18 @@
     --color-sidebar_title:      rgb(255, 2, 102);
     --color-sidebar_text:       rgb(224, 224, 224);
     --color-sidebar_divider:    rgb(51, 51, 51);
-    --color-sidebar_button:     rgb(255, 2, 102);
-    --color-sidebar_button_h:   rgb(41, 41, 41);
+    --color-sidebar_button:     rgb(255, 2, 102, 0.5);
+    --color-sidebar_button_h:   rgb(41, 41, 41, 1.0);
     --color-sidebar_scroll:     rgb(41, 41, 41);
 
-    --color-groupcard_title:    rgb(34, 33, 33);
+    --color-groupcard_header:   rgb(34, 33, 33);
     --color-groupcard_button:   rgb(187, 0, 73);
     --color-groupcard_button_h: rgb(255, 2, 102);
-    --color-groupcard_border:   rgb(50, 50, 50);
-    --color-groupcard_border_c: rgb(187, 0, 73); 
-    --color-groupcard_electric: rgb(255, 2, 102); 
-    /* --color-groupcard_electric: rgb(99, 72, 221);  */
+    --color-groupcard_border:   rgb(50, 50, 50, 1.0);
+    --color-groupcard_border_h: rgb(187, 0, 73, 1.0); 
+    --color-groupcard_border_c: rgb(221, 132, 72, 0.6); 
+    --color-groupcard_glow:     rgb(255, 255, 255, 1.0); 
+    --color-groupcard_electric: rgb(255, 2, 102, 0.0); 
 
     --color-favorite_text:      rgb(255, 2, 102);
     --color-favorite_button:    rgb(255, 2, 102);

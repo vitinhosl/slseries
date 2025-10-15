@@ -1,6 +1,7 @@
 :root {
     --color-background:         rgb(8, 8, 12);
     --color-text:               rgb(239, 239, 239);
+    --color-top_bar:            var(--color-background);
     --color-logo_text:          rgb(0, 255, 115);
     --color-logo_icon:          rgb(0, 255, 115);
     --color-loading_color:      rgb(0, 255, 115);
@@ -10,17 +11,22 @@
     --color-sidebar_title:      rgb(0, 255, 115);
     --color-sidebar_text:       rgb(224, 224, 224);
     --color-sidebar_divider:    rgb(51, 51, 51);
-    --color-sidebar_button:     rgb(0, 255, 115);
+    --color-sidebar_button:     rgb(0, 255, 115, 0.5);
     --color-sidebar_button_h:   rgb(41, 41, 41);
     --color-sidebar_scroll:     rgb(41, 41, 41);
 
-    --color-groupcard_title:    rgb(34, 33, 33);
+    --color-groupcard_header:   rgb(20, 20, 28);
     --color-groupcard_button:   rgb(8, 136, 66);
     --color-groupcard_button_h: rgb(29, 211, 111);
+    --color-groupcard_border:   rgb(38, 38, 58);
+    --color-groupcard_border_h: rgb(0, 255, 115, 1.0); 
+    --color-groupcard_border_c: rgb(221, 132, 72, 0.6); 
+    --color-groupcard_glow:     rgb(255, 255, 255); 
+    --color-groupcard_electric: rgb(29, 211, 111, 0.0); 
 
     --color-favorite_text:      rgb(0, 255, 115);
     --color-favorite_button:    rgb(0, 255, 115);
     --color-favorite_button_h:  rgb(0, 255, 115);
-    --color-favorite_button:    rgb(244, 168, 37);
-    --color-favorite_button_h:  rgb(255, 208, 0);
+    /* --color-favorite_button:    rgb(244, 168, 37); */
+    /* --color-favorite_button_h:  rgb(255, 208, 0); */
 }

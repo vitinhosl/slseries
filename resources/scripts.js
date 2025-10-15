@@ -242,6 +242,7 @@ async function loadPageContent(path) {
   let html = '';
   const filteredGroups = getFilteredItems(path);
   const isFavoritesPage = path === generateSlug('Favoritos');
+  const isHomePage = path === generateSlug('Início');
 
   if (filteredGroups.length > 0) { 
     if (isFavoritesPage) {
@@ -251,7 +252,7 @@ async function loadPageContent(path) {
     filteredGroups.forEach(groupItem => {
     const groupSlug = generateSlug(groupItem.group_name);
     html += `<section id="group-${groupSlug}-header">`;
-        
+
     html += `<header class="group-title-header">`;
     let displayGroupName = groupItem.group_name;
     if (isFavoritesPage) {
@@ -277,22 +278,32 @@ async function loadPageContent(path) {
     const headerTag = isFavoritesPage ? 'h2' : 'h2';
     const favoritesClass = isFavoritesPage || (groupItem.group_name === 'Favoritos' && !isFavoritesPage) ? 'favorites-header' : '';
     html += `<${headerTag} class="${favoritesClass}">${iconHTML} ${displayGroupName}</${headerTag}>`;
+    
+    const currentGroupSlug = generateSlug(groupItem.group_name);
+    const shouldShowExploreButton = !isFavoritesPage &&currentGroupSlug !== path && isHomePage;
+
+    if (shouldShowExploreButton) {
+      html += `<button class="explore-button" data-group="${currentGroupSlug}"><p>Explorar</p><span class="icon-right"></span><span class="icon-right after"></span></button>`;
+    }
     html += `</header>`;
         
-    html += `<header class="group-cards-header">`;
+    html += `<div class="group-cards-header">`;
+    html += `<button class="nav-arrow prev hidden" aria-label="Cartões anteriores"><i class="fas fa-chevron-left"></i></button>`;
+    html += `<div class="group-cards-container">`;
+    
     groupItem.group.forEach(item => {
-      if (item.visible !== false && item.name && item.thumb_buttons && item.thumb_buttons.url && item.thumb_buttons.url.length > 0) {
+      if (item.visible !== false && item.name) {
         const urls = item.thumb_buttons.url;
         const selectedThumb = randomImagesCards 
           ? urls[Math.floor(Math.random() * urls.length)] 
           : urls[0];
         const firstThumb = selectedThumb;
         const isEnabled = item.enabled !== false;
-        const cardMediaStyle = `background-image: url('${firstThumb}')`;  // Remove o inline filter, deixa pro CSS
+        const cardMediaStyle = `background-image: url('${firstThumb}')`;
         const watchButtonClass = isEnabled ? 'watch-button' : 'watch-button disabled';
         const watchButtonText = isEnabled ? 'ASSISTIR' : 'INDISPONÍVEL';
         const currentIsFavorite = isFavorite(item.name);
-        const containerClass = isEnabled ? '' : 'disabled';  // Adiciona classe 'disabled' no container pra ativar o CSS
+        const containerClass = isEnabled ? '' : 'disabled';
 
         html += `
           <div class="card-container ${containerClass}">
@@ -339,7 +350,11 @@ async function loadPageContent(path) {
         `;
       }
     });
-    html += `</header>`;
+    html += `</div>`;
+    html += `<button class="nav-arrow next" aria-label="Próximos cartões">
+              <i class="fas fa-chevron-right"></i>
+            </button>`;
+    html += `</div>`;
     html += '</section>';
     });
   } 
@@ -353,6 +368,7 @@ async function loadPageContent(path) {
   }
 
  contentContainer.innerHTML = html;
+ initializeGroupFeatures();
  const currentPath = path; 
 
  const favoriteButtons = contentContainer.querySelectorAll('.favorite-button');
@@ -401,6 +417,71 @@ async function loadPageContent(path) {
   this.classList.add('pulse');
   setTimeout(() => {this.classList.remove('pulse');}, 600);});
  });
+}
+
+function initializeGroupFeatures() {
+  // Botões Explorar
+  const exploreButtons = document.querySelectorAll('.explore-button');
+  exploreButtons.forEach(button => {
+    button.addEventListener('click', function(e) {
+      e.preventDefault();
+      const groupSlug = this.getAttribute('data-group');
+      
+      // LÓGICA ESPECIAL PARA FAVORITOS
+      if (groupSlug === generateSlug('Favoritos')) {
+        // Navegar para página de Favoritos
+        const favoritesLink = document.querySelector(`a[data-path="${generateSlug('Favoritos')}"]`);
+        if (favoritesLink) {
+          favoritesLink.click();
+        }
+      } else {
+        // Navegar para a categoria na sidebar
+        const targetLink = document.querySelector(`a[data-group="${groupSlug}"]`);
+        if (targetLink) {
+          targetLink.click();
+        }
+      }
+    });
+  });
+
+  // Resto do código da navegação horizontal permanece igual...
+  const groupCardsHeaders = document.querySelectorAll('.group-cards-header');
+  
+  groupCardsHeaders.forEach(header => {
+    const container = header.querySelector('.group-cards-container');
+    const prevBtn = header.querySelector('.nav-arrow.prev');
+    const nextBtn = header.querySelector('.nav-arrow.next');
+    
+    if (!container || !prevBtn || !nextBtn) return;
+
+    const cardWidth = 240;
+    const scrollAmount = cardWidth * 2;
+
+    const updateArrowVisibility = () => {
+      const canScrollLeft = container.scrollLeft > 0;
+      const canScrollRight = container.scrollLeft < (container.scrollWidth - container.clientWidth);
+      
+      prevBtn.classList.toggle('hidden', !canScrollLeft);
+      nextBtn.classList.toggle('hidden', !canScrollRight);
+    };
+
+    nextBtn.addEventListener('click', () => {
+      container.scrollBy({
+        left: scrollAmount,
+        behavior: 'smooth'
+      });
+    });
+
+    prevBtn.addEventListener('click', () => {
+      container.scrollBy({
+        left: -scrollAmount,
+        behavior: 'smooth'
+      });
+    });
+
+    container.addEventListener('scroll', updateArrowVisibility);
+    setTimeout(updateArrowVisibility, 100);
+  });
 }
 
 function activateByPath(path) {

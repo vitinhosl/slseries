@@ -1,6 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&display=swap");
+/* color-mix(in srgb, var(--color-favorite_button_h) 70%, transparent) */
 
 html, body {
     overflow-x: hidden;
@@ -111,7 +112,7 @@ body {
 }
 
 .sidebar li.active a {
-    background-color:color-mix(in srgb, var(--color-sidebar_button) 50%, transparent); 
+    background-color: var(--color-sidebar_button); 
     color: var(--text-active);
     font-weight: 600;
     border-radius: 5px; 
@@ -119,7 +120,7 @@ body {
 }
 
 .sidebar li a:hover:not(.active a) {
-    background-color: color-mix(in srgb, var(--color-sidebar_button_h) 100%, transparent);
+    background-color: var(--color-sidebar_button_h); 
     color: var(--text-active);
     border-radius: 5px; 
     margin: 0 10px;
@@ -531,30 +532,162 @@ body {
 }
 
 .group-title-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 10px;
     margin: 10px 0 10px 0;
+    position: relative;
+}
+
+.group-title-header::before {
+    content: '';
+    position: absolute;
+    left: 10px;
+    right: 50%;
+    top: 0;
+    bottom: 0;
+    border-radius: 8px;
+    background: linear-gradient(to right, var(--color-groupcard_header) 0%, var(--color-background) 100%);
+    z-index: -1;
 }
 
 .group-title-header h2 {
     position: relative;
-    display: flex;
-    align-items: center;
+    display: block;
     font-size: 1.11rem;
     font-weight: 500;
     text-transform: uppercase;
-    border-radius: 7px;
-    padding: 4px 8px;
-    /* border: 1px solid color-mix(in srgb, var(--color-groupcard_title) 70%, transparent); */
-    background-color: color-mix(in srgb, var(--color-groupcard_title) 30%, transparent);
-    background: linear-gradient(to right, var(--color-groupcard_title) 0%, var(--color-background) 50%);
+    border-radius: 8px;
+    padding: 8px 20px;
+    margin: 0;
+    background: transparent;
+}
+
+.group-title-header h2 .custom-icon,
+.group-title-header h2 i {
+    vertical-align: middle;
+    margin-right: 8px;
+}
+
+.explore-button {
+  display: flex;
+  font-family: "Space Mono", monospace;
+  letter-spacing: 1px;
+  background: none;
+  color: white;
+  position: relative;
+  outline: none;
+  border: none;
+  height: 50px;
+  width: 150px;
+  font-size: 14px;
+  z-index: 2;
+  transition: 0.01s 0.23s ease-out all, transform 0.3s ease;
+  overflow: hidden;
+  border-radius: 8px;
+  /* background: #202020; */
+  justify-content: center;
+  align-items: center;
+}
+
+.explore-button:active {
+    transform: scale(0.8);
+}
+
+.explore-button p {
+  margin-left: -20px;
+}
+
+.explore-button:before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 55%;
+  z-index: -1;
+  transition: 0.3s ease-in all;
+}
+
+.explore-button:after {
+  content: "";
+  position: absolute;
+  left: -5%;
+  top: 5%;
+  height: 90%;
+  width: 5%;
+  background: var(--color-groupcard_header);
+  z-index: -1;
+  transition: 0.4s 0.02s ease-in all;
+}
+
+.explore-button:hover {
+  cursor: pointer;
+  color: transparent;
+}
+
+.explore-button:hover:before {
+  left: 100%;
+  width: 25%;
+}
+
+.explore-button:hover:after {
+  left: 100%;
+  width: 70%;
+}
+
+.explore-button:hover .icon-right.after:after {
+  left: -40px;
+  color: white;
+  transition: 0.2s 0.2s ease all;
+}
+
+.explore-button:hover .icon-right.after:before {
+  left: -64px;
+  top: 14px;
+  opacity: 0.2;
+  color: white;
+}
+
+.icon-right {
+  position: absolute;
+  top: -1px;
+  right: 20px;
+}
+
+.icon-right:after {
+  font-family: "FontAwesome";
+  content: "→";
+  font-size: 24px;
+  display: inline-block;
+  position: relative;
+  top: 26px;
+  transform: translate3D(0, -50%, 0);
+}
+
+.icon-right.after:after {
+  left: -250px;
+  color: black;
+  transition: 0.15s 0.25s ease left, 0.5s 0.05s ease color;
+}
+
+.icon-right.after:before {
+  content: "Explorar";
+  position: absolute;
+  left: -230px;
+  margin-top: 3px;
+  opacity: 0;
+  transition: 0.2s ease-in all;
 }
 
 /* =============================================== */
 /* GROUP BUTTONS */
 /* =============================================== */
 :root {
-  /* --color-groupcard_border_c: #6348dd; */
-  --electric-light-color: oklch(from var(--color-groupcard_border_c) l c h);
-  --gradient-color: oklch(from var(--color-groupcard_border_c) 0.3 calc(c / 2) h / 0.4);
+  --color-groupcard_electric: rgb(99, 72, 221); 
+  --electric-light-color: oklch(from var(--color-groupcard_border_h) l c h);
+  --gradient-color: oklch(from var(--color-groupcard_border_h) 0.3 calc(c / 2) h / 0.4);
   --color-neutral-900: rgb(19, 19, 19);
 }
 
@@ -577,16 +710,15 @@ body {
   width: 220px;
   height: 320px;
   margin: 10px;
-
   padding: 2px;
   border-radius: 8px;
   position: relative;
-  background: linear-gradient(to bottom, var(--color-neutral-900), var(--color-neutral-900));
+  background: linear-gradient(to bottom, var(--color-groupcard_header), var(--color-groupcard_header));
   transition: all 0.3s ease, background-size 0.3 ease;
 }
 
 .inner-container {
-  position: relative;
+  /* position: relative; */
   width: 220px;
   height: 320px;
 }
@@ -663,8 +795,9 @@ body {
   background-position: center;
   position: relative;
   z-index: 1;
-  border: 2px solid var(--color-groupcard_border);
   border-radius: 8px;
+  border: 2px solid var(--color-background);
+  border: 2px solid var(--color-groupcard_border);
 }
 
 .glow-layer-1, .glow-layer-2 {
@@ -699,7 +832,7 @@ body {
   mix-blend-mode: overlay;
   transform: scale(1.1);
   filter: blur(16px);
-  background: linear-gradient(-30deg, white, transparent 30%, transparent 70%, white);
+  background: linear-gradient(-30deg, var(--color-groupcard_glow), transparent 30%, transparent 70%, var(--color-groupcard_glow));
   z-index: 4;
   opacity: 0;
   transition: opacity 0.3s ease;
@@ -721,7 +854,7 @@ body {
   filter: blur(32px);
   transform: scale(1.1);
   z-index: 0;
-  background: linear-gradient(-30deg, var(--electric-light-color), transparent, var(--color-groupcard_border_c));
+  background: linear-gradient(-30deg, var(--electric-light-color), transparent, var(--color-groupcard_border_h));
   opacity: 0;
   transition: opacity 0.3s ease;
 }
@@ -766,7 +899,7 @@ body {
 }
 
 .card-container:has(#group-series-button:hover) .glow-layer-1 {
-  border-color: rgba(221, 132, 72, 0.6);
+  border-color: var(--color-groupcard_border_c);
   opacity: 1;
 }
 
@@ -818,7 +951,6 @@ body {
 #group-series-button .info p { 
   font-size: 13px; 
   color: rgb(250, 244, 237); 
-   margin-top: 8px;
   line-height: 1.4;
 }
 
@@ -878,10 +1010,72 @@ body {
   transform: none !important;
 }
 /* =============================================== */
+/* CARROUSEL GROUP BUTTONS */
+/* =============================================== */
+.group-cards-header {
+    position: relative;
+    /* margin-bottom: 30px; */
+    /* padding: 0 40px; */
+}
+
+.group-cards-container {
+    display: flex;
+    scroll-behavior: smooth;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    /* overflow-x: auto; */
+    /* padding: 10px 0; */
+    /* gap: 20px; */
+}
+
+.group-cards-container::-webkit-scrollbar {
+    display: none;
+}
+
+.nav-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0, 0, 0, 0.7);
+    border: none;
+    color: white;
+    padding: 12px;
+    cursor: pointer;
+    font-size: 1.2em;
+    z-index: 10;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    opacity: 0.8;
+}
+
+.nav-arrow:hover {
+    background: rgba(0, 0, 0, 0.9);
+    opacity: 1;
+    transform: translateY(-50%) scale(1.1);
+}
+
+.nav-arrow.prev {
+    left: 0;
+}
+
+.nav-arrow.next {
+    right: 0;
+}
+
+.nav-arrow.hidden {
+    display: none;
+}
+
+/* =============================================== */
 /* FAVORITE BUTTON */
 /* =============================================== */
 .main-favorites-title {
-    margin-bottom: -5px;
+    /* margin-bottom: -5px; */
 }
 
 .favorite-button {
