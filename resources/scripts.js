@@ -1,7 +1,7 @@
-// import { seriesAll } from './episodes/index.js';
-// const seriesData = seriesAll;
+import { seriesAll } from './episodes/index.js';
+const seriesData = seriesAll;
 
-const seriesData = [
+const seriesData2 = [
     {
       group_name: "Filmes",
       visible: true,
@@ -95,6 +95,7 @@ const seriesData = [
 let iconsAnimated           = false; //ATIVA AS ANIMAÇÕES DOS ICONES
 let randomImagesCards       = false; //AS IMAGENS ALEATÓRIAS DOS BOTÕES
 let randomImagesCarrousel   = false; //AS IMAGENS ALEATÓRIAS DO CARROUSEL
+let speedCarrouselBar       = 5;     //VELOCIDADE DAS ANIMAÇÕES DO CARROUSEL
 
 const homeIconBase64        = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGAAAABgCAYAAADimHc4AAAACXBIWXMAAAsTAAALEwEAmpwYAAADEUlEQVR4nO2c24tNcRiGn3Em5RQKERnjhguSJCkkpORGrqQ0pST/gn+BK7lxIYm0c+VKkyTJhZRERIxyyjAzTuP4atda0ST2zF57/771re+pp6ZpLt733dP01awWBEEQBEEQBEEQlIMuoAYMZta/XpY6VFXYDLwDNMz69zalDuedfcCXv4yf+w3oTh3SK0eAn/8YP7f+M0eBjtSBvTAOONHA8MM9BYxPHb7sTAUujWL83MvAtNQlyso84FYT4+feARamLlM2VgC9BYyf+xxYlbpUWdgC9Bc4fu57YEfqctbZD3xtwfh/nqkHU5e0SEd2OqpNHosz9TcTgNNtHD/3PDCJijMd6Ekwfm5PlqGSzAduJxw/9y6wiIqxEnhmYPzcF8BqKsJWYMDA6BrmB2AnzjmQnYIy6nfgEA5p95mpAs7UMThhInDGwKgaoReAyZScGcAVA2NqlF4HZlNSFgP3DIyoJn0IdFIy1gAvDYyngnwDrKck7AI+GhhNBfsZ2INxuo2fmSrgTD2MQcp2ZsrTmVo/M88aGEVttmbhTJ0JXDUwhhJ5A5iTavwlwH0DIyixj7JHJdvKWuCVgfIyYh+woV3j7wY+GSgtYw4Be9vxeOAPA2Vl1PyxyMIZCxw3UFAl8WT2SGUh1P9xfc5AKZXMi8CUZsefBVwzUEYl9SYwd7TjLwUeGCihkvsYWD7S8dcBrw2ElxPfAhsbHX97dlKlDi1nDmXb/penBsLKqU8a+QAsPa8jZ/Y2+icoPgRaMv42WoAqbnJUcZOjipscVdzkqOImRxU3Oaq4yVHFTY71gjKez31BGc/nvqCM53NfUMbzuS8o4/ncF5TxfO4Lyng+9wVlPJ/7gjKez31BGc/nvqCM53NfUMbzuS8o4/ncF5TxfO4Lyng+9wVlPJ/7gjKez31BGc/nvqCM53NfUMbzuS8o4/ncF5TxfO4Lyng+9wVlPF/TDLawXH8F8jVNrcWvjvSer2m6sreFFF2ur6C3FVrPVwgLsvfxF/FO6IHsN6uzQvmCIAiCIAiCIAiCIAgC/PMLPuW3uHQ1X/MAAAAASUVORK5CYII=';
 const historyIconBase64     = 'data:image/png;base64,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';
@@ -250,112 +251,122 @@ async function loadPageContent(path) {
     }
 
     filteredGroups.forEach(groupItem => {
-    const groupSlug = generateSlug(groupItem.group_name);
-    html += `<section id="group-${groupSlug}-header">`;
-
-    html += `<header class="group-title-header">`;
-    let displayGroupName = groupItem.group_name;
-    if (isFavoritesPage) {
-      displayGroupName = `${groupItem.group_name} favoritos`;
-    }
-    let iconHTML = '';
-    if (groupItem.group_name === 'Favoritos' && !isFavoritesPage) {
-      if (favoritesIconBase64) {
+      const groupSlug = generateSlug(groupItem.group_name);
+      html += `<section id="group-${groupSlug}-header">`;
+      html += `<header class="group-title-header">`;
+      
+      let displayGroupName = groupItem.group_name;
+      if (isFavoritesPage) {
+        displayGroupName = `${groupItem.group_name} favoritos`;
+      }
+      
+      let iconHTML = '';
+      if (groupItem.group_name === 'Favoritos' && !isFavoritesPage) {
         iconHTML = `<img src="${favoritesIconBase64}" class="custom-icon" alt="Favoritos Icon">`;
       } else {
-        iconHTML = `<i class="fas fa-star"></i>`;
+        const iconData = getIcon(groupItem.group_name);
+        if (iconData.type === 'fa') {
+          iconHTML = `<i class="${iconData.value}"></i>`;
+        } else if (iconData.type === 'base64') {
+          iconHTML = `<img src="${iconData.value}" class="custom-icon" alt="${iconData.alt || groupItem.group_name + ' Icon'}">`;
+        } else if (iconData.type === 'svg') {
+          iconHTML = iconData.value;
+        }
       }
-    } else {
-      const iconData = getIcon(groupItem.group_name);
-      if (iconData.type === 'fa') {
-        iconHTML = `<i class="${iconData.value}"></i>`;
-      } else if (iconData.type === 'base64') {
-        iconHTML = `<img src="${iconData.value}" class="custom-icon" alt="${iconData.alt || groupItem.group_name + ' Icon'}">`;
-      } else if (iconData.type === 'svg') {
-        iconHTML = iconData.value;
+      
+      const favoritesClass = isFavoritesPage || (groupItem.group_name === 'Favoritos' && !isFavoritesPage) ? 'favorites-header' : '';
+      html += `<h2 class="${favoritesClass}">${iconHTML} ${displayGroupName}</h2>`;
+      
+      if (isHomePage) {
+        html += `<button class="explore-button" data-group="${groupSlug}"><span class="icon-right after"></span></button>`;
       }
-    }
-    const headerTag = isFavoritesPage ? 'h2' : 'h2';
-    const favoritesClass = isFavoritesPage || (groupItem.group_name === 'Favoritos' && !isFavoritesPage) ? 'favorites-header' : '';
-    html += `<${headerTag} class="${favoritesClass}">${iconHTML} ${displayGroupName}</${headerTag}>`;
-    
-    const currentGroupSlug = generateSlug(groupItem.group_name);
-    const shouldShowExploreButton = !isFavoritesPage &&currentGroupSlug !== path && isHomePage;
+      html += `</header>`;
+          
+      const layoutClass = isHomePage ? 'home-layout' : 'category-layout';
+      html += `<div class="group-cards-header ${layoutClass}">`;
 
-    if (shouldShowExploreButton) {
-      html += `<button class="explore-button" data-group="${currentGroupSlug}"><p>Explorar</p><span class="icon-right"></span><span class="icon-right after"></span></button>`;
-    }
-    html += `</header>`;
-        
-    html += `<div class="group-cards-header">`;
-    html += `<button class="nav-arrow prev hidden" aria-label="Cartões anteriores"><i class="fas fa-chevron-left"></i></button>`;
-    html += `<div class="group-cards-container">`;
-    
-    groupItem.group.forEach(item => {
-      if (item.visible !== false && item.name) {
-        const urls = item.thumb_buttons.url;
-        const selectedThumb = randomImagesCards 
-          ? urls[Math.floor(Math.random() * urls.length)] 
-          : urls[0];
-        const firstThumb = selectedThumb;
-        const isEnabled = item.enabled !== false;
-        const cardMediaStyle = `background-image: url('${firstThumb}')`;
-        const watchButtonClass = isEnabled ? 'watch-button' : 'watch-button disabled';
-        const watchButtonText = isEnabled ? 'ASSISTIR' : 'INDISPONÍVEL';
-        const currentIsFavorite = isFavorite(item.name);
-        const containerClass = isEnabled ? '' : 'disabled';
+      if (isHomePage) {
+        html += `<button class="nav-arrow prev hidden" aria-label="Cartões anteriores"><i class="fas fa-chevron-left"></i></button>`;
+      }
 
-        html += `
-          <div class="card-container ${containerClass}">
-            <div class="inner-container">
-                <div class="border-outer"></div> 
-                <div class="main-card" style="background-image: url('${firstThumb}')"></div>
-                <div class="glow-layer-1"></div>
-                <div class="glow-layer-2"></div>
-            </div>
+      html += `<div class="group-cards-container ${layoutClass}">`;
 
-            <div class="overlay-1"></div>
-            <div class="overlay-2"></div>
-            <div class="background-glow"></div>
+      const sortedGroup = [...groupItem.group].sort((a, b) => {
+        if (a.enabled !== false && b.enabled === false) return -1;
+        if (b.enabled !== false && a.enabled === false) return 1;
+        return a.name.localeCompare(b.name);
+      });
 
-            <div id="group-series-button">
-              <div class="info">
-                <h2>${item.name}</h2>
-                <p>TEST</p>
-                <button class="${watchButtonClass}">${watchButtonText}</button>
+      let cardsCount = 0;
+      const maxCardsHome = 20;
+
+      sortedGroup.forEach(item => {
+        if (item.visible !== false && item.name && (!isHomePage || cardsCount < maxCardsHome)) {
+          cardsCount++;
+          
+          const urls = item.thumb_buttons.url;
+          const selectedThumb = randomImagesCards 
+            ? urls[Math.floor(Math.random() * urls.length)] 
+            : urls[0];
+          const isEnabled = item.enabled !== false;
+          const watchButtonClass = isEnabled ? 'watch-button' : 'watch-button disabled';
+          const watchButtonText = isEnabled ? 'ASSISTIR' : 'INDISPONÍVEL';
+          const currentIsFavorite = isFavorite(item.name);
+          const containerClass = isEnabled ? '' : 'disabled';
+
+          html += `
+            <div class="card-container ${containerClass}">
+              <div class="inner-container">
+                  <div class="border-outer"></div> 
+                  <div class="main-card" style="background-image: url('${selectedThumb}')"></div>
+                  <div class="glow-layer-1"></div>
+                  <div class="glow-layer-2"></div>
               </div>
-              <button class="favorite-button ${currentIsFavorite ? 'favorited' : ''}" data-serie='${JSON.stringify(item)}'>
-                <svg class="rating__star" width="24" height="24" viewBox="0 0 32 32" aria-hidden="true">
-                  <g transform="translate(16,16)">
-                    <circle class="rating__star-ring" fill="none" stroke="#000" stroke-width="16" r="8" transform="scale(0)" />
-                  </g>
-                  <g stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <g transform="translate(16,16) rotate(180)">
-                      <polygon class="rating__star-stroke" points="0,15 4.41,6.07 14.27,4.64 7.13,-2.32 8.82,-12.14 0,-7.5 -8.82,-12.14 -7.13,-2.32 -14.27,4.64 -4.41,6.07" fill="none" />
-                      <polygon class="rating__star-fill" points="0,15 4.41,6.07 14.27,4.64 7.13,-2.32 8.82,-12.14 0,-7.5 -8.82,-12.14 -7.13,-2.32 -14.27,4.64 -4.41,6.07" fill="#000" />
+
+              <div class="overlay-1"></div>
+              <div class="overlay-2"></div>
+              <div class="background-glow"></div>
+
+              <div id="group-series-button">
+                <div class="info">
+                  <h2>${item.name}</h2>
+                  <p>TEST</p>
+                  <button class="${watchButtonClass}">${watchButtonText}</button>
+                </div>
+                <button class="favorite-button ${currentIsFavorite ? 'favorited' : ''}" data-serie='${JSON.stringify(item)}'>
+                  <svg class="rating__star" width="24" height="24" viewBox="0 0 32 32" aria-hidden="true">
+                    <g transform="translate(16,16)">
+                      <circle class="rating__star-ring" fill="none" stroke="#000" stroke-width="16" r="8" transform="scale(0)" />
                     </g>
-                    <g transform="translate(16,16)" stroke-dasharray="12 12" stroke-dashoffset="12">
-                      <polyline class="rating__star-line" transform="rotate(0)" points="0 4,0 16" />
-                      <polyline class="rating__star-line" transform="rotate(72)" points="0 4,0 16" />
-                      <polyline class="rating__star-line" transform="rotate(144)" points="0 4,0 16" />
-                      <polyline class="rating__star-line" transform="rotate(216)" points="0 4,0 16" />
-                      <polyline class="rating__star-line" transform="rotate(288)" points="0 4,0 16" />
+                    <g stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <g transform="translate(16,16) rotate(180)">
+                        <polygon class="rating__star-stroke" points="0,15 4.41,6.07 14.27,4.64 7.13,-2.32 8.82,-12.14 0,-7.5 -8.82,-12.14 -7.13,-2.32 -14.27,4.64 -4.41,6.07" fill="none" />
+                        <polygon class="rating__star-fill" points="0,15 4.41,6.07 14.27,4.64 7.13,-2.32 8.82,-12.14 0,-7.5 -8.82,-12.14 -7.13,-2.32 -14.27,4.64 -4.41,6.07" fill="#000" />
+                      </g>
+                      <g transform="translate(16,16)" stroke-dasharray="12 12" stroke-dashoffset="12">
+                        <polyline class="rating__star-line" transform="rotate(0)" points="0 4,0 16" />
+                        <polyline class="rating__star-line" transform="rotate(72)" points="0 4,0 16" />
+                        <polyline class="rating__star-line" transform="rotate(144)" points="0 4,0 16" />
+                        <polyline class="rating__star-line" transform="rotate(216)" points="0 4,0 16" />
+                        <polyline class="rating__star-line" transform="rotate(288)" points="0 4,0 16" />
+                      </g>
                     </g>
-                  </g>
-                </svg>
-                <span class="tooltip-text black tooltip-top">${currentIsFavorite ? 'Remover dos favoritos' : 'Adicionar aos favoritos'}</span>
-              </button>
+                  </svg>
+                  <span class="tooltip-text black tooltip-top">${currentIsFavorite ? 'Remover dos favoritos' : 'Adicionar aos favoritos'}</span>
+                </button>
+              </div>
             </div>
-          </div>
-        `;
+          `;
+        }
+      });
+      
+      html += `</div>`;
+
+      if (isHomePage) {
+        html += `<button class="nav-arrow next" aria-label="Próximos cartões"><i class="fas fa-chevron-right"></i></button>`;
       }
-    });
-    html += `</div>`;
-    html += `<button class="nav-arrow next" aria-label="Próximos cartões">
-              <i class="fas fa-chevron-right"></i>
-            </button>`;
-    html += `</div>`;
-    html += '</section>';
+      html += `</div>`;
+      html += '</section>';
     });
   } 
   else {
@@ -367,75 +378,76 @@ async function loadPageContent(path) {
     }
   }
 
- contentContainer.innerHTML = html;
- initializeGroupFeatures();
- const currentPath = path; 
+  contentContainer.innerHTML = html;
 
- const favoriteButtons = contentContainer.querySelectorAll('.favorite-button');
- favoriteButtons.forEach(button => {
-  button.addEventListener('click', function(e) {
-   e.preventDefault();
-   const serieData = JSON.parse(this.getAttribute('data-serie'));
-   const nowFavorite = toggleFavorite(serieData);
-
-  if (currentPath === generateSlug('Favoritos') || currentPath === generateSlug('Início')) {
-    loadPageContent(currentPath);
-    return; 
+  if (isHomePage) {
+    initializeHomePageFeatures();
   }
+  
+  const currentPath = path;
+  const favoriteButtons = contentContainer.querySelectorAll('.favorite-button');
+  
+  favoriteButtons.forEach(button => {
+    button.addEventListener('click', function(e) {
+      e.preventDefault();
+      const serieData = JSON.parse(this.getAttribute('data-serie'));
+      const nowFavorite = toggleFavorite(serieData);
 
- this.classList.toggle('favorited', nowFavorite);
+      if (currentPath === generateSlug('Favoritos') || currentPath === generateSlug('Início')) {
+        loadPageContent(currentPath);
+        return;
+      }
 
-  const star = this.querySelector('.rating__star');
-  const ring = this.querySelector('.rating__star-ring');
-  const stroke = this.querySelector('.rating__star-stroke');
-  const fill = this.querySelector('.rating__star-fill');
-  const lines = this.querySelectorAll('.rating__star-line');
+      this.classList.toggle('favorited', nowFavorite);
 
-  [ring, stroke, fill, ...lines].forEach(el => {
-    if (el) el.style.animation = 'none';
+      const star = this.querySelector('.rating__star');
+      const ring = this.querySelector('.rating__star-ring');
+      const stroke = this.querySelector('.rating__star-stroke');
+      const fill = this.querySelector('.rating__star-fill');
+      const lines = this.querySelectorAll('.rating__star-line');
+
+      [ring, stroke, fill, ...lines].forEach(el => {
+        if (el) el.style.animation = 'none';
+      });
+
+      this.offsetHeight;
+
+      if (nowFavorite) {
+        if (ring) ring.style.animation = 'starRing 1s ease-in-out forwards';
+        if (stroke) stroke.style.animation = 'starStroke 1s ease-in-out forwards';
+        if (fill) fill.style.animation = 'starFill 1s ease-in-out forwards';
+        lines.forEach(line => line.style.animation = 'starLine 1s ease-in-out forwards');
+      } else {
+        if (ring) ring.style.animation = 'starRing 1s ease-in-out reverse forwards';
+        if (stroke) stroke.style.animation = 'starStroke 1s ease-in-out reverse forwards';
+        if (fill) fill.style.animation = 'starFill 1s ease-in-out reverse forwards';
+        lines.forEach(line => line.style.animation = 'starLine 1s ease-in-out reverse forwards');
+      }
+
+      const tooltip = this.querySelector('.tooltip-text');
+      if (tooltip) {
+        tooltip.textContent = nowFavorite ? 'Remover dos favoritos' : 'Adicionar aos favoritos';
+      }
+
+      this.classList.add('pulse');
+      setTimeout(() => {this.classList.remove('pulse');}, 600);
+    });
   });
-
-  this.offsetHeight;
-
-  if (nowFavorite) {
-    if (ring) ring.style.animation = 'starRing 1s ease-in-out forwards';
-    if (stroke) stroke.style.animation = 'starStroke 1s ease-in-out forwards';
-    if (fill) fill.style.animation = 'starFill 1s ease-in-out forwards';
-    lines.forEach(line => line.style.animation = 'starLine 1s ease-in-out forwards');
-  } else {
-    if (ring) ring.style.animation = 'starRing 1s ease-in-out reverse forwards';
-    if (stroke) stroke.style.animation = 'starStroke 1s ease-in-out reverse forwards';
-    if (fill) fill.style.animation = 'starFill 1s ease-in-out reverse forwards';
-    lines.forEach(line => line.style.animation = 'starLine 1s ease-in-out reverse forwards');
-  }
-
-  const tooltip = this.querySelector('.tooltip-text');
-  if (tooltip) {
-    tooltip.textContent = nowFavorite ? 'Remover dos favoritos' : 'Adicionar aos favoritos';
-  }
-
-  this.classList.add('pulse');
-  setTimeout(() => {this.classList.remove('pulse');}, 600);});
- });
 }
 
-function initializeGroupFeatures() {
-  // Botões Explorar
+function initializeHomePageFeatures() {
   const exploreButtons = document.querySelectorAll('.explore-button');
   exploreButtons.forEach(button => {
     button.addEventListener('click', function(e) {
       e.preventDefault();
       const groupSlug = this.getAttribute('data-group');
       
-      // LÓGICA ESPECIAL PARA FAVORITOS
       if (groupSlug === generateSlug('Favoritos')) {
-        // Navegar para página de Favoritos
         const favoritesLink = document.querySelector(`a[data-path="${generateSlug('Favoritos')}"]`);
         if (favoritesLink) {
           favoritesLink.click();
         }
       } else {
-        // Navegar para a categoria na sidebar
         const targetLink = document.querySelector(`a[data-group="${groupSlug}"]`);
         if (targetLink) {
           targetLink.click();
@@ -444,9 +456,7 @@ function initializeGroupFeatures() {
     });
   });
 
-  // Resto do código da navegação horizontal permanece igual...
-  const groupCardsHeaders = document.querySelectorAll('.group-cards-header');
-  
+  const groupCardsHeaders = document.querySelectorAll('.group-cards-header.home-layout');
   groupCardsHeaders.forEach(header => {
     const container = header.querySelector('.group-cards-container');
     const prevBtn = header.querySelector('.nav-arrow.prev');
@@ -482,6 +492,26 @@ function initializeGroupFeatures() {
     container.addEventListener('scroll', updateArrowVisibility);
     setTimeout(updateArrowVisibility, 100);
   });
+
+  const carouselFavoriteButtons = document.querySelectorAll('.favorite-button-s2');
+  carouselFavoriteButtons.forEach(button => {
+    button.addEventListener('click', function(e) {
+      e.preventDefault();
+      const serieData = JSON.parse(this.getAttribute('data-serie'));
+      const nowFavorite = toggleFavorite(serieData);
+
+      this.classList.toggle('active', nowFavorite);
+      this.classList.add('heart-pulse');
+      this.addEventListener('animationend', () => {
+        this.classList.remove('heart-pulse');
+      }, { once: true });
+
+      const currentPath = getCurrentPath();
+      if (currentPath === generateSlug('Início') || currentPath === generateSlug('Favoritos')) {
+        loadPageContent(currentPath);
+      }
+    });
+  });
 }
 
 function activateByPath(path) {
@@ -509,18 +539,23 @@ function renderCarrousel() {
   seriesData.forEach(groupItem => {
       if (groupItem.group && Array.isArray(groupItem.group)) {
           groupItem.group.forEach(series => {
-              const carousel = series.carrousel;
-              
-              if (carousel && carousel.enabled === true && carousel.thumb && Array.isArray(carousel.thumb) && carousel.thumb.length > 0) {
-                  
-                  allCarouselSlides.push({
-                      title: carousel.title || series.name, 
-                      description: carousel.description || '',
-                      imageUrl: carousel.thumb[0],
-                      seriesData: series
-                  });
+            const carousel = series.carrousel;
+            
+            if (carousel && carousel.enabled === true && carousel.thumb && Array.isArray(carousel.thumb) && carousel.thumb.length > 0) {
+              let imageUrl = carousel.thumb[0];
+              if (randomImagesCarrousel && carousel.thumb.length > 1) {
+                const randomIndex = Math.floor(Math.random() * carousel.thumb.length);
+                imageUrl = carousel.thumb[randomIndex];
               }
-          });
+              
+              allCarouselSlides.push({
+                title: carousel.title || series.name, 
+                description: carousel.description || '',
+                imageUrl: imageUrl,
+                seriesData: series
+              });
+            }
+        });
       }
   });
 
@@ -535,10 +570,16 @@ function renderCarrousel() {
   const dotsContainer = document.querySelector('.carousel-dots');
   const prevButton = document.querySelector('.carousel-control.prev');
   const nextButton = document.querySelector('.carousel-control.next');
+  const progressBar = document.querySelector('.carousel-progress');
 
   let currentSlide = 0;
   let slidesHTML = '';
   let dotsHTML = '';
+  
+  const transitionTime = speedCarrouselBar * 1000;
+
+  let autoPlayTimer;
+  let progressBarElement;
 
   allCarouselSlides.forEach((slide, index) => {
     const isActive = index === 0 ? 'active' : '';
@@ -572,57 +613,159 @@ function renderCarrousel() {
         </div>
       </div>
     `;
-    dotsHTML += `<span class="dot ${isActive}" data-slide-index="${index}"></span>`;
+    
+    if (allCarouselSlides.length > 1) {
+      dotsHTML += `<span class="dot ${isActive}" data-slide-index="${index}"></span>`;
+    }
   });
 
   slidesContainer.innerHTML = slidesHTML;
-  dotsContainer.innerHTML = dotsHTML;
+  
+  const hasMultipleSlides = allCarouselSlides.length > 1;
+  
+  if (hasMultipleSlides) {
+    dotsContainer.innerHTML = dotsHTML;
+    dotsContainer.style.display = 'flex';
+    prevButton.style.display = 'flex';
+    nextButton.style.display = 'flex';
+    
+    if (!progressBar) {
+      const newProgressBar = document.createElement('div');
+      newProgressBar.className = 'carousel-progress';
+      newProgressBar.innerHTML = '<div class="carousel-progress-bar"></div>';
+      document.querySelector('.carousel-container').appendChild(newProgressBar);
+      progressBarElement = newProgressBar.querySelector('.carousel-progress-bar');
+    } else {
+      progressBar.style.display = 'block';
+      progressBar.innerHTML = '<div class="carousel-progress-bar"></div>';
+      progressBarElement = progressBar.querySelector('.carousel-progress-bar');
+    }
+  } else {
+    dotsContainer.style.display = 'none';
+    prevButton.style.display = 'none';
+    nextButton.style.display = 'none';
+    if (progressBar) progressBar.style.display = 'none';
+  }
 
   const slides = document.querySelectorAll('.carousel-slide');
   const dots = document.querySelectorAll('.dot');
   const totalSlides = slides.length;
 
-  function updateCarousel(newIndex) {
-      // Remove 'active' do slide e dot atual
-      slides[currentSlide].classList.remove('active');
-      dots[currentSlide].classList.remove('active');
-      
-      // Calcula o novo índice
-      if (newIndex >= totalSlides) {
-          currentSlide = 0;
-      } else if (newIndex < 0) {
-          currentSlide = totalSlides - 1;
-      } else {
-          currentSlide = newIndex;
-      }
-
-      // Adiciona 'active' ao novo slide e dot
-      slides[currentSlide].classList.add('active');
-      dots[currentSlide].classList.add('active');
+  function startAutoPlay() {
+    if (!hasMultipleSlides) return;
+    
+    clearInterval(autoPlayTimer);
+    
+    if (progressBarElement) {
+      progressBarElement.style.animation = 'none';
+      void progressBarElement.offsetWidth;
+      progressBarElement.style.animation = `carouselProgress ${transitionTime}ms linear forwards`;
+      progressBarElement.style.animationPlayState = 'running';
+    }
+    
+    autoPlayTimer = setTimeout(() => {
+      updateCarousel(currentSlide + 1);
+    }, transitionTime);
   }
 
-  prevButton.addEventListener('click', () => updateCarousel(currentSlide - 1));
-  nextButton.addEventListener('click', () => updateCarousel(currentSlide + 1));
+  function pauseAutoPlay() {
+    if (!hasMultipleSlides) return;
+    
+    clearTimeout(autoPlayTimer);
+    
+    if (progressBarElement) {
+      progressBarElement.style.animationPlayState = 'paused';
+    }
+  }
 
-  dots.forEach(dot => {
+  function resumeAutoPlay() {
+    if (!hasMultipleSlides) return;
+    
+    if (progressBarElement) {
+      const computedStyle = getComputedStyle(progressBarElement);
+      const barWidth = parseFloat(computedStyle.width) || 0;
+      
+      const parentElement = progressBarElement.parentElement;
+      const parentStyle = getComputedStyle(parentElement);
+      const parentWidth = parseFloat(parentStyle.width) || 1;
+      
+      const progressFraction = barWidth / parentWidth;
+      const elapsedTime = progressFraction * transitionTime;
+      let remainingTime = transitionTime - elapsedTime;
+      
+      if (remainingTime < 0) {
+        remainingTime = 0;
+      }
+      
+      progressBarElement.style.animationPlayState = 'running';
+      
+      autoPlayTimer = setTimeout(() => {
+        updateCarousel(currentSlide + 1);
+      }, remainingTime);
+    }
+  }
+
+  function updateCarousel(newIndex) {
+    slides[currentSlide].classList.remove('active');
+    if (hasMultipleSlides) {
+      dots[currentSlide]?.classList.remove('active');
+    }
+    
+    if (newIndex >= totalSlides) {
+        currentSlide = 0;
+    } else if (newIndex < 0) {
+        currentSlide = totalSlides - 1;
+    } else {
+        currentSlide = newIndex;
+    }
+
+    slides[currentSlide].classList.add('active');
+    if (hasMultipleSlides) {
+      dots[currentSlide]?.classList.add('active');
+    }
+    
+    if (hasMultipleSlides) {
+      startAutoPlay();
+    }
+  }
+
+  if (hasMultipleSlides) {
+    prevButton.addEventListener('click', () => {
+      updateCarousel(currentSlide - 1);
+      pauseAutoPlay();
+    });
+    
+    nextButton.addEventListener('click', () => {
+      updateCarousel(currentSlide + 1);
+      pauseAutoPlay();
+    });
+
+    dots.forEach(dot => {
       dot.addEventListener('click', function() {
-          const index = parseInt(this.getAttribute('data-slide-index'));
-          updateCarousel(index);
+        const index = parseInt(this.getAttribute('data-slide-index'));
+        pauseAutoPlay();
+        updateCarousel(index);
       });
-  });
-
-  const autoplayInterval = 5000;
-  let autoPlayTimer = setInterval(() => {
-    updateCarousel(currentSlide + 1);
-  }, autoplayInterval);
+    });
+  }
 
   const carouselContainer = document.getElementById('hero-carousel');
-  carouselContainer.addEventListener('mouseenter', () => clearInterval(autoPlayTimer));
-  carouselContainer.addEventListener('mouseleave', () => {
-    autoPlayTimer = setInterval(() => {
-      updateCarousel(currentSlide + 1);
-    }, autoplayInterval);
+  
+  carouselContainer.addEventListener('mouseenter', () => {
+    if (hasMultipleSlides) {
+      pauseAutoPlay();
+    }
   });
+  
+  carouselContainer.addEventListener('mouseleave', () => {
+    if (hasMultipleSlides) {
+      resumeAutoPlay();
+    }
+  });
+
+  if (hasMultipleSlides) {
+    startAutoPlay();
+  }
 
   const favoriteButtons = document.querySelectorAll('.favorite-button-s2');
 

@@ -281,7 +281,7 @@ export const biblicalData = [
             visible: true,
             title: "", //TEXTO DO BOTÃO ENABLED OFF
             carrousel: {
-                enabled: false,
+                enabled: true,
                 title: "OS DEZ MANDAMENTOS",
                 logo: {
                 enabled: false,

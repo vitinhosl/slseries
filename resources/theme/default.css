@@ -7,6 +7,9 @@
     --color-loading_color:      rgb(255, 2, 102);
     --color-loading_background: rgb(18, 18, 18);
 
+    --color-carrousel_back:     rgb(255, 255, 255, 0.3);
+    --color-carrousel_bar:      rgb(255, 2, 102, 1.0);
+
     --color-sidebar_background: rgb(17, 17, 17);
     --color-sidebar_title:      rgb(255, 2, 102);
     --color-sidebar_text:       rgb(224, 224, 224);
