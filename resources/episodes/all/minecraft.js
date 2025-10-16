@@ -7,6 +7,7 @@ export const minecraftData = [
             {
                 name: "Casa Automática",
                 enabled: true,
+                visible: true,
                 thumb_buttons: {
                     url: [
                         "https://i.imgur.com/bG5XyaM.png", 
@@ -15,19 +16,12 @@ export const minecraftData = [
                     ],
                 },
                 badge: "",
-                type: "",
-                canais: false,
-                youtube: false,
-                visible: true,
                 title: "", //TEXTO DO BOTÃO ENABLED OFF
                 carrousel: {
                     enabled: false,
+                    homepage: false,
                     title: "EM BUSCA DA CASA AUTOMÁTICA",
-                    logo: {
-                    enabled: false,
-                    url: "",
-                    minimalist: false,
-                    },
+                                        logo: { enabled: false, minimalist: false, url: "" },
                     thumb: [
                         "",
                     ],
@@ -469,6 +463,7 @@ export const minecraftData = [
             {
                 name: "Craft Games",
                 enabled: false,
+                visible: true,
                 thumb_buttons: {
                     url: [
                         "https://i.imgur.com/2HtrltH.png",
@@ -477,19 +472,12 @@ export const minecraftData = [
                     ],
                 },
                 badge: "",
-                type: "",
-                canais: false,
-                youtube: false,
-                visible: true,
                 title: "", //TEXTO DO BOTÃO ENABLED OFF
                 carrousel: {
                     enabled: false,
+                    homepage: false,
                     title: "CRAFT GAMES",
-                    logo: {
-                    enabled: false,
-                    url: "",
-                    minimalist: false,
-                    },
+                                        logo: { enabled: false, minimalist: false, url: "" },
                     thumb: [
                         "",
                     ],

@@ -6,26 +6,20 @@ export const channelData = [
             //ESPN
             {
                 name: "Espn",
-                badge: "",
-                type: "Canais",
                 enabled: true,
-                canais: true,
-                youtube: false,
                 visible: true,
-                title: "", //TEXTO DO BOTÃO ENABLED OFF
                 thumb_buttons: {
                     url: [
                         "https://i.imgur.com/53B8dup.jpeg"
                     ]
                 },
+                badge: "",
+                title: "", //TEXTO DO BOTÃO ENABLED OFF
                 carrousel: {
                     enabled: false,
+                    homepage: false,
                     title: "ESPN",
-                    logo: {
-                    enabled: false,
-                    url: "",
-                    minimalist: false,
-                    },
+                    logo: { enabled: false, minimalist: false, url: "" },
                     thumb: [
                         "",
                     ],
@@ -90,12 +84,9 @@ export const channelData = [
 
                 carrousel: {
                     enabled: false,
+                    homepage: false,
                     title: "SPORTV",
-                    logo: {
-                    enabled: false,
-                    url: "",
-                    minimalist: false,
-                    },
+                    logo: { enabled: false, minimalist: false, url: "" },
                     thumb: [
                         "",
                     ],
@@ -145,25 +136,19 @@ export const channelData = [
             {
                 name: "Premiere",
                 enabled: true,
+                visible: true,
                 thumb_buttons: {
                     url: [
                         "https://i.imgur.com/NLvBCb3.jpeg"
                     ],
                 },
                 badge: "",
-                type: "Canais",
-                canais: true,
-                youtube: false,
-                visible: true,
                 title: "", //TEXTO DO BOTÃO ENABLED OFF
                 carrousel: {
                     enabled: false,
+                    homepage: false,
                     title: "PREMIERE",
-                    logo: {
-                    enabled: false,
-                    url: "",
-                    minimalist: false,
-                    },
+                    logo: { enabled: false, minimalist: false, url: "" },
                     thumb: [
                         "",
                     ],

@@ -18,7 +18,8 @@ const seriesData2 = [
           },
 
           carrousel: {
-              enabled: false,
+              enabled: true,
+              homepage: true,
               title: "NOME TEST",
               logo: { 
                 enabled: true, 
@@ -58,7 +59,8 @@ const seriesData2 = [
             ],
           },
           carrousel: {
-              enabled: false,
+              enabled: true,
+              homepage: false,
               title: "NOME TEST 2",
               logo: {
                 enabled: false,
@@ -96,7 +98,6 @@ let iconsAnimated           = false; //ATIVA AS ANIMAÇÕES DOS ICONES
 let randomImagesCards       = false; //AS IMAGENS ALEATÓRIAS DOS BOTÕES
 let randomImagesCarrousel   = false; //AS IMAGENS ALEATÓRIAS DO CARROUSEL
 let speedCarrouselBar       = 5;     //VELOCIDADE DAS ANIMAÇÕES DO CARROUSEL
-
 
 //=======================================================================
 //ICONES
@@ -361,13 +362,9 @@ async function loadPageContent(path) {
         return a.name.localeCompare(b.name);
       });
 
-      let cardsCount = 0;
-      const maxCardsHome = 20;
-
       sortedGroup.forEach(item => {
-        if (item.visible !== false && item.name && (!isHomePage || cardsCount < maxCardsHome)) {
-          cardsCount++;
-          
+        if (item.visible !== false && item.name) {
+
           const urls = item.thumb_buttons.url;
           const selectedThumb = randomImagesCards 
             ? urls[Math.floor(Math.random() * urls.length)] 
@@ -571,9 +568,42 @@ function getCurrentPath() {
   return generateSlug('Início');
 }
 
-function renderCarrousel() {
+function getCarouselData(path) {
+  const isHomePage = path === generateSlug('Início');
+  let data = [];
+
+  if (isHomePage) {
+    // Para homepage: coletar itens de todos os grupos com enabled: true e homepage: true
+    seriesData.forEach(groupItem => {
+      if (groupItem.group) {
+        const homepageItems = groupItem.group.filter(item => 
+          item.enabled !== false && 
+          item.carrousel && 
+          item.carrousel.enabled && 
+          item.carrousel.homepage
+        );
+        data.push(...homepageItems);
+      }
+    });
+  } else {
+    // Para páginas de categoria: encontrar o grupo e coletar itens com enabled: true (independentemente de homepage)
+    const matchingGroup = seriesData.find(groupItem => generateSlug(groupItem.group_name) === path && groupItem.visible);
+    if (matchingGroup && matchingGroup.group) {
+      data = matchingGroup.group.filter(item => 
+        item.enabled !== false && 
+        item.carrousel && 
+        item.carrousel.enabled
+      );
+    }
+  }
+
+  return data;
+}
+
+function renderCarrousel(path) {
   let currentSlide = 0;
   let totalSlides = 0;
+  let isTransitioning = false;
 
   const slideDuration = speedCarrouselBar * 1000;
   const transitionDuration = 500;
@@ -592,51 +622,57 @@ function renderCarrousel() {
   let startX = 0;
   let movedBy = 0;
 
+  const handleTransitionEnd = () => {
+    if (isTransitioning) {
+      isTransitioning = false;
+    }
+  };
+
+  slidesContainer.addEventListener('transitionend', handleTransitionEnd);
+
   function createSlides() {
-    const data = seriesData[0].group;
+    const data = getCarouselData(path);
     const originalSlides = [];
 
     data.forEach(item => {
       const carrousel = item.carrousel;
-      if (carrousel.enabled) {
-        const slide = document.createElement('div');
-        slide.classList.add('carousel-slide');
-        let thumbUrl;
-        if (randomImagesCarrousel && carrousel.thumb && carrousel.thumb.length > 1) {
-          const randomIndex = Math.floor(Math.random() * carrousel.thumb.length);
-          thumbUrl = carrousel.thumb[randomIndex];
-        } else {
-          thumbUrl = carrousel.thumb[0];
-        }
-        slide.style.backgroundImage = `url(${thumbUrl})`;
-
-        const content = document.createElement('div');
-        content.classList.add('carousel-caption');
-
-        let logoHtml = '';
-        if (carrousel.logo.enabled && carrousel.logo.url) {
-          const minimalistClass = carrousel.logo.minimalist ? 'minimalist-logo' : '';
-          logoHtml = `<img class="carousel-logo ${minimalistClass}" src="${carrousel.logo.url}" alt="${carrousel.title}">`;
-        } else {
-          logoHtml = `<h1>${carrousel.title}</h1>`;
-        }
-
-        const currentIsFavorite = typeof isFavorite === 'function' && isFavorite(item.name);
-        const serieDataJson = JSON.stringify(item);
-
-        content.innerHTML = `
-          ${logoHtml}
-          <p>${carrousel.description.trim()}</p>
-          <div class="carousel-actions">
-            <button class="btn btn-primary"><i class="fas fa-play"></i>Assistir Agora</button>
-            <button class="favorite-button-s2 ${currentIsFavorite ? 'active' : ''}" data-serie='${serieDataJson}'></button>
-          </div>
-        `;
-
-        slide.appendChild(content);
-        slidesContainer.appendChild(slide);
-        originalSlides.push(slide);
+      const slide = document.createElement('div');
+      slide.classList.add('carousel-slide');
+      let thumbUrl;
+      if (randomImagesCarrousel && carrousel.thumb && carrousel.thumb.length > 1) {
+        const randomIndex = Math.floor(Math.random() * carrousel.thumb.length);
+        thumbUrl = carrousel.thumb[randomIndex];
+      } else {
+        thumbUrl = carrousel.thumb[0];
       }
+      slide.style.backgroundImage = `url(${thumbUrl})`;
+
+      const content = document.createElement('div');
+      content.classList.add('carousel-caption');
+
+      let logoHtml = '';
+      if (carrousel.logo.enabled && carrousel.logo.url) {
+        const minimalistClass = carrousel.logo.minimalist ? 'minimalist-logo' : '';
+        logoHtml = `<img class="carousel-logo ${minimalistClass}" src="${carrousel.logo.url}" alt="${carrousel.title}">`;
+      } else {
+        logoHtml = `<h1>${carrousel.title}</h1>`;
+      }
+
+      const currentIsFavorite = typeof isFavorite === 'function' && isFavorite(item.name);
+      const serieDataJson = JSON.stringify(item);
+
+      content.innerHTML = `
+        ${logoHtml}
+        <p>${carrousel.description.trim()}</p>
+        <div class="carousel-actions">
+          <button class="btn btn-primary"><i class="fas fa-play"></i>Assistir Agora</button>
+          <button class="favorite-button-s2 ${currentIsFavorite ? 'active' : ''}" data-serie='${serieDataJson}'></button>
+        </div>
+      `;
+
+      slide.appendChild(content);
+      slidesContainer.appendChild(slide);
+      originalSlides.push(slide);
     });
 
     totalSlides = originalSlides.length;
@@ -652,6 +688,7 @@ function renderCarrousel() {
     }
 
     if (totalSlides > 0) {
+      carousel.style.display = 'block';
       slidesContainer.style.transform = `translateX(-${currentSlide * 100}%)`;
       if (totalSlides > 1) {
         createDots();
@@ -677,8 +714,10 @@ function renderCarrousel() {
       dot.classList.add('dot');
       if (i === getLogicalIndex()) dot.classList.add('active');
       dot.onclick = () => {
-        goToSlide(i);
-        pauseAutoPlay();
+        if (!isTransitioning) {
+          goToSlide(i);
+          pauseAutoPlay();
+        }
       };
       dotsContainer.appendChild(dot);
     }
@@ -697,7 +736,8 @@ function renderCarrousel() {
   }
 
   function goToSlide(logicalIndex) {
-    if (totalSlides <= 1) return;
+    if (totalSlides <= 1 || isTransitioning) return;
+    isTransitioning = true;
     const targetPhysical = 1 + logicalIndex;
     slidesContainer.style.transition = 'transform 0.5s ease-in-out';
     slidesContainer.style.transform = `translateX(-${targetPhysical * 100}%)`;
@@ -707,7 +747,8 @@ function renderCarrousel() {
   }
 
   function nextSlide() {
-    if (totalSlides <= 1) return;
+    if (totalSlides <= 1 || isTransitioning) return;
+    isTransitioning = true;
     slidesContainer.style.transition = 'transform 0.5s ease-in-out';
     currentSlide++;
     slidesContainer.style.transform = `translateX(-${currentSlide * 100}%)`;
@@ -728,23 +769,29 @@ function renderCarrousel() {
   }
 
   function prevSlide() {
-    if (totalSlides <= 1) return;
+    if (totalSlides <= 1 || isTransitioning) return;
+    isTransitioning = true;
     slidesContainer.style.transition = 'transform 0.5s ease-in-out';
     currentSlide--;
     slidesContainer.style.transform = `translateX(-${currentSlide * 100}%)`;
 
-    let logicalIndex = getLogicalIndex();
     if (currentSlide === 0) {
+      setTimeout(() => {
+        slidesContainer.style.transition = 'none';
+        currentSlide = totalSlides;
+        slidesContainer.style.transform = `translateX(-${totalSlides * 100}%)`;
         setTimeout(() => {
-            slidesContainer.style.transition = 'none';
-            currentSlide = totalSlides;
-            slidesContainer.style.transform = `translateX(-${totalSlides * 100}%)`;
-            setTimeout(() => slidesContainer.style.transition = 'transform 0.5s ease-in-out', 20);
-        }, transitionDuration);
-        logicalIndex = totalSlides - 1;
+          slidesContainer.style.transition = 'transform 0.5s ease-in-out';
+          isTransitioning = false;
+        }, 50);
+      }, transitionDuration);
+    } else {
+      setTimeout(() => {
+        isTransitioning = false;
+      }, transitionDuration);
     }
+    
     updateDots();
-    startAutoPlay();
     pauseAutoPlay();
   }
 
@@ -811,6 +858,7 @@ function renderCarrousel() {
 
   function dragStart(e) {
     if (totalSlides <= 1) return;
+    isTransitioning = false;
     isDragging = true;
     startX = getPositionX(e);
     slidesContainer.style.transition = 'none';
@@ -832,11 +880,15 @@ function renderCarrousel() {
     if (!isDragging) return;
     isDragging = false;
     const threshold = carousel.offsetWidth * 0.3;
-    slidesContainer.style.transition = 'transform 0.3s ease';
+    slidesContainer.style.transition = 'transform 0.5s ease-in-out';
 
-    if (movedBy < -threshold) nextSlide();
-    else if (movedBy > threshold) prevSlide();
-    else slidesContainer.style.transform = `translateX(-${currentSlide * 100}%)`;
+    if (movedBy < -threshold) {
+      nextSlide();
+    } else if (movedBy > threshold) {
+      prevSlide();
+    } else {
+      slidesContainer.style.transform = `translateX(-${currentSlide * 100}%)`;
+    }
 
     movedBy = 0;
     pauseAutoPlay();
@@ -846,10 +898,29 @@ function renderCarrousel() {
     return e.type.includes('touch') ? e.touches[0].clientX : e.clientX;
   }
 
+  if (prevBtn) {
+    prevBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      if (!isTransitioning) {
+        prevSlide();
+      }
+    });
+  }
+
+  if (nextBtn) {
+    nextBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      if (!isTransitioning) {
+        nextSlide();
+      }
+    });
+  }
+
   carousel.addEventListener('mouseenter', pauseAutoPlay);
   carousel.addEventListener('mouseleave', resumeAutoPlay);
-  prevBtn.addEventListener('click', prevSlide);
-  nextBtn.addEventListener('click', nextSlide);
+
+  // Limpar slides anteriores antes de criar novos
+  slidesContainer.innerHTML = '';
 
   createSlides();
 }
@@ -874,7 +945,6 @@ function hideLoader(startTime) {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-  renderCarrousel();
   const menuContainer = document.getElementById('dynamic-content-menu');
   const mainMenuList = document.getElementById('main-menu-list');
   let seriesHtml = '';
@@ -960,6 +1030,7 @@ document.addEventListener('DOMContentLoaded', () => {
             window.location.hash = newHash;
             activateByPath(path);
             await loadPageContent(path);
+            renderCarrousel(path);
         });
     });
 
@@ -967,11 +1038,13 @@ document.addEventListener('DOMContentLoaded', () => {
         const path = getCurrentPath();
         activateByPath(path);
         loadPageContent(path);
+        renderCarrousel(path);
     });
 
     const currentPath = getCurrentPath();
     activateByPath(currentPath);
     loadPageContent(currentPath);
+    renderCarrousel(currentPath);
 
     const streamsLink = document.querySelector('a[data-group="' + generateSlug('Streams') + '"]');
     if (streamsLink) setupStreamIcons(streamsLink);

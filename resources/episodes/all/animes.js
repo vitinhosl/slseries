@@ -7,6 +7,7 @@ export const animesData = [
             {
                 name: "Solo Leveling",
                 enabled: true,
+                visible: true,
                 thumb_buttons: {
                     url: [
                         // "https://animesbr.tv/wp-content/uploads/2025/01/vTCjCkwHn3bfqVLdQjZke3c8w7l-200x300.jpg",
@@ -15,19 +16,12 @@ export const animesData = [
                     ],
                 },
                 badge: "",
-                type: "Temporadas",
-                canais: false,
-                youtube: false,
-                visible: true,
                 title: "", //TEXTO DO BOTÃO ENABLED OFF
                 carrousel: {
                     enabled: false,
+                    homepage: false,
                     title: "SOLO LEVELING",
-                    logo: {
-                    enabled: false,
-                    url: "",
-                    minimalist: false,
-                    },
+                    logo: { enabled: false, minimalist: false, url: "" },
                     thumb: [
                         "",
                     ],
@@ -113,25 +107,19 @@ export const animesData = [
             {
                 name: "Gachiakuta",
                 enabled: true,
+                visible: true,
                 thumb_buttons: {
                     url: [
                         "https://i.imgur.com/ooWl5H3.jpeg",
                     ],
                 },
                 badge: "",
-                type: "",
-                canais: false,
-                youtube: false,
-                visible: true,
                 title: "", //TEXTO DO BOTÃO ENABLED OFF
                 carrousel: {
                     enabled: false,
+                    homepage: false,
                     title: "GACHIAKUTA",
-                    logo: {
-                    enabled: false,
-                    url: "",
-                    minimalist: false,
-                    },
+                    logo: { enabled: false, minimalist: false, url: "" },
                     thumb: [""],
                     text: "",
                     description: `
@@ -178,25 +166,19 @@ export const animesData = [
             {
                 name: "Kaiju no. 8",
                 enabled: true,
+                visible: true,
                 thumb_buttons: {
                     url: [
                         "https://i.imgur.com/P099HnZ.jpeg",
                     ],
                 },
                 badge: "",
-                type: "Temporadas",
-                canais: false,
-                youtube: false,
-                visible: true,
                 title: "", //TEXTO DO BOTÃO ENABLED OFF
                 carrousel: {
                     enabled: false,
+                    homepage: false,
                     title: "Kaiju N.º 8",
-                    logo: {
-                    enabled: false,
-                    url: "",
-                    minimalist: false,
-                    },
+                    logo: { enabled: false, minimalist: false, url: "" },
                     thumb: [
                         "",
                     ],
@@ -272,6 +254,7 @@ export const animesData = [
             {
                 name: "Haikyu",
                 enabled: false,
+                visible: true,
                 thumb_buttons: {
                     url: [
                         // "https://animesbr.tv/wp-content/uploads/2025/01/vTCjCkwHn3bfqVLdQjZke3c8w7l-200x300.jpg",
@@ -280,19 +263,12 @@ export const animesData = [
                     ],
                 },
                 badge: "",
-                type: "Temporadas",
-                canais: false,
-                youtube: false,
-                visible: true,
                 title: "", //TEXTO DO BOTÃO ENABLED OFF
                 carrousel: {
                     enabled: false,
+                    homepage: false,
                     title: "HAIKYU",
-                    logo: {
-                    enabled: false,
-                    url: "",
-                    minimalist: false,
-                    },
+                    logo: { enabled: false, minimalist: false, url: "" },
                     thumb: [
                         "",
                     ],

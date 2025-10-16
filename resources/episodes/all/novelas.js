@@ -5,11 +5,11 @@ export const OldnovelsData= [
             //REBELDE MEXICANO
             {
                 name: "Rebelde",
+                enabled: true,
+                visible: true,
                 thumb_buttons: ["https://i.imgur.com/SEnkwUw.jpeg"],
                 badge: "NOVO",
                 type: "Temporadas",
-                canais: false,
-                enabled: true,
                 title: "", //TEXTO DO BOTÃO ENABLED OFF
                 season: [
                     {
@@ -489,6 +489,8 @@ export const novelsData= [
             //REBELDE MEXICANO (RBD)
             {
                 name: "Rebelde",
+                enabled: true,
+                visible: true,
                 thumb_buttons: {
                     url: [
                         "https://image.tmdb.org/t/p/original/p5VjPouEYqRhHsWidIqd65q04Qt.jpg",
@@ -497,20 +499,12 @@ export const novelsData= [
                     ],
                 },
                 badge: "",
-                type: "Temporadas",
-                canais: false,
-                enabled: true,
-                youtube: false,
-                visible: true,
                 title: "", //TEXTO DO BOTÃO ENABLED OFF
                 carrousel: {
                     enabled: false,
+                    homepage: false,
                     title: "NOME",
-                    logo: {
-                    enabled: false,
-                    url: "",
-                    minimalist: false,
-                    },
+                                        logo: { enabled: false, minimalist: false, url: "" },
                     thumb: [
                         "",
                     ],
@@ -1015,6 +1009,8 @@ export const novelsData= [
             //REBELDE BRASILEIRO
             {
                 name: "Rebelde Brasileiro",
+                enabled: false,
+                visible: true,
                 thumb_buttons: {
                     url: [
                         "https://pp-vod-img-aws.akamaized.net/0069081/0069081_200.jpg",
@@ -1022,20 +1018,12 @@ export const novelsData= [
                     ],
                 },
                 badge: "",
-                type: "Temporadas",
-                canais: false,
-                enabled: false,
-                youtube: false,
-                visible: true,
                 title: "", //TEXTO DO BOTÃO ENABLED OFF
                 carrousel: {
                     enabled: false,
+                    homepage: false,
                     title: "REBELDE BRASILEIRO",
-                    logo: {
-                    enabled: false,
-                    url: "",
-                    minimalist: false,
-                    },
+                                        logo: { enabled: false, minimalist: false, url: "" },
                     thumb: [
                         "",
                     ],
@@ -1086,26 +1074,20 @@ export const novelsData= [
             //A USURPADORA
             {
                 name: "A Usurpadora",
+                enabled: true,
+                visible: true,
                 thumb_buttons: {
                     url: [
                         "https://i.imgur.com/AcQ1Pm2.png",
                     ],
                 },
                 badge: "",
-                type: "",
-                canais: false,
-                enabled: true,
-                youtube: false,
-                visible: true,
                 title: "", //TEXTO DO BOTÃO ENABLED OFF
                 carrousel: {
                     enabled: false,
+                    homepage: false,
                     title: "A USURPADORA",
-                    logo: {
-                    enabled: false,
-                    url: "",
-                    minimalist: false,
-                    },
+                                        logo: { enabled: false, minimalist: false, url: "" },
                     thumb: [
                         "",
                     ],

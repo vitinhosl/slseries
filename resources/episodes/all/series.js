@@ -1,11 +1,13 @@
 export const seriesData = [
   {
     group_name: "Séries",
-    visible: false,
+    visible: true,
     group: [
         //ALQUIMIA DAS ALMAS
         {
             name: "Alquimia das Almas",
+            enabled: true,
+            visible: true,
             thumb_buttons: {
               url: [
                 "https://i.imgur.com/kg0eddJ.jpeg",
@@ -14,14 +16,10 @@ export const seriesData = [
               ],
             },
             badge: "",
-            type: "Temporadas",
-            canais: false,
-            enabled: true,
-            youtube: false,
-            visible: true,
             title: "", //TEXTO DO BOTÃO ENABLED OFF
             carrousel: {
                 enabled: false,
+                homepage: false,
                 title: "ALQUIMIA DAS ALMAS",
                 logo: {
                   enabled: false,
@@ -97,6 +95,8 @@ export const seriesData = [
         //GAME OF THRONES
         {
           name: "Game of Thrones",
+          enabled: false,
+          visible: true,
           thumb_buttons: {
             url: [
               "https://i.imgur.com/KLwmxCI.jpeg",
@@ -105,14 +105,10 @@ export const seriesData = [
             ],
           },
           badge: "",
-          type: "Temporadas",
-          canais: false,
-          enabled: false,
-          youtube: false,
-          visible: true,
           title: "", //TEXTO DO BOTÃO ENABLED OFF
           carrousel: {
               enabled: false,
+              homepage: false,
               title: "GAME OF THRONES",
               logo: {
                 enabled: false,
@@ -158,6 +154,8 @@ export const seriesData = [
         //A RODA DO TEMPO
         {
             name: "A Roda do Tempo",
+            enabled: false,
+            visible: true,
             thumb_buttons: {
               url: [
                 "https://i.imgur.com/LLWJSeR.jpeg",
@@ -165,13 +163,10 @@ export const seriesData = [
             },
             badge: "",
             type: "",
-            canais: false,
-            enabled: false,
-            youtube: false,
-            visible: true,
             title: "", //TEXTO DO BOTÃO ENABLED OFF
             carrousel: {
                 enabled: false,
+                homepage: false,
                 title: "A RODA DO TEMPO",
                 logo: {
                   enabled: false,
@@ -212,6 +207,8 @@ export const seriesData = [
         //SOMBRA E OSSOS
         {
           name: "Sombra e Ossos",
+          enabled: false,
+          visible: true,
           thumb_buttons: {
             url: [
               "https://i.imgur.com/g4rzDUb.png",
@@ -219,14 +216,10 @@ export const seriesData = [
             ],
           },
           badge: "",
-          type: "",
-          canais: false,
-          enabled: false,
-          youtube: false,
-          visible: true,
           title: "", //TEXTO DO BOTÃO ENABLED OFF
           carrousel: {
               enabled: false,
+              homepage: false,
               title: "SOMBRA E OSSOS",
               logo: {
                 enabled: false,
@@ -266,6 +259,8 @@ export const seriesData = [
         //O SENHOR DOS ANÉIS:OS ANÉIS DE PODER
         {
           name: "Os Anéis de Poder",
+          enabled: true,
+          visible: true,
           thumb_buttons: {
             url: [
               "https://i.imgur.com/SKEOHMc.jpeg",
@@ -275,14 +270,10 @@ export const seriesData = [
             ],
           },
           badge: "",
-          type: "",
-          canais: false,
-          enabled: true,
-          youtube: false,
-          visible: true,
           title: "", //TEXTO DO BOTÃO ENABLED OFF
           carrousel: {
               enabled: false,
+              homepage: false,
               title: "SENHOR DOS ANÉIS: OS ANÉIS DE PODER",
               logo: {
                 enabled: false,
@@ -344,6 +335,8 @@ export const seriesData = [
         //GREYS ANATOMY
         {
           name: "Grey's Anatomy",
+          enabled: false,
+          visible: true,
           thumb_buttons: {
             url: [
               "https://i.imgur.com/ef7S2Nv.jpeg",
@@ -352,14 +345,10 @@ export const seriesData = [
             ],
           },
           badge: "",
-          type: "",
-          canais: false,
-          enabled: false,
-          youtube: false,
-          visible: true,
           title: "", //TEXTO DO BOTÃO ENABLED OFF
           carrousel: {
               enabled: false,
+              homepage: false,
               title: "GREY'S ANATOMY",
               logo: {
                 enabled: false,
@@ -400,6 +389,8 @@ export const seriesData = [
         //A CASA DO DRAGÃO
         {
           name: "A Casa do Dragão",
+          enabled: false,
+          visible: true,
           thumb_buttons: {
             url: [
               "https://i.imgur.com/5fvFZ7s.png",
@@ -407,14 +398,10 @@ export const seriesData = [
             ],
           },
           badge: "",
-          type: "",
-          canais: false,
-          enabled: false,
-          youtube: false,
-          visible: true,
           title: "", //TEXTO DO BOTÃO ENABLED OFF
           carrousel: {
               enabled: false,
+              homepage: false,
               title: "A CASA DO DRAGÃO",
               logo: {
                 enabled: false,

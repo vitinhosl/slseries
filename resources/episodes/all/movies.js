@@ -6,6 +6,8 @@ export const moviesData = [
             //HARRY POTTER
             {
                 name: "Harry Potter",
+                enabled: false,
+                visible: true,
                 thumb_buttons: {
                     url: [
                     "https://i.imgur.com/wdXyskp.png", //HARRY POTTER 1: EA PEDRA FILOSOFAL
@@ -28,20 +30,12 @@ export const moviesData = [
                     ],
                 },
                 badge: "",
-                type: "",
-                canais: false,
-                enabled: false,
-                youtube: false,
-                visible: true,
                 title: "", //TEXTO DO BOTÃO ENABLED OFF
                 carrousel: {
                     enabled: false,
+                    homepage: false,
                     title: "HARRY POTTER",
-                    logo: {
-                        enabled: false,
-                        url: "",
-                        minimalist: false,
-                    },
+                                        logo: { enabled: false, minimalist: false, url: "" },
                     thumb: [""],
                     text: "",
                     description: `
@@ -79,6 +73,8 @@ export const moviesData = [
             //ANIMAIS FANTASTICOS
             {
             name: "Animais Fantasticos",
+            enabled: false,
+            visible: true,
             thumb_buttons: {
                 url: [
                 "https://i.imgur.com/69wXwwB.png", //ANIMAIS FANTÁSTICOS 1: E ONDE HABITAM
@@ -89,20 +85,12 @@ export const moviesData = [
                 ],
             },
             badge: "",
-            type: "",
-            canais: false,
-            enabled: false,
-            youtube: false,
-            visible: true,
             title: "", //TEXTO DO BOTÃO ENABLED OFF
             carrousel: {
                 enabled: false,
+                homapge: false,
                 title: "ANIMAIS FANTASTICOS",
-                logo: {
-                    enabled: false,
-                    url: "",
-                    minimalist: false,
-                },
+                                    logo: { enabled: false, minimalist: false, url: "" },
                 thumb: [""],
                 text: "",
                 description: `
@@ -139,48 +127,42 @@ export const moviesData = [
             //VELOZES E FURIOSOS
             {
                 name: "Velozes e Furiosos",
+                enabled: false,
+                visible: true,
                 thumb_buttons: {
-                url: [
-                    "https://i.imgur.com/y8FBSks.jpeg", //VELOZES E FURIOSOS 1
-                    "https://i.imgur.com/bvJhA7q.jpeg", //VELOZES E FURIOSOS 2
-                    "https://i.imgur.com/06E4fD1.jpeg", //VELOZES E FURIOSOS 3
-                    "https://i.imgur.com/mUY6E2y.jpeg", //VELOZES E FURIOSOS 4
-                    "https://i.imgur.com/fCXyIWf.jpeg", //VELOZES E FURIOSOS 5
-                    "https://i.imgur.com/Z1W2iiO.jpeg", //VELOZES E FURIOSOS 6
-                    "https://i.imgur.com/mB9Pvi7.jpeg", //VELOZES E FURIOSOS 7
-                    "https://i.imgur.com/VEOSjQB.jpeg", //VELOZES E FURIOSOS 8
-                    "https://i.imgur.com/iGgpSAl.jpeg", //VELOZES E FURIOSOS 9
-                    "https://i.imgur.com/PjT4mwv.jpeg", //VELOZES E FURIOSOS 10
+                    url: [
+                        "https://i.imgur.com/y8FBSks.jpeg", //VELOZES E FURIOSOS 1
+                        "https://i.imgur.com/bvJhA7q.jpeg", //VELOZES E FURIOSOS 2
+                        "https://i.imgur.com/06E4fD1.jpeg", //VELOZES E FURIOSOS 3
+                        "https://i.imgur.com/mUY6E2y.jpeg", //VELOZES E FURIOSOS 4
+                        "https://i.imgur.com/fCXyIWf.jpeg", //VELOZES E FURIOSOS 5
+                        "https://i.imgur.com/Z1W2iiO.jpeg", //VELOZES E FURIOSOS 6
+                        "https://i.imgur.com/mB9Pvi7.jpeg", //VELOZES E FURIOSOS 7
+                        "https://i.imgur.com/VEOSjQB.jpeg", //VELOZES E FURIOSOS 8
+                        "https://i.imgur.com/iGgpSAl.jpeg", //VELOZES E FURIOSOS 9
+                        "https://i.imgur.com/PjT4mwv.jpeg", //VELOZES E FURIOSOS 10
 
-                    // "",  //VELOZES E FURIOSOS 1
-                    // "https://i.imgur.com/mjTmEVq.png",  //VELOZES E FURIOSOS 2
-                    // "https://i.imgur.com/mUY6E2y.jpeg", //VELOZES E FURIOSOS 4
-                    // "https://i.imgur.com/ONRvfhk.jpeg", //VELOZES E FURIOSOS 4
-                    // "https://i.imgur.com/8l1j8xn.png",  //VELOZES E FURIOSOS 3
-                    // "https://i.imgur.com/mswA0Fu.jpeg", //VELOZES E FURIOSOS 3
-                    // "https://i.imgur.com/lj7CR26.jpeg", //VELOZES E FURIOSOS 5
-                    // "https://i.imgur.com/Z1W2iiO.jpeg", //VELOZES E FURIOSOS 6
-                    // "https://i.imgur.com/mB9Pvi7.jpeg", //VELOZES E FURIOSOS 7
-                    // "https://i.imgur.com/foMeLDd.png",  //VELOZES E FURIOSOS 8
-                    // "https://i.imgur.com/6RQyGF9.jpeg", //VELOZES E FURIOSOS 9
-                    "", //VELOZES E FURIOSOS 10
-                ],
+                        // "",  //VELOZES E FURIOSOS 1
+                        // "https://i.imgur.com/mjTmEVq.png",  //VELOZES E FURIOSOS 2
+                        // "https://i.imgur.com/mUY6E2y.jpeg", //VELOZES E FURIOSOS 4
+                        // "https://i.imgur.com/ONRvfhk.jpeg", //VELOZES E FURIOSOS 4
+                        // "https://i.imgur.com/8l1j8xn.png",  //VELOZES E FURIOSOS 3
+                        // "https://i.imgur.com/mswA0Fu.jpeg", //VELOZES E FURIOSOS 3
+                        // "https://i.imgur.com/lj7CR26.jpeg", //VELOZES E FURIOSOS 5
+                        // "https://i.imgur.com/Z1W2iiO.jpeg", //VELOZES E FURIOSOS 6
+                        // "https://i.imgur.com/mB9Pvi7.jpeg", //VELOZES E FURIOSOS 7
+                        // "https://i.imgur.com/foMeLDd.png",  //VELOZES E FURIOSOS 8
+                        // "https://i.imgur.com/6RQyGF9.jpeg", //VELOZES E FURIOSOS 9
+                        "", //VELOZES E FURIOSOS 10
+                    ],
                 },
                 badge: "",
-                type: "",
-                canais: false,
-                enabled: false,
-                youtube: false,
-                visible: true,
                 title: "", //TEXTO DO BOTÃO ENABLED OFF
                 carrousel: {
                     enabled: false,
+                    homepage: false,
                     title: "VELOZES FURIOSOS",
-                    logo: {
-                    enabled: false,
-                    url: "",
-                    minimalist: false,
-                    },
+                                        logo: { enabled: false, minimalist: false, url: "" },
                     thumb: [""],
                     text: "",
                     description: `
@@ -196,7 +178,7 @@ export const moviesData = [
                     video: [
                     ],
                     sinopse:  `
-                    172 anos antes do nascimento de Daenerys, a protagonista da série original, a Casa do Dragão mostrará um dos eventos mais poderosos dentro do universo, a Dança dos Dragões. Momento esse que marca a guerra civil entre a família Targaryen.
+                        172 anos antes do nascimento de Daenerys, a protagonista da série original, a Casa do Dragão mostrará um dos eventos mais poderosos dentro do universo, a Dança dos Dragões. Momento esse que marca a guerra civil entre a família Targaryen.
                     `
                 },
                 season: [
@@ -223,6 +205,8 @@ export const moviesData = [
             //TROPA DE ELITE
             {
                 name: "Tropa de Elite",
+                enabled: true,
+                visible: true,
                 thumb_buttons: {
                     url: [
                         "https://i.imgur.com/l8BHSFw.jpeg", //TROPA DE ELITE 1
@@ -230,20 +214,12 @@ export const moviesData = [
                     ],
                 },
                 badge: "",
-                type: "",
-                canais: false,
-                enabled: true,
-                youtube: false,
-                visible: true,
                 title: "", //TEXTO DO BOTÃO ENABLED OFF
                 carrousel: {
                     enabled: false,
+                    homepage: false,
                     title: "TROPA DE ELITE",
-                    logo: {
-                    enabled: false,
-                    url: "",
-                    minimalist: false,
-                    },
+                                        logo: { enabled: false, minimalist: false, url: "" },
                     thumb: [""],
                     text: "",
                     description: `

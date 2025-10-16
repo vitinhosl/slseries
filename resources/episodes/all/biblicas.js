@@ -1,11 +1,13 @@
 export const biblicalData = [
     {
       group_name: "Séries Bíblicas",
-      visible: false,
+      visible: true,
       group: [
           //A TERRA PROMETIDA
           {
             name: "A Terra Prometida",
+            enabled: true,
+            visible: true,
             thumb_buttons: {
                 url: [
                     "https://i.imgur.com/3FzZHWW.jpeg",
@@ -17,30 +19,19 @@ export const biblicalData = [
                 ],
             },
             badge: "",
-            type: "Temporadas",
-            canais: false,
-            enabled: true,
-            youtube: false,
-            visible: true,
             title: "", //TEXTO DO BOTÃO ENABLED OFF
             carrousel: {
                 enabled: true,
+                homepage: true,
                 title: "A TERRA PROMETIDA",
-                logo: {
-                enabled: false,
-                url: "https://i.imgur.com/B6tMcLM.png",
-                minimalist: false,
-                },
+                logo: { enabled: false, minimalist: false, url: "https://i.imgur.com/B6tMcLM.png" },
                 thumb: [
                     "https://pp-vod-img-aws.akamaized.net/0068571/playplus_thumb_1600.jpg",
                     "https://i.imgur.com/H7LkieU.png",
                 ],
                 text: "Destaque",
                 description: `
-                    Após a morte de Moisés, Josué é o novo líder dos hebreus 
-                    e terá que cumprir uma difícil missão ordenada por Deus: 
-                    Comandar as 12 tribos de Israel na conquista de Canaã, 
-                    a Terra Prometida. Continuação da saga Os Dez Mandamentos.
+                    Após a morte de Moisés, Josué é o novo líder dos hebreus e terá que cumprir uma difícil missão ordenada por Deus: Comandar as 12 tribos de Israel na conquista de Canaã, a Terra Prometida. Continuação da saga Os Dez Mandamentos.
                 `
             },
             description: {
@@ -262,6 +253,8 @@ export const biblicalData = [
           //OS DEZ MANDAMENTOS - 2 TEMPORADAS
           {
             name: "Os Dez Mandamentos",
+            enabled: true,
+            visible: true,
             thumb_buttons: {
                 url: [
                     "https://i.imgur.com/r1nTkeV.jpeg",
@@ -274,30 +267,19 @@ export const biblicalData = [
                 ],
             },
             badge: "",
-            type: "Temporadas",
-            canais: false,
-            enabled: true,
-            youtube: false,
-            visible: true,
             title: "", //TEXTO DO BOTÃO ENABLED OFF
             carrousel: {
                 enabled: true,
+                homepage: true,
                 title: "OS DEZ MANDAMENTOS",
-                logo: {
-                enabled: false,
-                url: "https://i.imgur.com/jpGZXos.png", //https://i.imgur.com/nQfnOXD.png
-                minimalist: false,
-                },
+                logo: { enabled: false, minimalist: false, url: "https://i.imgur.com/jpGZXos.png" }, //https://i.imgur.com/nQfnOXD.png
                 thumb: [
                 "https://pp-vod-img-aws.akamaized.net/0090405/playplus_thumb_1600.jpg",
                 "https://i.imgur.com/v0uF3s6.png",
                 ],
                 text: "",
                 description: `
-                    Grande sucesso da televisão brasileira, este épico bíblico 
-                    narra a saga de Moisés, o hebreu que escapou da morte ainda 
-                    bebê, virou príncipe do Egito e acabou se transformando no 
-                    líder escolhido por Deus para libertar seu povo da escravidão.
+                    Grande sucesso da televisão brasileira, este épico bíblico narra a saga de Moisés, o hebreu que escapou da morte ainda bebê, virou príncipe do Egito e acabou se transformando no líder escolhido por Deus para libertar seu povo da escravidão.
                 `
             },
             description: {
@@ -621,6 +603,8 @@ export const biblicalData = [
           //JEZABEL
           {
             name: "Jezabel",
+            enabled: true,
+            visible: true,
             thumb_buttons: {
                 url: [
                     "https://i.imgur.com/pgGkftW.jpeg",
@@ -632,29 +616,19 @@ export const biblicalData = [
                 ],
             },
             badge: "",
-            type: "Temporadas",
-            canais: false,
-            enabled: true,
-            youtube: false,
-            visible: true,
             title: "", //TEXTO DO BOTÃO ENABLED OFF
             carrousel: {
                 enabled: true,
+                homepage: true,
                 title: "JEZABEL",
                 logo: {
-                enabled: false,
-                url: "",
-                minimalist: false,
-                },
+                enabled: false, minimalist: false, url: "" },
                 thumb: [
                     "https://i.imgur.com/3NP8B3D.png"
                 ],
                 text: "Destaque",
                 description: `
-                    A trama contará a história da princesa fenícia Jezabel, 
-                    uma princesa idólatra que se casa com o rei Acabe e usa 
-                    sua beleza e maldade para tentar impor ao povo israelita 
-                    aceitar a adoração ao seus deuses pagãos. 
+                    A trama contará a história da princesa fenícia Jezabel, uma princesa idólatra que se casa com o rei Acabe e usa sua beleza e maldade para tentar impor ao povo israelita aceitar a adoração ao seus deuses pagãos. 
                 `
             },
             description: {
@@ -778,6 +752,8 @@ export const biblicalData = [
           //REI DAVI
           {
             name: "Rei Davi",
+            enabled: true,
+            visible: true,
             thumb_buttons: {
                 url: [
                     "https://i.imgur.com/xvMBheq.jpeg",
@@ -789,28 +765,18 @@ export const biblicalData = [
             },
             badge: "",
             type: "Temporadas",
-            canais: false,
-            enabled: true,
-            youtube: false,
-            visible: true,
             title: "", //TEXTO DO BOTÃO ENABLED OFF
             carrousel: {
-                enabled: false,
+                enabled: true,
+                homepage: true,
                 title: "REI DAVI",
-                logo: {
-                enabled: false,
-                url: "https://i.imgur.com/wp5Zlyg.png",
-                minimalist: false,
-                },
+                logo: { enabled: false, minimalist: false, url: "https://i.imgur.com/wp5Zlyg.png" },
                 thumb: [
                     "https://i.imgur.com/vNpBaWD.png"
                 ],
                 text: "Destaque",
                 description: `
-                    Rei Davi é uma mini série bíblica brasileira que 
-                    conta a história de Davi, o pastor de ovelhas que
-                    derrotou o gigante Golias e que foi escolhido 
-                    por Deus para governar seu povo.
+                    Rei Davi é uma mini série bíblica brasileira que conta a história de Davi, o pastor de ovelhas quederrotou o gigante Golias e que foi escolhido por Deus para governar seu povo.
                 `
             },
             description: {
@@ -905,6 +871,8 @@ export const biblicalData = [
           //JOSÉ DO EGITO
           {
             name: "José do Egito",
+            enabled: true,
+            visible: true,
             thumb_buttons: {
                 url: [
                     "https://i.imgur.com/Oxrdzg6.jpeg",
@@ -916,29 +884,18 @@ export const biblicalData = [
                 ],
             },
             badge: "",
-            type: "Temporadas",
-            canais: false,
-            enabled: true,
-            youtube: false,
-            visible: true,
             title: "", //TEXTO DO BOTÃO ENABLED OFF
             carrousel: {
-                enabled: false,
+                enabled: true,
+                homepage: true,
                 title: "JOSÉ DO EGITO",
-                logo: {
-                enabled: false,
-                url: "https://i.imgur.com/grhZxPH.png",
-                minimalist: false,
-                },
+                logo: { enabled: false, minimalist: false, url: "https://i.imgur.com/grhZxPH.png" },
                 thumb: [
                     "https://i.imgur.com/V2ikT7R.png"
                 ],
                 text: "Destaque",
                 description: `
-                    Após ser vendido como escravo pelos irmãos e 
-                    levado para o Egito, José é injustiçado, caluniado, 
-                    preso e humilhado. A vida de José é um exemplo 
-                    de pureza e perdão.
+                    Após ser vendido como escravo pelos irmãos e levado para o Egito, José é injustiçado, caluniado, preso e humilhado. A vida de José é um exemplo de pureza e perdão.
                 `
             },
             description: {
@@ -1028,6 +985,8 @@ export const biblicalData = [
           //JESUS
           {
             name: "Jesus",
+            enabled: true,
+            visible: true,
             thumb_buttons: {
                 url: [
                     "https://pp-vod-img-aws.akamaized.net/0347485/0347485_200.jpg",
@@ -1040,30 +999,18 @@ export const biblicalData = [
                 ],
             },
             badge: "",
-            type: "Temporadas",
-            canais: false,
-            enabled: true,
-            youtube: false,
-            visible: true,
             title: "", //TEXTO DO BOTÃO ENABLED OFF
             carrousel: {
-                enabled: false,
+                enabled: true,
+                homepage: true,
                 title: "JESUS",
-                logo: {
-                enabled: false,
-                url: "https://i.imgur.com/XZygqfc.png",
-                minimalist: false,
-                },
+                logo: { enabled: false, minimalist: false, url: "https://i.imgur.com/XZygqfc.png" },
                 thumb: [
                     "https://i.imgur.com/gnZ9oJ0.png"
                 ],
                 text: "Destaque",
                 description: `
-                    Quando a história dos homens estava perto de cair em desgraça, 
-                    a história do mundo muda para sempre após a chegada do Salvador. 
-                    Jesus, a novela, conta pela primeira vez na íntegra a trajetória 
-                    do homem que revolucionou a humanidade com sua palavra e suas 
-                    ações e dividiu a história em dois: antes e depois de Cristo.
+                    Quando a história dos homens estava perto de cair em desgraça, a história do mundo muda para sempre após a chegada do Salvador. Jesus, a novela, conta pela primeira vez na íntegra a trajetória do homem que revolucionou a humanidade com sua palavra e suas ações e dividiu a história em dois: antes e depois de Cristo.
                 `
             },
             description: {
@@ -1301,6 +1248,8 @@ export const biblicalData = [
           //GÊNESIS
           {
             name: "Gênesis",
+            enabled: true,
+            visible: true,
             thumb_buttons: {
                 url: [
                     "https://pp-vod-img-aws.akamaized.net/0191984/0191984_200.jpg",
@@ -1312,30 +1261,18 @@ export const biblicalData = [
                 ],
             },
             badge: "",
-            type: "Temporadas",
-            canais: false,
-            enabled: true,
-            youtube: false,
-            visible: true,
             title: "", //TEXTO DO BOTÃO ENABLED OFF
             carrousel: {
-                enabled: false,
+                enabled: true,
+                homepage: true,
                 title: "GÊNESIS",
-                logo: {
-                enabled: false,
-                url: "",
-                minimalist: false,
-                },
+                logo: { enabled: false, minimalist: false, url: "" },
                 thumb: [
                     "https://i.imgur.com/qHQejKs.png"
                 ],
                 text: "Destaque",
                 description: `
-                    A superprodução bíblica Gênesis vai lhe ajudar a entender aquilo 
-                    que você sempre quis, mas nunca teve coragem de questionar. Sim, 
-                    ela é cheia de histórias fascinantes, com muita emoção, talentosos 
-                    profissionais, uma belíssima fotografia e faixa musical inovadora, 
-                    mas acima de tudo, ela conta a nossa história.
+                    Gênesis vai lhe ajudar a entender aquilo que você sempre quis, mas nunca teve coragem de questionar. Sim, ela é cheia de histórias fascinantes, com muita emoção, talentosos profissionais, ela conta a nossa história.
                 `
             },
             description: {
@@ -1601,6 +1538,8 @@ export const biblicalData = [
           //O RICO E LÁZARO
           {
             name: "O Rico e Lázaro",
+            enabled: true,
+            visible: true,
             thumb_buttons: {
                 url: [
                     "https://i.imgur.com/kDT7mQX.png",
@@ -1611,30 +1550,18 @@ export const biblicalData = [
                 ],
             },
             badge: "",
-            type: "Temporadas",
-            canais: false,
-            enabled: true,
-            youtube: false,
-            visible: true,
             title: "", //TEXTO DO BOTÃO ENABLED OFF
             carrousel: {
-                enabled: false,
+                enabled: true,
+                homepage: true,
                 title: "O RICO E LÁZARO",
-                logo: {
-                enabled: false,
-                url: "https://i.imgur.com/5itbTP4.png",
-                minimalist: false,
-                },
+                logo: { enabled: false, minimalist: false, url: "https://i.imgur.com/5itbTP4.png" },
                 thumb: [
                     "https://i.imgur.com/sz0LCJC.png"
                 ],
                 text: "Destaque",
                 description: `
-                    Após o governo de vários reis que se afastaram de Deus, Jerusalém 
-                    encontra-se mergulhada na idolatria. A grande amizade de Zac e Asher 
-                    é abalada pelo amor que ambos sentem pela companheira de infância, 
-                    Joana. Ao contrário deles, ela acredita nas profecias de Jeremias 
-                    e empenha-se para que o povo hebreu se volte novamente para Deus.
+                    Após o governo de vários reis que se afastaram de Deus, Jerusalém encontra-se mergulhada na idolatria. A grande amizade de Zac e Asher é abalada pelo amor que ambos sentem pela companheira de infância, Joana. Ao contrário deles, ela acredita nas profecias de Jeremias e empenha-se para que o povo hebreu se volte novamente para Deus.
                 `
             },
             description: {
@@ -1860,6 +1787,8 @@ export const biblicalData = [
           //A RAINHA DA PÉRSIA
           {
             name: "A Rainha da Pérsia",
+            enabled: true,
+            visible: true,
             thumb_buttons: {
                 url: [
                     "https://i.imgur.com/FvREJ6n.jpeg",
@@ -1869,29 +1798,18 @@ export const biblicalData = [
                 ],
             },
             badge: "",
-            type: "Temporadas",
-            canais: false,
-            enabled: true,
-            youtube: false,
-            visible: true,
             title: "", //TEXTO DO BOTÃO ENABLED OFF
             carrousel: {
-                enabled: false,
+                enabled: true,
+                homepage: true,
                 title: "A RAINHA DA PÉRSIA",
-                logo: {
-                enabled: false,
-                url: "https://i.imgur.com/RpLhiMU.png",
-                minimalist: false,
-                },
+                logo: { enabled: false, minimalist: false, url: "https://i.imgur.com/RpLhiMU.png" },
                 thumb: [
                     "https://i.imgur.com/5x7Rmg9.png"
                 ],
                 text: "Destaque",
                 description: `
-                    A Rainha da Pérsia é uma série que nos transporta para 
-                    os tempos antigos da Bíblia, onde a vida de uma jovem 
-                    judia, Hadassah, também conhecida como Ester, se entrelaça 
-                    com o futuro de uma nação inteira. 
+                    A Rainha da Pérsia é uma série que nos transporta para os tempos antigos da Bíblia, onde a vida de uma jovem judia, Hadassah, também conhecida como Ester, se entrelaça com o futuro de uma nação inteira. 
                 `
             },
             description: {
@@ -1965,6 +1883,8 @@ export const biblicalData = [
           //A HISTÓRIA DE ESTER
           {
             name: "A História de Ester",
+            enabled: true,
+            visible: true,
             thumb_buttons: {
                 url: [
                     "https://pp-vod-img-aws.akamaized.net/0068508/0068508_200.jpg",
@@ -1977,20 +1897,12 @@ export const biblicalData = [
                 ],
             },
             badge: "",
-            type: "Temporadas",
-            canais: false,
-            enabled: true,
-            youtube: false,
-            visible: true,
             title: "", //TEXTO DO BOTÃO ENABLED OFF
             carrousel: {
                 enabled: false,
+                homepage: false,
                 title: "A HISTÓRIA DE ESTER",
-                logo: {
-                enabled: false,
-                url: "",
-                minimalist: false,
-                },
+                logo: { enabled: false, minimalist: false, url: "" },
                 thumb: [""],
                 text: "",
                 description: `
@@ -2047,6 +1959,8 @@ export const biblicalData = [
           //APOCALIPSE
           {
             name: "Apocalipse",
+            enabled: true,
+            visible: true,
             thumb_buttons: {
                 url: [
                     "https://i.imgur.com/gEPrg5k.jpeg",
@@ -2057,20 +1971,12 @@ export const biblicalData = [
                 ],
             },
             badge: "",
-            type: "Temporadas",
-            canais: false,
-            enabled: true,
-            youtube: false,
-            visible: true,
             title: "", //TEXTO DO BOTÃO ENABLED OFF
             carrousel: {
                 enabled: false,
+                homepage: false,
                 title: "APOCALIPSE",
-                logo: {
-                enabled: false,
-                url: "https://i.imgur.com/A4tMqV5.png", //https://i.imgur.com/uXANclN.png
-                minimalist: false,
-                },
+                logo: { enabled: false,  minimalist: false, url: "https://i.imgur.com/A4tMqV5.png" }, //https://i.imgur.com/uXANclN.png  
                 thumb: [""],
                 text: "",
                 description: `
@@ -2272,6 +2178,8 @@ export const biblicalData = [
           //REIS - 13 TEMPORADAS
           {
             name: "Reis",
+            enabled: true,
+            visible: true,
             thumb_buttons: {
                 url: [
                     "https://i.imgur.com/hhnDLbk.jpeg", //00 PADRÃO // "https://i.imgur.com/HxmEXcN.jpeg",
@@ -2305,20 +2213,12 @@ export const biblicalData = [
                 ],
             },
             badge: "",
-            type: "Temporadas",
-            canais: false,
-            enabled: true,
-            youtube: false,
-            visible: true,
             title: "", //TEXTO DO BOTÃO ENABLED OFF
             carrousel: {
                 enabled: false,
+                homepage: false,
                 title: "REIS",
-                logo: {
-                enabled: true,
-                url: "https://i.imgur.com/NicAbr0.png",
-                minimalist: false,
-                },
+                logo: { enabled: true, minimalist: false, url: "https://i.imgur.com/NicAbr0.png" },
                 thumb: [""],
                 text: "",
                 description: `
@@ -3037,6 +2937,8 @@ export const biblicalData = [
           //SANSÃO E DALILA
           {
             name: "Sansão e Dalila",
+            enabled: true,
+            visible: true,
             thumb_buttons: {
                 url: [
                     "https://pp-vod-img-aws.akamaized.net/0069029/0069029_200.jpg",
@@ -3046,20 +2948,12 @@ export const biblicalData = [
                 ],
             },
             badge: "",
-            type: "Temporadas",
-            canais: false,
-            enabled: true,
-            youtube: false,
-            visible: true,
             title: "", //TEXTO DO BOTÃO ENABLED OFF
             carrousel: {
                 enabled: false,
+                homepage: false,
                 title: "SANSÃO E DALÍLA",
-                logo: {
-                enabled: false,
-                url: "",
-                minimalist: false,
-                },
+                logo: { enabled: false,  minimalist: false, url: "" },
                 thumb: [""],
                 text: "",
                 description: `
@@ -3130,6 +3024,8 @@ export const biblicalData = [
           //LIA
           {
             name: "Lia",
+            enabled: true,
+            visible: true,
             thumb_buttons: {
                 url: [
                     "https://i.imgur.com/9vEih6n.jpeg",
@@ -3140,20 +3036,12 @@ export const biblicalData = [
                 ],
             },
             badge: "",
-            type: "Temporadas",
-            canais: false,
-            enabled: true,
-            youtube: false,
-            visible: true,
             title: "", //TEXTO DO BOTÃO ENABLED OFF
             carrousel: {
                 enabled: false,
+                homepage: false,
                 title: "LIA",
-                logo: {
-                enabled: false,
-                url: "https://i.imgur.com/yxg0lmv.png",
-                minimalist: false,
-                },
+                logo: { enabled: false, minimalist: false, url: "https://i.imgur.com/yxg0lmv.png" },
                 thumb: [""],
                 text: "",
                 description: `
@@ -3210,6 +3098,8 @@ export const biblicalData = [
           //NEEMIAS
           {
             name: "Neemias",
+            enabled: true,
+            visible: true,
             thumb_buttons: {
                 url: [
                     "https://i.imgur.com/PIyJSbp.jpeg",
@@ -3217,20 +3107,12 @@ export const biblicalData = [
                 ],
             },
             badge: "",
-            type: "Temporadas",
-            canais: false,
-            enabled: true,
-            youtube: false,
-            visible: true,
             title: "", //TEXTO DO BOTÃO ENABLED OFF
             carrousel: {
                 enabled: false,
+                homepage: false,
                 title: "NEEMIAS",
-                logo: {
-                enabled: false,
-                url: "",
-                minimalist: false,
-                },
+                logo: { enabled: false, minimalist: false, url: "" },
                 thumb: [""],
                 text: "",
                 description: `
@@ -3281,6 +3163,8 @@ export const biblicalData = [
           //A BÍBLIA
           {
             name: "A Bíblia",
+            enabled: true,
+            visible: true,
             thumb_buttons: {
                 url: [
                     // "https://i.imgur.com/clkVNbb.jpeg",
@@ -3291,20 +3175,12 @@ export const biblicalData = [
                 ],
             },
             badge: "",
-            type: "Temporadas",
-            canais: false,
-            enabled: true,
-            youtube: false,
-            visible: true,
             title: "", //TEXTO DO BOTÃO ENABLED OFF
             carrousel: {
                 enabled: false,
+                homepage: false,
                 title: "A BÍBLIA",
-                logo: {
-                enabled: false,
-                url: "https://i.imgur.com/UfEu54B.png",
-                minimalist: false,
-                },
+                logo: { enabled: false, minimalist: false, url: "https://i.imgur.com/UfEu54B.png" },
                 thumb: [""],
                 text: "",
                 description: `
@@ -3443,6 +3319,8 @@ export const biblicalData = [
           //MILAGRES DE JESUS
           {
             name: "Milagres de Jesus",
+            enabled: true,
+            visible: true,
             thumb_buttons: {
                 url: [
                     "https://i.imgur.com/u8ldcJl.png",
@@ -3452,20 +3330,12 @@ export const biblicalData = [
                 ],
             },
             badge: "",
-            type: "Temporadas",
-            canais: false,
-            enabled: true,
-            youtube: false,
-            visible: true,
             title: "", //TEXTO DO BOTÃO ENABLED OFF
             carrousel: {
                 enabled: false,
+                homepage: false,
                 title: "MILAGRES DE JESUS",
-                logo: {
-                enabled: false,
-                url: "",
-                minimalist: false,
-                },
+                logo: { enabled: false, minimalist: false, url: "" },
                 thumb: [
                 ],
                 text: "",
@@ -3543,6 +3413,8 @@ export const biblicalData = [
           //PAULO, O APÓSTOLO
           {
             name: "Paulo o Apóstolo",
+            enabled: true,
+            visible: true,
             thumb_buttons: {
                 url: [
                     "https://i.imgur.com/okQVATu.jpeg",
@@ -3554,20 +3426,12 @@ export const biblicalData = [
                 ],
             },
             badge: "",
-            type: "Temporadas",
-            canais: false,
-            enabled: true,
-            youtube: false,
-            visible: true,
             title: "", //TEXTO DO BOTÃO ENABLED OFF
             carrousel: {
                 enabled: false,
+                homepage: false,
                 title: "PAULO O APÓSTOLO",
-                logo: {
-                enabled: true,
-                url: "https://i.imgur.com/nZDzVqu.png",
-                minimalist: false,
-                },
+                logo: { enabled: true, minimalist: false, url: "https://i.imgur.com/nZDzVqu.png" },
                 thumb: [
                     "https://i.imgur.com/6K7vZYB.png"
                     // "https://i.imgur.com/G7Q8SZ7.jpeg",
@@ -3672,6 +3536,8 @@ export const biblicalData = [
           //A VIDA DE JÓ
           {
             name: "A Vida de Jó",
+            enabled: true,
+            visible: true,
             thumb_buttons: {
                 url: [
                     "https://i.imgur.com/3RfyOs1.png",
@@ -3679,20 +3545,12 @@ export const biblicalData = [
                 ],
             },
             badge: "",
-            type: "Temporadas",
-            canais: false,
-            enabled: true,
-            youtube: false,
-            visible: true,
             title: "", //TEXTO DO BOTÃO ENABLED OFF
             carrousel: {
                 enabled: false,
+                homepage: false,
                 title: "A VIDA DE JÓ",
-                logo: {
-                enabled: false,
-                url: "https://i.imgur.com/JzaYvyH.png", //https://i.imgur.com/W0IavDC.png
-                minimalist: false,
-                },
+                logo: { enabled: false, minimalist: false, url: "https://i.imgur.com/JzaYvyH.png" }, //https://i.imgur.com/W0IavDC.png
                 thumb: [""],
                 text: "",
                 description: `
@@ -3744,6 +3602,8 @@ export const biblicalData = [
           //O SENHOR E A SERVA
           {
             name: "O Senhor e a Serva",
+            enabled: true,
+            visible: true,
             thumb_buttons: {
                 url: [
                     "https://i.imgur.com/5RLytoA.jpeg",
@@ -3752,21 +3612,13 @@ export const biblicalData = [
                 ],
             },
             badge: "NOVIDADE",
-            type: "Temporadas",
-            canais: false,
-            enabled: true,
-            youtube: false,
-            visible: true,
             title: "", //TEXTO DO BOTÃO ENABLED OFF
             carrousel: {
                 enabled: false,
+                homepage: false,
                 title: "O SENHOR E A SERVA",
-                logo: {
-                enabled: false,
-                url: "https://i.imgur.com/gkAjNGX.png",
-                minimalist: false,
-                },
-                thumb: [""],
+                logo: { enabled: false, minimalist: false, url: "" },
+                thumb: ["https://i.imgur.com/gkAjNGX.png"],
                 text: "",
                 description: `
                     

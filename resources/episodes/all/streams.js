@@ -6,26 +6,20 @@ export const streamsData = [
         //STREAM
         {
             name: "Baiano",
+            enabled: true,
+            visible: true,
             thumb_buttons: {
               url: [
                 "",
               ],
             },
             badge: "",
-            type: "",
-            canais: false,
-            enabled: true,
-            stream: true,
-            visible: true,
             title: "", //TEXTO DO BOTÃO ENABLED OFF
             carrousel: {
                 enabled: false,
+                homepage: false,
                 title: "",
-                logo: {
-                  enabled: false,
-                  url: "",
-                  minimalist: false,
-                },
+                logo: { enabled: false, minimalist: false, url: "" },
                 thumb: [""],
                 text: "",
                 description: `

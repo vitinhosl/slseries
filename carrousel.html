@@ -9,7 +9,7 @@
             margin: 0;
             padding: 0;
             font-family: Arial, sans-serif;
-            background-color: #f0f0f0;
+            background-color: #131313;
         }
         /* =============================================== */
         /* CARROSSEL */
@@ -308,6 +308,665 @@
         .carousel-dots {
           z-index: 11;
         }
+
+        /* =============================================== */
+        /* NOVO CSS PARA GROUP SERIES BUTTONS */
+        /* =============================================== */
+        :root {
+          --color-groupcard_electric: rgb(99, 72, 221); 
+          --electric-light-color: oklch(from var(--color-groupcard_border_h) l c h);
+          --gradient-color: oklch(from var(--color-groupcard_border_h) 0.3 calc(c / 2) h / 0.4);
+          --color-neutral-900: rgb(19, 19, 19);
+          --color-groupcard_header: #333; /* Placeholder, ajuste conforme necessário */
+          --color-background: #f0f0f0;
+          --color-groupcard_border: #ddd;
+          --color-groupcard_border_h: #ccc;
+          --color-groupcard_border_c: #bbb;
+          --color-groupcard_glow: rgba(99, 72, 221, 0.5);
+          --color-groupcard_button: #E50914;
+          --color-groupcard_button_h: #F40A15;
+          --color-explore_button: #333;
+          --color-explore_button_text: #fff;
+          --color-explore_button_h: rgba(99, 72, 221, 0.5);
+          --color-explore_button_text_h: #fff;
+        }
+
+        .media-item {
+            position: relative;
+            min-width: 200px;
+            border-radius: 10px;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .media-item img {
+            width: 100%;
+            display: block;
+            height: auto;
+        }
+
+        .item-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            padding: 5px;
+            font-size: 0.7rem;
+            font-weight: bold;
+        }
+
+        .ep-info, .season-info {
+            background-color: #4CAF50;
+            padding: 3px 6px;
+            border-radius: 3px;
+        }
+
+        .item-title, .item-ep {
+            padding: 5px 10px;
+            background-color: rgba(0, 0, 0, 0.7);
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            text-align: center;
+        }
+
+        .group-title-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 10px;
+            margin: 10px 0 10px 0;
+            position: relative;
+            height: 50px;
+        }
+
+        .group-title-header .custom-icon {
+            margin-top: -4px;
+            height: 25px;
+            width: 28px;
+        }
+
+        .group-title-header::before {
+            content: '';
+            position: absolute;
+            left: 10px;
+            right: 50%;
+            top: 0;
+            bottom: 0;
+            border-radius: 8px;
+            background: linear-gradient(to right, var(--color-groupcard_header) 0%, var(--color-background) 100%);
+            z-index: -1;
+        }
+
+        .group-title-header h2 {
+            position: relative;
+            display: block;
+            font-size: 1.11rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            border-radius: 8px;
+            padding: 8px 20px;
+            margin: 0;
+            background: transparent;
+        }
+
+        .group-title-header h2 .custom-icon,
+        .group-title-header h2 i {
+            vertical-align: middle;
+            margin-right: 8px;
+        }
+
+        .explore-button {
+          position: relative;
+          display: flex;
+          align-items: center;
+          gap: 4px;
+          padding: 16px 36px;
+          border: 4px solid;
+          border-color: transparent;
+          font-size: 16px;
+          background-color: inherit;
+          border-radius: 8px;
+          font-weight: 600;
+          color: var(--color-explore_button);
+          cursor: pointer;
+          overflow: hidden;
+          transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        .explore-button svg {
+          position: absolute;
+          width: 24px;
+          fill: var(--color-explore_button_text);
+          z-index: 9;
+          transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        .explore-button .arr-1 {
+          right: 16px;
+        }
+
+        .explore-button .arr-2 {
+          left: -25%;
+        }
+
+        .explore-button .circle {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          width: 20px;
+          height: 20px;
+          background-color: var(--color-explore_button_h);
+          border-radius: 50%;
+          opacity: 0;
+          transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        .explore-button .text {
+          position: relative;
+          z-index: 1;
+          transform: translateX(-12px);
+          transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        .explore-button:hover {
+          box-shadow: 0 0 0 12px transparent;
+          border-radius: 8px;
+        }
+
+        .explore-button:hover .arr-1 {
+          right: -25%;
+        }
+
+        .explore-button:hover .arr-2 {
+          left: 16px;
+        }
+
+        .explore-button:hover .text {
+          transform: translateX(12px);
+        }
+
+        .explore-button:hover svg {
+          fill: var(--color-explore_button_text_h);
+        }
+
+        .explore-button:active {
+          scale: 0.95;
+          box-shadow: 0 0 0 4px var(--color-explore_button_h);
+        }
+
+        .explore-button:hover .circle {
+          width: 220px;
+          height: 220px;
+          opacity: 1;
+        }
+
+        /* =============================================== */
+        /* GROUP BUTTONS */
+        /* =============================================== */
+        .group-container {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          height: 100vh;
+        }
+
+        .svg-container {
+          position: absolute;
+          opacity: 0;
+          transition: opacity 0.3s ease;
+        }
+
+        .card-container {
+          position: relative;
+          width: 220px;
+          height: 320px;
+          margin: 9px;
+          padding: 2px;
+          border-radius: 8px;
+          position: relative;
+          background: linear-gradient(to bottom, var(--color-groupcard_header), var(--color-groupcard_header));
+          transition: all 0.3s ease, background-size 0.3 ease;
+        }
+
+        .inner-container {
+          width: 220px;
+          height: 320px;
+        }
+
+        .inner-container .main-card {
+          position: absolute;
+          inset: 0;
+          border-radius: 8px;
+          overflow: hidden;
+          z-index: 0;
+          background-position: center;
+          background-repeat: no-repeat;
+          background-size: 100% 100%;
+          will-change: opacity, background-size, filter;
+          transform: scale(1);
+          transition: opacity 1.50s ease, background-size 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94), filter 0.4s ease, transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .inner-container .main-card::after {
+          content: "";
+          position: absolute;
+          inset: 0;
+          z-index: 1;
+          border-radius: 8px;
+          transition: opacity 0.5s ease;
+          opacity: 0;
+          background: linear-gradient(to bottom, transparent 0%, rgba(10, 10, 10, 0.9) 70%);
+          pointer-events: none;
+        }
+
+        .card-container:has(#group-series-button:hover) .main-card::after {
+          opacity: 1;
+        }
+
+        .card-container.img-will-fade .card-media {
+          opacity: 0;
+        }
+
+        .card-container.img-fade-in .card-media {
+          opacity: 1;
+        }
+
+        .card-container.disabled .card-media { 
+          filter: grayscale(1); 
+        }
+
+        .card-container.disabled .main-card { 
+          filter: grayscale(1) brightness(0.7); 
+        }
+
+        .card-container.disabled:has(#group-series-button:hover) .main-card { 
+          filter: grayscale(0) brightness(0.8); 
+        }
+
+        .border-outer {
+          border: 2px solid transparent;
+          border-radius: 8px;
+          width: 220px;
+          height: 320px;
+          position: absolute;
+          top: 0;
+          left: 0;
+          z-index: 2;
+          padding: 0;
+          margin: 0;
+          transition: all 0.3s ease;
+        }
+
+        .main-card {
+          width: 220px;
+          height: 320px;
+          border-radius: 8px;
+          background-size: cover;
+          background-position: center;
+          position: relative;
+          z-index: 1;
+          border-radius: 8px;
+          border: 2px solid var(--color-background);
+          border: 2px solid var(--color-groupcard_border);
+        }
+
+        .glow-layer-1, .glow-layer-2 {
+          border: 2px solid transparent;
+          border-radius: 8px;
+          width: 100%;
+          height: 100%;
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          filter: blur(1px);
+          z-index: 3;
+          opacity: 0;
+          transition: all 0.3s ease;
+        }
+
+        .glow-layer-2 {
+          filter: blur(4px);
+        }
+
+        .overlay-1, .overlay-2 {
+          position: absolute;
+          width: 100%;
+          height: 100%;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          border-radius: 8px;
+          mix-blend-mode: overlay;
+          transform: scale(1.1);
+          filter: blur(16px);
+          background: linear-gradient(-30deg, var(--color-groupcard_glow), transparent 30%, transparent 70%, var(--color-groupcard_glow));
+          z-index: 4;
+          opacity: 0;
+          transition: opacity 0.3s ease;
+        }
+
+        .overlay-2 {
+          opacity: 0;
+        }
+
+        .background-glow {
+          position: absolute;
+          width: 100%;
+          height: 100%;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          border-radius: 8px;
+          filter: blur(32px);
+          transform: scale(1.1);
+          z-index: 0;
+          background: linear-gradient(-30deg, var(--electric-light-color), transparent, var(--color-groupcard_border_h));
+          opacity: 0;
+          transition: opacity 0.3s ease;
+        }
+
+        #group-series-button {
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          width: 100%;
+          height: 100%;
+          z-index: 5;
+          cursor: pointer;
+        }
+
+        #group-series-button:hover {
+            border: none;
+        }
+
+        .card-container:has(#group-series-button:hover) .main-card {
+          background-size: 110% 110%; 
+          filter: none;
+        }
+
+        .card-container:has(#group-series-button:hover) .card-media {
+          background-size: 110% 110%; 
+          filter: none;
+        }
+
+        .card-container:has(#group-series-button:hover) .card-media::after {
+          opacity: 1;
+        }
+
+        .card-container:has(#group-series-button:hover) {
+          background: linear-gradient(-30deg, var(--gradient-color), transparent, var(--gradient-color)), linear-gradient(to bottom, var(--color-neutral-900), var(--color-neutral-900));
+        }
+
+        .card-container:has(#group-series-button:hover) .border-outer {
+          border-color: var(--color-groupcard_electric);
+          filter: url(#turbulent-displace);
+        }
+
+        .card-container:has(#group-series-button:hover) .glow-layer-1 {
+          border-color: var(--color-groupcard_border_c);
+          opacity: 1;
+        }
+
+        .card-container:has(#group-series-button:hover) .glow-layer-2 {
+          border-color: var(--electric-light-color);
+          opacity: 1;
+        }
+
+        .card-container:has(#group-series-button:hover) .overlay-1 {
+          opacity: 1;
+        }
+
+        .card-container:has(#group-series-button:hover) .overlay-2 {
+          opacity: 0.5;
+        }
+
+        .card-container:has(#group-series-button:hover) .background-glow {
+          opacity: 0.3;
+        }
+
+        .card-container:has(#group-series-button:hover) ~ .svg-container {
+          opacity: 1;
+        }
+
+        #group-series-button .info {
+          position: absolute;
+          bottom: 20px;
+          left: 20px;
+          right: 20px;
+          z-index: 6;
+          opacity: 0;
+          transform: translateY(30px);
+          transition: opacity 0.5s ease, transform 0.5s ease;
+          color: rgb(233, 244, 251);
+          text-align: left;
+        }
+
+        .card-container:has(#group-series-button:hover) #group-series-button .info {
+          opacity: 1;
+          transform: translateY(0);
+        }
+
+        #group-series-button .info h2 { 
+          font-size: 15px; 
+          color: rgb(233, 244, 251); 
+          margin-top: 8px;
+        }
+
+        #group-series-button .info p { 
+          font-size: 13px; 
+          color: rgb(250, 244, 237); 
+          line-height: 1.4;
+        }
+
+        #group-series-button .info button {
+          margin-top: 8px;
+          padding: 0.6rem 1.2rem;
+          outline: none;
+          border: none;
+          border-radius: 3px;
+          background: var(--color-groupcard_button);
+          color: rgb(233, 244, 251);
+          font-weight: bold;
+          cursor: pointer;
+          transition: background 0.4s ease, color 0.4s ease, transform 0.3s ease;
+          font-size: 12px;
+        }
+
+        #group-series-button .info button:hover {
+          background: var(--color-groupcard_button_h);
+          color: rgb(250, 244, 237);
+        }
+
+        #group-series-button .info button:active {
+          transform: scale(0.95);
+        }
+
+        #group-series-button .favorite-button {
+          position: absolute;
+          top: 15px;
+          right: 15px;
+          z-index: 6;
+          width: 30px;
+          height: 30px;
+          opacity: 0;
+          transform: scale(0.8);
+          transition: opacity 0.3s ease, transform 0.3s ease;
+          pointer-events: none;
+        }
+
+        .card-container:has(#group-series-button:hover) .favorite-button {
+          opacity: 1;
+          transform: scale(1);
+          pointer-events: auto;
+        }
+
+        #group-series-button.img-will-fade .card-media{
+          opacity: 0;
+        }
+
+        #group-series-button.img-fade-in .card-media{
+          opacity: 1;
+        }
+
+        .watch-button.disabled {
+          background: #666 !important;
+          cursor: not-allowed !important;
+        }
+
+        .watch-button.disabled:hover {
+          background: #666 !important;
+          transform: none !important;
+        }
+
+        /* Adicionais para navegação */
+        .group-cards-header {
+          position: relative;
+          display: flex;
+          align-items: center;
+        }
+
+        .group-cards-header.home-layout {
+          padding: 0 20px;
+        }
+
+        .nav-arrow {
+          background: rgba(0,0,0,0.5);
+          border: none;
+          color: white;
+          padding: 10px;
+          cursor: pointer;
+          border-radius: 50%;
+          display: none;
+        }
+
+        .nav-arrow:not(.hidden) {
+          display: block;
+        }
+
+        .nav-arrow.prev {
+          position: absolute;
+          left: 0;
+        }
+
+        .nav-arrow.next {
+          position: absolute;
+          right: 0;
+        }
+
+        .group-cards-container {
+          display: flex;
+          overflow-x: auto;
+          gap: 10px;
+          padding: 20px 0;
+          scroll-behavior: smooth;
+        }
+
+        .group-cards-container::-webkit-scrollbar {
+          display: none;
+        }
+
+        .group-title-header {
+          margin-bottom: 20px;
+        }
+
+        /* =============================================== */
+        /* ADICIONAIS PARA CARROSSEL HORIZONTAL DOS GROUPS */
+        /* =============================================== */
+        .group-cards-header {
+            position: relative;
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .group-cards-header.home-layout {
+            padding: 0 20px;
+        }
+
+        .group-cards-container {
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+            user-select: none;
+            cursor: grab;
+        }
+
+        .group-cards-container:active {
+            cursor: grabbing;
+        }
+
+        .group-cards-slides {
+            display: flex;
+            width: 100%;
+            height: 320px; /* Altura fixa pros cards */
+        }
+
+        .group-card-slide {
+            flex: 0 0 auto;
+            width: 220px; /* Largura do card + margem */
+            height: 100%;
+            margin-right: 10px;
+        }
+
+        .nav-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0, 0, 0, 0.5);
+            border: none;
+            color: white;
+            padding: 10px;
+            cursor: pointer;
+            border-radius: 50%;
+            font-size: 1.2em;
+            z-index: 10;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            display: none; /* Escondido por default */
+        }
+
+        .group-cards-header:hover .nav-arrow {
+            opacity: 1;
+        }
+
+        .nav-arrow:not(.hidden) {
+            display: block;
+        }
+
+        .nav-arrow.prev {
+            left: 10px;
+        }
+
+        .nav-arrow.next {
+            right: 10px;
+        }
+
+        /* Para scroll simples se poucos cards */
+        .group-cards-container.scroll-mode {
+            overflow-x: auto;
+            cursor: default;
+        }
+
+        .group-cards-container.scroll-mode .group-cards-slides {
+            flex-wrap: nowrap;
+        }
+
+        .group-cards-container.scroll-mode::-webkit-scrollbar {
+            display: none;
+        }
     </style>
 </head>
 <body>
@@ -323,6 +982,9 @@
         </div>
     </div>
 
+    <!-- Nova seção para group-series-buttons adaptada -->
+    <div class="group-series-container" id="groupSeriesContainer"></div>
+
 <script>
 const seriesData = [
     {
@@ -330,6 +992,14 @@ const seriesData = [
         visible: true,
         group: [
             {
+                name: "Harry Potter",
+                enabled: true,
+                visible: true,
+                thumb_buttons: {
+                    url: [
+                        "https://i.imgur.com/wdXyskp.png", //HARRY POTTER 1: EA PEDRA FILOSOFAL
+                    ],
+                },
                 carrousel: {
                     enabled: true,
                     title: "NOME TEST",
@@ -344,24 +1014,570 @@ const seriesData = [
                     `
                 },
             },
+
             {
+                name: "Harry Potter",
+                enabled: true,
+                visible: true,
+                thumb_buttons: {
+                    url: [
+                        "https://i.imgur.com/SJYo00O.png", //HARRY POTTER 2: EA CÂMARA SECRETA
+                    ],
+                },
                 carrousel: {
                     enabled: true,
-                    title: "NOME TEST 2",
-                    logo: { enabled: false, url: "https://i.imgur.com/jpGZXos.png", minimalist: false },
+                    title: "NOME TEST",
+                    logo: { enabled: true, url: "https://i.imgur.com/B6tMcLM.png", minimalist: true },
                     thumb: [
-                        "https://pp-vod-img-aws.akamaized.net/0090405/playplus_thumb_1600.jpg",
-                        "https://i.imgur.com/v0uF3s6.png",
+                        "https://pp-vod-img-aws.akamaized.net/0068571/playplus_thumb_1600.jpg",
+                        "https://i.imgur.com/H7LkieU.png",
                     ],
-                    text: "",
+                    text: "Destaque",
                     description: `
-                        Grande sucesso da televisão brasileira, este épico bíblico narra a saga de Moisés, o hebreu que escapou da morte ainda bebê, virou príncipe do Egito e acabou se transformando no líder escolhido por Deus para libertar seu povo da escravidão.
+                        Após a morte de Moisés, Josué é o novo líder dos hebreus e terá que cumprir uma difícil missão ordenada por Deus: Comandar as 12 tribos de Israel na conquista de Canaã, a Terra Prometida. Continuação da saga Os Dez Mandamentos.
                     `
                 },
             },
+
+            {
+                name: "Harry Potter",
+                enabled: true,
+                visible: true,
+                thumb_buttons: {
+                    url: [
+                        "https://i.imgur.com/zmMRzon.png", //HARRY POTTER 3: EO CÁLICE DE FOGO
+                    ],
+                },
+                carrousel: {
+                    enabled: true,
+                    title: "NOME TEST",
+                    logo: { enabled: true, url: "https://i.imgur.com/B6tMcLM.png", minimalist: true },
+                    thumb: [
+                        "https://pp-vod-img-aws.akamaized.net/0068571/playplus_thumb_1600.jpg",
+                        "https://i.imgur.com/H7LkieU.png",
+                    ],
+                    text: "Destaque",
+                    description: `
+                        Após a morte de Moisés, Josué é o novo líder dos hebreus e terá que cumprir uma difícil missão ordenada por Deus: Comandar as 12 tribos de Israel na conquista de Canaã, a Terra Prometida. Continuação da saga Os Dez Mandamentos.
+                    `
+                },
+            },
+
+            {
+                name: "Harry Potter",
+                enabled: true,
+                visible: true,
+                thumb_buttons: {
+                    url: [
+                        "https://i.imgur.com/bqh8keV.png", //HARRY POTTER 4: EO PRISIONEIRO DE AZKABAN
+                    ],
+                },
+                carrousel: {
+                    enabled: true,
+                    title: "NOME TEST",
+                    logo: { enabled: true, url: "https://i.imgur.com/B6tMcLM.png", minimalist: true },
+                    thumb: [
+                        "https://pp-vod-img-aws.akamaized.net/0068571/playplus_thumb_1600.jpg",
+                        "https://i.imgur.com/H7LkieU.png",
+                    ],
+                    text: "Destaque",
+                    description: `
+                        Após a morte de Moisés, Josué é o novo líder dos hebreus e terá que cumprir uma difícil missão ordenada por Deus: Comandar as 12 tribos de Israel na conquista de Canaã, a Terra Prometida. Continuação da saga Os Dez Mandamentos.
+                    `
+                },
+            },
+
+            {
+                name: "Harry Potter",
+                enabled: true,
+                visible: true,
+                thumb_buttons: {
+                    url: [
+                        "https://i.imgur.com/IdOkjj3.png", //HARRY POTTER 5: EA ORDEM DA FÊNIX
+                    ],
+                },
+                carrousel: {
+                    enabled: true,
+                    title: "NOME TEST",
+                    logo: { enabled: true, url: "https://i.imgur.com/B6tMcLM.png", minimalist: true },
+                    thumb: [
+                        "https://pp-vod-img-aws.akamaized.net/0068571/playplus_thumb_1600.jpg",
+                        "https://i.imgur.com/H7LkieU.png",
+                    ],
+                    text: "Destaque",
+                    description: `
+                        Após a morte de Moisés, Josué é o novo líder dos hebreus e terá que cumprir uma difícil missão ordenada por Deus: Comandar as 12 tribos de Israel na conquista de Canaã, a Terra Prometida. Continuação da saga Os Dez Mandamentos.
+                    `
+                },
+            },
+
+            {
+                name: "Harry Potter",
+                enabled: true,
+                visible: true,
+                thumb_buttons: {
+                    url: [
+                        "https://i.imgur.com/RWt83mC.png", //HARRY POTTER 6: EO ENIGMA DO PRÍNCIPE
+                    ],
+                },
+                carrousel: {
+                    enabled: true,
+                    title: "NOME TEST",
+                    logo: { enabled: true, url: "https://i.imgur.com/B6tMcLM.png", minimalist: true },
+                    thumb: [
+                        "https://pp-vod-img-aws.akamaized.net/0068571/playplus_thumb_1600.jpg",
+                        "https://i.imgur.com/H7LkieU.png",
+                    ],
+                    text: "Destaque",
+                    description: `
+                        Após a morte de Moisés, Josué é o novo líder dos hebreus e terá que cumprir uma difícil missão ordenada por Deus: Comandar as 12 tribos de Israel na conquista de Canaã, a Terra Prometida. Continuação da saga Os Dez Mandamentos.
+                    `
+                },
+            },
+
+            {
+                name: "Harry Potter",
+                enabled: true,
+                visible: true,
+                thumb_buttons: {
+                    url: [
+                        "https://i.imgur.com/csXAXhz.png", //HARRY POTTER 7: EAS RELIQUIAS DA MORTE PT 1
+                    ],
+                },
+                carrousel: {
+                    enabled: true,
+                    title: "NOME TEST",
+                    logo: { enabled: true, url: "https://i.imgur.com/B6tMcLM.png", minimalist: true },
+                    thumb: [
+                        "https://pp-vod-img-aws.akamaized.net/0068571/playplus_thumb_1600.jpg",
+                        "https://i.imgur.com/H7LkieU.png",
+                    ],
+                    text: "Destaque",
+                    description: `
+                        Após a morte de Moisés, Josué é o novo líder dos hebreus e terá que cumprir uma difícil missão ordenada por Deus: Comandar as 12 tribos de Israel na conquista de Canaã, a Terra Prometida. Continuação da saga Os Dez Mandamentos.
+                    `
+                },
+            },
+
+            {
+                name: "Harry Potter",
+                enabled: true,
+                visible: true,
+                thumb_buttons: {
+                    url: [
+                        "https://i.imgur.com/N6aK9dg.png", //HARRY POTTER 8: EAS RELIQUIAS DA MORTE PT 2
+
+                    ],
+                },
+                carrousel: {
+                    enabled: true,
+                    title: "NOME TEST",
+                    logo: { enabled: true, url: "https://i.imgur.com/B6tMcLM.png", minimalist: true },
+                    thumb: [
+                        "https://pp-vod-img-aws.akamaized.net/0068571/playplus_thumb_1600.jpg",
+                        "https://i.imgur.com/H7LkieU.png",
+                    ],
+                    text: "Destaque",
+                    description: `
+                        Após a morte de Moisés, Josué é o novo líder dos hebreus e terá que cumprir uma difícil missão ordenada por Deus: Comandar as 12 tribos de Israel na conquista de Canaã, a Terra Prometida. Continuação da saga Os Dez Mandamentos.
+                    `
+                },
+            },
+            
+                        {
+                name: "Harry Potter",
+                enabled: true,
+                visible: true,
+                thumb_buttons: {
+                    url: [
+                        "https://i.imgur.com/wdXyskp.png", //HARRY POTTER 1: EA PEDRA FILOSOFAL
+                    ],
+                },
+                carrousel: {
+                    enabled: true,
+                    title: "NOME TEST",
+                    logo: { enabled: true, url: "https://i.imgur.com/B6tMcLM.png", minimalist: true },
+                    thumb: [
+                        "https://pp-vod-img-aws.akamaized.net/0068571/playplus_thumb_1600.jpg",
+                        "https://i.imgur.com/H7LkieU.png",
+                    ],
+                    text: "Destaque",
+                    description: `
+                        Após a morte de Moisés, Josué é o novo líder dos hebreus e terá que cumprir uma difícil missão ordenada por Deus: Comandar as 12 tribos de Israel na conquista de Canaã, a Terra Prometida. Continuação da saga Os Dez Mandamentos.
+                    `
+                },
+            },
+
+            {
+                name: "Harry Potter",
+                enabled: true,
+                visible: true,
+                thumb_buttons: {
+                    url: [
+                        "https://i.imgur.com/SJYo00O.png", //HARRY POTTER 2: EA CÂMARA SECRETA
+                    ],
+                },
+                carrousel: {
+                    enabled: true,
+                    title: "NOME TEST",
+                    logo: { enabled: true, url: "https://i.imgur.com/B6tMcLM.png", minimalist: true },
+                    thumb: [
+                        "https://pp-vod-img-aws.akamaized.net/0068571/playplus_thumb_1600.jpg",
+                        "https://i.imgur.com/H7LkieU.png",
+                    ],
+                    text: "Destaque",
+                    description: `
+                        Após a morte de Moisés, Josué é o novo líder dos hebreus e terá que cumprir uma difícil missão ordenada por Deus: Comandar as 12 tribos de Israel na conquista de Canaã, a Terra Prometida. Continuação da saga Os Dez Mandamentos.
+                    `
+                },
+            },
+
+            {
+                name: "Harry Potter",
+                enabled: true,
+                visible: true,
+                thumb_buttons: {
+                    url: [
+                        "https://i.imgur.com/zmMRzon.png", //HARRY POTTER 3: EO CÁLICE DE FOGO
+                    ],
+                },
+                carrousel: {
+                    enabled: true,
+                    title: "NOME TEST",
+                    logo: { enabled: true, url: "https://i.imgur.com/B6tMcLM.png", minimalist: true },
+                    thumb: [
+                        "https://pp-vod-img-aws.akamaized.net/0068571/playplus_thumb_1600.jpg",
+                        "https://i.imgur.com/H7LkieU.png",
+                    ],
+                    text: "Destaque",
+                    description: `
+                        Após a morte de Moisés, Josué é o novo líder dos hebreus e terá que cumprir uma difícil missão ordenada por Deus: Comandar as 12 tribos de Israel na conquista de Canaã, a Terra Prometida. Continuação da saga Os Dez Mandamentos.
+                    `
+                },
+            },
+
+            {
+                name: "Harry Potter",
+                enabled: true,
+                visible: true,
+                thumb_buttons: {
+                    url: [
+                        "https://i.imgur.com/bqh8keV.png", //HARRY POTTER 4: EO PRISIONEIRO DE AZKABAN
+                    ],
+                },
+                carrousel: {
+                    enabled: true,
+                    title: "NOME TEST",
+                    logo: { enabled: true, url: "https://i.imgur.com/B6tMcLM.png", minimalist: true },
+                    thumb: [
+                        "https://pp-vod-img-aws.akamaized.net/0068571/playplus_thumb_1600.jpg",
+                        "https://i.imgur.com/H7LkieU.png",
+                    ],
+                    text: "Destaque",
+                    description: `
+                        Após a morte de Moisés, Josué é o novo líder dos hebreus e terá que cumprir uma difícil missão ordenada por Deus: Comandar as 12 tribos de Israel na conquista de Canaã, a Terra Prometida. Continuação da saga Os Dez Mandamentos.
+                    `
+                },
+            },
+
+            {
+                name: "Harry Potter",
+                enabled: true,
+                visible: true,
+                thumb_buttons: {
+                    url: [
+                        "https://i.imgur.com/IdOkjj3.png", //HARRY POTTER 5: EA ORDEM DA FÊNIX
+                    ],
+                },
+                carrousel: {
+                    enabled: true,
+                    title: "NOME TEST",
+                    logo: { enabled: true, url: "https://i.imgur.com/B6tMcLM.png", minimalist: true },
+                    thumb: [
+                        "https://pp-vod-img-aws.akamaized.net/0068571/playplus_thumb_1600.jpg",
+                        "https://i.imgur.com/H7LkieU.png",
+                    ],
+                    text: "Destaque",
+                    description: `
+                        Após a morte de Moisés, Josué é o novo líder dos hebreus e terá que cumprir uma difícil missão ordenada por Deus: Comandar as 12 tribos de Israel na conquista de Canaã, a Terra Prometida. Continuação da saga Os Dez Mandamentos.
+                    `
+                },
+            },
+
+            {
+                name: "Harry Potter",
+                enabled: true,
+                visible: true,
+                thumb_buttons: {
+                    url: [
+                        "https://i.imgur.com/RWt83mC.png", //HARRY POTTER 6: EO ENIGMA DO PRÍNCIPE
+                    ],
+                },
+                carrousel: {
+                    enabled: true,
+                    title: "NOME TEST",
+                    logo: { enabled: true, url: "https://i.imgur.com/B6tMcLM.png", minimalist: true },
+                    thumb: [
+                        "https://pp-vod-img-aws.akamaized.net/0068571/playplus_thumb_1600.jpg",
+                        "https://i.imgur.com/H7LkieU.png",
+                    ],
+                    text: "Destaque",
+                    description: `
+                        Após a morte de Moisés, Josué é o novo líder dos hebreus e terá que cumprir uma difícil missão ordenada por Deus: Comandar as 12 tribos de Israel na conquista de Canaã, a Terra Prometida. Continuação da saga Os Dez Mandamentos.
+                    `
+                },
+            },
+
+            {
+                name: "Harry Potter",
+                enabled: true,
+                visible: true,
+                thumb_buttons: {
+                    url: [
+                        "https://i.imgur.com/csXAXhz.png", //HARRY POTTER 7: EAS RELIQUIAS DA MORTE PT 1
+                    ],
+                },
+                carrousel: {
+                    enabled: true,
+                    title: "NOME TEST",
+                    logo: { enabled: true, url: "https://i.imgur.com/B6tMcLM.png", minimalist: true },
+                    thumb: [
+                        "https://pp-vod-img-aws.akamaized.net/0068571/playplus_thumb_1600.jpg",
+                        "https://i.imgur.com/H7LkieU.png",
+                    ],
+                    text: "Destaque",
+                    description: `
+                        Após a morte de Moisés, Josué é o novo líder dos hebreus e terá que cumprir uma difícil missão ordenada por Deus: Comandar as 12 tribos de Israel na conquista de Canaã, a Terra Prometida. Continuação da saga Os Dez Mandamentos.
+                    `
+                },
+            },
+
+            {
+                name: "Harry Potter",
+                enabled: true,
+                visible: true,
+                thumb_buttons: {
+                    url: [
+                        "https://i.imgur.com/N6aK9dg.png", //HARRY POTTER 8: EAS RELIQUIAS DA MORTE PT 2
+
+                    ],
+                },
+                carrousel: {
+                    enabled: true,
+                    title: "NOME TEST",
+                    logo: { enabled: true, url: "https://i.imgur.com/B6tMcLM.png", minimalist: true },
+                    thumb: [
+                        "https://pp-vod-img-aws.akamaized.net/0068571/playplus_thumb_1600.jpg",
+                        "https://i.imgur.com/H7LkieU.png",
+                    ],
+                    text: "Destaque",
+                    description: `
+                        Após a morte de Moisés, Josué é o novo líder dos hebreus e terá que cumprir uma difícil missão ordenada por Deus: Comandar as 12 tribos de Israel na conquista de Canaã, a Terra Prometida. Continuação da saga Os Dez Mandamentos.
+                    `
+                },
+            },
+            
+
+                        {
+                name: "Harry Potter",
+                enabled: true,
+                visible: true,
+                thumb_buttons: {
+                    url: [
+                        "https://i.imgur.com/wdXyskp.png", //HARRY POTTER 1: EA PEDRA FILOSOFAL
+                    ],
+                },
+                carrousel: {
+                    enabled: true,
+                    title: "NOME TEST",
+                    logo: { enabled: true, url: "https://i.imgur.com/B6tMcLM.png", minimalist: true },
+                    thumb: [
+                        "https://pp-vod-img-aws.akamaized.net/0068571/playplus_thumb_1600.jpg",
+                        "https://i.imgur.com/H7LkieU.png",
+                    ],
+                    text: "Destaque",
+                    description: `
+                        Após a morte de Moisés, Josué é o novo líder dos hebreus e terá que cumprir uma difícil missão ordenada por Deus: Comandar as 12 tribos de Israel na conquista de Canaã, a Terra Prometida. Continuação da saga Os Dez Mandamentos.
+                    `
+                },
+            },
+
+            {
+                name: "Harry Potter",
+                enabled: true,
+                visible: true,
+                thumb_buttons: {
+                    url: [
+                        "https://i.imgur.com/SJYo00O.png", //HARRY POTTER 2: EA CÂMARA SECRETA
+                    ],
+                },
+                carrousel: {
+                    enabled: true,
+                    title: "NOME TEST",
+                    logo: { enabled: true, url: "https://i.imgur.com/B6tMcLM.png", minimalist: true },
+                    thumb: [
+                        "https://pp-vod-img-aws.akamaized.net/0068571/playplus_thumb_1600.jpg",
+                        "https://i.imgur.com/H7LkieU.png",
+                    ],
+                    text: "Destaque",
+                    description: `
+                        Após a morte de Moisés, Josué é o novo líder dos hebreus e terá que cumprir uma difícil missão ordenada por Deus: Comandar as 12 tribos de Israel na conquista de Canaã, a Terra Prometida. Continuação da saga Os Dez Mandamentos.
+                    `
+                },
+            },
+
+            {
+                name: "Harry Potter",
+                enabled: true,
+                visible: true,
+                thumb_buttons: {
+                    url: [
+                        "https://i.imgur.com/zmMRzon.png", //HARRY POTTER 3: EO CÁLICE DE FOGO
+                    ],
+                },
+                carrousel: {
+                    enabled: true,
+                    title: "NOME TEST",
+                    logo: { enabled: true, url: "https://i.imgur.com/B6tMcLM.png", minimalist: true },
+                    thumb: [
+                        "https://pp-vod-img-aws.akamaized.net/0068571/playplus_thumb_1600.jpg",
+                        "https://i.imgur.com/H7LkieU.png",
+                    ],
+                    text: "Destaque",
+                    description: `
+                        Após a morte de Moisés, Josué é o novo líder dos hebreus e terá que cumprir uma difícil missão ordenada por Deus: Comandar as 12 tribos de Israel na conquista de Canaã, a Terra Prometida. Continuação da saga Os Dez Mandamentos.
+                    `
+                },
+            },
+
+            {
+                name: "Harry Potter",
+                enabled: true,
+                visible: true,
+                thumb_buttons: {
+                    url: [
+                        "https://i.imgur.com/bqh8keV.png", //HARRY POTTER 4: EO PRISIONEIRO DE AZKABAN
+                    ],
+                },
+                carrousel: {
+                    enabled: true,
+                    title: "NOME TEST",
+                    logo: { enabled: true, url: "https://i.imgur.com/B6tMcLM.png", minimalist: true },
+                    thumb: [
+                        "https://pp-vod-img-aws.akamaized.net/0068571/playplus_thumb_1600.jpg",
+                        "https://i.imgur.com/H7LkieU.png",
+                    ],
+                    text: "Destaque",
+                    description: `
+                        Após a morte de Moisés, Josué é o novo líder dos hebreus e terá que cumprir uma difícil missão ordenada por Deus: Comandar as 12 tribos de Israel na conquista de Canaã, a Terra Prometida. Continuação da saga Os Dez Mandamentos.
+                    `
+                },
+            },
+
+            {
+                name: "Harry Potter",
+                enabled: true,
+                visible: true,
+                thumb_buttons: {
+                    url: [
+                        "https://i.imgur.com/IdOkjj3.png", //HARRY POTTER 5: EA ORDEM DA FÊNIX
+                    ],
+                },
+                carrousel: {
+                    enabled: true,
+                    title: "NOME TEST",
+                    logo: { enabled: true, url: "https://i.imgur.com/B6tMcLM.png", minimalist: true },
+                    thumb: [
+                        "https://pp-vod-img-aws.akamaized.net/0068571/playplus_thumb_1600.jpg",
+                        "https://i.imgur.com/H7LkieU.png",
+                    ],
+                    text: "Destaque",
+                    description: `
+                        Após a morte de Moisés, Josué é o novo líder dos hebreus e terá que cumprir uma difícil missão ordenada por Deus: Comandar as 12 tribos de Israel na conquista de Canaã, a Terra Prometida. Continuação da saga Os Dez Mandamentos.
+                    `
+                },
+            },
+
+            {
+                name: "Harry Potter",
+                enabled: true,
+                visible: true,
+                thumb_buttons: {
+                    url: [
+                        "https://i.imgur.com/RWt83mC.png", //HARRY POTTER 6: EO ENIGMA DO PRÍNCIPE
+                    ],
+                },
+                carrousel: {
+                    enabled: true,
+                    title: "NOME TEST",
+                    logo: { enabled: true, url: "https://i.imgur.com/B6tMcLM.png", minimalist: true },
+                    thumb: [
+                        "https://pp-vod-img-aws.akamaized.net/0068571/playplus_thumb_1600.jpg",
+                        "https://i.imgur.com/H7LkieU.png",
+                    ],
+                    text: "Destaque",
+                    description: `
+                        Após a morte de Moisés, Josué é o novo líder dos hebreus e terá que cumprir uma difícil missão ordenada por Deus: Comandar as 12 tribos de Israel na conquista de Canaã, a Terra Prometida. Continuação da saga Os Dez Mandamentos.
+                    `
+                },
+            },
+
+            {
+                name: "Harry Potter",
+                enabled: true,
+                visible: true,
+                thumb_buttons: {
+                    url: [
+                        "https://i.imgur.com/csXAXhz.png", //HARRY POTTER 7: EAS RELIQUIAS DA MORTE PT 1
+                    ],
+                },
+                carrousel: {
+                    enabled: true,
+                    title: "NOME TEST",
+                    logo: { enabled: true, url: "https://i.imgur.com/B6tMcLM.png", minimalist: true },
+                    thumb: [
+                        "https://pp-vod-img-aws.akamaized.net/0068571/playplus_thumb_1600.jpg",
+                        "https://i.imgur.com/H7LkieU.png",
+                    ],
+                    text: "Destaque",
+                    description: `
+                        Após a morte de Moisés, Josué é o novo líder dos hebreus e terá que cumprir uma difícil missão ordenada por Deus: Comandar as 12 tribos de Israel na conquista de Canaã, a Terra Prometida. Continuação da saga Os Dez Mandamentos.
+                    `
+                },
+            },
+
+            {
+                name: "Harry Potter",
+                enabled: true,
+                visible: true,
+                thumb_buttons: {
+                    url: [
+                        "https://i.imgur.com/N6aK9dg.png", //HARRY POTTER 8: EAS RELIQUIAS DA MORTE PT 2
+
+                    ],
+                },
+                carrousel: {
+                    enabled: true,
+                    title: "NOME TEST",
+                    logo: { enabled: true, url: "https://i.imgur.com/B6tMcLM.png", minimalist: true },
+                    thumb: [
+                        "https://pp-vod-img-aws.akamaized.net/0068571/playplus_thumb_1600.jpg",
+                        "https://i.imgur.com/H7LkieU.png",
+                    ],
+                    text: "Destaque",
+                    description: `
+                        Após a morte de Moisés, Josué é o novo líder dos hebreus e terá que cumprir uma difícil missão ordenada por Deus: Comandar as 12 tribos de Israel na conquista de Canaã, a Terra Prometida. Continuação da saga Os Dez Mandamentos.
+                    `
+                },
+            },
+            
+
+
         ],
     }
 ];
+// Variável para controlar se usa imagens aleatórias ou sempre a primeira
+const randomImagesCards = false;
 
 function renderCarrousel() {
 let currentSlide = 0;
@@ -659,10 +1875,334 @@ createSlides();
 
 }
 
+// Função atualizada para renderizar os group-series-buttons com a nova estrutura
+// ... (o seriesData e renderCarrousel() permanecem iguais) ...
+
+// Função atualizada para renderizar os group-series-buttons com carrossel horizontal
+function renderGroupSeriesButtons() {
+    const container = document.getElementById('groupSeriesContainer');
+    if (!container) return;
+
+    container.innerHTML = '';
+
+    seriesData.forEach((groupData, groupIndex) => {
+        if (!groupData.visible) return;
+
+        // Cria a seção header (igual antes)
+        const section = document.createElement('section');
+        section.id = `group-${groupData.group_name.toLowerCase()}-header`;
+
+        const header = document.createElement('header');
+        header.className = 'group-title-header';
+
+        const h2 = document.createElement('h2');
+        h2.className = '';
+        const iconImg = document.createElement('img');
+        iconImg.src = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAACXBIWXMAAAsTAAALEwEAmpwYAAAA8ElEQVR4nO3RsQ3CMBBG4UdNj4COURiFTcwmrMIMSCQFEkPQc4gBcOzjkjine5JLy/8ng+NWwAOQhZyfHRsYJxaQiwfIGnh5gJwaGCYWkKvm0oRJyaYD8PYAOWu/ccKkZNPTC0QCMl0SEOohpXc1b0hACAgByRQQCQgByRUQCQgByRUQUUDGTDxAkgdIqtnUKiRl9nRLgaTMlh7YLwGSNIjWIGkAsctdLoFooLlRtacfQowFsUR0JYgxILMgrCGzISwhsyIwetgScQM2KLIaYPUTWw0CLwgaAHzP/V9Ebc0PLM0FAi8IvCDwgsALghb7APBVkMnu8/RMAAAAAElFTkSuQmCC';
+        iconImg.className = 'custom-icon';
+        iconImg.alt = groupData.group_name;
+        h2.appendChild(iconImg);
+        h2.append(` ${groupData.group_name}`);
+        header.appendChild(h2);
+
+        const exploreBtn = document.createElement('button');
+        exploreBtn.className = 'explore-button';
+        exploreBtn.dataset.group = groupData.group_name.toLowerCase();
+        exploreBtn.innerHTML = `
+            <svg xmlns="http://www.w3.org/2000/svg" class="arr-2" viewBox="0 0 24 24">
+                <path d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"></path>
+            </svg>
+            <span class="text">Explorar</span>
+            <span class="circle"></span>
+            <svg xmlns="http://www.w3.org/2000/svg" class="arr-1" viewBox="0 0 24 24">
+                <path d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"></path>
+            </svg>
+        `;
+        header.appendChild(exploreBtn);
+        section.appendChild(header);
+
+        // Container para cards
+        const cardsHeader = document.createElement('div');
+        cardsHeader.className = 'group-cards-header home-layout';
+
+        const prevArrow = document.createElement('button');
+        prevArrow.className = 'nav-arrow prev';
+        prevArrow.ariaLabel = 'Cartões anteriores';
+        prevArrow.innerHTML = '<i class="fas fa-chevron-left"></i>';
+
+        const cardsContainer = document.createElement('div');
+        cardsContainer.className = 'group-cards-container';
+        const slidesContainer = document.createElement('div');
+        slidesContainer.className = 'group-cards-slides';
+
+        const nextArrow = document.createElement('button');
+        nextArrow.className = 'nav-arrow next';
+        nextArrow.ariaLabel = 'Próximos cartões';
+        nextArrow.innerHTML = '<i class="fas fa-chevron-right"></i>';
+
+        // Cria os cards originais
+        const originalCards = [];
+        groupData.group.forEach((item) => {
+            if (item.visible && item.enabled && item.thumb_buttons && item.thumb_buttons.url.length > 0) {
+                let imageUrl = randomImagesCards 
+                    ? item.thumb_buttons.url[Math.floor(Math.random() * item.thumb_buttons.url.length)]
+                    : item.thumb_buttons.url[0];
+
+                const cardContainer = document.createElement('div');
+                cardContainer.className = 'card-container group-card-slide';
+
+                const innerContainer = document.createElement('div');
+                innerContainer.className = 'inner-container';
+
+                const borderOuter = document.createElement('div');
+                borderOuter.className = 'border-outer';
+
+                const mainCard = document.createElement('div');
+                mainCard.className = 'main-card';
+                mainCard.style.backgroundImage = `url('${imageUrl}')`;
+
+                const glowLayer1 = document.createElement('div');
+                glowLayer1.className = 'glow-layer-1';
+                const glowLayer2 = document.createElement('div');
+                glowLayer2.className = 'glow-layer-2';
+
+                innerContainer.appendChild(borderOuter);
+                innerContainer.appendChild(mainCard);
+                innerContainer.appendChild(glowLayer1);
+                innerContainer.appendChild(glowLayer2);
+
+                const overlay1 = document.createElement('div');
+                overlay1.className = 'overlay-1';
+                const overlay2 = document.createElement('div');
+                overlay2.className = 'overlay-2';
+                const backgroundGlow = document.createElement('div');
+                backgroundGlow.className = 'background-glow';
+
+                const groupSeriesButton = document.createElement('div');
+                groupSeriesButton.id = 'group-series-button';
+
+                const info = document.createElement('div');
+                info.className = 'info';
+                info.innerHTML = `
+                    <h2>${item.name || item.description?.title || 'Título'}</h2>
+                    <p>${item.description?.sinopse || 'TEST'}</p>
+                    <button class="watch-button">ASSISTIR</button>
+                `;
+
+                const favoriteBtn = document.createElement('button');
+                favoriteBtn.className = 'favorite-button';
+                favoriteBtn.dataset.serie = JSON.stringify(item);
+                favoriteBtn.innerHTML = `
+                    <svg class="rating__star" width="24" height="24" viewBox="0 0 32 32" aria-hidden="true">
+                        <!-- SVG do star igual ao anterior -->
+                        <g transform="translate(16,16)"><circle class="rating__star-ring" fill="none" stroke="#000" stroke-width="16" r="8" transform="scale(0)"></circle></g>
+                        <g stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <g transform="translate(16,16) rotate(180)">
+                                <polygon class="rating__star-stroke" points="0,15 4.41,6.07 14.27,4.64 7.13,-2.32 8.82,-12.14 0,-7.5 -8.82,-12.14 -7.13,-2.32 -14.27,4.64 -4.41,6.07" fill="none"></polygon>
+                                <polygon class="rating__star-fill" points="0,15 4.41,6.07 14.27,4.64 7.13,-2.32 8.82,-12.14 0,-7.5 -8.82,-12.14 -7.13,-2.32 -14.27,4.64 -4.41,6.07" fill="#000"></polygon>
+                            </g>
+                            <g transform="translate(16,16)" stroke-dasharray="12 12" stroke-dashoffset="12">
+                                <polyline class="rating__star-line" transform="rotate(0)" points="0 4,0 16"></polyline>
+                                <polyline class="rating__star-line" transform="rotate(72)" points="0 4,0 16"></polyline>
+                                <polyline class="rating__star-line" transform="rotate(144)" points="0 4,0 16"></polyline>
+                                <polyline class="rating__star-line" transform="rotate(216)" points="0 4,0 16"></polyline>
+                                <polyline class="rating__star-line" transform="rotate(288)" points="0 4,0 16"></polyline>
+                            </g>
+                        </g>
+                    </svg>
+                    <span class="tooltip-text black tooltip-top">Adicionar aos favoritos</span>
+                `;
+
+                groupSeriesButton.appendChild(info);
+                groupSeriesButton.appendChild(favoriteBtn);
+
+                cardContainer.appendChild(innerContainer);
+                cardContainer.appendChild(overlay1);
+                cardContainer.appendChild(overlay2);
+                cardContainer.appendChild(backgroundGlow);
+                cardContainer.appendChild(groupSeriesButton);
+
+                slidesContainer.appendChild(cardContainer);
+                originalCards.push(cardContainer);
+            }
+        });
+
+        const totalCards = originalCards.length;
+        const minCardsForCarousel = 5; // Ajuste aqui: se >5 cards, ativa carrossel infinito
+
+        cardsContainer.appendChild(slidesContainer);
+        cardsHeader.appendChild(prevArrow);
+        cardsHeader.appendChild(cardsContainer);
+        cardsHeader.appendChild(nextArrow);
+        section.appendChild(cardsHeader);
+        container.appendChild(section);
+
+        if (totalCards > minCardsForCarousel) {
+            // Modo carrossel infinito
+            initGroupCarousel(cardsContainer, slidesContainer, prevArrow, nextArrow, originalCards, totalCards, groupIndex);
+        } else {
+            // Modo scroll simples
+            cardsContainer.classList.add('scroll-mode');
+            prevArrow.classList.add('hidden');
+            nextArrow.classList.add('hidden');
+            // Adicione scroll listener se quiser setas no scroll simples
+        }
+    });
+}
+
+// Função para inicializar carrossel por grupo (adaptada do principal)
+function initGroupCarousel(container, slidesContainer, prevBtn, nextBtn, originalCards, totalCards, groupIndex) {
+    let currentSlide = 0;
+    const cardWidth = 230; // Largura total do card + gap
+    const transitionDuration = 500;
+
+    // Clona último no início e primeiro no fim
+    if (totalCards > 1) {
+        const lastClone = originalCards[totalCards - 1].cloneNode(true);
+        slidesContainer.insertBefore(lastClone, slidesContainer.firstChild);
+        const firstClone = originalCards[0].cloneNode(true);
+        slidesContainer.appendChild(firstClone);
+        currentSlide = 1;
+    }
+
+    slidesContainer.style.transform = `translateX(-${currentSlide * cardWidth}px)`;
+
+    let isDragging = false;
+    let startX = 0;
+    let movedBy = 0;
+
+    // Next slide
+    function nextSlide() {
+        if (totalCards <= 1) return;
+        slidesContainer.style.transition = `transform ${transitionDuration}ms ease-in-out`;
+        currentSlide++;
+        slidesContainer.style.transform = `translateX(-${currentSlide * cardWidth}px)`;
+
+        if (currentSlide === totalCards + 1) {
+            setTimeout(() => {
+                slidesContainer.style.transition = 'none';
+                currentSlide = 1;
+                slidesContainer.style.transform = `translateX(-${cardWidth}px)`;
+                setTimeout(() => slidesContainer.style.transition = `transform ${transitionDuration}ms ease-in-out`, 20);
+            }, transitionDuration);
+        }
+    }
+
+    // Prev slide
+    function prevSlide() {
+        if (totalCards <= 1) return;
+        slidesContainer.style.transition = `transform ${transitionDuration}ms ease-in-out`;
+        currentSlide--;
+        slidesContainer.style.transform = `translateX(-${currentSlide * cardWidth}px)`;
+
+        if (currentSlide === 0) {
+            setTimeout(() => {
+                slidesContainer.style.transition = 'none';
+                currentSlide = totalCards;
+                slidesContainer.style.transform = `translateX(-${totalCards * cardWidth}px)`;
+                setTimeout(() => slidesContainer.style.transition = `transform ${transitionDuration}ms ease-in-out`, 20);
+            }, transitionDuration);
+        }
+    }
+
+    // Drag events (igual ao principal)
+    slidesContainer.addEventListener('mousedown', dragStart);
+    slidesContainer.addEventListener('touchstart', dragStart);
+    document.addEventListener('mousemove', dragMove);
+    document.addEventListener('touchmove', dragMove, { passive: false });
+    document.addEventListener('mouseup', dragEnd);
+    document.addEventListener('touchend', dragEnd);
+
+    function dragStart(e) {
+        if (totalCards <= 1) return;
+        isDragging = true;
+        startX = getPositionX(e);
+        slidesContainer.style.transition = 'none';
+        e.preventDefault();
+    }
+
+    function dragMove(e) {
+        if (!isDragging) return;
+        const currentX = getPositionX(e);
+        movedBy = currentX - startX;
+        const translateValue = -(currentSlide * cardWidth) + movedBy;
+        slidesContainer.style.transform = `translateX(${translateValue}px)`;
+        e.preventDefault();
+    }
+
+    function dragEnd() {
+        if (!isDragging) return;
+        isDragging = false;
+        const threshold = cardWidth * 0.3;
+        slidesContainer.style.transition = `transform 0.3s ease`;
+
+        if (movedBy < -threshold) nextSlide();
+        else if (movedBy > threshold) prevSlide();
+        else slidesContainer.style.transform = `translateX(-${currentSlide * cardWidth}px)`;
+
+        movedBy = 0;
+    }
+
+    function getPositionX(e) {
+        return e.type.includes('touch') ? e.touches[0].clientX : e.clientX;
+    }
+
+    // Pause on hover
+    container.addEventListener('mouseenter', () => {
+        // Se quiser pause auto-play, adicione aqui
+    });
+    container.addEventListener('mouseleave', () => {
+        // Resume se tiver auto-play
+    });
+
+    // Event listeners pras setas
+    prevBtn.addEventListener('click', prevSlide);
+    nextBtn.addEventListener('click', nextSlide);
+
+    // Prefixo único pro grupo (evita conflitos em drag events)
+    const eventPrefix = `group${groupIndex}_`;
+    // (Opcional: remova listeners globais se múltiplos grupos, mas por simplicidade usei globais)
+
+    // Auto-play opcional: descomente se quiser
+    // let autoTimer = setInterval(nextSlide, 4000);
+    // container.addEventListener('mouseenter', () => clearInterval(autoTimer));
+    // container.addEventListener('mouseleave', () => autoTimer = setInterval(nextSlide, 4000));
+}
+
+// Função getPositionX global (já existe no principal, mas garanta)
+function getPositionX(e) {
+    return e.type.includes('touch') ? e.touches[0].clientX : e.clientX;
+}
+
+function updateNavArrows(container, prev, next) {
+    if (container.scrollLeft > 0) {
+        prev.classList.remove('hidden');
+    } else {
+        prev.classList.add('hidden');
+    }
+    if (container.scrollLeft + container.clientWidth < container.scrollWidth) {
+        next.classList.remove('hidden');
+    } else {
+        next.classList.add('hidden');
+    }
+}
+
+// Adiciona scroll listener para setas
+document.addEventListener('DOMContentLoaded', () => {
+    const containers = document.querySelectorAll('.group-cards-container');
+    containers.forEach(cont => {
+        cont.addEventListener('scroll', () => {
+            const header = cont.closest('.group-cards-header');
+            updateNavArrows(cont, header.querySelector('.prev'), header.querySelector('.next'));
+        });
+    });
+});
+
+// Inicializa ambas as funções
 renderCarrousel();
+renderGroupSeriesButtons();
 
 </script>
-
 
 </body>
 </html>
