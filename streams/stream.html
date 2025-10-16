@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checker Twitch e Kick Lives</title>
+    <style>
+        body { 
+            font-family: 'Poppins', 'Roboto', sans-serif;
+            margin: 0 auto; padding: 20px; 
+            background: #18181b; color: #e4e4e7; 
+        }
+        h1 { text-align: center; color: #9146ff; margin-bottom: 30px; }
+        .input-section { margin-bottom: 20px; display: flex; gap: 10px; }
+        #usernames { 
+            flex-grow: 1; padding: 12px; border: 1px solid #404040; border-radius: 8px; 
+            background: #27272a; color: #e4e4e7; font-size: 16px; 
+        }
+        input::placeholder { color: #a1a1aa; }
+        button { 
+            padding: 12px 24px; background: #9146ff; color: white; border: none; 
+            border-radius: 8px; cursor: pointer; font-size: 16px; 
+            transition: background 0.2s;
+        }
+        button:hover { background: #8134e7; }
+        .toggle-section { margin-bottom: 20px; text-align: center; }
+        .toggle-section label { color: #e4e4e7; font-size: 14px; cursor: pointer; }
+        .streams-grid { 
+            display: flex; flex-wrap: wrap; justify-content: flex-start; 
+            gap: 20px; margin-top: 20px; 
+        }
+        .stream-card { 
+            background: #27272a; border-radius: 12px; padding: 5px; 
+            border: 1px solid #404040; position: relative; overflow: hidden; 
+            transition: transform 0.2s, box-shadow 0.2s; 
+            display: flex; flex-direction: column; border-left: 4px solid transparent;
+            flex: 0 0 calc(50% - 10px); max-width: 350px; min-width: 350px;
+        }
+        .twitch { border-left-color: #9146ff; }
+        .kick { border-left-color: #22c55e; }
+        .platform-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 10px;
+            font-weight: bold;
+            color: white;
+        }
+        .twitch .platform-badge { background: #9146ff; }
+        .kick .platform-badge { background: #22c55e; }
+        .stream-card:hover { transform: translateY(-2px); box-shadow: 0 4px 15px rgba(145, 70, 255, 0.3); }
+        .thumbnail { 
+            width: 100%; height: 200px; object-fit: cover; border-radius: 8px; 
+            margin-bottom: 12px; display: block; 
+        }
+        .thumbnail-placeholder { 
+            width: 100%; height: 200px; background: linear-gradient(135deg, #404040, #27272a); 
+            border-radius: 8px; margin-bottom: 12px; display: flex; align-items: center; 
+            justify-content: center; color: #a1a1aa; font-size: 14px; text-align: center; 
+        }
+        .stream-header { display: flex; align-items: flex-start; margin-bottom: 12px; }
+        .avatar-container { 
+            position: relative; width: 50px; height: 50px; margin-right: 12px; 
+            flex-shrink: 0; 
+        }
+        .avatar-img { 
+            width: 50px; height: 50px; border-radius: 50%; object-fit: cover; 
+            display: block; position: absolute; top: 0; left: 0; z-index: 2; 
+        }
+        .avatar-placeholder { 
+            width: 50px; height: 50px; border-radius: 50%; 
+            background: #9146ff; display: flex; align-items: center; justify-content: center; 
+            font-weight: bold; color: white; font-size: 18px; 
+            position: absolute; top: 0; left: 0; z-index: 1; 
+        }
+        .info-container { flex-grow: 1; }
+        .username { font-weight: bold; font-size: 18px; color: #e4e4e7; }
+        .status-line { display: flex; align-items: center; margin-top: 4px; }
+        .viewer-dot { 
+            width: 8px; height: 8px; background: #22c55e; border-radius: 50%; 
+            margin-right: 8px; 
+        }
+        .viewers { color: #a1a1aa; font-size: 14px; }
+        .title { 
+            color: #f4f4f5; font-size: 14px; line-height: 1.4; 
+            margin-top: 4px; flex-grow: 1; padding: 5px;
+            display: -webkit-box; 
+            -webkit-line-clamp: 3; 
+            -webkit-box-orient: vertical; 
+            overflow: hidden; 
+        }
+        .offline { 
+            opacity: 0.7; 
+            border-color: #7e7c7c; 
+        }
+        .offline .username { color: #ef4444; }
+        .offline .viewer-dot { background: #ef4444; }
+        .offline .avatar-placeholder { background: #ef4444 !important; }
+        .offline .title { color: #a1a1aa; }
+        .error { color: #f59e0b; font-style: italic; text-align: center; padding: 20px; }
+        .loading { text-align: center; color: #a1a1aa; padding: 20px; }
+        @media (max-width: 750px) {
+            .stream-card {
+                flex: 0 0 100%;
+                max-width: 100%;
+                min-width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Verificar Múltiplos Streamers na Twitch e Kick</h1>
+    <div class="input-section">
+        <input type="text" id="usernames" placeholder="Digite usernames separados por espaço (ex: yoda esa)" value="yoda esa">
+        <button onclick="checkStreams()">Verificar Todos</button>
+    </div>
+    <div class="toggle-section">
+        <label for="showOffline"><input type="checkbox" id="showOffline" checked onchange="toggleOffline()"> Mostrar Offline</label>
+    </div>
+    <div id="result" class="streams-grid"></div>
+
+    <script>
+        let allStreams = [];
+
+        async function checkTwitch(username) {
+            username = username.toLowerCase().trim();
+            if (!username) return null;
+
+            const platform = 'twitch';
+            const query = `
+                query {
+                    user(login: "${username}") {
+                        id
+                        displayName
+                        profileImageURL(width: 300)
+                        stream {
+                            viewersCount
+                            previewImageURL(width: 640, height: 360)
+                            title
+                        }
+                    }
+                }
+            `;
+
+            const targetUrl = 'https://gql.twitch.tv/gql';
+            const proxyUrl = `https://corsproxy.io/?url=${encodeURIComponent(targetUrl)}`;
+
+            try {
+                const response = await fetch(proxyUrl, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Client-ID': 'kimne78kx3ncx6brgo4mv6wki5h1ko'
+                    },
+                    body: JSON.stringify({ query })
+                });
+
+                if (!response.ok) throw new Error(`HTTP: ${response.status}`);
+
+                const data = await response.json();
+                if (data.errors && data.errors.length > 0) {
+                    throw new Error(`GraphQL: ${data.errors[0].message}`);
+                }
+
+                const user = data.data?.user;
+                if (!user || !user.id) {
+                    return null;  // Canal não existe
+                }
+
+                if (!user.stream) {
+                    return {
+                        platform,
+                        online: false,
+                        username: user.displayName || username,
+                        profileImageURL: user.profileImageURL || ''
+                    };
+                }
+
+                const stream = user.stream;
+                return {
+                    platform,
+                    online: true,
+                    username: user.displayName || username,
+                    title: stream.title || 'Título não encontrado',
+                    viewers: stream.viewersCount,
+                    profileImageURL: user.profileImageURL || '',
+                    thumbnail: stream.previewImageURL || ''
+                };
+            } catch (error) {
+                console.error(`Erro para ${username} (${platform}):`, error);
+                return { platform, online: false, username, error: error.message };
+            }
+        }
+
+        async function checkKick(username) {
+            username = username.toLowerCase().trim();
+            if (!username) return null;
+
+            const platform = 'kick';
+            const targetUrl = `https://kick.com/api/v1/channels/${username}`;
+            const proxyUrl = `https://corsproxy.io/?url=${encodeURIComponent(targetUrl)}`;
+
+            try {
+                const response = await fetch(proxyUrl);
+                if (!response.ok) {
+                    if (response.status === 404) {
+                        return null;  // Canal não existe
+                    }
+                    throw new Error(`HTTP: ${response.status}`);
+                }
+
+                const data = await response.json();
+                console.log(`Debug para ${username} (${platform}): profile_pic =`, data.user?.profile_pic);
+
+                const { user, livestream } = data;
+                if (!user) {
+                    return null;  // Canal não existe
+                }
+
+                const displayUsername = user.username || username;
+                const profileImageURL = user.profile_pic || '';
+
+                if (!livestream) {
+                    return { 
+                        platform, 
+                        online: false, 
+                        username: displayUsername, 
+                        profileImageURL 
+                    };
+                }
+
+                return {
+                    platform,
+                    online: true,
+                    username: displayUsername,
+                    title: livestream.session_title || 'Título não encontrado',
+                    viewers: livestream.viewer_count || 0,
+                    profileImageURL,
+                    thumbnail: livestream.thumbnail?.url || ''
+                };
+
+            } catch (error) {
+                console.error(`Erro para ${username} (${platform}):`, error);
+                return { 
+                    platform, 
+                    online: false, 
+                    username, 
+                    error: error.message 
+                };
+            }
+        }
+
+        async function checkStreams() {
+            const inputElement = document.getElementById('usernames');
+            const resultDiv = document.getElementById('result');
+            
+            const usernames = inputElement.value
+                .split(/\s+/)
+                .map(u => u.trim())
+                .filter(u => u);
+            
+            if (usernames.length === 0) {
+                resultDiv.innerHTML = '<p class="error">Digite pelo menos um username!</p>';
+                return;
+            }
+
+            resultDiv.innerHTML = '<div class="loading">Carregando streams...</div>';
+
+            const results = await Promise.all(usernames.map(u => Promise.all([checkTwitch(u), checkKick(u)])));
+            allStreams = results.flat().filter(s => s !== null);
+
+            renderStreams(allStreams);
+        }
+
+        function toggleOffline() {
+            renderStreams(allStreams);
+        }
+
+        function renderStreams(streams) {
+            const resultDiv = document.getElementById('result');
+            const showOffline = document.getElementById('showOffline').checked;
+            let filtered = streams;
+            if (!showOffline) {
+                filtered = streams.filter(s => s.online || s.error);
+            }
+
+            if (filtered.length === 0) {
+                if (showOffline) {
+                    resultDiv.innerHTML = '<p class="error">Nenhum canal encontrado para os usernames fornecidos.</p>';
+                } else {
+                    resultDiv.innerHTML = '<p class="error">Nenhum canal online no momento.</p>';
+                }
+                return;
+            }
+            
+            if (filtered.every(s => !s.online && s.error)) {
+                resultDiv.innerHTML = '<p class="error">Erros na consulta para todas as plataformas. Tente novamente mais tarde.</p>';
+                return;
+            }
+
+            // Sort: online first
+            filtered.sort((a, b) => b.online - a.online);
+
+            resultDiv.innerHTML = filtered.map(stream => {
+                const { platform, online, username, title, viewers, profileImageURL, thumbnail, error } = stream;
+                const className = online ? '' : 'offline';
+                const fullClass = `${className} ${platform}`;
+                const avatarInitial = username.charAt(0).toUpperCase();
+                const viewersText = online ? `${viewers.toLocaleString('pt-BR')} Espectadores` : 'Offline';
+                const dotColor = online ? '#22c55e' : '#ef4444';
+                const hasAvatar = profileImageURL && profileImageURL.length > 0 && profileImageURL.startsWith('http');
+                const hasThumbnail = online && thumbnail;
+                const avatarSrc = platform === 'kick' && hasAvatar ? `https://corsproxy.io/?url=${encodeURIComponent(profileImageURL)}` : (hasAvatar ? profileImageURL : '');
+                const displayTitle = online ? title : 'Sem título (Streamer Offline)';
+                const viewerDotStyle = `background: ${dotColor};`;
+                const placeholderStyle = `background: ${dotColor};`;
+                const badgeText = platform === 'twitch' ? 'TWITCH' : 'KICK';
+
+                if (error) {
+                    return `
+                        <div class="stream-card ${fullClass}">
+                            <div class="platform-badge">${badgeText}</div>
+                            <p class="error">Erro em ${platform.toUpperCase()}: ${username} - ${error}</p>
+                        </div>`;
+                }
+                
+                return `
+                    <div class="stream-card ${fullClass}">
+                        <div class="platform-badge">${badgeText}</div>
+                        ${hasThumbnail 
+                            ? `<img class="thumbnail" src="${thumbnail}" alt="Thumbnail da live de ${username}" onerror="this.outerHTML='<div class=\\'thumbnail-placeholder\\'>Thumbnail não disponível</div>';">` 
+                            : `<div class="thumbnail-placeholder">Thumbnail não disponível</div>`
+                        }
+                        
+                        <div class="stream-header">
+                            <div class="avatar-container">
+                                <div class="avatar-placeholder" style="${placeholderStyle};">${avatarInitial}</div>
+                                ${hasAvatar 
+                                    ? `<img class="avatar-img" src="${avatarSrc}" alt="Avatar de ${username}" onerror="console.log('Avatar falhou para ${username} (${platform}):', '${profileImageURL}'); this.style.display='none';">` 
+                                    : ''
+                                }
+                            </div>
+                            <div class="info-container">
+                                <div class="username">${username}</div>
+                                <div class="status-line">
+                                    <span class="viewer-dot" style="${viewerDotStyle}"></span>
+                                    <span class="viewers">${viewersText}</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="title">${displayTitle}</div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        // Auto-check no load
+        window.addEventListener('load', () => checkStreams());
+    </script>
+</body>
+</html>

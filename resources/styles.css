@@ -223,9 +223,11 @@ body {
   user-select: none;
   cursor: grab;
 }
+
 .carousel-container:active {
   cursor: grabbing;
 }
+
 .carousel-slides {
   width: 100%;
   height: 100%;
@@ -233,6 +235,7 @@ body {
   display: flex;
   transition: transform 0.5s ease-in-out;
 }
+
 .carousel-slide {
   position: relative;
   min-width: 100%;
@@ -241,6 +244,7 @@ body {
   background-position: center;
   flex: 0 0 100%;
 }
+
 .carousel-slide::after {
   content: '';
   position: absolute;
@@ -248,7 +252,7 @@ body {
   left: 0;
   width: 50%;
   height: 100%;
-  background: linear-gradient(to right, rgba(0, 0, 0, 1.0), transparent); 
+  /* background: linear-gradient(to right, rgba(0, 0, 0, 1.0), transparent);  */
   pointer-events: none;
   z-index: 1;
 }
@@ -264,26 +268,30 @@ body {
   pointer-events: none;
   z-index: 1;
 }
+
 .carousel-caption {
   position: absolute;
   bottom: 0;
   left: 0;
   width: 100%;
-  background: linear-gradient(to top, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0));
+  background: linear-gradient(to top, rgba(0, 0, 0, 1.0), rgba(0, 0, 0, 0));
   padding: 30px;
   color: white;
   z-index: 20;
 }
+
 .carousel-caption h1 {
   font-size: 2.5em;
   margin: 0 0 5px 0;
 }
+
 .carousel-caption p {
   font-size: 1.1em;
   max-width: 60%;
   opacity: 0.8;
   margin: 0 0 20px 0;
 }
+
 .carousel-actions {
   display: flex;
   gap: 15px;
@@ -387,6 +395,7 @@ body {
     transform: scale(1);
   }
 }
+
 .carousel-control {
   position: absolute;
   top: 50%;
@@ -611,114 +620,91 @@ body {
 }
 
 .explore-button {
-  display: flex;
-  font-family: "Space Mono", monospace;
-  letter-spacing: 1px;
-  background: none;
-  color: white;
   position: relative;
-  outline: none;
-  border: none;
-  height: 50px;
-  width: 150px;
-  font-size: 14px;
-  z-index: 2;
-  transition: 0.01s 0.23s ease-out all, transform 0.3s ease;
-  overflow: hidden;
-  border-radius: 8px;
-  /* background: #202020; */
-  justify-content: center;
+  display: flex;
   align-items: center;
+  gap: 4px;
+  padding: 16px 36px;
+  border: 4px solid;
+  border-color: transparent;
+  font-size: 16px;
+  background-color: inherit;
+  border-radius: 8px;
+  font-weight: 600;
+  color: var(--color-explore_button);
+  /* box-shadow: 0 0 0 2px #1e1e1e; */
+  cursor: pointer;
+  overflow: hidden;
+  transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
 }
 
-.explore-button:active {
-    transform: scale(0.8);
-}
-
-.explore-button p {
-  margin-left: -20px;
-}
-
-.explore-button:before {
-  content: "";
+.explore-button svg {
   position: absolute;
-  left: 0;
-  top: 0;
-  height: 100%;
-  width: 55%;
-  z-index: -1;
-  transition: 0.3s ease-in all;
+  width: 24px;
+  fill: var(--color-explore_button_text);
+  z-index: 9;
+  transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
 }
 
-.explore-button:after {
-  content: "";
+.explore-button .arr-1 {
+  right: 16px;
+}
+
+.explore-button .arr-2 {
+  left: -25%;
+}
+
+.explore-button .circle {
   position: absolute;
-  left: -5%;
-  top: 5%;
-  height: 90%;
-  width: 5%;
-  background: var(--color-groupcard_header);
-  z-index: -1;
-  transition: 0.4s 0.02s ease-in all;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 20px;
+  height: 20px;
+  background-color: var(--color-explore_button_h);;
+  border-radius: 50%;
+  opacity: 0;
+  transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.explore-button .text {
+  position: relative;
+  z-index: 1;
+  transform: translateX(-12px);
+  transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
 }
 
 .explore-button:hover {
-  cursor: pointer;
-  color: transparent;
+  box-shadow: 0 0 0 12px transparent;
+  /* color: var(--color-explore_button_text_h); */
+  border-radius: 8px;
 }
 
-.explore-button:hover:before {
-  left: 100%;
-  width: 25%;
+.explore-button:hover .arr-1 {
+  right: -25%;
 }
 
-.explore-button:hover:after {
-  left: 100%;
-  width: 70%;
+.explore-button:hover .arr-2 {
+  left: 16px;
 }
 
-.explore-button:hover .icon-right.after:after {
-  left: -40px;
-  color: white;
-  transition: 0.2s 0.2s ease all;
+.explore-button:hover .text {
+  transform: translateX(12px);
 }
 
-.explore-button:hover .icon-right.after:before {
-  left: -64px;
-  top: 14px;
-  opacity: 0.2;
-  color: white;
+.explore-button:hover svg {
+  fill: var(--color-explore_button_text_h);
 }
 
-.icon-right {
-  position: absolute;
-  top: -1px;
-  right: 20px;
+.explore-button:active {
+  scale: 0.95;
+  box-shadow: 0 0 0 4px var(--color-explore_button_h);
 }
 
-.icon-right:after {
-  font-family: "FontAwesome";
-  content: "→";
-  font-size: 24px;
-  display: inline-block;
-  position: relative;
-  top: 26px;
-  transform: translate3D(0, -50%, 0);
-}
-
-.icon-right.after:after {
-  left: -250px;
-  color: black;
-  transition: 0.15s 0.25s ease left, 0.5s 0.05s ease color;
-}
-
-.icon-right.after:before {
-  content: "Explorar";
-  position: absolute;
-  left: -230px;
-  margin-top: 3px;
-  opacity: 0;
-  transition: 0.2s ease-in all;
+.explore-button:hover .circle {
+  width: 220px;
+  height: 220px;
+  opacity: 1;
 }
 
 /* =============================================== */

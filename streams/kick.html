@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checker Kick Lives - Avatar Proxied</title>
+    <style>
+        body { 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            max-width: 800px; margin: 0 auto; padding: 20px; 
+            background: #18181b; color: #e4e4e7; 
+        }
+        h1 { text-align: center; color: #9146ff; margin-bottom: 30px; }
+        .input-section { margin-bottom: 20px; display: flex; gap: 10px; }
+        #usernames { 
+            flex-grow: 1; padding: 12px; border: 1px solid #404040; border-radius: 8px; 
+            background: #27272a; color: #e4e4e7; font-size: 16px; 
+        }
+        input::placeholder { color: #a1a1aa; }
+        button { 
+            padding: 12px 24px; background: #9146ff; color: white; border: none; 
+            border-radius: 8px; cursor: pointer; font-size: 16px; 
+            transition: background 0.2s;
+        }
+        button:hover { background: #8134e7; }
+        .streams-grid { 
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); 
+            gap: 20px; margin-top: 20px; 
+        }
+        .stream-card { 
+            background: #27272a; border-radius: 12px; padding: 16px; 
+            border: 1px solid #404040; position: relative; 
+            transition: transform 0.2s, box-shadow 0.2s; 
+            display: flex; flex-direction: column;
+        }
+        .stream-card:hover { transform: translateY(-2px); box-shadow: 0 4px 15px rgba(145, 70, 255, 0.4); }
+        .thumbnail { 
+            width: 100%; height: 200px; object-fit: cover; border-radius: 8px; 
+            margin-bottom: 12px; display: block; 
+        }
+        .thumbnail-placeholder { 
+            width: 100%; height: 200px; background: linear-gradient(135deg, #3a3a3d, #27272a); 
+            border-radius: 8px; margin-bottom: 12px; display: flex; align-items: center; 
+            justify-content: center; color: #a1a1aa; font-size: 14px; text-align: center; 
+        }
+        .stream-header { display: flex; align-items: flex-start; margin-bottom: 12px; }
+        .avatar-container { 
+            position: relative; width: 50px; height: 50px; margin-right: 12px; 
+            flex-shrink: 0; 
+        }
+        .avatar-img { 
+            width: 50px; height: 50px; border-radius: 50%; object-fit: cover; 
+            display: block; position: absolute; top: 0; left: 0; z-index: 2; 
+        }
+        .avatar-placeholder { 
+            width: 50px; height: 50px; border-radius: 50%; 
+            background: #9146ff; display: flex; align-items: center; justify-content: center; 
+            font-weight: bold; color: white; font-size: 18px; 
+            position: absolute; top: 0; left: 0; z-index: 1; 
+        }
+        .info-container { flex-grow: 1; }
+        .username { font-weight: bold; font-size: 18px; color: #e4e4e7; }
+        .status-line { display: flex; align-items: center; margin-top: 4px; }
+        .viewer-dot { 
+            width: 8px; height: 8px; background: #22c55e; border-radius: 50%; 
+            margin-right: 8px; 
+        }
+        .viewers { color: #a1a1aa; font-size: 14px; }
+        .title { 
+            color: #f4f4f5; font-size: 14px; line-height: 1.4; 
+            margin-top: 4px; flex-grow: 1;
+            display: -webkit-box; 
+            -webkit-line-clamp: 3; 
+            -webkit-box-orient: vertical; 
+            overflow: hidden; 
+        }
+        .offline { 
+            opacity: 0.7; 
+            border-color: #404040; 
+        }
+        .offline .username { color: #f87171; }
+        .offline .viewer-dot { background: #f87171; }
+        .offline .avatar-placeholder { background: #f87171 !important; }
+        .error { color: #f59e0b; font-style: italic; text-align: center; padding: 20px; }
+        .loading { text-align: center; color: #a1a1aa; padding: 20px; }
+    </style>
+</head>
+<body>
+    <h1>Verificar Múltiplos Streamers na Kick</h1>
+    <div class="input-section">
+        <input type="text" id="usernames" placeholder="Digite usernames separados por vírgula (ex: esa,adinross)" value="esa,adinross">
+        <button onclick="checkStreams()">Verificar Todos</button>
+    </div>
+    <div id="result" class="streams-grid"></div>
+
+    <script>
+        async function checkStream(username) {
+            username = username.toLowerCase().trim();
+            if (!username) return null;
+
+            const targetUrl = `https://kick.com/api/v1/channels/${username}`;
+            const proxyUrl = `https://corsproxy.io/?url=${encodeURIComponent(targetUrl)}`;
+
+            try {
+                const response = await fetch(proxyUrl);
+                if (!response.ok) {
+                    throw new Error(`HTTP: ${response.status}`);
+                }
+
+                const data = await response.json();
+                console.log(`Debug para ${username}: profile_pic =`, data.user?.profile_pic);  // Debug com underscore
+
+                const { user, livestream } = data;
+                const displayUsername = user?.username || username;
+                const profileImageURL = user?.profile_pic || '';  // Campo correto: profile_pic com underscore
+
+                if (!livestream) {
+                    return { 
+                        online: false, 
+                        username: displayUsername, 
+                        profileImageURL 
+                    };
+                }
+
+                return {
+                    online: true,
+                    username: displayUsername,
+                    title: livestream.session_title || 'Título não encontrado',
+                    viewers: livestream.viewer_count || 0,
+                    profileImageURL,
+                    thumbnail: livestream.thumbnail?.url || ''
+                };
+
+            } catch (error) {
+                console.error(`Erro para ${username}:`, error);
+                return { 
+                    online: false, 
+                    username, 
+                    error: error.message 
+                };
+            }
+        }
+
+        async function checkStreams() {
+            const inputElement = document.getElementById('usernames');
+            const resultDiv = document.getElementById('result');
+            
+            const usernames = inputElement.value
+                .split(',')
+                .map(u => u.trim())
+                .filter(u => u);
+            
+            if (usernames.length === 0) {
+                resultDiv.innerHTML = '<p class="error">Digite pelo menos um username!</p>';
+                return;
+            }
+
+            resultDiv.innerHTML = '<div class="loading">Carregando streams, aguarde...</div>';
+
+            const streams = await Promise.all(usernames.map(checkStream));
+            renderStreams(streams.filter(s => s !== null));
+        }
+
+        function renderStreams(streams) {
+            const resultDiv = document.getElementById('result');
+
+            if (streams.length === 0) {
+                 resultDiv.innerHTML = '<p class="error">Nenhum username válido fornecido.</p>';
+                 return;
+            }
+            
+            if (streams.every(s => s.error)) {
+                resultDiv.innerHTML = '<p class="error">Não foi possível conectar com a API da Kick para nenhum dos streamers. Tente novamente mais tarde.</p>';
+                return;
+            }
+
+            resultDiv.innerHTML = streams.map(stream => {
+                const { online, username, title, viewers, profileImageURL, thumbnail, error } = stream;
+
+                if (error) {
+                    return `<div class="stream-card offline"><p class="error">Erro em ${username}: ${error}</p></div>`;
+                }
+                
+                const className = online ? '' : 'offline';
+                const avatarInitial = username.charAt(0).toUpperCase();
+                const viewersText = online ? `${viewers.toLocaleString('pt-BR')} espectadores` : 'Offline';
+                const dotColor = online ? '#22c55e' : '#f87171';
+                const hasAvatar = profileImageURL && profileImageURL.length > 0 && profileImageURL.startsWith('http');
+                const hasThumbnail = online && thumbnail;
+
+                const viewerDotStyle = `background: ${dotColor};`;
+
+                const avatarSrc = hasAvatar ? `https://corsproxy.io/?url=${encodeURIComponent(profileImageURL)}` : '';
+
+                return `
+                    <div class="stream-card ${className}">
+                        ${hasThumbnail 
+                            ? `<img class="thumbnail" src="${thumbnail}" alt="Thumbnail da live de ${username}" onerror="console.log('Thumbnail falhou para ${username}'); this.style.display='none';">` 
+                            : `<div class="thumbnail-placeholder">Thumbnail não disponível</div>`
+                        }
+                        
+                        <div class="stream-header">
+                            <div class="avatar-container">
+                                <div class="avatar-placeholder" style="background: ${dotColor};">${avatarInitial}</div>
+                                
+                                ${hasAvatar 
+                                    ? `<img class="avatar-img" src="${avatarSrc}" alt="Avatar de ${username}" onerror="console.log('Avatar falhou para ${username}:', '${profileImageURL}'); this.style.display='none';">` 
+                                    : ''
+                                }
+                            </div>
+                            <div class="info-container">
+                                <div class="username">${username}</div>
+                                <div class="status-line">
+                                    <span class="viewer-dot" style="${viewerDotStyle}"></span>
+                                    <span class="viewers">${viewersText}</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="title">${online ? title : 'Sem título (Streamer Offline)'}</div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        // Auto-check no load
+        window.addEventListener('load', () => checkStreams());
+    </script>
+</body>
+</html>
