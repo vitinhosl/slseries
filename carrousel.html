@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carousel Dinâmico</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+        }
+        /* =============================================== */
+        /* CARROSSEL */
+        /* =============================================== */
+        .content-carousel {
+            /* padding: 20px; */
+            margin-bottom: 20px;
+        }
+
+        .carousel-logo {
+          max-width: 100%;
+          height: auto;
+        }
+
+        .carousel-logo.minimalist-logo {
+          filter: brightness(0) invert(1);
+        }
+
+        .carousel-container {
+            position: relative;
+            width: 100%;
+            height: 600px;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+            user-select: none;
+            cursor: grab;
+        }
+        .carousel-container:active {
+            cursor: grabbing;
+        }
+        .carousel-slides {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+        .carousel-slide {
+            position: relative;
+            min-width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            flex: 0 0 100%;
+        }
+        .carousel-slide::after {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 50%;
+          height: 100%;
+          background: linear-gradient(to right, rgba(0, 0, 0, 1.0), transparent); 
+          pointer-events: none;
+          z-index: 1;
+        }
+
+        .carousel-slide::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          right: 0;
+          width: 50%;
+          height: 100%;
+          /* background: linear-gradient(to left, rgba(0, 0, 0, 1.0), transparent);  */
+          pointer-events: none;
+          z-index: 1;
+        }
+        .carousel-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0));
+            padding: 30px;
+            color: white;
+            z-index: 20;
+        }
+        .carousel-caption h1 {
+            font-size: 2.5em;
+            margin: 0 0 5px 0;
+        }
+        .carousel-caption p {
+            font-size: 1.1em;
+            max-width: 60%;
+            opacity: 0.8;
+            margin: 0 0 20px 0;
+        }
+        .carousel-actions {
+            display: flex; /* Alinha os botões lado a lado */
+            gap: 15px; /* Espaço entre os botões */
+            margin-top: 20px; /* Espaço abaixo da descrição */
+        }
+
+        .btn {
+            padding: 12px 25px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn-primary {
+            background-color: #E50914; /* Exemplo de cor de destaque (Vermelho Netflix-like) */
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: #F40A15; 
+        }
+
+        .btn-primary i {
+            margin-right: 8px;
+        }
+
+        .btn-secondary {
+            /* Fundo semi-transparente para o botão secundário */
+            background-color: rgba(255, 255, 255, 0.2); 
+            color: white;
+            width: 50px; /* Tamanho fixo para ser um quadrado ou círculo */
+            height: 50px; 
+            padding: 0; /* Remove o padding padrão para usar width/height */
+            border-radius: 50%; /* Torna-o redondo (opcional, pode ser 5px se quiser quadrado) */
+            /* Remove a sombra se houver, ou a torna mais sutil */
+            box-shadow: none; 
+        }
+
+        .btn-secondary i {
+            font-size: 1.1em;
+        }
+
+        .btn-secondary:hover {
+            background-color: rgba(255, 255, 255, 0.35);
+        }
+
+        .favorite-button-s2 {
+            width: 50px;
+            height: 50px;
+            border: none;
+            border-radius: 50%;
+            background: rgba(77, 79, 84, 0.3);
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            transition: background-color 0.2s ease, transform 0.2s ease;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.13);
+        }
+
+        .favorite-button-s2:active {
+          transform: scale(0.8);
+        }
+
+        .favorite-button-s2::before {
+            content: '';
+            position: absolute;
+            width: 24px;
+            height: 24px;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" fill="none" stroke="%23fff" stroke-width="2"/></svg>') no-repeat center;
+            transition: background-image 0.2s ease;
+        }
+
+        .favorite-button-s2.active::before {
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" fill="%23fff"/></svg>') no-repeat center;
+        }
+
+        .favorite-button-s2:hover:not(:active) {
+            background: rgba(97, 99, 104, 0.5);
+            transform: scale(1.1);
+        }
+
+        .favorite-button-s2.heart-pulse {
+            animation: heartPulse 0.3s ease-in-out;
+        }
+
+        @keyframes heartPulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.3);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+        .carousel-control {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0, 0, 0, 0.5);
+            border: none;
+            color: white;
+            padding: 15px 10px;
+            cursor: pointer;
+            font-size: 1.5em;
+            z-index: 50;
+            border-radius: 5px;
+            opacity: 0.0;
+            transition: opacity 0.3s ease, background-color 0.3s ease;
+        }
+
+        .carousel-container:hover .carousel-control {
+          opacity: 1;
+        }
+
+        .carousel-control:hover {
+            opacity: 1;
+            background-color: rgba(0, 0, 0, 0.7);
+        }
+
+        .carousel-control.prev {
+            left: 10px;
+        }
+
+        .carousel-control.next {
+            right: 10px;
+        }
+        .carousel-dots {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            display: flex;
+            gap: 8px;
+            z-index: 60;
+        }
+        .dot {
+            position: relative; 
+            height: 6px;
+            width: 30px;
+            background-color: rgba(255, 255, 255, 0.5);
+            border-radius: 3px;
+            display: inline-block;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .dot::before {
+            content: "";
+            position: absolute;
+            top: -20px;
+            bottom: -20px; 
+            left: 0; 
+            right: 0;
+            background: transparent;
+            z-index: 1; 
+            cursor: pointer;
+        }
+
+        .dot.active {
+            width: 40px;
+            background-color: white;
+        }
+
+        .dot:hover {
+            background-color: rgba(255, 255, 255, 0.8);
+        }
+        @keyframes carouselProgress {
+          0% {
+            width: 0%;
+          }
+          100% {
+            width: 100%;
+          }
+        }
+
+        .carousel-progress {
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          width: 100%;
+          height: 3px;
+          z-index: 10;
+          background: #ddd;
+        }
+
+        .carousel-progress-bar {
+          height: 100%;
+          background: #007bff;
+          width: 0%;
+          transition: width 0.1s linear;
+        }
+
+        .carousel-control {
+          z-index: 11;
+        }
+
+        .carousel-dots {
+          z-index: 11;
+        }
+    </style>
+</head>
+<body>
+    <div class="content-carousel">
+        <div class="carousel-container" id="carousel">
+            <div class="carousel-slides" id="slides"></div>
+            <button class="carousel-control prev" id="prevBtn">&lt;</button>
+            <button class="carousel-control next" id="nextBtn">&gt;</button>
+            <div class="carousel-dots" id="dots"></div>
+            <div class="carousel-progress">
+                <div class="carousel-progress-bar" id="progress"></div>
+            </div>
+        </div>
+    </div>
+
+<script>
+const seriesData = [
+    {
+        group_name: "Filmes",
+        visible: true,
+        group: [
+            {
+                carrousel: {
+                    enabled: true,
+                    title: "NOME TEST",
+                    logo: { enabled: true, url: "https://i.imgur.com/B6tMcLM.png", minimalist: true },
+                    thumb: [
+                        "https://pp-vod-img-aws.akamaized.net/0068571/playplus_thumb_1600.jpg",
+                        "https://i.imgur.com/H7LkieU.png",
+                    ],
+                    text: "Destaque",
+                    description: `
+                        Após a morte de Moisés, Josué é o novo líder dos hebreus e terá que cumprir uma difícil missão ordenada por Deus: Comandar as 12 tribos de Israel na conquista de Canaã, a Terra Prometida. Continuação da saga Os Dez Mandamentos.
+                    `
+                },
+            },
+            {
+                carrousel: {
+                    enabled: true,
+                    title: "NOME TEST 2",
+                    logo: { enabled: false, url: "https://i.imgur.com/jpGZXos.png", minimalist: false },
+                    thumb: [
+                        "https://pp-vod-img-aws.akamaized.net/0090405/playplus_thumb_1600.jpg",
+                        "https://i.imgur.com/v0uF3s6.png",
+                    ],
+                    text: "",
+                    description: `
+                        Grande sucesso da televisão brasileira, este épico bíblico narra a saga de Moisés, o hebreu que escapou da morte ainda bebê, virou príncipe do Egito e acabou se transformando no líder escolhido por Deus para libertar seu povo da escravidão.
+                    `
+                },
+            },
+        ],
+    }
+];
+
+function renderCarrousel() {
+let currentSlide = 0;
+let totalSlides = 0;
+
+const slideDuration = 5000;
+const transitionDuration = 500;
+const transitionTime = slideDuration;
+
+const carousel = document.getElementById('carousel');
+const slidesContainer = document.getElementById('slides');
+const progress = document.getElementById('progress');
+const prevBtn = document.getElementById('prevBtn');
+const nextBtn = document.getElementById('nextBtn');
+
+if (!carousel) return;
+
+let autoPlayTimer = null;
+let isDragging = false;
+let startX = 0;
+let movedBy = 0;
+
+function createSlides() {
+    const data = seriesData[0].group;
+    const originalSlides = [];
+
+    data.forEach(item => {
+        const carrousel = item.carrousel;
+        if (carrousel.enabled) {
+            const slide = document.createElement('div');
+            slide.classList.add('carousel-slide');
+            slide.style.backgroundImage = `url(${carrousel.thumb[0]})`;
+
+            const content = document.createElement('div');
+            content.classList.add('carousel-caption');
+
+            if (carrousel.logo.enabled && carrousel.logo.url) {
+                const logoImg = document.createElement('img');
+                logoImg.classList.add('carousel-logo');
+                if (carrousel.logo.minimalist) logoImg.classList.add('minimalist-logo');
+                logoImg.src = carrousel.logo.url;
+                logoImg.alt = carrousel.title;
+                content.appendChild(logoImg);
+            } else {
+                const h1 = document.createElement('h1');
+                h1.textContent = carrousel.title;
+                content.appendChild(h1);
+            }
+
+            const p = document.createElement('p');
+            p.textContent = carrousel.description.trim();
+
+            const actions = document.createElement('div');
+            actions.classList.add('carousel-actions');
+
+            const button1 = document.createElement('button');
+            button1.classList.add('btn', 'btn-primary');
+            button1.textContent = 'Botão 1';
+            const button2 = document.createElement('button');
+            button2.classList.add('favorite-button-s2');
+            button2.onclick = function() {
+                this.classList.toggle('active');
+                if (this.classList.contains('active')) {
+                    this.classList.add('heart-pulse');
+                    setTimeout(() => this.classList.remove('heart-pulse'), 300);
+                }
+            };
+
+            actions.appendChild(button1);
+            actions.appendChild(button2);
+            content.appendChild(p);
+            content.appendChild(actions);
+            slide.appendChild(content);
+            slidesContainer.appendChild(slide);
+            originalSlides.push(slide);
+        }
+    });
+
+    totalSlides = originalSlides.length;
+
+    if (totalSlides > 1) {
+        const lastClone = originalSlides[totalSlides - 1].cloneNode(true);
+        slidesContainer.insertBefore(lastClone, slidesContainer.firstChild);
+        const firstClone = originalSlides[0].cloneNode(true);
+        slidesContainer.appendChild(firstClone);
+        currentSlide = 1;
+    } else {
+        currentSlide = 0;
+    }
+
+    if (totalSlides > 0) {
+        slidesContainer.style.transform = `translateX(-${currentSlide * 100}%)`;
+        
+        // MODIFICAÇÃO: Só cria dots e inicia timer se > 1 slide
+        if (totalSlides > 1) {
+            createDots();
+            startAutoPlay();
+        } else {
+            // MODIFICAÇÃO: Esconde elementos para 1 slide
+            if (prevBtn) prevBtn.style.display = 'none';
+            if (nextBtn) nextBtn.style.display = 'none';
+            if (progress) progress.style.display = 'none';
+            const dotsContainer = document.getElementById('dots');
+            if (dotsContainer) dotsContainer.style.display = 'none';
+        }
+    } else {
+        // MODIFICAÇÃO: Esconde tudo para 0 slides
+        carousel.style.display = 'none';
+        // Opcional: Limpa o slidesContainer se quiser
+        slidesContainer.innerHTML = '';
+    }
+}
+
+function createDots() {
+    const dotsContainer = document.getElementById('dots');
+    dotsContainer.innerHTML = '';
+    for (let i = 0; i < totalSlides; i++) {
+        const dot = document.createElement('span');
+        dot.classList.add('dot');
+        if (i === getLogicalIndex()) dot.classList.add('active');
+        dot.onclick = () => {
+            goToSlide(i);
+            pauseAutoPlay(); // pausa ao clicar
+        };
+        dotsContainer.appendChild(dot);
+    }
+}
+
+function getLogicalIndex() {
+    if (totalSlides <= 1) return currentSlide;
+    return (currentSlide - 1 + totalSlides) % totalSlides;
+}
+
+function updateDots() {
+    const logicalIndex = getLogicalIndex();
+    document.querySelectorAll('.dot').forEach((dot, index) => {
+        dot.classList.toggle('active', index === logicalIndex);
+    });
+}
+
+function goToSlide(logicalIndex) {
+    if (totalSlides <= 1) return;
+    const targetPhysical = 1 + logicalIndex;
+    slidesContainer.style.transition = 'transform 0.5s ease-in-out';
+    slidesContainer.style.transform = `translateX(-${targetPhysical * 100}%)`;
+    currentSlide = targetPhysical;
+    updateDots();
+    startAutoPlay(); // Era restartProgress
+}
+
+function nextSlide() {
+    if (totalSlides <= 1) return;
+    slidesContainer.style.transition = 'transform 0.5s ease-in-out';
+    currentSlide++;
+    slidesContainer.style.transform = `translateX(-${currentSlide * 100}%)`;
+
+    let logicalIndex = getLogicalIndex();
+    if (currentSlide === totalSlides + 1) {
+        setTimeout(() => {
+            slidesContainer.style.transition = 'none';
+            currentSlide = 1;
+            slidesContainer.style.transform = `translateX(-100%)`;
+            setTimeout(() => slidesContainer.style.transition = 'transform 0.5s ease-in-out', 20);
+        }, transitionDuration);
+        logicalIndex = 0;
+    }
+    updateDots();
+    startAutoPlay(); // Era restartProgress
+}
+
+function prevSlide() {
+    if (totalSlides <= 1) return;
+    slidesContainer.style.transition = 'transform 0.5s ease-in-out';
+    currentSlide--;
+    slidesContainer.style.transform = `translateX(-${currentSlide * 100}%)`;
+
+    let logicalIndex = getLogicalIndex();
+    if (currentSlide === 0) {
+        setTimeout(() => {
+            slidesContainer.style.transition = 'none';
+            currentSlide = totalSlides;
+            slidesContainer.style.transform = `translateX(-${totalSlides * 100}%)`;
+            setTimeout(() => slidesContainer.style.transition = 'transform 0.5s ease-in-out', 20);
+        }, transitionDuration);
+        logicalIndex = totalSlides - 1;
+    }
+    updateDots();
+    startAutoPlay(); // Era restartProgress
+}
+
+function startAutoPlay() {
+    if (totalSlides <= 1) return;
+    
+    clearTimeout(autoPlayTimer);
+    
+    if (progress) {
+      progress.style.animation = 'none';
+      void progress.offsetWidth;
+      progress.style.animation = `carouselProgress ${transitionTime}ms linear forwards`;
+      progress.style.animationPlayState = 'running';
+    }
+    
+    autoPlayTimer = setTimeout(() => {
+      nextSlide();
+    }, transitionTime);
+}
+
+function pauseAutoPlay() {
+    if (totalSlides <= 1) return;
+    
+    clearTimeout(autoPlayTimer);
+    
+    if (progress) {
+      progress.style.animationPlayState = 'paused';
+    }
+}
+
+function resumeAutoPlay() {
+    if (totalSlides <= 1) return;
+    
+    if (progress) {
+      const computedStyle = getComputedStyle(progress);
+      const barWidth = parseFloat(computedStyle.width) || 0;
+      
+      const parentElement = progress.parentElement;
+      const parentStyle = getComputedStyle(parentElement);
+      const parentWidth = parseFloat(parentStyle.width) || 1;
+      
+      const progressFraction = barWidth / parentWidth;
+      const elapsedTime = progressFraction * transitionTime;
+      let remainingTime = transitionTime - elapsedTime;
+      
+      if (remainingTime < 0) {
+        remainingTime = 0;
+      }
+      
+      progress.style.animationPlayState = 'running';
+      
+      autoPlayTimer = setTimeout(() => {
+        nextSlide();
+      }, remainingTime);
+    }
+}
+
+slidesContainer.addEventListener('mousedown', dragStart);
+slidesContainer.addEventListener('touchstart', dragStart);
+document.addEventListener('mousemove', dragMove);
+document.addEventListener('touchmove', dragMove, { passive: false });
+document.addEventListener('mouseup', dragEnd);
+document.addEventListener('touchend', dragEnd);
+
+function dragStart(e) {
+    if (totalSlides <= 1) return;
+    isDragging = true;
+    startX = getPositionX(e);
+    slidesContainer.style.transition = 'none';
+    e.preventDefault();
+    pauseAutoPlay();
+}
+
+function dragMove(e) {
+    if (!isDragging) return;
+    const currentX = getPositionX(e);
+    movedBy = currentX - startX;
+    const translateValue = -currentSlide * carousel.offsetWidth + movedBy;
+    slidesContainer.style.transform = `translateX(${translateValue}px)`;
+    e.preventDefault();
+    // pauseAutoPlay();
+}
+
+function dragEnd() {
+    if (!isDragging) return;
+    isDragging = false;
+    const threshold = carousel.offsetWidth * 0.3;
+    slidesContainer.style.transition = 'transform 0.3s ease';
+
+    if (movedBy < -threshold) nextSlide();
+    else if (movedBy > threshold) prevSlide();
+    else slidesContainer.style.transform = `translateX(-${currentSlide * 100}%)`;
+
+    movedBy = 0;
+    pauseAutoPlay();
+}
+
+function getPositionX(e) {
+    return e.type.includes('touch') ? e.touches[0].clientX : e.clientX;
+}
+
+carousel.addEventListener('mouseenter', pauseAutoPlay);
+carousel.addEventListener('mouseleave', resumeAutoPlay);
+prevBtn.addEventListener('click', prevSlide);
+nextBtn.addEventListener('click', nextSlide);
+
+createSlides();
+
+}
+
+renderCarrousel();
+
+</script>
+
+
+</body>
+</html>

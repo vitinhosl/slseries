@@ -639,7 +639,7 @@ export const biblicalData = [
             visible: true,
             title: "", //TEXTO DO BOTÃO ENABLED OFF
             carrousel: {
-                enabled: false,
+                enabled: true,
                 title: "JEZABEL",
                 logo: {
                 enabled: false,

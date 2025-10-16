@@ -96,20 +96,13 @@
         </header>
 
         <section class="content-carousel">
-            <div id="hero-carousel" class="carousel-container">
-                <div class="carousel-slides">
-                    <!-- Aqui o JS insere os <div class="carousel-slide"> dinamicamente – vazio por padrão -->
-                </div>
-
-                <button class="carousel-control prev" aria-label="Slide Anterior">
-                    <i class="fas fa-chevron-left"></i>
-                </button>
-                <button class="carousel-control next" aria-label="Próximo Slide">
-                    <i class="fas fa-chevron-right"></i>
-                </button>
-
-                <div class="carousel-dots">
-                    <!-- Aqui o JS insere os <span class="dot"> dinamicamente – vazio por padrão -->
+            <div class="carousel-container" id="carousel">
+                <div class="carousel-slides" id="slides"></div>
+                <button class="carousel-control prev" id="prevBtn">&lt;</button>
+                <button class="carousel-control next" id="nextBtn">&gt;</button>
+                <div class="carousel-dots" id="dots"></div>
+                <div class="carousel-progress">
+                    <div class="carousel-progress-bar" id="progress"></div>
                 </div>
             </div>
         </section>
