@@ -1,0 +1,930 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&display=swap");
+
+/*
+  ==============================================
+  Estilos Globais e de Layout Base
+  ==============================================
+*/
+:root {
+    --color-twitch: rgb(137, 80, 241);
+    --color-kick:   rgb(83, 252, 25);
+    --color-youtube:rgb(255, 0, 0);
+    --color-stream: rgb(255, 2, 102);
+}
+
+body {
+	font-family: 'Poppins', 'Roboto', sans-serif;
+    margin: 0 auto;
+    padding: 20px;
+    background: #18181b;
+    color: #e4e4e7;
+    max-width: 1200px;
+    line-height: 1.6;
+}
+
+h1 {
+    text-align: center;
+    color: rgb(240, 240, 240);
+    margin-bottom: 30px;
+}
+
+/*
+  ==============================================
+  Seção de Pesquisa (Search Section)
+  ==============================================
+*/
+.search-section {
+    background: #27272a;
+    border-radius: 12px;
+    padding: 20px;
+    margin: 0 auto 20px;
+    max-width: 800px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+    display: flex;
+    flex-direction: column;
+    gap: 1rem; 
+}
+
+.input-section {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem; 
+    position: relative;
+    /* margin-bottom: 20px; */
+}
+
+.search-wrapper {
+    position: relative;
+    flex: 1;
+    display: flex;
+    border-radius: 8px;
+    border: 1px solid transparent;
+}
+
+#usernames {
+    width: 100%;
+    padding: 0.75rem 3.4rem 0.75rem 0.75rem;
+    border: 1px solid #404040;
+    border-radius: 8px;
+    background: #18181b;
+    color: #a1a1aa;
+    font-size: 16px;
+    outline: none;
+    box-sizing: border-box;
+}
+
+#usernames::placeholder {
+    color: #404040;
+}
+
+#checkStreamsButton {
+    position: absolute; 
+    right: 0px;
+    top: 0;
+    transform: none;
+    background: #404040;
+    border: none;
+    border-left: 1px solid #404040;
+    cursor: pointer;
+    color: #a1a1aa;
+    width: 50px;
+    height: 100%;
+    border-radius: 0 8px 8px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+}
+
+#checkStreamsButton:hover {
+    /* color: var(--color-stream); */
+    background: color-mix(in srgb, #929090 20%, #404040);
+}
+
+.search-wrapper:focus-within {
+    border: 1px solid #686767;
+}
+
+.search-wrapper:focus-within #checkStreamsButton {
+    border-left-color: #686767;
+}
+
+.search-icon {
+    width: 25px;
+    height: 25px;
+    flex-shrink: 0;
+    transition: transform 0.3s ease;
+}
+
+#checkStreamsButton:active .search-icon {
+    transform: scale(0.90);
+}
+
+.toggle-section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    white-space: nowrap;
+}
+
+.pretty-checkbox-label {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    cursor: pointer;
+    font-size: 0.9rem;
+    color: #fff;
+    position: relative;
+    user-select: none;
+    padding: 10px;
+    border-radius: 5px;
+    background: #333336;
+    transition: transform 0.3s ease;
+}
+
+.pretty-checkbox {
+    position: relative;
+    width: 20px;
+    height: 20px;
+    border: 1px solid #333;
+    border-radius: 50%;
+    background: #1a1a1a;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.pretty-checkbox-label:hover {
+    background-color: #404044;
+}
+
+.pretty-checkbox-label:active {
+    transform: scale(0.95);
+}
+
+#showOffline {
+    display: none;
+}
+
+#showOffline:checked + .pretty-checkbox {
+    background: linear-gradient(135deg, var(--color-stream), color-mix(in srgb, var(--color-stream) 70%, transparent));
+    border-color: var(--color-stream);
+    box-shadow: 0 0 10px color-mix(in srgb, var(--color-stream) 50%, transparent);
+}
+
+#showOffline:checked + .pretty-checkbox::after {
+    content: '';
+    width: 10px;
+    height: 10px;
+    background: #fff;
+    border-radius: 50%;
+    animation: pulse 0.3s ease;
+}
+
+@keyframes pulse {
+    0% { transform: scale(0); }
+    100% { transform: scale(1); }
+}
+
+/*
+  ==============================================
+  Plataformas e Toggles (Checkboxes)
+  ==============================================
+*/
+.platforms-section {
+    display: flex;
+    justify-content: center;
+    justify-content: space-between;
+    gap: 15px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+}
+
+.platform-card-wrapper {
+    flex: 0 0 auto;
+    user-select: none;
+}
+
+.content {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+    background: #333336;
+    border-radius: 16px;
+    padding: 16px;
+    transition: transform 0.3s ease, background-color 0.2s, box-shadow 0.2s;
+    border: 1px solid transparent;
+    font-weight: bold;
+}
+
+.content:hover {
+    background-color: #404044;
+}
+
+.content:active {
+    /* transform: scale(0.99); */
+}
+
+.platform-logo-container {
+    height: 24px;
+    display: flex;
+    align-items: center;
+    margin-bottom: 4px;
+    width: 100%;
+    justify-content: flex-start;
+    user-select: none;
+}
+
+.platform-logo {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: left center;
+    user-select: none;
+}
+
+.platform-card-wrapper.disabled .content {
+    opacity: 0.5;
+    cursor: not-allowed;
+    user-select: none;
+}
+
+.text-desc {
+    display: flex;
+    flex-direction: column;
+}
+
+.platform-name-fallback {
+    color: #e4e4e7;
+}
+
+.platform-desc-text {
+    font-size: 10px;
+    color: #a1a1aa;
+    margin: 0;
+    line-height: 1.2;
+}
+
+.platform-name-display {
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 14px;
+    margin: 0;
+    line-height: 1.2;
+}
+
+.content.checked-twitch {
+    border: 1px solid var(--color-twitch);
+    background: color-mix(in srgb, var(--color-twitch) 15%, transparent);
+    box-shadow: 0 0 25px color-mix(in srgb, var(--color-twitch) 40%, transparent);
+}
+
+.content.checked-kick {
+    border: 1px solid var(--color-kick);
+    background: color-mix(in srgb, var(--color-kick) 15%, transparent);
+    box-shadow: 0 0 25px color-mix(in srgb, var(--color-kick) 40%, transparent);
+}
+
+.content.checked-youtube {
+    border: 1px solid var(--color-youtube);
+    background: color-mix(in srgb, var(--color-youtube) 15%, transparent);
+    box-shadow: 0 0 25px color-mix(in srgb, var(--color-youtube) 40%, transparent);
+}
+
+/* TEXTO */
+.content.checked-twitch .platform-name-fallback {
+    color: var(--color-twitch);
+    text-shadow: 0 0 8px color-mix(in srgb, var(--color-twitch) 50%, transparent);
+}
+
+.content.checked-kick .platform-name-fallback {
+    color: var(--color-kick);
+    text-shadow: 0 0 8px color-mix(in srgb, var(--color-kick) 50%, transparent);
+}
+
+.content.checked-youtube .platform-name-fallback {
+    color: var(--color-youtube);
+    text-shadow: 0 0 8px color-mix(in srgb, var(--color-youtube) 50%, transparent);
+}
+
+/*
+  ==============================================
+  Neon Checkbox Circular
+  ==============================================
+*/
+.neon-checkbox {
+  --primary: #00ffaa;
+  --primary-dark: #00cc88;
+  --primary-light: #88ffdd;
+  --size: 30px;
+  position: relative;
+  width: var(--size);
+  height: var(--size);
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  flex-shrink: 0;
+}
+
+.neon-checkbox input {
+  display: none;
+}
+
+.neon-checkbox__frame {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.neon-checkbox__box {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.8);
+  border-radius: 50%;
+  border: 1px solid #5a5a5e;
+  transition: all 0.4s ease;
+  box-shadow: 0px 0px 0px 2px #5a5a5e;
+}
+
+.neon-checkbox__check-container {
+  position: absolute;
+  inset: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.neon-checkbox__check {
+  width: 60%;
+  height: 60%;
+  fill: none;
+  stroke: var(--primary);
+  stroke-width: 3;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 40;
+  stroke-dashoffset: 40;
+  transform-origin: center;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.neon-checkbox__glow {
+  position: absolute;
+  inset: -2px;
+  border-radius: 50%;
+  background: var(--primary);
+  opacity: 0;
+  filter: blur(8px);
+  transform: scale(1.2);
+  transition: all 0.4s ease;
+}
+
+.neon-checkbox__borders {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  overflow: hidden;
+    opacity: 0;
+}
+
+.neon-checkbox__borders span {
+  position: absolute;
+  width: 40px;
+  height: 1px;
+  background: var(--primary);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.neon-checkbox__borders span:nth-child(1) {
+  top: 0;
+  left: -100%;
+  animation: borderFlow1 2s linear infinite;
+}
+
+.neon-checkbox__borders span:nth-child(2) {
+  top: -100%;
+  right: 0;
+  width: 1px;
+  height: 40px;
+  animation: borderFlow2 2s linear infinite;
+}
+
+.neon-checkbox__borders span:nth-child(3) {
+  bottom: 0;
+  right: -100%;
+  animation: borderFlow3 2s linear infinite;
+}
+
+.neon-checkbox__borders span:nth-child(4) {
+  bottom: -100%;
+  left: 0;
+  width: 1px;
+  height: 40px;
+  animation: borderFlow4 2s linear infinite;
+}
+
+.neon-checkbox__effects {
+  position: absolute;
+  inset: -20px;
+  pointer-events: none;
+}
+
+.neon-checkbox__particles span {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: var(--primary);
+  border-radius: 50%;
+  opacity: 0;
+  pointer-events: none;
+  top: 50%;
+  left: 50%;
+  box-shadow: 0 0 6px var(--primary);
+}
+
+.neon-checkbox__rings {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.neon-checkbox__rings .ring {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 1px solid var(--primary);
+  opacity: 0;
+  transform: scale(0);
+}
+
+.neon-checkbox__sparks span {
+  position: absolute;
+  width: 20px;
+  height: 1px;
+  background: linear-gradient(90deg, var(--primary), transparent);
+  opacity: 0;
+}
+
+/* Hover Effects */
+.neon-checkbox:hover .neon-checkbox__box {
+  border-color: var(--primary);
+  /* transform: scale(1.05); */
+}
+
+/* Checked State */
+.neon-checkbox input:checked ~ .neon-checkbox__frame .neon-checkbox__box {
+  border-color: var(--primary);
+  box-shadow: 0px 0px 0px 2px var(--primary-glow);
+}
+
+.neon-checkbox input:checked ~ .neon-checkbox__frame .neon-checkbox__check {
+  stroke-dashoffset: 0;
+  transform: scale(1.1);
+}
+
+.neon-checkbox input:checked ~ .neon-checkbox__frame .neon-checkbox__glow {
+  opacity: 0.2;
+}
+
+.neon-checkbox input:checked ~ .neon-checkbox__frame .neon-checkbox__borders span {
+  opacity: 1;
+}
+
+/* Particle Animations */
+.neon-checkbox input:checked ~ .neon-checkbox__frame .neon-checkbox__particles span {
+  animation: particleExplosion 0.6s ease-out forwards;
+}
+
+.neon-checkbox input:checked ~ .neon-checkbox__frame .neon-checkbox__rings .ring {
+  animation: ringPulse 0.6s ease-out forwards;
+}
+
+.neon-checkbox input:checked ~ .neon-checkbox__frame .neon-checkbox__sparks span {
+  animation: sparkFlash 0.6s ease-out forwards;
+}
+
+/* Cores específicas por plataforma */
+.twitch-label .neon-checkbox {
+  --primary: #9146ff;
+  --primary-dark: #7c3aed;
+  --primary-light: #b794f4;
+  --primary-glow: color-mix(in srgb, var(--color-twitch) 40%, transparent 60%);
+}
+
+.kick-label .neon-checkbox {
+  --primary: #22c55e;
+  --primary-dark: #16a34a;
+  --primary-light: #4ade80;
+  --primary-glow: color-mix(in srgb, var(--color-kick) 40%, transparent 60%);
+}
+
+.youtube-label .neon-checkbox {
+  --primary: #ff0000;
+  --primary-dark: #dc2626;
+  --primary-light: #f87171;
+  --primary-glow: color-mix(in srgb, var(--color-youtube) 40%, transparent 60%);
+}
+
+@keyframes borderFlow1 {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(200%); }
+}
+
+@keyframes borderFlow2 {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(200%); }
+}
+
+@keyframes borderFlow3 {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-200%); }
+}
+
+@keyframes borderFlow4 {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-200%); }
+}
+
+@keyframes particleExplosion {
+  0% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 0;
+  }
+  20% { opacity: 1; }
+  100% {
+    transform: translate(calc(-50% + var(--x, 20px)), calc(-50% + var(--y, 20px))) scale(0);
+    opacity: 0;
+  }
+}
+
+@keyframes ringPulse {
+  0% { transform: scale(0); opacity: 1; }
+  100% { transform: scale(2); opacity: 0; }
+}
+
+@keyframes sparkFlash {
+  0% { transform: rotate(var(--r, 0deg)) translateX(0) scale(1); opacity: 1; }
+  100% { transform: rotate(var(--r, 0deg)) translateX(30px) scale(0); opacity: 0; }
+}
+
+.neon-checkbox__particles span:nth-child(1) { --x: 25px; --y: -25px; }
+.neon-checkbox__particles span:nth-child(2) { --x: -25px; --y: -25px; }
+.neon-checkbox__particles span:nth-child(3) { --x: 25px; --y: 25px; }
+.neon-checkbox__particles span:nth-child(4) { --x: -25px; --y: 25px; }
+.neon-checkbox__particles span:nth-child(5) { --x: 35px; --y: 0px; }
+.neon-checkbox__particles span:nth-child(6) { --x: -35px; --y: 0px; }
+.neon-checkbox__particles span:nth-child(7) { --x: 0px; --y: 35px; }
+.neon-checkbox__particles span:nth-child(8) { --x: 0px; --y: -35px; }
+.neon-checkbox__particles span:nth-child(9) { --x: 20px; --y: -30px; }
+.neon-checkbox__particles span:nth-child(10) { --x: -20px; --y: 30px; }
+.neon-checkbox__particles span:nth-child(11) { --x: 30px; --y: 20px; }
+.neon-checkbox__particles span:nth-child(12) { --x: -30px; --y: -20px; }
+.neon-checkbox__sparks span:nth-child(1) { --r: 0deg; top: 50%; left: 50%; }
+.neon-checkbox__sparks span:nth-child(2) { --r: 90deg; top: 50%; left: 50%; }
+.neon-checkbox__sparks span:nth-child(3) { --r: 180deg; top: 50%; left: 50%; }
+.neon-checkbox__sparks span:nth-child(4) { --r: 270deg; top: 50%; left: 50%; }
+.neon-checkbox__rings .ring:nth-child(1) { animation-delay: 0s; }
+.neon-checkbox__rings .ring:nth-child(2) { animation-delay: 0.1s; }
+.neon-checkbox__rings .ring:nth-child(3) { animation-delay: 0.2s; }
+
+/*
+  ==============================================
+  Grid e Cards de Stream
+  ==============================================
+*/
+.streams-grid {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: flex-start;
+	gap: 20px;
+	margin-top: 20px;
+}
+
+.stream-card {
+	background: #27272a;
+	border-radius: 12px;
+	padding: 5px;
+	border: 1px solid #404040;
+	position: relative;
+	overflow: hidden;
+	transition: transform 0.2s, box-shadow 0.2s;
+	display: flex;
+	flex-direction: column;
+	border-left: 4px solid transparent;
+	flex: 0 0 calc(50% - 10px);
+	max-width: 350px;
+	min-width: 350px;
+    cursor: pointer;
+}
+
+.stream-card.offline.kick:hover,
+.stream-card.offline.twitch:hover,
+.stream-card.offline.youtube:hover {
+	transform: translateY(-2px);
+	box-shadow: 0 4px 15px rgba(83, 83, 83, 0.3);
+}
+
+.stream-card.twitch:hover {
+	transform: translateY(-2px);
+	box-shadow: 0 4px 15px rgba(145, 70, 255, 0.3);
+}
+
+.stream-card.kick:hover {
+	transform: translateY(-2px);
+	box-shadow: 0 4px 15px rgb(34, 197, 94, 0.3);
+}
+
+.stream-card.youtube:hover {
+	transform: translateY(-2px);
+	box-shadow: 0 4px 15px rgb(255, 0, 0, 0.3);
+}
+
+/*
+  ==============================================
+  Estilos para os badges das plataformas
+  ==============================================
+*/
+.platform-badge {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 10px;
+    font-weight: bold;
+    color: white;
+    cursor: pointer;
+    user-select: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: auto;
+}
+
+.platform-badge img {
+    border-radius: 2px;
+    width: 100%;
+    height: 100%;
+    object-fit: fill;
+    object-position: left center;
+    user-select: none;
+}
+
+.twitch .platform-badge:not(img) {
+    background: var(--color-twitch);
+}
+
+.kick .platform-badge:not(img) {
+    background: color-mix(in srgb, var(--color-kick) 30%, transparent);
+}
+
+.youtube .platform-badge:not(img) {
+    background: var(--color-youtube);
+}
+
+/* TWITCH */
+.twitch {
+	border-left-color: var(--color-twitch);
+}
+
+.twitch .platform-badge {
+	background: var(--color-twitch);
+    box-shadow: 0 5px 10px color-mix(in srgb, var(--color-twitch) 70%, transparent);
+}
+
+.stream-card.twitch:hover {
+	border-color: var(--color-twitch);
+}
+
+/* KICK */
+.kick {
+	border-left-color: var(--color-kick);
+}
+
+.kick .platform-badge {
+	background: var(--color-kick);
+	background: rgba(0, 0, 0, 0.8);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.8);
+}
+
+.kick-logo .platform-badge {
+	background: var(--color-kick);
+}
+
+.stream-card.kick:hover {
+	border-color: var(--color-kick);
+}
+
+/* YOUTUBE */
+.youtube {
+	border-left-color: var(--color-youtube);
+}
+
+.youtube .platform-badge {
+	background: var(--color-youtube);
+    box-shadow: 0 5px 10px color-mix(in srgb, var(--color-youtube) 70%, transparent);
+}
+
+.stream-card.youtube:hover {
+	border-color: var(--color-youtube);
+}
+
+.thumbnail {
+	width: 100%;
+	height: 200px;
+	object-fit: cover;
+	border-radius: 8px;
+	margin-bottom: 12px;
+	display: block;
+}
+
+.thumbnail-placeholder {
+	width: 100%;
+	height: 200px;
+	background: linear-gradient(135deg, #404040, #27272a);
+	border-radius: 8px;
+	margin-bottom: 12px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	color: #a1a1aa;
+	font-size: 14px;
+	text-align: center;
+}
+
+.stream-header {
+	display: flex;
+	align-items: flex-start;
+	margin-bottom: 12px;
+}
+
+.avatar-container {
+	position: relative;
+	width: 50px;
+	height: 50px;
+	margin-right: 12px;
+	flex-shrink: 0;
+}
+
+.avatar-img {
+	width: 50px;
+	height: 50px;
+	border-radius: 50%;
+	object-fit: cover;
+	display: block;
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 2;
+}
+
+.avatar-placeholder {
+	width: 50px;
+	height: 50px;
+	border-radius: 50%;
+	background: rgb(150, 150, 150);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-weight: bold;
+	color: white;
+	font-size: 18px;
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 1;
+}
+
+.twitch .avatar-placeholder {
+	background: var(--color-twitch);
+}
+
+.kick .avatar-placeholder {
+	background: var(--color-kick);
+}
+
+.youtube .avatar-placeholder {
+	background: var(--color-youtube);
+}
+
+.info-container {
+	flex-grow: 1;
+}
+
+.username {
+	font-weight: bold;
+	font-size: 18px;
+	color: #e4e4e7;
+}
+
+.status-line {
+    display: flex;
+    align-items: center;
+    margin-top: 4px;
+    gap: 8px;
+}
+
+.viewer-dot {
+    width: 8px;
+    height: 8px;
+    background: rgb(0, 255, 0);
+    border-radius: 50%;
+    box-shadow: 0 4px 15px rgb(0, 255, 0);
+}
+
+.viewers {
+    color: #a1a1aa;
+    font-size: 14px;
+}
+
+.title {
+	color: #f4f4f5;
+	font-size: 14px;
+	line-height: 1.4;
+	margin-top: 4px;
+	flex-grow: 1;
+	padding: 5px;
+	display: -webkit-box;
+	-webkit-line-clamp: 3;
+	-webkit-box-orient: vertical;
+	overflow: hidden;
+}
+
+/*
+  ==============================================
+  Estilos de Estado (Offline, Erro, Loading)
+  ==============================================
+*/
+.offline {
+    opacity: 0.6;
+    border-color: #555 !important;
+}
+
+.offline .username {
+    color: #ef4444;
+}
+
+.offline .viewer-dot {
+    background: rgb(239, 68, 68);
+    box-shadow: 0 4px 15px rgb(239, 68, 68); 
+}
+
+.offline .platform-badge {
+    background: rgb(20, 20, 20);
+    box-shadow: 0 4px 10px rgb(20, 20, 20);    
+}
+
+.offline .avatar-placeholder {
+    background: #ef4444 !important;
+}
+
+.offline .title {
+    color: #a1a1aa;
+}
+
+.loading, .error {
+    text-align: center;
+    padding: 20px;
+    font-size: 1.1em;
+    margin: 20px auto;
+}
+
+.loading {
+    color: #a1a1aa;
+}
+
+.error {
+    color: #f59e0b;
+}
+
+/*
+  ==============================================
+  Responsividade
+  ==============================================
+*/
+@media (max-width: 768px) {
+    .streams-grid {
+        grid-template-columns: 1fr; 
+    }
+    
+    .input-section {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .toggle-section {
+        align-self: flex-start;
+    }
+    
+    .platforms-section {
+        justify-content: space-between;
+    }
+}
+
+

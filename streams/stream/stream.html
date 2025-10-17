@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VSL Séries</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>VSL STREAM</h1>
+    
+    <div class="search-section">
+        <div class="input-section">
+            <div class="search-wrapper">
+                <input type="text" id="usernames" placeholder="Digite usernames separados por espaço">
+                <button id="checkStreamsButton" class="search-button">
+                    <svg class="search-icon" viewBox="0 0 24 24" width="20" height="20">
+                        <path fill="currentColor" d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
+                    </svg>
+                </button>
+            </div>
+            
+            <div class="toggle-section">
+                <label class="pretty-checkbox-label" for="showOffline">
+                    <input type="checkbox" id="showOffline" checked>
+                    <span class="pretty-checkbox"></span>
+                    <span class="checkbox-text">Mostrar Offline</span>
+                </label>
+            </div>
+        </div>
+        
+        <div class="controls-section">
+            <div class="platforms-section">
+                <div class="platform-card-wrapper" data-platform="twitch">
+                    <label class="content twitch-label">
+                        <div class="neon-checkbox">
+                            <input type="checkbox" id="twitch-toggle" data-platform="twitch" class="platform-toggle" checked>
+                            <div class="neon-checkbox__frame">
+                                <div class="neon-checkbox__box">
+                                    <div class="neon-checkbox__check-container">
+                                        <svg viewBox="0 0 24 24" class="neon-checkbox__check">
+                                            <path d="M3,12.5l7,7L21,5"></path>
+                                        </svg>
+                                    </div>
+                                    <div class="neon-checkbox__glow"></div>
+                                    <div class="neon-checkbox__borders">
+                                        <span></span><span></span><span></span><span></span>
+                                    </div>
+                                </div>
+                                <div class="neon-checkbox__effects">
+                                    <div class="neon-checkbox__particles">
+                                        <span></span><span></span><span></span><span></span> <span></span
+                                        ><span></span><span></span><span></span> <span></span><span></span
+                                        ><span></span><span></span>
+                                    </div>
+                                    <div class="neon-checkbox__rings">
+                                        <div class="ring"></div>
+                                        <div class="ring"></div>
+                                        <div class="ring"></div>
+                                    </div>
+                                    <div class="neon-checkbox__sparks">
+                                        <span></span><span></span><span></span><span></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="text-desc">
+                            <div class="platform-logo-container"></div>
+                            <p class="desc platform-desc-text"></p>
+                        </div>
+                    </label>
+                </div>
+                
+                <div class="platform-card-wrapper" data-platform="kick">
+                    <label class="content kick-label">
+                        <div class="neon-checkbox">
+                            <input type="checkbox" id="kick-toggle" data-platform="kick" class="platform-toggle" checked>
+                            <div class="neon-checkbox__frame">
+                                <div class="neon-checkbox__box">
+                                    <div class="neon-checkbox__check-container">
+                                        <svg viewBox="0 0 24 24" class="neon-checkbox__check">
+                                            <path d="M3,12.5l7,7L21,5"></path>
+                                        </svg>
+                                    </div>
+                                    <div class="neon-checkbox__glow"></div>
+                                    <div class="neon-checkbox__borders">
+                                        <span></span><span></span><span></span><span></span>
+                                    </div>
+                                </div>
+                                <div class="neon-checkbox__effects">
+                                    <div class="neon-checkbox__particles">
+                                        <span></span><span></span><span></span><span></span> <span></span
+                                        ><span></span><span></span><span></span> <span></span><span></span
+                                        ><span></span><span></span>
+                                    </div>
+                                    <div class="neon-checkbox__rings">
+                                        <div class="ring"></div>
+                                        <div class="ring"></div>
+                                        <div class="ring"></div>
+                                    </div>
+                                    <div class="neon-checkbox__sparks">
+                                        <span></span><span></span><span></span><span></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="text-desc">
+                            <div class="platform-logo-container"></div>
+                            <p class="desc platform-desc-text"></p>
+                        </div>
+                    </label>
+                </div>
+                
+                <div class="platform-card-wrapper disabled" data-platform="youtube">
+                    <label class="content youtube-label">
+                        <div class="neon-checkbox">
+                            <input type="checkbox" id="youtube-toggle" data-platform="youtube" class="platform-toggle" disabled>
+                            <div class="neon-checkbox__frame">
+                                <div class="neon-checkbox__box">
+                                    <div class="neon-checkbox__check-container">
+                                        <svg viewBox="0 0 24 24" class="neon-checkbox__check">
+                                            <path d="M3,12.5l7,7L21,5"></path>
+                                        </svg>
+                                    </div>
+                                    <div class="neon-checkbox__glow"></div>
+                                    <div class="neon-checkbox__borders">
+                                        <span></span><span></span><span></span><span></span>
+                                    </div>
+                                </div>
+                                <div class="neon-checkbox__effects">
+                                    <div class="neon-checkbox__particles">
+                                        <span></span><span></span><span></span><span></span> <span></span
+                                        ><span></span><span></span><span></span> <span></span><span></span
+                                        ><span></span><span></span>
+                                    </div>
+                                    <div class="neon-checkbox__rings">
+                                        <div class="ring"></div>
+                                        <div class="ring"></div>
+                                        <div class="ring"></div>
+                                    </div>
+                                    <div class="neon-checkbox__sparks">
+                                        <span></span><span></span><span></span><span></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="text-desc">
+                            <div class="platform-logo-container"></div>
+                            <p class="desc platform-desc-text"></p>
+                        </div>
+                    </label>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div id="result" class="streams-grid"></div>
+    
+    <script src="scripts.js"></script>
+</body>
+</html>

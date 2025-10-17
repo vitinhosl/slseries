@@ -24,7 +24,7 @@ export const biblicalData = [
                 enabled: true,
                 homepage: true,
                 title: "A TERRA PROMETIDA",
-                logo: { enabled: false, minimalist: false, url: "https://i.imgur.com/B6tMcLM.png" },
+                logo: { enabled: false, minimalist: false, url: "https://i.imgur.com/NkdpdxD.png" },
                 thumb: [
                     "https://pp-vod-img-aws.akamaized.net/0068571/playplus_thumb_1600.jpg",
                     "https://i.imgur.com/H7LkieU.png",
