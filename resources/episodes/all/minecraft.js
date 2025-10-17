@@ -21,7 +21,7 @@ export const minecraftData = [
                     enabled: false,
                     homepage: false,
                     title: "EM BUSCA DA CASA AUTOMÁTICA",
-                                        logo: { enabled: false, minimalist: false, url: "" },
+                    logo: { enabled: false, minimalist: false, url: "" },
                     thumb: [
                         "",
                     ],
@@ -138,7 +138,7 @@ export const minecraftData = [
                             { title: "Episódio 074"   , subtitle: "TNT Enderman XP"                                         , duration: "26:29"  , thumb: "https://i.ytimg.com/vi/q9gx31jd9pY/hqdefault.jpg?sqp=-oaymwEnCPYBEIoBSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLDWDtJ98764suDsAmm-BA_5HbcwJw", url: "https://www.youtube.com/embed/q9gx31jd9pY" },
                             { title: "Episódio 075"   , subtitle: "Gerador de Portais / Obsidian infinita"                  , duration: "28:25"  , thumb: "https://i.ytimg.com/vi/n0hT2gJ0m60/hqdefault.jpg?sqp=-oaymwEnCPYBEIoBSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLAEnaFUwhLR_P2IJJvS-kZ7FZVYRg", url: "https://www.youtube.com/embed/n0hT2gJ0m60" },
                             { title: "Episódio 076"   , subtitle: "Farm de ouro"                                            , duration: "32:05"  , thumb: "https://i.ytimg.com/vi/1ORcsVBVDNo/hqdefault.jpg?sqp=-oaymwEnCPYBEIoBSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLBzPoSnytahApyEzTgqVz6Npe_IKQ", url: "https://www.youtube.com/embed/1ORcsVBVDNo" },
-                            { title: "Episódio 077"   , subtitle: "Pandora's box"                                           , duration: "42:43"  , thumb: "https://i.ytimg.com/vi/NgvXo-v6NEU/hqdefault.jpg?sqp=-oaymwEnCPYBEIoBSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLAHndZhLdKltB_UVOlb1rRzA3n61Q", url: "https://www.youtube.com/embed/NgvXo-v6NEU" },
+                            { title: "Episódio 077"   , subtitle: "Pandoras box"                                            , duration: "42:43"  , thumb: "https://i.ytimg.com/vi/NgvXo-v6NEU/hqdefault.jpg?sqp=-oaymwEnCPYBEIoBSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLAHndZhLdKltB_UVOlb1rRzA3n61Q", url: "https://www.youtube.com/embed/NgvXo-v6NEU" },
                             { title: "Episódio 078"   , subtitle: "Kokiri Jungle Finalizada / Troca com Aldeões"            , duration: "27:24"  , thumb: "https://i.ytimg.com/vi/1QglYra9mrQ/hqdefault.jpg?sqp=-oaymwEnCPYBEIoBSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLD6c683Z-upTji9GKyy_HnNOqx5Jw", url: "https://www.youtube.com/embed/1QglYra9mrQ" },
                             { title: "Episódio 079"   , subtitle: "Farm de Guardian / Monumento seco"                       , duration: "29:56"  , thumb: "https://i.ytimg.com/vi/Z5NoUZDCrXg/hqdefault.jpg?sqp=-oaymwEnCPYBEIoBSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLBJubGfATSdgaYR5KXM6NzjFNgoOA", url: "https://www.youtube.com/embed/Z5NoUZDCrXg" },
                             { title: "Episódio 080"   , subtitle: "A Queda do Monumento / Senha com Molduras"               , duration: "20:38"  , thumb: "https://i.ytimg.com/vi/yRnzjDgculM/hqdefault.jpg?sqp=-oaymwEnCPYBEIoBSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLCwJ6AGdD1phioYJPitdyZBpKNi1g", url: "https://www.youtube.com/embed/yRnzjDgculM" },
@@ -477,7 +477,7 @@ export const minecraftData = [
                     enabled: false,
                     homepage: false,
                     title: "CRAFT GAMES",
-                                        logo: { enabled: false, minimalist: false, url: "" },
+                    logo: { enabled: false, minimalist: false, url: "" },
                     thumb: [
                         "",
                     ],
