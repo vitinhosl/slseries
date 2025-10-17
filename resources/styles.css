@@ -139,7 +139,7 @@ body {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	padding: 10px 20px;
+	padding: 20px 20px 20px 20px;
 	position: fixed;
 	top: 0;
 	left: 300px;
@@ -149,11 +149,15 @@ body {
 	margin-bottom: 0;
 }
 
+#page-content {
+	margin-left: -10px;
+}
+
 .content {
 	margin-left: 300px;
 	flex-grow: 1;
-	padding: 20px;
-	padding-top: 80px;
+	padding: 20px 30px 20px 20px;
+	padding-top: 60px;
 }
 
 .search-bar {
@@ -607,7 +611,7 @@ body {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	padding: 0 10px;
+	padding: 0 0 0 10px;
 	margin: 10px 0 10px 0;
 	position: relative;
 	height: 50px;
