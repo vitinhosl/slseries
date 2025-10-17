@@ -41,6 +41,7 @@ const DOM = {
 // ==========================================
 let streamsDataCache = {};
 let currentAllStreams = [];
+let timerInterval = null;
 
 // ==========================================
 // 3. FUNÇÕES UTILITÁRIAS
@@ -48,6 +49,44 @@ let currentAllStreams = [];
 function isURL(str) {
     if (typeof str !== 'string') return false;
     return str.startsWith('http');
+}
+
+function getPlatformsLoadingText(selectedPlatforms) {
+    return selectedPlatforms.map(p => API_CONFIG[p].name).join(' e ');
+}
+
+function formatUptime(startedAt) {
+    const start = new Date(startedAt);
+    const now = new Date();
+    const diff = now - start;
+    const hours = Math.floor(diff / 3600000);
+    const mins = Math.floor((diff % 3600000) / 60000);
+    const secs = Math.floor((diff % 60000) / 1000);
+    return `${hours.toString().padStart(2, '0')}:${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+}
+
+function updateUptimes() {
+    document.querySelectorAll('.uptime-badge').forEach(badge => {
+        const startedAt = badge.dataset.startedAt;
+        if (startedAt) {
+            badge.textContent = formatUptime(startedAt);
+        }
+    });
+}
+
+function startUptimeTimer() {
+    if (!timerInterval) {
+        timerInterval = setInterval(updateUptimes, 1000);
+        // Inicializa imediatamente
+        updateUptimes();
+    }
+}
+
+function stopUptimeTimer() {
+    if (timerInterval) {
+        clearInterval(timerInterval);
+        timerInterval = null;
+    }
 }
 
 function initializeDOM() {
@@ -123,7 +162,7 @@ async function checkTwitch(username) {
         query {
             user(login: "${username}") {
                 displayName, profileImageURL(width: 300), 
-                stream { viewersCount, previewImageURL(width: 640, height: 360), title }
+                stream { viewersCount, previewImageURL(width: 640, height: 360), title, startedAt }
             }
         }
     `;
@@ -140,6 +179,7 @@ async function checkTwitch(username) {
         if (!user || !user.displayName) return null;
 
         const isOnline = !!user.stream;
+        const startedAt = isOnline ? user.stream.startedAt : null;
         
         return {
             platform,
@@ -148,7 +188,8 @@ async function checkTwitch(username) {
             profileImageURL: user.profileImageURL || '',
             title: isOnline ? user.stream.title : 'Streamer Offline',
             viewers: isOnline ? user.stream.viewersCount : 0,
-            thumbnail: isOnline ? user.stream.previewImageURL : ''
+            thumbnail: isOnline ? user.stream.previewImageURL : '',
+            startedAt
         };
     } catch (error) {
         console.error(`Erro em checkTwitch para ${username}:`, error);
@@ -167,6 +208,12 @@ async function checkKick(username) {
         if (!user) return null;
 
         const isOnline = !!livestream;
+        let startedAt = null;
+        if (isOnline) {
+            // Converte created_at para ISO string com Z (assumindo UTC)
+            const createdAt = livestream.created_at.replace(' ', 'T') + 'Z';
+            startedAt = createdAt;
+        }
         
         return {
             platform,
@@ -175,7 +222,8 @@ async function checkKick(username) {
             profileImageURL: user.profile_pic || '',
             title: isOnline ? livestream.session_title : 'Streamer Offline',
             viewers: isOnline ? livestream.viewer_count : 0,
-            thumbnail: isOnline ? livestream.thumbnail?.url : ''
+            thumbnail: isOnline ? livestream.thumbnail?.url : '',
+            startedAt
         };
     } catch (error) {
         if (error.message.includes('404')) return null;
@@ -204,7 +252,9 @@ async function checkStreams() {
         return;
     }
 
-    DOM.resultDiv.innerHTML = '<div class="loading">Carregando streams...</div>';
+    // Mostra loading com todas as plataformas selecionadas
+    const platformsText = getPlatformsLoadingText(selectedPlatforms);
+    DOM.resultDiv.innerHTML = `<div class="loading">Carregando para ${platformsText}...</div>`;
 
     // 1. Inicializa ou atualiza o cache para os novos usernames
     usernames.forEach(u => {
@@ -262,14 +312,31 @@ async function handlePlatformToggle(event) {
     const isChecked = event.target.checked;
     
     const usernames = getInputUsernames();
-    if (usernames.length === 0) return;
-
-    if (isChecked) {
-        DOM.resultDiv.innerHTML = `<div class="loading">Carregando para ${platform.toUpperCase()}...</div>`;
-        await fetchAndUpdateCache(usernames, [platform]);
+    if (usernames.length === 0) {
+        // Se não há usernames, apenas atualiza a seleção sem fetch/render
+        updateCurrentAllStreams(usernames, Array.from(DOM.platformCheckboxes).filter(cb => cb.checked).map(cb => cb.dataset.platform));
+        renderStreams();
+        return;
     }
 
     const selectedPlatforms = Array.from(DOM.platformCheckboxes).filter(cb => cb.checked).map(cb => cb.dataset.platform);
+    
+    if (selectedPlatforms.length === 0) {
+        DOM.resultDiv.innerHTML = '<p class="error">Selecione pelo menos uma plataforma!</p>';
+        return;
+    }
+
+    // Sempre mostra loading e garante fetch para as plataformas selecionadas (inclui cache check)
+    const platformsText = getPlatformsLoadingText(selectedPlatforms);
+    DOM.resultDiv.innerHTML = `<div class="loading">Carregando para ${platformsText}...</div>`;
+
+    // Inicializa cache se necessário
+    usernames.forEach(u => {
+        if (!streamsDataCache[u]) streamsDataCache[u] = {};
+    });
+
+    // Fetch para todas as selecionadas (só busca se !cache)
+    await fetchAndUpdateCache(usernames, selectedPlatforms);
 
     updateCurrentAllStreams(usernames, selectedPlatforms);
     renderStreams();
@@ -290,15 +357,23 @@ function renderStreams() {
         DOM.resultDiv.innerHTML = showOffline 
             ? '<p class="error">Nenhum canal encontrado para os usernames fornecidos ou plataformas selecionadas.</p>'
             : '<p class="error">Nenhum canal online no momento.</p>';
+        stopUptimeTimer(); // Para o timer se não há streams online
         return;
     }
     
     filteredStreams.sort((a, b) => b.online - a.online);
     DOM.resultDiv.innerHTML = filteredStreams.map(createStreamCardHTML).join('');
+
+    // Inicia o timer se há streams online
+    if (filteredStreams.some(s => s.online && s.startedAt)) {
+        startUptimeTimer();
+    } else {
+        stopUptimeTimer();
+    }
 }
 
 function createStreamCardHTML(stream) {
-    const { platform, online, username, title, viewers, profileImageURL, thumbnail, error } = stream;
+    const { platform, online, username, title, viewers, profileImageURL, thumbnail, startedAt, error } = stream;
     const config = API_CONFIG[platform];
     const platformName = config.name;
     const badgeContent = config.badge;
@@ -317,9 +392,17 @@ function createStreamCardHTML(stream) {
 
     let badgeHTML;
     if (isURL(badgeContent)) {
-        badgeHTML = `<img class="platform-badge" src="${badgeContent}" alt="${platformName} Badge">`;
+        // Para Kick, adiciona classe extra se for imagem (URL)
+        const extraClass = (platform === 'kick') ? ' kick-logo' : '';
+        badgeHTML = `<img class="platform-badge${extraClass}" src="${badgeContent}" alt="${platformName} Badge">`;
     } else {
         badgeHTML = `<div class="platform-badge">${platformName}</div>`;
+    }
+
+    // Badge de uptime para lives online
+    let uptimeHTML = '';
+    if (online && startedAt) {
+        uptimeHTML = `<div class="uptime-badge" data-started-at="${startedAt}">00:00:00</div>`;
     }
 
     if (isError) {
@@ -335,6 +418,7 @@ function createStreamCardHTML(stream) {
     return `
         <div class="stream-card ${fullClass}">
             ${badgeHTML}
+            ${uptimeHTML}
             
             ${hasThumbnail 
                 ? `<img class="thumbnail" src="${thumbnail}" alt="Thumbnail da live de ${username}" onerror="this.outerHTML='<div class=\\'thumbnail-placeholder\\'>Thumbnail indisponível</div>';">` 
@@ -368,7 +452,7 @@ function createStreamCardHTML(stream) {
 // ==========================================
 document.addEventListener('DOMContentLoaded', () => {
     initializeDOM();
-    checkStreams(); 
+    // Não chama checkStreams() no init para evitar erro com input vazio
 
     document.querySelectorAll('.neon-checkbox input').forEach(checkbox => {
         checkbox.addEventListener('change', function() {

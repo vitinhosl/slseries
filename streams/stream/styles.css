@@ -644,27 +644,45 @@ h1 {
 	box-shadow: 0 4px 15px rgb(255, 0, 0, 0.3);
 }
 
+.uptime-badge {
+  position: absolute;
+  bottom: 15px;
+  right: 15px;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 10px;
+  font-weight: bold;
+  color: white;
+  cursor: pointer;
+  user-select: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: auto;
+}
+
 /*
   ==============================================
   Estilos para os badges das plataformas
   ==============================================
 */
 .platform-badge {
-    position: absolute;
-    top: 15px;
-    left: 15px;
-    padding: 2px 6px;
-    border-radius: 4px;
-    font-size: 10px;
-    font-weight: bold;
-    color: white;
-    cursor: pointer;
-    user-select: none;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 30px;
-    height: auto;
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 10px;
+  font-weight: bold;
+  color: white;
+  cursor: pointer;
+  user-select: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: auto;
 }
 
 .platform-badge img {
