@@ -619,7 +619,7 @@ export const biblicalData = [
             title: "", //TEXTO DO BOTÃO ENABLED OFF
             carrousel: {
                 enabled: true,
-                homepage: true,
+                homepage: false,
                 title: "JEZABEL",
                 logo: {
                 enabled: false, minimalist: false, url: "" },
@@ -768,7 +768,7 @@ export const biblicalData = [
             title: "", //TEXTO DO BOTÃO ENABLED OFF
             carrousel: {
                 enabled: true,
-                homepage: true,
+                homepage: false,
                 title: "REI DAVI",
                 logo: { enabled: false, minimalist: false, url: "https://i.imgur.com/wp5Zlyg.png" },
                 thumb: [
@@ -887,7 +887,7 @@ export const biblicalData = [
             title: "", //TEXTO DO BOTÃO ENABLED OFF
             carrousel: {
                 enabled: true,
-                homepage: true,
+                homepage: false,
                 title: "JOSÉ DO EGITO",
                 logo: { enabled: false, minimalist: false, url: "https://i.imgur.com/grhZxPH.png" },
                 thumb: [
@@ -1002,7 +1002,7 @@ export const biblicalData = [
             title: "", //TEXTO DO BOTÃO ENABLED OFF
             carrousel: {
                 enabled: true,
-                homepage: true,
+                homepage: false,
                 title: "JESUS",
                 logo: { enabled: false, minimalist: false, url: "https://i.imgur.com/XZygqfc.png" },
                 thumb: [
@@ -1264,7 +1264,7 @@ export const biblicalData = [
             title: "", //TEXTO DO BOTÃO ENABLED OFF
             carrousel: {
                 enabled: true,
-                homepage: true,
+                homepage: false,
                 title: "GÊNESIS",
                 logo: { enabled: false, minimalist: false, url: "" },
                 thumb: [
@@ -1553,7 +1553,7 @@ export const biblicalData = [
             title: "", //TEXTO DO BOTÃO ENABLED OFF
             carrousel: {
                 enabled: true,
-                homepage: true,
+                homepage: false,
                 title: "O RICO E LÁZARO",
                 logo: { enabled: false, minimalist: false, url: "https://i.imgur.com/5itbTP4.png" },
                 thumb: [
@@ -1801,7 +1801,7 @@ export const biblicalData = [
             title: "", //TEXTO DO BOTÃO ENABLED OFF
             carrousel: {
                 enabled: true,
-                homepage: true,
+                homepage: false,
                 title: "A RAINHA DA PÉRSIA",
                 logo: { enabled: false, minimalist: false, url: "https://i.imgur.com/RpLhiMU.png" },
                 thumb: [

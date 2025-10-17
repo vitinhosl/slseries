@@ -98,6 +98,7 @@ let iconsAnimated           = false; //ATIVA AS ANIMAÇÕES DOS ICONES
 let randomImagesCards       = false; //AS IMAGENS ALEATÓRIAS DOS BOTÕES
 let randomImagesCarrousel   = false; //AS IMAGENS ALEATÓRIAS DO CARROUSEL
 let speedCarrouselBar       = 5;     //VELOCIDADE DAS ANIMAÇÕES DO CARROUSEL
+let carrouselInformation    = true;  //MOSTRA AS INFORMAÇÕES NO CARROUSEL
 
 //=======================================================================
 //ICONES
@@ -324,8 +325,24 @@ async function loadPageContent(path) {
         }
       }
       
+      const sortedGroup = [...groupItem.group].sort((a, b) => {
+        if (a.enabled !== false && b.enabled === false) return -1;
+        if (b.enabled !== false && a.enabled === false) return 1;
+        return a.name.localeCompare(b.name);
+      });
+
+      const visibleItems = sortedGroup.filter(item => item.visible !== false && item.name);
+      const count = visibleItems.length;
+
+      let fullDisplayName = displayGroupName;
+      if (isFavoritesPage) {
+        fullDisplayName += ` (${count})`;
+      } else {
+        fullDisplayName += ` (${count} disponíveis)`;
+      }
+      
       const favoritesClass = isFavoritesPage || (groupItem.group_name === 'Favoritos' && !isFavoritesPage) ? 'favorites-header' : '';
-      html += `<h2 class="${favoritesClass}">${iconHTML} ${displayGroupName}</h2>`;
+      html += `<h2 class="${favoritesClass}">${iconHTML} ${fullDisplayName}</h2>`;
       
       if (isHomePage) {
         html += `
@@ -356,69 +373,60 @@ async function loadPageContent(path) {
 
       html += `<div class="group-cards-container ${layoutClass}">`;
 
-      const sortedGroup = [...groupItem.group].sort((a, b) => {
-        if (a.enabled !== false && b.enabled === false) return -1;
-        if (b.enabled !== false && a.enabled === false) return 1;
-        return a.name.localeCompare(b.name);
-      });
+      visibleItems.forEach(item => {
+        const urls = item.thumb_buttons.url;
+        const selectedThumb = randomImagesCards 
+          ? urls[Math.floor(Math.random() * urls.length)] 
+          : urls[0];
+        const isEnabled = item.enabled !== false;
+        const watchButtonClass = isEnabled ? 'watch-button' : 'watch-button disabled';
+        const watchButtonText = isEnabled ? 'ASSISTIR' : 'INDISPONÍVEL';
+        const currentIsFavorite = isFavorite(item.name);
+        const containerClass = isEnabled ? '' : 'disabled';
 
-      sortedGroup.forEach(item => {
-        if (item.visible !== false && item.name) {
-
-          const urls = item.thumb_buttons.url;
-          const selectedThumb = randomImagesCards 
-            ? urls[Math.floor(Math.random() * urls.length)] 
-            : urls[0];
-          const isEnabled = item.enabled !== false;
-          const watchButtonClass = isEnabled ? 'watch-button' : 'watch-button disabled';
-          const watchButtonText = isEnabled ? 'ASSISTIR' : 'INDISPONÍVEL';
-          const currentIsFavorite = isFavorite(item.name);
-          const containerClass = isEnabled ? '' : 'disabled';
-
-          html += `
-            <div class="card-container ${containerClass}">
-              <div class="inner-container">
-                  <div class="border-outer"></div> 
-                  <div class="main-card" style="background-image: url('${selectedThumb}')"></div>
-                  <div class="glow-layer-1"></div>
-                  <div class="glow-layer-2"></div>
-              </div>
-
-              <div class="overlay-1"></div>
-              <div class="overlay-2"></div>
-              <div class="background-glow"></div>
-
-              <div id="group-series-button">
-                <div class="info">
-                  <h2>${item.name}</h2>
-                  <p>TEST</p>
-                  <button class="${watchButtonClass}">${watchButtonText}</button>
-                </div>
-                <button class="favorite-button ${currentIsFavorite ? 'favorited' : ''}" data-serie='${JSON.stringify(item)}'>
-                  <svg class="rating__star" width="24" height="24" viewBox="0 0 32 32" aria-hidden="true">
-                    <g transform="translate(16,16)">
-                      <circle class="rating__star-ring" fill="none" stroke="#000" stroke-width="16" r="8" transform="scale(0)" />
-                    </g>
-                    <g stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                      <g transform="translate(16,16) rotate(180)">
-                        <polygon class="rating__star-stroke" points="0,15 4.41,6.07 14.27,4.64 7.13,-2.32 8.82,-12.14 0,-7.5 -8.82,-12.14 -7.13,-2.32 -14.27,4.64 -4.41,6.07" fill="none" />
-                        <polygon class="rating__star-fill" points="0,15 4.41,6.07 14.27,4.64 7.13,-2.32 8.82,-12.14 0,-7.5 -8.82,-12.14 -7.13,-2.32 -14.27,4.64 -4.41,6.07" fill="#000" />
-                      </g>
-                      <g transform="translate(16,16)" stroke-dasharray="12 12" stroke-dashoffset="12">
-                        <polyline class="rating__star-line" transform="rotate(0)" points="0 4,0 16" />
-                        <polyline class="rating__star-line" transform="rotate(72)" points="0 4,0 16" />
-                        <polyline class="rating__star-line" transform="rotate(144)" points="0 4,0 16" />
-                        <polyline class="rating__star-line" transform="rotate(216)" points="0 4,0 16" />
-                        <polyline class="rating__star-line" transform="rotate(288)" points="0 4,0 16" />
-                      </g>
-                    </g>
-                  </svg>
-                  <span class="tooltip-text black tooltip-top">${currentIsFavorite ? 'Remover dos favoritos' : 'Adicionar aos favoritos'}</span>
-                </button>
-              </div>
+        html += `
+          <div class="card-container ${containerClass}">
+            <div class="inner-container">
+                <div class="border-outer"></div> 
+                <div class="main-card" style="background-image: url('${selectedThumb}')"></div>
+                <div class="glow-layer-1"></div>
+                <div class="glow-layer-2"></div>
             </div>
-          `;
-        }
+
+            <div class="overlay-1"></div>
+            <div class="overlay-2"></div>
+            <div class="background-glow"></div>
+
+            <div id="group-series-button">
+              <div class="info">
+                <h2>${item.name}</h2>
+                <p>TEST</p>
+                <button class="${watchButtonClass}">${watchButtonText}</button>
+              </div>
+              <button class="favorite-button ${currentIsFavorite ? 'favorited' : ''}" data-serie='${JSON.stringify(item)}'>
+                <svg class="rating__star" width="24" height="24" viewBox="0 0 32 32" aria-hidden="true">
+                  <g transform="translate(16,16)">
+                    <circle class="rating__star-ring" fill="none" stroke="#000" stroke-width="16" r="8" transform="scale(0)" />
+                  </g>
+                  <g stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <g transform="translate(16,16) rotate(180)">
+                      <polygon class="rating__star-stroke" points="0,15 4.41,6.07 14.27,4.64 7.13,-2.32 8.82,-12.14 0,-7.5 -8.82,-12.14 -7.13,-2.32 -14.27,4.64 -4.41,6.07" fill="none" />
+                      <polygon class="rating__star-fill" points="0,15 4.41,6.07 14.27,4.64 7.13,-2.32 8.82,-12.14 0,-7.5 -8.82,-12.14 -7.13,-2.32 -14.27,4.64 -4.41,6.07" fill="#000" />
+                    </g>
+                    <g transform="translate(16,16)" stroke-dasharray="12 12" stroke-dashoffset="12">
+                      <polyline class="rating__star-line" transform="rotate(0)" points="0 4,0 16" />
+                      <polyline class="rating__star-line" transform="rotate(72)" points="0 4,0 16" />
+                      <polyline class="rating__star-line" transform="rotate(144)" points="0 4,0 16" />
+                      <polyline class="rating__star-line" transform="rotate(216)" points="0 4,0 16" />
+                      <polyline class="rating__star-line" transform="rotate(288)" points="0 4,0 16" />
+                    </g>
+                  </g>
+                </svg>
+                <span class="tooltip-text black tooltip-top">${currentIsFavorite ? 'Remover dos favoritos' : 'Adicionar aos favoritos'}</span>
+              </button>
+            </div>
+          </div>
+        `;
       });
       
       html += `</div>`;
@@ -721,6 +729,12 @@ function renderCarrousel(path) {
       };
       dotsContainer.appendChild(dot);
     }
+
+    if (totalSlides > 9) {
+      dotsContainer.classList.add('compact-dots');
+    } else {
+      dotsContainer.classList.remove('compact-dots');
+    }
   }
 
   function getLogicalIndex() {
@@ -918,8 +932,6 @@ function renderCarrousel(path) {
 
   carousel.addEventListener('mouseenter', pauseAutoPlay);
   carousel.addEventListener('mouseleave', resumeAutoPlay);
-
-  // Limpar slides anteriores antes de criar novos
   slidesContainer.innerHTML = '';
 
   createSlides();
@@ -1031,6 +1043,8 @@ document.addEventListener('DOMContentLoaded', () => {
             activateByPath(path);
             await loadPageContent(path);
             renderCarrousel(path);
+            attachFavoriteListeners();
+            updateCarouselFavorites();
         });
     });
 
@@ -1039,6 +1053,8 @@ document.addEventListener('DOMContentLoaded', () => {
         activateByPath(path);
         loadPageContent(path);
         renderCarrousel(path);
+        attachFavoriteListeners();
+        updateCarouselFavorites();
     });
 
     const currentPath = getCurrentPath();
