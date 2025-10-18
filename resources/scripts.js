@@ -335,6 +335,7 @@ function getFilteredItems(path) {
       if (allFavorites.length > 0) {
           const favoritesGroup = {
               group_name: "Favoritos",
+              group_slug: "favoritos",
               visible: true,
               group: allFavorites
           };
@@ -412,7 +413,10 @@ function loadPageContent(path) {
     const allFavorites = [];
     seriesData.forEach(groupItem => {
       if (groupItem.group) {
-        const favoritesInGroup = groupItem.group.filter(item => isFavorite(item.name));
+        const favoritesInGroup = groupItem.group.filter(item => isFavorite(item.name)).map(item => ({
+          ...item,
+          original_group: groupItem.group_name
+        }));
         allFavorites.push(...favoritesInGroup);
       }
     });
@@ -420,6 +424,7 @@ function loadPageContent(path) {
     if (allFavorites.length > 0) {
       const favoritesGroup = {
         group_name: "Favoritos",
+        group_slug: "favoritos",
         visible: true,
         group: allFavorites
       };
@@ -611,22 +616,26 @@ function loadPageContent(path) {
   }
 
   if (isHomePage) {
-    const globalRemoveBtns = contentContainer.querySelectorAll('#global-continue-watching .remove-button');
-    globalRemoveBtns.forEach(removeBtn => {
-      removeBtn.addEventListener('click', function(e) {
-        e.preventDefault();
-        e.stopPropagation();
-        const seriesName = this.getAttribute('data-series-name');
-        const seasonIdx = parseInt(this.getAttribute('data-season-index'));
-        const epIdx = parseInt(this.getAttribute('data-episode-index'));
-        removeContinueWatching(seriesName, seasonIdx, epIdx);
-        loadPageContent(getCurrentPath());
-      });
-  });
+      const globalRemoveBtns = contentContainer.querySelectorAll('#global-continue-watching .remove-button');
+      globalRemoveBtns.forEach(removeBtn => {
+        removeBtn.addEventListener('click', function(e) {
+          e.preventDefault();
+          e.stopPropagation();
+          const seriesName = this.getAttribute('data-series-name');
+          const seasonIdx = parseInt(this.getAttribute('data-season-index'));
+          const epIdx = parseInt(this.getAttribute('data-episode-index'));
+          removeContinueWatching(seriesName, seasonIdx, epIdx);
+          loadPageContent(getCurrentPath());
+        });
+    });
 
-  attachSeriesNavigationListeners(contentContainer);
-  initializeHomePageFeatures();
-}
+    attachSeriesNavigationListeners(contentContainer);
+    initializeHomePageFeatures();
+  }
+  
+  if (!isSeriesPage) {
+    attachSeriesNavigationListeners(contentContainer);
+  }
   
   attachFavoriteListeners(contentContainer);
   updateCarouselFavorites();
@@ -692,7 +701,7 @@ function initializeHomePageFeatures() {
 }
 
 function renderGroupSection(groupItem, isHomePage) {
-  const groupSlug = generateSlug(groupItem.group_name);
+  const groupSlug = groupItem.group_slug || generateSlug(groupItem.group_name);
   let html = '';
   
   html += `<section id="group-${groupSlug}-header">`;
@@ -773,6 +782,7 @@ function renderGroupSection(groupItem, isHomePage) {
     const currentIsFavorite = isFavorite(item.name);
     const containerClass = isEnabled ? '' : 'disabled';
     const seriesSlug = generateSlug(item.name);
+    const actualGroupSlug = item.original_group ? generateSlug(item.original_group) : groupSlug;
 
     html += `
       <div class="card-container ${containerClass}" data-series-slug="${seriesSlug}">
@@ -787,7 +797,7 @@ function renderGroupSection(groupItem, isHomePage) {
         <div class="overlay-2"></div>
         <div class="background-glow"></div>
 
-        <div id="group-series-button" data-series-slug="${seriesSlug}" data-group-slug="${groupSlug}">
+        <div id="group-series-button" data-series-slug="${seriesSlug}" data-group-slug="${actualGroupSlug}">
           <div class="info">
             <h2>${item.name}</h2>
             <p>TEST</p>
