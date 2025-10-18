@@ -40,9 +40,17 @@ const seriesData2 = [
             {
               name: "Temporada 01",
               thumb_season: "https://i.imgur.com/dRR1C5K.jpeg",
-              movies: false,
               episodes: [
                 { title: "Episódio 001", subtitle: "", duration: "1:09:48", thumb: "https://i.imgur.com/wSPSsZz.jpeg", url: [ "https://filemoon.to/e/fohv33go6fjl/2Efu4ZQADExGVxxV",                   "https://mixdrop.sn/e/gjojl1pptpow89",  "https://streamtape.com/get_video?id=kpZO7OpaKbF6l2&expires=1755927970&ip=FRuOExyNRxSNFt&token=j1EN2K21sdWR&stream=1",  "https://www.secvideo1.online/get_file/12/3b370c31cd091769c32c56cc419d14d100d7961945/799000/799756/799756_720p.mp4"] },
+                { title: "Episódio 002", subtitle: "", duration: "49:05", thumb: "https://i.imgur.com/wSPSsZz.jpeg", url: [ "https://filemoon.to/e/fohv33go6fjl/2Efu4ZQADExGVxxV",                   "https://mixdrop.sn/e/gjojl1pptpow89",  "https://streamtape.com/get_video?id=kpZO7OpaKbF6l2&expires=1755927970&ip=FRuOExyNRxSNFt&token=j1EN2K21sdWR&stream=1",  "https://www.secvideo1.online/get_file/12/3b370c31cd091769c32c56cc419d14d100d7961945/799000/799756/799756_720p.mp4"] },
+                { title: "Episódio 003", subtitle: "", duration: "55:05", thumb: "https://i.imgur.com/wSPSsZz.jpeg", url: [ "https://filemoon.to/e/fohv33go6fjl/2Efu4ZQADExGVxxV",                   "https://mixdrop.sn/e/gjojl1pptpow89",  "https://streamtape.com/get_video?id=kpZO7OpaKbF6l2&expires=1755927970&ip=FRuOExyNRxSNFt&token=j1EN2K21sdWR&stream=1",  "https://www.secvideo1.online/get_file/12/3b370c31cd091769c32c56cc419d14d100d7961945/799000/799756/799756_720p.mp4"] },
+                { title: "Episódio 003", subtitle: "", duration: "55:05", thumb: "https://i.imgur.com/wSPSsZz.jpeg", url: [ "https://filemoon.to/e/fohv33go6fjl/2Efu4ZQADExGVxxV",                   "https://mixdrop.sn/e/gjojl1pptpow89",  "https://streamtape.com/get_video?id=kpZO7OpaKbF6l2&expires=1755927970&ip=FRuOExyNRxSNFt&token=j1EN2K21sdWR&stream=1",  "https://www.secvideo1.online/get_file/12/3b370c31cd091769c32c56cc419d14d100d7961945/799000/799756/799756_720p.mp4"] },
+                { title: "Episódio 003", subtitle: "", duration: "55:05", thumb: "https://i.imgur.com/wSPSsZz.jpeg", url: [ "https://filemoon.to/e/fohv33go6fjl/2Efu4ZQADExGVxxV",                   "https://mixdrop.sn/e/gjojl1pptpow89",  "https://streamtape.com/get_video?id=kpZO7OpaKbF6l2&expires=1755927970&ip=FRuOExyNRxSNFt&token=j1EN2K21sdWR&stream=1",  "https://www.secvideo1.online/get_file/12/3b370c31cd091769c32c56cc419d14d100d7961945/799000/799756/799756_720p.mp4"] },
+                { title: "Episódio 003", subtitle: "", duration: "55:05", thumb: "https://i.imgur.com/wSPSsZz.jpeg", url: [ "https://filemoon.to/e/fohv33go6fjl/2Efu4ZQADExGVxxV",                   "https://mixdrop.sn/e/gjojl1pptpow89",  "https://streamtape.com/get_video?id=kpZO7OpaKbF6l2&expires=1755927970&ip=FRuOExyNRxSNFt&token=j1EN2K21sdWR&stream=1",  "https://www.secvideo1.online/get_file/12/3b370c31cd091769c32c56cc419d14d100d7961945/799000/799756/799756_720p.mp4"] },
+                { title: "Episódio 003", subtitle: "", duration: "55:05", thumb: "https://i.imgur.com/wSPSsZz.jpeg", url: [ "https://filemoon.to/e/fohv33go6fjl/2Efu4ZQADExGVxxV",                   "https://mixdrop.sn/e/gjojl1pptpow89",  "https://streamtape.com/get_video?id=kpZO7OpaKbF6l2&expires=1755927970&ip=FRuOExyNRxSNFt&token=j1EN2K21sdWR&stream=1",  "https://www.secvideo1.online/get_file/12/3b370c31cd091769c32c56cc419d14d100d7961945/799000/799756/799756_720p.mp4"] },
+                { title: "Episódio 003", subtitle: "", duration: "55:05", thumb: "https://i.imgur.com/wSPSsZz.jpeg", url: [ "https://filemoon.to/e/fohv33go6fjl/2Efu4ZQADExGVxxV",                   "https://mixdrop.sn/e/gjojl1pptpow89",  "https://streamtape.com/get_video?id=kpZO7OpaKbF6l2&expires=1755927970&ip=FRuOExyNRxSNFt&token=j1EN2K21sdWR&stream=1",  "https://www.secvideo1.online/get_file/12/3b370c31cd091769c32c56cc419d14d100d7961945/799000/799756/799756_720p.mp4"] },
+                { title: "Episódio 003", subtitle: "", duration: "55:05", thumb: "https://i.imgur.com/wSPSsZz.jpeg", url: [ "https://filemoon.to/e/fohv33go6fjl/2Efu4ZQADExGVxxV",                   "https://mixdrop.sn/e/gjojl1pptpow89",  "https://streamtape.com/get_video?id=kpZO7OpaKbF6l2&expires=1755927970&ip=FRuOExyNRxSNFt&token=j1EN2K21sdWR&stream=1",  "https://www.secvideo1.online/get_file/12/3b370c31cd091769c32c56cc419d14d100d7961945/799000/799756/799756_720p.mp4"] },
+
               ]
             }
           ],
@@ -80,9 +88,11 @@ const seriesData2 = [
             {
               name: "Temporada 01",
               thumb_season: "https://i.imgur.com/dRR1C5K.jpeg",
-              movies: false,
               episodes: [
-                { title: "Episódio 001", subtitle: "", duration: "1:09:48", thumb: "https://i.imgur.com/wSPSsZz.jpeg", url: [ "https://filemoon.to/e/fohv33go6fjl/2Efu4ZQADExGVxxV",                   "https://mixdrop.sn/e/gjojl1pptpow89",  "https://streamtape.com/get_video?id=kpZO7OpaKbF6l2&expires=1755927970&ip=FRuOExyNRxSNFt&token=j1EN2K21sdWR&stream=1",  "https://www.secvideo1.online/get_file/12/3b370c31cd091769c32c56cc419d14d100d7961945/799000/799756/799756_720p.mp4"] },
+                { title: "Episódio 001", subtitle: "", duration: "10:48", thumb: "https://i.imgur.com/wSPSsZz.jpeg", url: [ "https://filemoon.to/e/fohv33go6fjl/2Efu4ZQADExGVxxV",                   "https://mixdrop.sn/e/gjojl1pptpow89",  "https://streamtape.com/get_video?id=kpZO7OpaKbF6l2&expires=1755927970&ip=FRuOExyNRxSNFt&token=j1EN2K21sdWR&stream=1",  "https://www.secvideo1.online/get_file/12/3b370c31cd091769c32c56cc419d14d100d7961945/799000/799756/799756_720p.mp4"] },
+                { title: "Episódio 002", subtitle: "", duration: "20:49", thumb: "https://i.imgur.com/wSPSsZz.jpeg", url: [ "https://filemoon.to/e/fohv33go6fjl/2Efu4ZQADExGVxxV",                   "https://mixdrop.sn/e/gjojl1pptpow89",  "https://streamtape.com/get_video?id=kpZO7OpaKbF6l2&expires=1755927970&ip=FRuOExyNRxSNFt&token=j1EN2K21sdWR&stream=1",  "https://www.secvideo1.online/get_file/12/3b370c31cd091769c32c56cc419d14d100d7961945/799000/799756/799756_720p.mp4"] },
+                { title: "Episódio 003", subtitle: "", duration: "30:50", thumb: "https://i.imgur.com/wSPSsZz.jpeg", url: [ "https://filemoon.to/e/fohv33go6fjl/2Efu4ZQADExGVxxV",                   "https://mixdrop.sn/e/gjojl1pptpow89",  "https://streamtape.com/get_video?id=kpZO7OpaKbF6l2&expires=1755927970&ip=FRuOExyNRxSNFt&token=j1EN2K21sdWR&stream=1",  "https://www.secvideo1.online/get_file/12/3b370c31cd091769c32c56cc419d14d100d7961945/799000/799756/799756_720p.mp4"] },
+                { title: "Episódio 004", subtitle: "", duration: "40:51", thumb: "https://i.imgur.com/wSPSsZz.jpeg", url: [ "https://filemoon.to/e/fohv33go6fjl/2Efu4ZQADExGVxxV",                   "https://mixdrop.sn/e/gjojl1pptpow89",  "https://streamtape.com/get_video?id=kpZO7OpaKbF6l2&expires=1755927970&ip=FRuOExyNRxSNFt&token=j1EN2K21sdWR&stream=1",  "https://www.secvideo1.online/get_file/12/3b370c31cd091769c32c56cc419d14d100d7961945/799000/799756/799756_720p.mp4"] },
               ]
             }
           ],
@@ -98,7 +108,8 @@ let iconsAnimated           = false; //ATIVA AS ANIMAÇÕES DOS ICONES
 let randomImagesCards       = false; //AS IMAGENS ALEATÓRIAS DOS BOTÕES
 let randomImagesCarrousel   = false; //AS IMAGENS ALEATÓRIAS DO CARROUSEL
 let speedCarrouselBar       = 5;     //VELOCIDADE DAS ANIMAÇÕES DO CARROUSEL
-let carrouselInformation    = true;  //MOSTRA AS INFORMAÇÕES NO CARROUSEL
+
+localStorage.clear();
 
 //=======================================================================
 //ICONES
@@ -116,15 +127,11 @@ const seriesIconBase64      = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADI
 const biblicalIconBase64    = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAACXBIWXMAAAsTAAALEwEAmpwYAAAA0UlEQVR4nO3UOw7CMBBF0VuSImwBVgQsBYVNImgJGyH9oEgurBQo5IM95l1p2niOIhuUSloFNMAN6ABLNLPaA23C5W0JSJURwuZALhksb0tA7qVAulIgltlMbo3DBUEQBDFByAOy9jmTE+TLBBnb3152EwRBRiUIgiDIpwRBELKFLDmTS724CTIo9eImyKDUi5sgg+KPPIADUOMwixBbHGdh+j9BCZAa571KgdwC5IjzmgBpvV/2KrxYPeYJnDyDdhEm9cxuA5yBa/QAuIQoftQbj1q63jmvEcwAAAAASUVORK5CYII=';
 const twitchIconBase64      = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAACXBIWXMAAAsTAAALEwEAmpwYAAAA8ElEQVR4nO3RsQ3CMBBG4UdNj4COURiFTcwmrMIMSCQFEkPQc4gBcOzjkjine5JLy/8ng+NWwAOQhZyfHRsYJxaQiwfIGnh5gJwaGCYWkKvm0oRJyaYD8PYAOWu/ccKkZNPTC0QCMl0SEOohpXc1b0hACAgByRQQCQgByRUQCQgByRUQUUDGTDxAkgdIqtnUKiRl9nRLgaTMlh7YLwGSNIjWIGkAsctdLoFooLlRtacfQowFsUR0JYgxILMgrCGzISwhsyIwetgScQM2KLIaYPUTWw0CLwgaAHzP/V9Ebc0PLM0FAi8IvCDwgsALghb7APBVkMnu8/RMAAAAAElFTkSuQmCC';
 const youtubeIconBase64     = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAACXBIWXMAAAsTAAALEwEAmpwYAAACFElEQVR4nO2ZT0hUQRzHP5qBN0OxY+hJ6xJ0yIvgRQovXrrrkmB4CjoFeSgQ9iwdPQpCGwQdPKl0CILFP0gaIcIi4h6KWBMjdXWZeDAPtljfb7Y3szvCfOB7Wtjf78PO7Jv3GwgEAoFAIGDMdeA2MApMAa+AOeAdsAysAbvAN6Ck8xtQVTmu+qwIfAXywBLwBngNTAMZ4AFwC0v0ADPAZ6D8T1ONyhHwAXgCtP+PxGPgV5OaV5dkG7hTj0S0fCoeNK5qZA/oNpG4Bux70LBKSNZE5K4HjSohBRORRx40qgzSIYk886BJZZD7ksisB00qg4xLIu9TFhgGtnzY8J9SFohoAyaB7w5FFiSRTQsiMZ16qZ47EFmSRHYtisT0AYuWRTYlkaIDkZhhfcywIVKURH46FIlP0U+Bw5R1zoCWpEJpT7mmxPvnwtVDsdwgkS4LIjeSCqT9yU2XVtolXAFakwodON7sX1J+v9KJ3jIT2XEg0u/g77cgiWxckQfiuiTy0YJIvA9KDgSUzook8jZlgRE9HVGOMy+JZBvQhI28lEQmPGhSGWRMEhnyoEllkEFJpNvjUZDSqZiOhJY9aFYlJOrPiHs15ra+5BQYoA4e6oG08ig/9BS0bqJ1+BxYBU6a1PyJrv8CuIkFopNmrx73Z/T4P7oGyOn357x+EBarrg6O67hWyNW4VuiVTriBQCAQCAT4mz8yJp3ulSURNAAAAABJRU5ErkJggg==';
+const homeIconSvg           = `<svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="192" height="192" viewBox="0 0 24 24"><path d="M 12 2 A 1 1 0 0 0 11.289062 2.296875 L 1.203125 11.097656 A 0.5 0.5 0 0 0 1 11.5 A 0.5 0.5 0 0 0 1.5 12 L 4 12 L 4 20 C 4 20.552 4.448 21 5 21 L 9 21 C 9.552 21 10 20.552 10 20 L 10 14 L 14 14 L 14 20 C 14 20.552 14.448 21 15 21 L 19 21 C 19.552 21 20 20.552 20 20 L 20 12 L 22.5 12 A 0.5 0.5 0 0 0 23 11.5 A 0.5 0.5 0 0 0 22.796875 11.097656 L 12.716797 2.3027344 A 1 1 0 0 0 12.710938 2.296875 A 1 1 0 0 0 12 2 z"></path></svg>`;
 const kickIconSvg           = `<svg role="img" viewBox="-5 0 30 30" xmlns="http://www.w3.org/2000/svg" id="Kick--Streamline-Simple-Icons" class="custom-icon"><path d="M1.333 0h8v5.333H12V2.667h2.667V0h8v8H20v2.667h-2.667v2.666H20V16h2.667v8h-8v-2.667H12v-2.666H9.333V24h-8Z" fill="#000000" stroke-width="1"></path></svg>`;
-
 const homeIconImg           = 'https://i.imgur.com/xS20AuN.png';
 const historyIconImg        = 'https://i.imgur.com/nxaxTS3.png';
 const favoritesIconImg      = 'https://i.imgur.com/LAcxXkU.png'; //'https://i.imgur.com/UmEAJ1G.png';
-
-function generateSlug(name) {
-  return name.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/\s+/g, '-');
-}
 
 function getIcon(groupName) {
   const name = groupName.toLowerCase();
@@ -287,167 +294,317 @@ function attachFavoriteListeners(container = document) {
 }
 
 //=======================================================================
-//INÍCIO
+// FILTRO DE SÉRIES/GRUPOS
 //=======================================================================
-async function loadPageContent(path) {
-  const contentContainer = document.getElementById('page-content');
-  let html = '';
-  const filteredGroups = getFilteredItems(path);
-  const isFavoritesPage = path === generateSlug('Favoritos');
-  const isHomePage = path === generateSlug('Início');
+function getFilteredItems(path) {
+  const segments = path.split('/').filter(s => s);
 
-  if (filteredGroups.length > 0) { 
-    if (isFavoritesPage) {
-      html += '<h1 class="main-favorites-title">Meus Favoritos</h1>'; 
+  if (segments.length === 2) {
+    const [groupSlug, seriesSlug] = segments;
+    const series = findSeriesByGroupAndSlug(groupSlug, seriesSlug);
+    if (series) {
+      return [{ type: 'series', data: series }];
     }
+  }
 
-    filteredGroups.forEach(groupItem => {
-      const groupSlug = generateSlug(groupItem.group_name);
-      html += `<section id="group-${groupSlug}-header">`;
-      html += `<header class="group-title-header">`;
-      
-      let displayGroupName = groupItem.group_name;
-      if (isFavoritesPage) {
-        displayGroupName = `${groupItem.group_name} favoritos`;
-      }
-      
-      let iconHTML = '';
-      if (groupItem.group_name === 'Favoritos' && !isFavoritesPage) {
-        iconHTML = `<img src="${favoritesIconBase64}" class="custom-icon" alt="Favoritos Icon">`;
-      } else {
-        const iconData = getIcon(groupItem.group_name);
-        if (iconData.type === 'fa') {
-          iconHTML = `<i class="${iconData.value}"></i>`;
-        } else if (iconData.type === 'base64') {
-          iconHTML = `<img src="${iconData.value}" class="custom-icon" alt="${iconData.alt || groupItem.group_name + ' Icon'}">`;
-        } else if (iconData.type === 'svg') {
-          iconHTML = iconData.value;
-        }
-      }
-      
-      const sortedGroup = [...groupItem.group].sort((a, b) => {
-        if (a.enabled !== false && b.enabled === false) return -1;
-        if (b.enabled !== false && a.enabled === false) return 1;
-        return a.name.localeCompare(b.name);
+  if (segments.length === 1) {
+    const singlePath = segments[0];
+
+    if (singlePath === generateSlug('Favoritos')) {
+      return seriesData.map(groupItem => ({
+          ...groupItem,
+          group: groupItem.group ? groupItem.group.filter(item => isFavorite(item.name)) : []
+      })).filter(groupItem => groupItem.group.length > 0);
+
+    } else if (singlePath === generateSlug('Início')) {
+      const allFavorites = [];
+      seriesData.forEach(groupItem => {
+          if (groupItem.group) {
+              const favoritesInGroup = groupItem.group.filter(item => isFavorite(item.name));
+              allFavorites.push(...favoritesInGroup);
+          }
       });
 
-      const visibleItems = sortedGroup.filter(item => item.visible !== false && item.name);
-      const count = visibleItems.length;
+      const homepageGroups = seriesData
+          .filter(groupItem => groupItem.visible && groupItem.group && groupItem.group.length > 0)
+          .map(groupItem => ({
+              ...groupItem,
+              group: [...groupItem.group]
+          }));
 
-      let fullDisplayName = displayGroupName;
-      if (isFavoritesPage) {
-        fullDisplayName += ` (${count})`;
-      } else {
-        fullDisplayName += ` (${count} disponíveis)`;
+      if (allFavorites.length > 0) {
+          const favoritesGroup = {
+              group_name: "Favoritos",
+              visible: true,
+              group: allFavorites
+          };
+          return [favoritesGroup, ...homepageGroups];
+      }
+      return homepageGroups;
+    } else {
+        const matchingGroup = seriesData.find(groupItem => generateSlug(groupItem.group_name) === singlePath && groupItem.visible);
+        return matchingGroup ? [matchingGroup] : [];
+    }
+  }
+  return [];
+}
+
+function findSeriesByGroupAndSlug(groupSlug, seriesSlug) {
+  const matchingGroup = seriesData.find(groupItem => generateSlug(groupItem.group_name) === groupSlug);
+  if (matchingGroup && matchingGroup.group) {
+    const series = matchingGroup.group.find(item => generateSlug(item.name) === seriesSlug);
+    if (series) {
+      return { ...series, group_name: matchingGroup.group_name };
+    }
+  }
+  return null;
+}
+
+function attachSeriesNavigationListeners(container = document) {
+  const seriesButtons = container.querySelectorAll('#group-series-button[data-series-slug][data-group-slug]');
+  
+  seriesButtons.forEach(button => {
+    button.addEventListener('click', function(e) {
+      if (e.target.closest('.favorite-button') || e.target.closest('.watch-button')) {
+        return;
       }
       
-      const favoritesClass = isFavoritesPage || (groupItem.group_name === 'Favoritos' && !isFavoritesPage) ? 'favorites-header' : '';
-      html += `<h2 class="${favoritesClass}">${iconHTML} ${fullDisplayName}</h2>`;
+      e.preventDefault();
+      const groupSlug = this.getAttribute('data-group-slug');
+      const seriesSlug = this.getAttribute('data-series-slug');
+      window.location.hash = `#${groupSlug}/${seriesSlug}`;
+    });
+  });
+}
+
+function findSeriesByName(seriesName) {
+  for (const groupItem of seriesData) {
+    if (groupItem.group) {
+      const series = groupItem.group.find(item => item.name === seriesName);
+      if (series) {
+        return { ...series, group_name: groupItem.group_name };
+      }
+    }
+  }
+  return null;
+}
+
+//=======================================================================
+// PAGINA INICIAL
+//=======================================================================
+function loadPageContent(path) {
+  const contentContainer = document.getElementById('page-content');
+  let html = '';
+  const segments = path.split('/').filter(s => s);
+  const isFavoritesPage = segments.length === 1 && segments[0] === generateSlug('Favoritos');
+  const isHomePage = segments.length === 1 && segments[0] === generateSlug('Início');
+  const filteredItems = getFilteredItems(path);
+  const isSeriesPage = filteredItems.length > 0 && filteredItems[0].type === 'series';
+
+  if (isHomePage) {
+    const globalContinueHtml = renderGlobalContinueWatching();
+    if (globalContinueHtml) {
+      html += `
+        ${globalContinueHtml}
+      `;
+    }
+
+    const allFavorites = [];
+    seriesData.forEach(groupItem => {
+      if (groupItem.group) {
+        const favoritesInGroup = groupItem.group.filter(item => isFavorite(item.name));
+        allFavorites.push(...favoritesInGroup);
+      }
+    });
+
+    if (allFavorites.length > 0) {
+      const favoritesGroup = {
+        group_name: "Favoritos",
+        visible: true,
+        group: allFavorites
+      };
       
-      if (isHomePage) {
-        html += `
-        <button class="explore-button" data-group="${groupSlug}">
-          <svg xmlns="http://www.w3.org/2000/svg" class="arr-2" viewBox="0 0 24 24">
-            <path
-              d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"
-            ></path>
-          </svg>
-          <span class="text">Explorar</span>
-          <span class="circle"></span>
-          <svg xmlns="http://www.w3.org/2000/svg" class="arr-1" viewBox="0 0 24 24">
-            <path
-              d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"
-            ></path>
-          </svg>
-        </button>
-        `;
+      html += renderGroupSection(favoritesGroup, true);
+    }
+
+    const homepageGroups = seriesData
+      .filter(groupItem => groupItem.visible && groupItem.group && groupItem.group.length > 0)
+      .map(groupItem => ({
+        ...groupItem,
+        group: [...groupItem.group]
+      }));
+
+    homepageGroups.forEach(groupItem => {
+      if (groupItem.group_name === "Favoritos") return;
+      
+      html += renderGroupSection(groupItem, true);
+    });
+
+  } else if (isFavoritesPage) {
+    html += '<h1 class="main-favorites-title">Meus Favoritos</h1>';
+    
+    if (filteredItems.length > 0) {
+      filteredItems.forEach(groupItem => {
+        html += renderGroupSection(groupItem, false);
+      });
+    } else {
+      html += '<p>Você ainda não adicionou nenhum item aos favoritos.</p>';
+    }
+
+  } else if (isSeriesPage) {
+    const series = filteredItems[0].data;
+    let activeInThisSeries = [];
+    series.season.forEach((season, s) => {
+      for (let e = 0; e < season.episodes.length; e++) {
+        const w = getWatchedEpisode(series.name, s, e);
+        if (w && w.active) {
+          activeInThisSeries.push({ seasonIdx: s, epIdx: e });
+          break;
+        }
       }
-      html += `</header>`;
-          
-      const layoutClass = isHomePage ? 'home-layout' : 'category-layout';
-      html += `<div class="group-cards-header ${layoutClass}">`;
+    });
 
-      if (isHomePage) {
-        html += `<button class="nav-arrow prev hidden" aria-label="Cartões anteriores"><i class="fas fa-chevron-left"></i></button>`;
-      }
+    if (activeInThisSeries.length > 0) {
+      html += `
+        <section id="continue-watching">
+          <header class="group-title-header">
+            <h2>Continue Assistindo</h2>
+          </header>
+          <div class="continue-episodes-container">
+      `;
 
-      html += `<div class="group-cards-container ${layoutClass}">`;
-
-      visibleItems.forEach(item => {
-        const urls = item.thumb_buttons.url;
-        const selectedThumb = randomImagesCards 
-          ? urls[Math.floor(Math.random() * urls.length)] 
-          : urls[0];
-        const isEnabled = item.enabled !== false;
-        const watchButtonClass = isEnabled ? 'watch-button' : 'watch-button disabled';
-        const watchButtonText = isEnabled ? 'ASSISTIR' : 'INDISPONÍVEL';
-        const currentIsFavorite = isFavorite(item.name);
-        const containerClass = isEnabled ? '' : 'disabled';
+      activeInThisSeries.forEach((seasonActive) => {
+        const season = series.season[seasonActive.seasonIdx];
+        const episode = season.episodes[seasonActive.epIdx];
+        const thumb = episode.thumb || season.thumb_season;
+        const urls = episode.url || [];
+        const seasonNum = seasonActive.seasonIdx + 1;
+        const epNum = seasonActive.epIdx + 1;
+        const paddedEp = epNum.toString().padStart(3, '0');
 
         html += `
-          <div class="card-container ${containerClass}">
-            <div class="inner-container">
-                <div class="border-outer"></div> 
-                <div class="main-card" style="background-image: url('${selectedThumb}')"></div>
-                <div class="glow-layer-1"></div>
-                <div class="glow-layer-2"></div>
-            </div>
-
-            <div class="overlay-1"></div>
-            <div class="overlay-2"></div>
-            <div class="background-glow"></div>
-
-            <div id="group-series-button">
-              <div class="info">
-                <h2>${item.name}</h2>
-                <p>TEST</p>
-                <button class="${watchButtonClass}">${watchButtonText}</button>
-              </div>
-              <button class="favorite-button ${currentIsFavorite ? 'favorited' : ''}" data-serie='${JSON.stringify(item)}'>
-                <svg class="rating__star" width="24" height="24" viewBox="0 0 32 32" aria-hidden="true">
-                  <g transform="translate(16,16)">
-                    <circle class="rating__star-ring" fill="none" stroke="#000" stroke-width="16" r="8" transform="scale(0)" />
-                  </g>
-                  <g stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <g transform="translate(16,16) rotate(180)">
-                      <polygon class="rating__star-stroke" points="0,15 4.41,6.07 14.27,4.64 7.13,-2.32 8.82,-12.14 0,-7.5 -8.82,-12.14 -7.13,-2.32 -14.27,4.64 -4.41,6.07" fill="none" />
-                      <polygon class="rating__star-fill" points="0,15 4.41,6.07 14.27,4.64 7.13,-2.32 8.82,-12.14 0,-7.5 -8.82,-12.14 -7.13,-2.32 -14.27,4.64 -4.41,6.07" fill="#000" />
-                    </g>
-                    <g transform="translate(16,16)" stroke-dasharray="12 12" stroke-dashoffset="12">
-                      <polyline class="rating__star-line" transform="rotate(0)" points="0 4,0 16" />
-                      <polyline class="rating__star-line" transform="rotate(72)" points="0 4,0 16" />
-                      <polyline class="rating__star-line" transform="rotate(144)" points="0 4,0 16" />
-                      <polyline class="rating__star-line" transform="rotate(216)" points="0 4,0 16" />
-                      <polyline class="rating__star-line" transform="rotate(288)" points="0 4,0 16" />
-                    </g>
-                  </g>
-                </svg>
-                <span class="tooltip-text black tooltip-top">${currentIsFavorite ? 'Remover dos favoritos' : 'Adicionar aos favoritos'}</span>
-              </button>
+          <div class="continue-episode-container">
+            <div id="continue-episode-button" 
+                style="background-image: url('${thumb}');" 
+                data-urls='${JSON.stringify(urls)}' 
+                data-series-name="${series.name}" 
+                data-season-index="${seasonActive.seasonIdx}" 
+                data-episode-index="${seasonActive.epIdx}" 
+                onclick="playContinueEpisode(this)">
+              <span class="icon-btn">
+                <span class="trash-lid"></span>
+                <span class="trash-handle"></span>
+                <span class="trash-bar bar1"></span>
+                <span class="trash-bar bar2"></span>
+                <span class="trash-bar bar3"></span>
+              </span>
+              <span class="badge-duration">${episode.duration}</span>
+              <p>T${seasonNum} - EP ${paddedEp}</p>
+              <div class="remove-button" 
+                  data-series-name="${series.name}" 
+                  data-season-index="${seasonActive.seasonIdx}" 
+                  data-episode-index="${seasonActive.epIdx}">✕</div>
             </div>
           </div>
         `;
       });
-      
-      html += `</div>`;
 
-      if (isHomePage) {
-        html += `<button class="nav-arrow next" aria-label="Próximos cartões"><i class="fas fa-chevron-right"></i></button>`;
-      }
-      html += `</div>`;
-      html += '</section>';
+      html += `
+          </div>
+        </section>
+      `;
+    }
+
+    html += `
+      <section id="series-header">
+        <header class="group-title-header">
+          <button class="back-button" onclick="history.back()">
+            <i class="fas fa-arrow-left"></i> Voltar
+          </button>
+          <h1 class="series-title">${series.name}</h1>
+        </header>
+      </section>
+    `;
+
+    html += `
+      <section id="series-episodes">
+        <div class="episodes-container">
+    `;
+
+    series.season.forEach((season, seasonIndex) => {
+      season.episodes.forEach((episode, episodeIndex) => {
+        const firstUrl = episode.url && episode.url.length > 0 ? episode.url[0] : '#';
+        const watchedData = getWatchedEpisode(series.name, seasonIndex, episodeIndex);
+        const isWatched = watchedData && watchedData.watched;
+        const isActive = watchedData && watchedData.active;
+        
+        let buttonClasses = '';
+        if (isActive) buttonClasses += 'active ';
+        if (isWatched) buttonClasses += 'watched ';
+        buttonClasses = buttonClasses.trim();
+        
+        html += `
+          <div class="episode-container slide-in-right" style="opacity: 1;">
+            <div id="episode-button" 
+                data-series-name="${series.name}"
+                data-url="${firstUrl}" 
+                data-urls='${JSON.stringify(episode.url || [])}'
+                data-season-index="${seasonIndex}"
+                data-episode-index="${episodeIndex}"
+                class="${buttonClasses}" 
+                onclick="playEpisode(this)"
+                style="background-image: url('${episode.thumb || season.thumb_season}');">
+              <img class="episode-thumb" 
+                  data-src="${episode.thumb}" 
+                  data-fallback="${season.thumb_season}" 
+                  alt="${episode.title}" 
+                  loading="lazy"
+                  src="${episode.thumb || season.thumb_season}"
+                  style="opacity: 0; transition: opacity 0.3s ease-in;">
+              <span class="icon-btn"></span>
+              ${isWatched ? '<span class="badge-watched">▶ ASSISTIDO</span>' : ''}
+              <span class="badge-duration">${episode.duration}</span>
+            </div>
+            <p class="episode-title">${episode.title}</p>
+            <p class="episode-subtitle">${episode.subtitle || ''}</p>
+          </div>
+        `;
+      });
     });
-  } 
-  else {
-    if (isFavoritesPage) {
-      html += '<h1 class="main-favorites-title">Meus Favoritos</h1>';
-      html += '<p>Você ainda não adicionou nenhum item aos favoritos.</p>';
+
+    html += `
+        </div>
+      </section>
+    `;
+
+  } else {
+    if (filteredItems.length > 0) {
+      filteredItems.forEach(groupItem => {
+        html += renderGroupSection(groupItem, false);
+      });
     } else {
       html += '<p>Nenhum item encontrado.</p>';
     }
   }
 
   contentContainer.innerHTML = html;
+
+  if (isSeriesPage) {
+    const removeBtns = contentContainer.querySelectorAll('.remove-button');
+    removeBtns.forEach(removeBtn => {
+      removeBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        const seriesName = this.getAttribute('data-series-name');
+        const seasonIdx = parseInt(this.getAttribute('data-season-index'));
+        const epIdx = parseInt(this.getAttribute('data-episode-index'));
+        removeContinueWatching(seriesName, seasonIdx, epIdx);
+      });
+    });
+    loadEpisodeImages();
+    updateEpisodeUI();
+    updateSeriesContinueWatching();
+  }
 
   if (isHomePage) {
     initializeHomePageFeatures();
@@ -516,52 +673,556 @@ function initializeHomePageFeatures() {
   });
 }
 
-function getFilteredItems(path) {
-  if (path === generateSlug('Favoritos')) {
-    return seriesData.map(groupItem => ({
-        ...groupItem,
-        group: groupItem.group ? groupItem.group.filter(item => isFavorite(item.name)) : []
-    })).filter(groupItem => groupItem.group.length > 0);
+function renderGroupSection(groupItem, isHomePage) {
+  const groupSlug = generateSlug(groupItem.group_name);
+  let html = '';
+  
+  html += `<section id="group-${groupSlug}-header">`;
+  html += `<header class="group-title-header">`;
+  
+  let displayGroupName = groupItem.group_name;
+  let iconHTML = '';
+  
+  if (groupItem.group_name === 'Favoritos') {
+    iconHTML = `<img src="${favoritesIconBase64}" class="custom-icon" alt="Favoritos Icon">`;
+  } else {
+    const iconData = getIcon(groupItem.group_name);
+    if (iconData.type === 'fa') {
+      iconHTML = `<i class="${iconData.value}"></i>`;
+    } else if (iconData.type === 'base64') {
+      iconHTML = `<img src="${iconData.value}" class="custom-icon" alt="${iconData.alt || groupItem.group_name + ' Icon'}">`;
+    } else if (iconData.type === 'svg') {
+      iconHTML = iconData.value;
+    }
+  }
+  
+  const sortedGroup = [...groupItem.group].sort((a, b) => {
+    if (a.enabled !== false && b.enabled === false) return -1;
+    if (b.enabled !== false && a.enabled === false) return 1;
+    return a.name.localeCompare(b.name);
+  });
 
-  } else if (path === generateSlug('Início')) {
-    const allFavorites = [];
-    seriesData.forEach(groupItem => {
-        if (groupItem.group) {
-            const favoritesInGroup = groupItem.group.filter(item => isFavorite(item.name));
-            allFavorites.push(...favoritesInGroup);
+  const visibleItems = sortedGroup.filter(item => item.visible !== false && item.name);
+  const count = visibleItems.length;
+
+  let fullDisplayName = displayGroupName;
+  if (groupItem.group_name === 'Favoritos') {
+    fullDisplayName += ` (${count})`;
+  } else {
+    fullDisplayName += ` (${count} disponíveis)`;
+  }
+  
+  const favoritesClass = groupItem.group_name === 'Favoritos' ? 'favorites-header' : '';
+  html += `<h2 class="${favoritesClass}">${iconHTML} ${fullDisplayName}</h2>`;
+  
+  if (isHomePage && groupItem.group_name !== 'Favoritos') {
+    html += `
+    <button class="explore-button" data-group="${groupSlug}">
+      <svg xmlns="http://www.w3.org/2000/svg" class="arr-2" viewBox="0 0 24 24">
+        <path
+          d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"
+        ></path>
+      </svg>
+      <span class="text">Explorar</span>
+      <span class="circle"></span>
+      <svg xmlns="http://www.w3.org/2000/svg" class="arr-1" viewBox="0 0 24 24">
+        <path
+          d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"
+        ></path>
+      </svg>
+    </button>
+    `;
+  }
+  html += `</header>`;
+      
+  const layoutClass = isHomePage ? 'home-layout' : 'category-layout';
+  html += `<div class="group-cards-header ${layoutClass}">`;
+
+  if (isHomePage) {
+    html += `<button class="nav-arrow prev hidden" aria-label="Cartões anteriores"><i class="fas fa-chevron-left"></i></button>`;
+  }
+
+  html += `<div class="group-cards-container ${layoutClass}">`;
+
+  visibleItems.forEach(item => {
+    const urls = item.thumb_buttons.url;
+    const selectedThumb = randomImagesCards 
+      ? urls[Math.floor(Math.random() * urls.length)] 
+      : urls[0];
+    const isEnabled = item.enabled !== false;
+    const watchButtonClass = isEnabled ? 'watch-button' : 'watch-button disabled';
+    const watchButtonText = isEnabled ? 'ASSISTIR' : 'INDISPONÍVEL';
+    const currentIsFavorite = isFavorite(item.name);
+    const containerClass = isEnabled ? '' : 'disabled';
+    const seriesSlug = generateSlug(item.name);
+
+    html += `
+      <div class="card-container ${containerClass}" data-series-slug="${seriesSlug}">
+        <div class="inner-container">
+            <div class="border-outer"></div> 
+            <div class="main-card" style="background-image: url('${selectedThumb}')"></div>
+            <div class="glow-layer-1"></div>
+            <div class="glow-layer-2"></div>
+        </div>
+
+        <div class="overlay-1"></div>
+        <div class="overlay-2"></div>
+        <div class="background-glow"></div>
+
+        <div id="group-series-button" data-series-slug="${seriesSlug}" data-group-slug="${groupSlug}">
+          <div class="info">
+            <h2>${item.name}</h2>
+            <p>TEST</p>
+            <button class="${watchButtonClass}">${watchButtonText}</button>
+          </div>
+          <button class="favorite-button ${currentIsFavorite ? 'favorited' : ''}" data-serie='${JSON.stringify(item)}'>
+            <svg class="rating__star" width="24" height="24" viewBox="0 0 32 32" aria-hidden="true">
+              <g transform="translate(16,16)">
+                <circle class="rating__star-ring" fill="none" stroke="#000" stroke-width="16" r="8" transform="scale(0)" />
+              </g>
+              <g stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <g transform="translate(16,16) rotate(180)">
+                  <polygon class="rating__star-stroke" points="0,15 4.41,6.07 14.27,4.64 7.13,-2.32 8.82,-12.14 0,-7.5 -8.82,-12.14 -7.13,-2.32 -14.27,4.64 -4.41,6.07" fill="none" />
+                  <polygon class="rating__star-fill" points="0,15 4.41,6.07 14.27,4.64 7.13,-2.32 8.82,-12.14 0,-7.5 -8.82,-12.14 -7.13,-2.32 -14.27,4.64 -4.41,6.07" fill="#000" />
+                </g>
+                <g transform="translate(16,16)" stroke-dasharray="12 12" stroke-dashoffset="12">
+                  <polyline class="rating__star-line" transform="rotate(0)" points="0 4,0 16" />
+                  <polyline class="rating__star-line" transform="rotate(72)" points="0 4,0 16" />
+                  <polyline class="rating__star-line" transform="rotate(144)" points="0 4,0 16" />
+                  <polyline class="rating__star-line" transform="rotate(216)" points="0 4,0 16" />
+                  <polyline class="rating__star-line" transform="rotate(288)" points="0 4,0 16" />
+                </g>
+              </g>
+            </svg>
+            <span class="tooltip-text black tooltip-top">${currentIsFavorite ? 'Remover dos favoritos' : 'Adicionar aos favoritos'}</span>
+          </button>
+        </div>
+      </div>
+    `;
+  });
+  
+  html += `</div>`;
+
+  if (isHomePage) {
+    html += `<button class="nav-arrow next" aria-label="Próximos cartões"><i class="fas fa-chevron-right"></i></button>`;
+  }
+  html += `</div>`;
+  html += '</section>';
+  
+  return html;
+}
+
+//=======================================================================
+// SISTEMA DE EPISÓDIOS
+//=======================================================================
+function getWatchedEpisodes() {
+  const watched = localStorage.getItem('watchedEpisodes');
+  return watched ? JSON.parse(watched) : {};
+}
+
+function saveWatchedEpisodes(watched) {
+  localStorage.setItem('watchedEpisodes', JSON.stringify(watched));
+}
+
+function getWatchedEpisode(seriesName, seasonIndex, episodeIndex) {
+  const watched = getWatchedEpisodes();
+  const key = `${seriesName}-${seasonIndex}-${episodeIndex}`;
+  return watched[key] || null;
+}
+
+function markEpisodeAsWatched(seriesName, seasonIndex, episodeIndex) {
+  const watched = getWatchedEpisodes();
+  const currentKey = `${seriesName}-${seasonIndex}-${episodeIndex}`;
+
+  Object.keys(watched).forEach(key => {
+    const [sName, sIndex, eIndex] = key.split('-');
+    if (sName === seriesName && parseInt(sIndex) === seasonIndex && key !== currentKey) {
+      if (watched[key]) {
+        watched[key].active = false;
+        console.log(`Desativado active em: ${key}`);
+      }
+    }
+  });
+
+  watched[currentKey] = {
+    watched: true,
+    active: true,
+    timestamp: Date.now(),
+    series: seriesName,
+    season: seasonIndex,
+    episode: episodeIndex
+  };
+
+  saveWatchedEpisodes(watched);
+  updateEpisodeUI();
+  console.log(`Marcado em ${seriesName}: Ep ${episodeIndex + 1}`);
+}
+
+function getActiveEpisodesBySeries() {
+  const watched = getWatchedEpisodes();
+  const activeBySeries = {};
+  
+  Object.keys(watched).forEach(key => {
+    const data = watched[key];
+    if (data && data.active) {
+      const [seriesName, seasonIndex, episodeIndex] = key.split('-');
+      
+      if (!activeBySeries[seriesName]) {
+        activeBySeries[seriesName] = [];
+      }
+      
+      const existingSeasonIndex = activeBySeries[seriesName].findIndex(
+        item => item.seasonIndex === parseInt(seasonIndex)
+      );
+      
+      if (existingSeasonIndex === -1) {
+        activeBySeries[seriesName].push({
+          seasonIndex: parseInt(seasonIndex),
+          episodeIndex: parseInt(episodeIndex),
+          data: data
+        });
+      }
+    }
+  });
+  
+  return activeBySeries;
+}
+
+function updateEpisodeUI() {
+  const seriesTitle = document.querySelector('.series-title')?.textContent || '';
+  if (!seriesTitle) return;
+
+  const watched = getWatchedEpisodes();
+  const episodeButtons = document.querySelectorAll('#episode-button[data-series-name="' + seriesTitle + '"]');
+  episodeButtons.forEach(button => {
+    button.classList.remove('watched', 'active');
+    const existingBadge = button.querySelector('.badge-watched');
+    if (existingBadge) {
+      existingBadge.remove();
+    }
+  });
+
+  Object.keys(watched).forEach(key => {
+    const [storedSeriesName, seasonIdx, epIdx] = key.split('-');
+    if (storedSeriesName !== seriesTitle) return;
+
+    const data = watched[key];
+    if (data && data.watched) {
+      const seasonIdxNum = parseInt(seasonIdx);
+      const epIdxNum = parseInt(epIdx);
+      const targetButton = Array.from(episodeButtons).find(btn => {
+        return btn.getAttribute('data-season-index') === seasonIdxNum.toString() && btn.getAttribute('data-episode-index') === epIdxNum.toString();
+      });
+      
+      if (targetButton) {
+        targetButton.classList.add('watched');
+        
+        if (!targetButton.querySelector('.badge-watched')) {
+          const badge = document.createElement('span');
+          badge.className = 'badge-watched';
+          badge.textContent = '▶ ASSISTIDO';
+          targetButton.appendChild(badge);
+        }
+        
+        if (data.active) {
+          targetButton.classList.add('active');
+        }
+      }
+    }
+  });
+}
+
+function playEpisode(element) {
+  const urlsStr = element.getAttribute('data-urls') || '[]';
+  const urls = JSON.parse(urlsStr);
+  const firstUrl = urls.length > 0 ? urls[0] : '#';
+  const seasonIndex = parseInt(element.getAttribute('data-season-index'));
+  const episodeIndex = parseInt(element.getAttribute('data-episode-index'));
+  const seriesTitle = document.querySelector('.series-title').textContent;
+
+  markEpisodeAsWatched(seriesTitle, seasonIndex, episodeIndex);
+  updateSeriesContinueWatching(seriesTitle);
+
+  if (firstUrl && firstUrl !== '#') {
+    window.open(firstUrl, '_blank');
+  }
+}
+
+const thumbnailCache = {};
+
+function loadEpisodeImages() {
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const img = entry.target;
+                const src = img.dataset.src;
+                const fallback = img.dataset.fallback;
+
+                if (thumbnailCache[src]) {
+                    img.src = thumbnailCache[src];
+                    img.closest('#episode-button').style.backgroundImage = `url('${thumbnailCache[src]}')`;
+                } else {
+                    img.style.opacity = '0';
+                    img.src = src;
+                    img.onload = () => {
+                        thumbnailCache[src] = src;
+                        img.closest('#episode-button').style.backgroundImage = `url('${src}')`;
+                        img.style.transition = 'opacity 0.3s ease-in';
+                        img.style.opacity = '1';
+                    };
+                    img.onerror = () => {
+                        img.src = fallback;
+                        thumbnailCache[src] = fallback;
+                        img.closest('#episode-button').style.backgroundImage = `url('${fallback}')`;
+                        img.style.transition = 'opacity 0.3s ease-in';
+                        img.style.opacity = '1';
+                    };
+                }
+                observer.unobserve(img);
+            }
+        });
+    }, { rootMargin: '200px' });
+
+    document.querySelectorAll('.episode-thumb').forEach(img => {
+        if (!img.src || img.src === '') {
+            observer.observe(img);
+        } else if (thumbnailCache[img.dataset.src]) {
+            img.style.opacity = '0';
+            img.src = thumbnailCache[img.dataset.src];
+            img.style.transition = 'opacity 0.3s ease-in';
+            img.style.opacity = '1';
         }
     });
+}
 
-    const homepageGroups = seriesData
-        .filter(groupItem => groupItem.visible && groupItem.group && groupItem.group.length > 0)
-        .map(groupItem => ({
-            ...groupItem,
-            group: [...groupItem.group]
-        }));
+//=======================================================================
+//CONTINUE ASSISTINDO
+//=======================================================================
+function updateSeriesContinueWatching(seriesName) {
+  const watched = getWatchedEpisodes();
+  let activeInThisSeries = [];
 
-    if (allFavorites.length > 0) {
-        const favoritesGroup = {
-            group_name: "Favoritos",
-            visible: true,
-            group: allFavorites
-        };
-        return [favoritesGroup, ...homepageGroups];
+  Object.keys(watched).forEach(key => {
+    const [storedSeriesName, seasonIdx, epIdx] = key.split('-');
+    if (storedSeriesName === seriesName && watched[key] && watched[key].active) {
+      activeInThisSeries.push({ seasonIdx: parseInt(seasonIdx), epIdx: parseInt(epIdx) });
     }
-    return homepageGroups;
-  } else {
-      const matchingGroup = seriesData.find(groupItem => generateSlug(groupItem.group_name) === path && groupItem.visible);
-      return matchingGroup ? [matchingGroup] : [];
+  });
+
+  let continueSection = document.getElementById('continue-watching');
+  const seriesHeader = document.getElementById('series-header');
+  const seriesEpisodes = document.getElementById('series-episodes');
+
+  let html = '';
+  if (activeInThisSeries.length > 0) {
+    html += `
+      <section id="continue-watching">
+        <header class="group-title-header">
+          <h2>Continue Assistindo</h2>
+        </header>
+        <div class="continue-episodes-container">
+    `;
+
+    activeInThisSeries.forEach((seasonActive) => {
+      const series = findSeriesByName(seriesName);
+      if (!series || !series.season[seasonActive.seasonIdx]) return;
+
+      const season = series.season[seasonActive.seasonIdx];
+      const episode = season.episodes[seasonActive.epIdx];
+      const thumb = episode.thumb || season.thumb_season;
+      const urls = episode.url || [];
+      const seasonNum = seasonActive.seasonIdx + 1;
+      const epNum = seasonActive.epIdx + 1;
+      const paddedEp = epNum.toString().padStart(3, '0');
+
+      html += `
+        <div class="continue-episode-container">
+          <div id="continue-episode-button" 
+              style="background-image: url('${thumb}');" 
+              data-urls='${JSON.stringify(urls)}' 
+              data-series-name="${seriesName}" 
+              data-season-index="${seasonActive.seasonIdx}" 
+              data-episode-index="${seasonActive.epIdx}" 
+              onclick="playContinueEpisode(this)">
+            <span class="icon-btn">
+              <span class="trash-lid"></span>
+              <span class="trash-handle"></span>
+              <span class="trash-bar bar1"></span>
+              <span class="trash-bar bar2"></span>
+              <span class="trash-bar bar3"></span>
+            </span>
+            <span class="badge-duration">${episode.duration}</span>
+            <p>T${seasonNum} - EP ${paddedEp}</p>
+            <div class="remove-button" 
+                data-series-name="${seriesName}" 
+                data-season-index="${seasonActive.seasonIdx}" 
+                data-episode-index="${seasonActive.epIdx}">✕</div>
+          </div>
+        </div>
+      `;
+    });
+
+    html += `
+        </div>
+      </section>
+    `;
+  }
+
+  if (activeInThisSeries.length === 0) {
+    if (continueSection) {
+      continueSection.remove();
+    }
+    return;
+  }
+
+  if (!continueSection) {
+    continueSection = document.createElement('div');
+    continueSection.id = 'continue-watching';
+    if (seriesHeader) {
+      seriesHeader.parentNode.insertBefore(continueSection, seriesHeader);
+    } else if (seriesEpisodes) {
+      seriesEpisodes.parentNode.insertBefore(continueSection, seriesEpisodes);
+    } else {
+      document.getElementById('page-content').insertAdjacentElement('afterbegin', continueSection);
+    }
+  }
+
+  continueSection.innerHTML = html;
+
+  const removeBtns = continueSection.querySelectorAll('.remove-button');
+  removeBtns.forEach(removeBtn => {
+    removeBtn.addEventListener('click', function(e) {
+      e.preventDefault();
+      e.stopPropagation();
+      const rmSeriesName = this.getAttribute('data-series-name');
+      const rmSeasonIdx = parseInt(this.getAttribute('data-season-index'));
+      const rmEpIdx = parseInt(this.getAttribute('data-episode-index'));
+      removeContinueWatching(rmSeriesName, rmSeasonIdx, rmEpIdx);
+      updateSeriesContinueWatching(rmSeriesName);
+    });
+  });
+
+  const continueButtons = continueSection.querySelectorAll('#continue-episode-button');
+  continueButtons.forEach(btn => {
+    if (!btn.onclick) {
+      btn.onclick = function() {
+        playContinueEpisode(this);
+      };
+    }
+  });
+}
+
+function renderGlobalContinueWatching() {
+  const activeBySeries = getActiveEpisodesBySeries();
+  let html = '';
+  let totalEpisodes = 0;
+
+  Object.keys(activeBySeries).forEach(seriesName => {
+    totalEpisodes += activeBySeries[seriesName].length;
+  });
+
+  if (totalEpisodes === 0) return '';
+
+  html += `
+    <section id="global-continue-watching">
+      <header class="group-title-header">
+        <h2>Continue Assistindo (${totalEpisodes} episódio${totalEpisodes > 1 ? 's' : ''})</h2>
+      </header>
+      <div class="global-continue-container">
+  `;
+
+  Object.keys(activeBySeries).forEach(seriesName => {
+    const seriesData = findSeriesByName(seriesName);
+    if (!seriesData) return;
+
+    const activeEpisodes = activeBySeries[seriesName];
+    
+    activeEpisodes.forEach(active => {
+      const season = seriesData.season[active.seasonIndex];
+      const episode = season.episodes[active.episodeIndex];
+      const thumb = episode.thumb || season.thumb_season;
+      const urls = episode.url || [];
+      const seasonNum = active.seasonIndex + 1;
+      const epNum = active.episodeIndex + 1;
+      const paddedEp = epNum.toString().padStart(3, '0');
+
+      html += `
+        <div class="continue-episode-card">
+          <div id="continue-episode-button" 
+              style="background-image: url('${thumb}');" 
+              data-urls='${JSON.stringify(urls)}' 
+              data-series-name="${seriesName}" 
+              data-season-index="${active.seasonIndex}" 
+              data-episode-index="${active.episodeIndex}" 
+              onclick="playContinueEpisode(this)">
+            <span class="icon-btn">
+              <span class="trash-lid"></span>
+              <span class="trash-handle"></span>
+              <span class="trash-bar bar1"></span>
+              <span class="trash-bar bar2"></span>
+              <span class="trash-bar bar3"></span>
+            </span>
+            <span class="badge-duration">${episode.duration}</span>
+            <h1 class="series-name">${seriesName}</h1>
+            <h3 class="episode-info">T${seasonNum} - EP ${paddedEp}</h3>
+            <div class="remove-button" 
+                data-series-name="${seriesName}" 
+                data-season-index="${active.seasonIndex}" 
+                data-episode-index="${active.episodeIndex}">✕</div>
+          </div>
+        </div>
+      `;
+    });
+  });
+
+  html += `
+      </div>
+    </section>
+  `;
+
+  return html;
+}
+
+function playContinueEpisode(element) {
+  const urlsStr = element.getAttribute('data-urls');
+  const urls = urlsStr ? JSON.parse(urlsStr) : [];
+  const firstUrl = urls.length > 0 ? urls[0] : '#';
+  const seriesName = element.getAttribute('data-series-name');
+  const seasonIdx = parseInt(element.getAttribute('data-season-index'));
+  const epIdx = parseInt(element.getAttribute('data-episode-index'));
+
+  markEpisodeAsWatched(seriesName, seasonIdx, epIdx);
+  updateSeriesContinueWatching(seriesName);
+
+  if (firstUrl && firstUrl !== '#') {
+    window.open(firstUrl, '_blank');
+  }
+}
+
+function removeContinueWatching(seriesName, seasonIdx, epIdx) {
+  const watched = getWatchedEpisodes();
+  const key = `${seriesName}-${seasonIdx}-${epIdx}`;
+  if (watched[key]) {
+    watched[key].active = false;
+    saveWatchedEpisodes(watched);
+    updateEpisodeUI();
+    updateSeriesContinueWatching(seriesName);
   }
 }
 
 //=======================================================================
-//MENU LATERAL
+//INÍCIO
 //=======================================================================
+function generateSlug(name) {
+  return name.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/\s+/g, '-');
+}
+
 function activateByPath(path) {
+  const firstSegment = path.split('/')[0];
   document.querySelectorAll('.sidebar li').forEach(li => li.classList.remove('active'));
-  const targetLink = document.querySelector(`a[data-path="${path}"], a[data-group="${path}"]`);
+  const targetLink = document.querySelector(`a[data-path="${firstSegment}"], a[data-group="${firstSegment}"]`);
   if (targetLink) targetLink.closest('li').classList.add('active');
-  else if (path === generateSlug('Início') || path === 'inicio')
+  else if (firstSegment === generateSlug('Início') || firstSegment === 'inicio')
     document.querySelector('#main-menu-list li:first-child').classList.add('active');
 }
 
@@ -569,19 +1230,22 @@ function getCurrentPath() {
   let hash = window.location.hash;
 
   if (hash && hash.length > 1) {
-    const pathPart = hash.substring(1).split('/')[0];
-    return pathPart || generateSlug('Início');
+    return hash.substring(1);
   }
     
   return generateSlug('Início');
 }
 
 function getCarouselData(path) {
-  const isHomePage = path === generateSlug('Início');
+  const segments = path.split('/').filter(s => s);
+  if (segments.length === 2) {
+    return [];
+  }
+  
+  const isHomePage = segments.length === 1 && segments[0] === generateSlug('Início');
   let data = [];
 
   if (isHomePage) {
-    // Para homepage: coletar itens de todos os grupos com enabled: true e homepage: true
     seriesData.forEach(groupItem => {
       if (groupItem.group) {
         const homepageItems = groupItem.group.filter(item => 
@@ -594,8 +1258,8 @@ function getCarouselData(path) {
       }
     });
   } else {
-    // Para páginas de categoria: encontrar o grupo e coletar itens com enabled: true (independentemente de homepage)
-    const matchingGroup = seriesData.find(groupItem => generateSlug(groupItem.group_name) === path && groupItem.visible);
+    const groupSlug = segments.length >= 1 ? segments[0] : '';
+    const matchingGroup = seriesData.find(groupItem => generateSlug(groupItem.group_name) === groupSlug && groupItem.visible);
     if (matchingGroup && matchingGroup.group) {
       data = matchingGroup.group.filter(item => 
         item.enabled !== false && 
@@ -1055,6 +1719,13 @@ document.addEventListener('DOMContentLoaded', () => {
         renderCarrousel(path);
         attachFavoriteListeners();
         updateCarouselFavorites();
+
+        const contentContainer = document.getElementById('page-content');
+        const filteredItems = getFilteredItems(path);
+        const isSeriesPage = filteredItems.length > 0 && filteredItems[0].type === 'series';
+        if (!isSeriesPage) {
+          attachSeriesNavigationListeners(contentContainer);
+        }
     });
 
     const currentPath = getCurrentPath();
@@ -1065,9 +1736,15 @@ document.addEventListener('DOMContentLoaded', () => {
     const streamsLink = document.querySelector('a[data-group="' + generateSlug('Streams') + '"]');
     if (streamsLink) setupStreamIcons(streamsLink);
 
-    loadPageContent(currentPath).then(() => {
+    setTimeout(() => {
       hideLoader();
       attachFavoriteListeners();
       updateCarouselFavorites();
-    });
+      
+      const filteredItems = getFilteredItems(currentPath);
+      const isSeriesPage = filteredItems.length > 0 && filteredItems[0].type === 'series';
+      if (!isSeriesPage) {
+        attachSeriesNavigationListeners();
+      }
+    }, 100);
 });
