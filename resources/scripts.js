@@ -1,7 +1,7 @@
-import { seriesAll } from './episodes/index.js';
-const seriesData = seriesAll;
+// import { seriesAll } from './episodes/index.js';
+// const seriesData = seriesAll;
 
-const seriesData2 = [
+const seriesData = [
     {
       group_name: "Filmes",
       visible: true,
@@ -109,7 +109,7 @@ let randomImagesCards       = false; //AS IMAGENS ALEATÓRIAS DOS BOTÕES
 let randomImagesCarrousel   = false; //AS IMAGENS ALEATÓRIAS DO CARROUSEL
 let speedCarrouselBar       = 5;     //VELOCIDADE DAS ANIMAÇÕES DO CARROUSEL
 
-localStorage.clear();
+// localStorage.clear();
 
 //=======================================================================
 //ICONES
@@ -577,6 +577,10 @@ function loadPageContent(path) {
       </section>
     `;
 
+    setTimeout(() => {
+      updateSeriesContinueWatching(series.name);
+    }, 0);
+
   } else {
     if (filteredItems.length > 0) {
       filteredItems.forEach(groupItem => {
@@ -607,8 +611,22 @@ function loadPageContent(path) {
   }
 
   if (isHomePage) {
-    initializeHomePageFeatures();
-  }
+    const globalRemoveBtns = contentContainer.querySelectorAll('#global-continue-watching .remove-button');
+    globalRemoveBtns.forEach(removeBtn => {
+      removeBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        const seriesName = this.getAttribute('data-series-name');
+        const seasonIdx = parseInt(this.getAttribute('data-season-index'));
+        const epIdx = parseInt(this.getAttribute('data-episode-index'));
+        removeContinueWatching(seriesName, seasonIdx, epIdx);
+        loadPageContent(getCurrentPath());
+      });
+  });
+
+  attachSeriesNavigationListeners(contentContainer);
+  initializeHomePageFeatures();
+}
   
   attachFavoriteListeners(contentContainer);
   updateCarouselFavorites();
@@ -999,6 +1017,8 @@ function loadEpisodeImages() {
 //CONTINUE ASSISTINDO
 //=======================================================================
 function updateSeriesContinueWatching(seriesName) {
+  if (!document.querySelector('#series-header')) return;
+
   const watched = getWatchedEpisodes();
   let activeInThisSeries = [];
 
@@ -1051,7 +1071,7 @@ function updateSeriesContinueWatching(seriesName) {
               <span class="trash-bar bar2"></span>
               <span class="trash-bar bar3"></span>
             </span>
-            <span class="badge-duration">${episode.duration}</span>
+            <span class="badge-duration">${episode.duration}</span> <!-- Corrigido: duration, não duration -->
             <p>T${seasonNum} - EP ${paddedEp}</p>
             <div class="remove-button" 
                 data-series-name="${seriesName}" 
@@ -1076,7 +1096,7 @@ function updateSeriesContinueWatching(seriesName) {
   }
 
   if (!continueSection) {
-    continueSection = document.createElement('div');
+    continueSection = document.createElement('section');
     continueSection.id = 'continue-watching';
     if (seriesHeader) {
       seriesHeader.parentNode.insertBefore(continueSection, seriesHeader);
@@ -1104,11 +1124,10 @@ function updateSeriesContinueWatching(seriesName) {
 
   const continueButtons = continueSection.querySelectorAll('#continue-episode-button');
   continueButtons.forEach(btn => {
-    if (!btn.onclick) {
-      btn.onclick = function() {
-        playContinueEpisode(this);
-      };
-    }
+    btn.removeAttribute('onclick');
+    btn.onclick = function() {
+      playContinueEpisode(this);
+    };
   });
 }
 
@@ -1192,7 +1211,16 @@ function playContinueEpisode(element) {
   const epIdx = parseInt(element.getAttribute('data-episode-index'));
 
   markEpisodeAsWatched(seriesName, seasonIdx, epIdx);
-  updateSeriesContinueWatching(seriesName);
+
+  const seriesTitleElement = document.querySelector('.series-title');
+  if (seriesTitleElement && seriesTitleElement.textContent.trim() === seriesName) {
+    updateSeriesContinueWatching(seriesName);
+  } else {
+    const currentPath = getCurrentPath();
+    if (currentPath === generateSlug('Início')) {
+      loadPageContent(currentPath);
+    }
+  }
 
   if (firstUrl && firstUrl !== '#') {
     window.open(firstUrl, '_blank');
@@ -1206,7 +1234,15 @@ function removeContinueWatching(seriesName, seasonIdx, epIdx) {
     watched[key].active = false;
     saveWatchedEpisodes(watched);
     updateEpisodeUI();
-    updateSeriesContinueWatching(seriesName);
+
+    if (document.querySelector('#series-header')) {
+      updateSeriesContinueWatching(seriesName);
+    }
+
+    const currentPath = getCurrentPath();
+    if (currentPath === generateSlug('Início')) {
+      loadPageContent(currentPath);
+    }
   }
 }
 
@@ -1713,19 +1749,25 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     window.addEventListener('hashchange', () => {
-        const path = getCurrentPath();
-        activateByPath(path);
-        loadPageContent(path);
-        renderCarrousel(path);
-        attachFavoriteListeners();
-        updateCarouselFavorites();
+      const path = getCurrentPath();
+      activateByPath(path);
+      loadPageContent(path);
+      renderCarrousel(path);
+      attachFavoriteListeners();
+      updateCarouselFavorites();
 
-        const contentContainer = document.getElementById('page-content');
-        const filteredItems = getFilteredItems(path);
-        const isSeriesPage = filteredItems.length > 0 && filteredItems[0].type === 'series';
-        if (!isSeriesPage) {
-          attachSeriesNavigationListeners(contentContainer);
-        }
+      const contentContainer = document.getElementById('page-content');
+      const filteredItems = getFilteredItems(path);
+      const isSeriesPage = filteredItems.length > 0 && filteredItems[0].type === 'series';
+      if (isSeriesPage) {
+        const series = filteredItems[0].data;
+        setTimeout(() => {
+          updateSeriesContinueWatching(series.name);
+        }, 0);
+      }
+      if (!isSeriesPage) {
+        attachSeriesNavigationListeners(contentContainer);
+      }
     });
 
     const currentPath = getCurrentPath();
