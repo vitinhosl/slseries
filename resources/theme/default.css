@@ -1,5 +1,5 @@
 :root { 
-    --color-background:             rgb(18, 18, 18);
+    --color-background:             rgb(14, 14, 14);
     --color-text:                   rgb(239, 239, 239);
     --color-top_bar:                var(--color-background);
     --color-logo_text:              rgb(255, 2, 102);
@@ -13,12 +13,18 @@
     --color-carrousel_back:         rgb(255, 255, 255, 0.3);
     --color-carrousel_bar:          rgb(255, 2, 102, 1.0);
 
+    --color-badge_color:            rgb(255, 2, 102);
+    --color-badge_text:             rgb(224, 224, 224);
+    --color-badge_background:       rgb(34, 33, 33);
+
     --color-sidebar_background:     rgb(18, 18, 18);
     --color-sidebar_title:          rgb(255, 2, 102);
     --color-sidebar_text:           rgb(224, 224, 224);
     --color-sidebar_divider:        rgb(51, 51, 51);
     --color-sidebar_button:         rgb(255, 2, 102, 0.5);
-    --color-sidebar_button_h:       rgb(41, 41, 41, 1.0);
+    --color-sidebar_button_h:       rgb(34, 33, 33);
+    --color-sidebar_button_icon:    rgb(255, 2, 102);
+    --color-sidebar_button_convert: invert(18%) sepia(87%) saturate(3065%) hue-rotate(320deg) brightness(101%) contrast(105%);
     --color-sidebar_scroll:         rgb(41, 41, 41);
 
     --color-explore_button:         rgb(87, 82, 82);
@@ -26,7 +32,7 @@
     --color-explore_button_text:    rgb(87, 82, 82);
     --color-explore_button_text_h:  rgb(255, 2, 102);
 
-    --color-groupcard_header:       rgb(34, 33, 33);
+    --color-groupcard_header:       rgb(33, 33, 33);
     --color-groupcard_button:       rgb(187, 0, 73);
     --color-groupcard_button_h:     rgb(255, 2, 102);
     --color-groupcard_border:       rgb(50, 50, 50, 1.0);
@@ -35,10 +41,13 @@
     --color-groupcard_glow:         rgb(255, 255, 255, 1.0); 
     --color-groupcard_electric:     rgb(255, 2, 102, 0.0); 
 
-    --color-episode_button:         rgb(51, 51, 51);
-    --color-episode_button_hover:   rgb(126, 128, 133);
+    --color-episode_button:         rgb(33, 33, 33);
+    --color-episode_button_border:  rgb(126, 128, 133);
+    --color-episode_button_hover:   rgb(126, 128, 133); 
     --color-episode_button_watched: rgb(51, 51, 51);
     --color-episode_button_active:  rgb(51, 51, 51);
+    --color-episode_text:           rgb(33, 33, 33);
+    --color-episode_text_h:         rgb(33, 33, 33);
 
     --color-favorite_text:          rgb(255, 2, 102);
     --color-favorite_button:        rgb(255, 2, 102);

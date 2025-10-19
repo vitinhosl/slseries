@@ -6,18 +6,23 @@ export const biblicalData = [
           //A TERRA PROMETIDA
           {
             name: "A Terra Prometida",
-            enabled: true,
-            visible: true,
-            thumb_buttons: {
-                url: [
-                    "https://i.imgur.com/3FzZHWW.jpeg",
-                    "https://i.imgur.com/HFGzr9d.jpeg",
-                    "https://i.imgur.com/W56d1ie.jpeg",
-                    "https://pp-vod-img-aws.akamaized.net/0068571/0068571_200.jpg",
-                    // "https://i.imgur.com/eiBmJtU.jpeg" //MESMA DE CIMA IMGUR
-                    // "https://i.imgur.com/mmMeNkp.jpeg",
-                ],
-            },
+            card_buttons: [
+                {
+                    name: "A Terra Prometida",
+                    enabled: true,
+                    visible: true,
+                    thumb_buttons: {
+                        url: [
+                            "https://i.imgur.com/3FzZHWW.jpeg",
+                            "https://i.imgur.com/HFGzr9d.jpeg",
+                            "https://i.imgur.com/W56d1ie.jpeg",
+                            "https://pp-vod-img-aws.akamaized.net/0068571/0068571_200.jpg",
+                            // "https://i.imgur.com/eiBmJtU.jpeg" //MESMA DE CIMA IMGUR
+                            // "https://i.imgur.com/mmMeNkp.jpeg",
+                        ],
+                    }
+                },
+            ],
             badge: "",
             title: "", //TEXTO DO BOTÃO ENABLED OFF
             carrousel: {

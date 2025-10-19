@@ -6,15 +6,21 @@ export const minecraftData = [
             //EM BUSCA DA CASA AUTOMÁTICA
             {
                 name: "Casa Automática",
-                enabled: true,
-                visible: true,
-                thumb_buttons: {
-                    url: [
-                        "https://i.imgur.com/bG5XyaM.png", 
-                        "https://i.imgur.com/EOc9RN1.png", //MESMA DE CIMA SEM LOGO
-                        "https://i.imgur.com/RuLrytN.png",
-                    ],
-                },
+                card_buttons: [
+                    {
+                        name: "Casa Automática",
+                        enabled: true,
+                        visible: true,
+                        thumb_buttons: {
+                            url: [
+                                "https://i.imgur.com/bG5XyaM.png", 
+                                "https://i.imgur.com/EOc9RN1.png", //MESMA DE CIMA SEM LOGO
+                                "https://i.imgur.com/RuLrytN.png",
+                            ],
+                        },
+                    },
+                ],
+
                 badge: "",
                 title: "", //TEXTO DO BOTÃO ENABLED OFF
                 carrousel: {

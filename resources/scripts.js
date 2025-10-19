@@ -2,103 +2,77 @@
 // const seriesData = seriesAll;
 
 const seriesData = [
-    {
-      group_name: "Filmes",
-      visible: true,
-      group: [
-        //HARRY POTTER
-        {
-          name: "Tropa de Elite",
+  {
+    group_name: "Filmes",
+    visible: true,
+    group: [
+      //HARRY POTTER
+      {
+        name: "Tropa de Elite SERIE",
+        card_buttons: [
+          {
+            name: "Tropa de Elite",
+            enabled: true,
+            visible: true,
+            info: true,
+            thumb_buttons: {
+                url: [
+                  "https://i.imgur.com/l8BHSFw.jpeg",
+                ],
+            },
+          },
+
+          {
+            name: "Tropa de Elite 2",
+            enabled: true,
+            visible: true,
+            info: true,
+            thumb_buttons: {
+                url: [
+                  "https://i.imgur.com/l8BHSFw.jpeg",
+                ],
+            },
+          },
+        ],
+
+        carrousel: {
           enabled: true,
-          visible: true,
-          thumb_buttons: {
-              url: [
-                "https://i.imgur.com/l8BHSFw.jpeg",
-              ],
-          },
-
-          carrousel: {
-              enabled: true,
-              homepage: true,
-              title: "NOME TEST",
-              logo: { 
-                enabled: true, 
-                url: "https://i.imgur.com/B6tMcLM.png",
-                minimalist: true,
-              },
-              thumb: [
-                  "https://pp-vod-img-aws.akamaized.net/0068571/playplus_thumb_1600.jpg",
-                  "https://i.imgur.com/H7LkieU.png",
-              ],
-              text: "Destaque",
-              description: `
-                Após a morte de Moisés, Josué é o novo líder dos hebreus e terá que cumprir uma difícil missão ordenada por Deus: Comandar as 12 tribos de Israel na conquista de Canaã, a Terra Prometida. Continuação da saga Os Dez Mandamentos.
-              `
-          },
-
-          season: [
-            {
-              name: "Temporada 01",
-              thumb_season: "https://i.imgur.com/dRR1C5K.jpeg",
-              episodes: [
-                { title: "Episódio 001", subtitle: "", duration: "1:09:48", thumb: "https://i.imgur.com/wSPSsZz.jpeg", url: [ "https://filemoon.to/e/fohv33go6fjl/2Efu4ZQADExGVxxV",                   "https://mixdrop.sn/e/gjojl1pptpow89",  "https://streamtape.com/get_video?id=kpZO7OpaKbF6l2&expires=1755927970&ip=FRuOExyNRxSNFt&token=j1EN2K21sdWR&stream=1",  "https://www.secvideo1.online/get_file/12/3b370c31cd091769c32c56cc419d14d100d7961945/799000/799756/799756_720p.mp4"] },
-                { title: "Episódio 002", subtitle: "", duration: "49:05", thumb: "https://i.imgur.com/wSPSsZz.jpeg", url: [ "https://filemoon.to/e/fohv33go6fjl/2Efu4ZQADExGVxxV",                   "https://mixdrop.sn/e/gjojl1pptpow89",  "https://streamtape.com/get_video?id=kpZO7OpaKbF6l2&expires=1755927970&ip=FRuOExyNRxSNFt&token=j1EN2K21sdWR&stream=1",  "https://www.secvideo1.online/get_file/12/3b370c31cd091769c32c56cc419d14d100d7961945/799000/799756/799756_720p.mp4"] },
-                { title: "Episódio 003", subtitle: "", duration: "55:05", thumb: "https://i.imgur.com/wSPSsZz.jpeg", url: [ "https://filemoon.to/e/fohv33go6fjl/2Efu4ZQADExGVxxV",                   "https://mixdrop.sn/e/gjojl1pptpow89",  "https://streamtape.com/get_video?id=kpZO7OpaKbF6l2&expires=1755927970&ip=FRuOExyNRxSNFt&token=j1EN2K21sdWR&stream=1",  "https://www.secvideo1.online/get_file/12/3b370c31cd091769c32c56cc419d14d100d7961945/799000/799756/799756_720p.mp4"] },
-                { title: "Episódio 003", subtitle: "", duration: "55:05", thumb: "https://i.imgur.com/wSPSsZz.jpeg", url: [ "https://filemoon.to/e/fohv33go6fjl/2Efu4ZQADExGVxxV",                   "https://mixdrop.sn/e/gjojl1pptpow89",  "https://streamtape.com/get_video?id=kpZO7OpaKbF6l2&expires=1755927970&ip=FRuOExyNRxSNFt&token=j1EN2K21sdWR&stream=1",  "https://www.secvideo1.online/get_file/12/3b370c31cd091769c32c56cc419d14d100d7961945/799000/799756/799756_720p.mp4"] },
-                { title: "Episódio 003", subtitle: "", duration: "55:05", thumb: "https://i.imgur.com/wSPSsZz.jpeg", url: [ "https://filemoon.to/e/fohv33go6fjl/2Efu4ZQADExGVxxV",                   "https://mixdrop.sn/e/gjojl1pptpow89",  "https://streamtape.com/get_video?id=kpZO7OpaKbF6l2&expires=1755927970&ip=FRuOExyNRxSNFt&token=j1EN2K21sdWR&stream=1",  "https://www.secvideo1.online/get_file/12/3b370c31cd091769c32c56cc419d14d100d7961945/799000/799756/799756_720p.mp4"] },
-                { title: "Episódio 003", subtitle: "", duration: "55:05", thumb: "https://i.imgur.com/wSPSsZz.jpeg", url: [ "https://filemoon.to/e/fohv33go6fjl/2Efu4ZQADExGVxxV",                   "https://mixdrop.sn/e/gjojl1pptpow89",  "https://streamtape.com/get_video?id=kpZO7OpaKbF6l2&expires=1755927970&ip=FRuOExyNRxSNFt&token=j1EN2K21sdWR&stream=1",  "https://www.secvideo1.online/get_file/12/3b370c31cd091769c32c56cc419d14d100d7961945/799000/799756/799756_720p.mp4"] },
-                { title: "Episódio 003", subtitle: "", duration: "55:05", thumb: "https://i.imgur.com/wSPSsZz.jpeg", url: [ "https://filemoon.to/e/fohv33go6fjl/2Efu4ZQADExGVxxV",                   "https://mixdrop.sn/e/gjojl1pptpow89",  "https://streamtape.com/get_video?id=kpZO7OpaKbF6l2&expires=1755927970&ip=FRuOExyNRxSNFt&token=j1EN2K21sdWR&stream=1",  "https://www.secvideo1.online/get_file/12/3b370c31cd091769c32c56cc419d14d100d7961945/799000/799756/799756_720p.mp4"] },
-                { title: "Episódio 003", subtitle: "", duration: "55:05", thumb: "https://i.imgur.com/wSPSsZz.jpeg", url: [ "https://filemoon.to/e/fohv33go6fjl/2Efu4ZQADExGVxxV",                   "https://mixdrop.sn/e/gjojl1pptpow89",  "https://streamtape.com/get_video?id=kpZO7OpaKbF6l2&expires=1755927970&ip=FRuOExyNRxSNFt&token=j1EN2K21sdWR&stream=1",  "https://www.secvideo1.online/get_file/12/3b370c31cd091769c32c56cc419d14d100d7961945/799000/799756/799756_720p.mp4"] },
-                { title: "Episódio 003", subtitle: "", duration: "55:05", thumb: "https://i.imgur.com/wSPSsZz.jpeg", url: [ "https://filemoon.to/e/fohv33go6fjl/2Efu4ZQADExGVxxV",                   "https://mixdrop.sn/e/gjojl1pptpow89",  "https://streamtape.com/get_video?id=kpZO7OpaKbF6l2&expires=1755927970&ip=FRuOExyNRxSNFt&token=j1EN2K21sdWR&stream=1",  "https://www.secvideo1.online/get_file/12/3b370c31cd091769c32c56cc419d14d100d7961945/799000/799756/799756_720p.mp4"] },
-
-              ]
-            }
+          homepage: true,
+          favorite: true,
+          title: "NOME TEST",
+          logo: { enabled: true, minimalist: true, url: "https://i.imgur.com/B6tMcLM.png" },
+          thumb: [
+            "https://pp-vod-img-aws.akamaized.net/0068571/playplus_thumb_1600.jpg",
+            "https://i.imgur.com/H7LkieU.png",
           ],
+          description: `
+          Após a morte de Moisés, Josué é o novo líder dos hebreus e terá que cumprir uma difícil missão ordenada por Deus: Comandar as 12 tribos de Israel na conquista de Canaã, a Terra Prometida. Continuação da saga Os Dez Mandamentos.
+          `,
+          info: { enabled: true, text: "", season: true, episodes: true, finalized: true}
         },
 
-        //TEST 2
-        {
-          name: "Animais Fantasticos",
-          enabled: false,
-          visible: true,
-          thumb_buttons: {
-            url: [
-              "https://i.imgur.com/69wXwwB.png",
-            ],
-          },
-          carrousel: {
-              enabled: true,
-              homepage: false,
-              title: "NOME TEST 2",
-              logo: {
-                enabled: false,
-                url: "https://i.imgur.com/jpGZXos.png", //https://i.imgur.com/nQfnOXD.png
-                minimalist: false,
-              },
-              thumb: [
-                "https://pp-vod-img-aws.akamaized.net/0090405/playplus_thumb_1600.jpg",
-                "https://i.imgur.com/v0uF3s6.png",
-              ],
-              text: "",
-              description: `
-                Grande sucesso da televisão brasileira, este épico bíblico narra a saga de Moisés, o hebreu que escapou da morte ainda bebê, virou príncipe do Egito e acabou se transformando no líder escolhido por Deus para libertar seu povo da escravidão.
-              `
-          },
-          season: [
-            {
-              name: "Temporada 01",
-              thumb_season: "https://i.imgur.com/dRR1C5K.jpeg",
-              episodes: [
-                { title: "Episódio 001", subtitle: "", duration: "10:48", thumb: "https://i.imgur.com/wSPSsZz.jpeg", url: [ "https://filemoon.to/e/fohv33go6fjl/2Efu4ZQADExGVxxV",                   "https://mixdrop.sn/e/gjojl1pptpow89",  "https://streamtape.com/get_video?id=kpZO7OpaKbF6l2&expires=1755927970&ip=FRuOExyNRxSNFt&token=j1EN2K21sdWR&stream=1",  "https://www.secvideo1.online/get_file/12/3b370c31cd091769c32c56cc419d14d100d7961945/799000/799756/799756_720p.mp4"] },
-                { title: "Episódio 002", subtitle: "", duration: "20:49", thumb: "https://i.imgur.com/wSPSsZz.jpeg", url: [ "https://filemoon.to/e/fohv33go6fjl/2Efu4ZQADExGVxxV",                   "https://mixdrop.sn/e/gjojl1pptpow89",  "https://streamtape.com/get_video?id=kpZO7OpaKbF6l2&expires=1755927970&ip=FRuOExyNRxSNFt&token=j1EN2K21sdWR&stream=1",  "https://www.secvideo1.online/get_file/12/3b370c31cd091769c32c56cc419d14d100d7961945/799000/799756/799756_720p.mp4"] },
-                { title: "Episódio 003", subtitle: "", duration: "30:50", thumb: "https://i.imgur.com/wSPSsZz.jpeg", url: [ "https://filemoon.to/e/fohv33go6fjl/2Efu4ZQADExGVxxV",                   "https://mixdrop.sn/e/gjojl1pptpow89",  "https://streamtape.com/get_video?id=kpZO7OpaKbF6l2&expires=1755927970&ip=FRuOExyNRxSNFt&token=j1EN2K21sdWR&stream=1",  "https://www.secvideo1.online/get_file/12/3b370c31cd091769c32c56cc419d14d100d7961945/799000/799756/799756_720p.mp4"] },
-                { title: "Episódio 004", subtitle: "", duration: "40:51", thumb: "https://i.imgur.com/wSPSsZz.jpeg", url: [ "https://filemoon.to/e/fohv33go6fjl/2Efu4ZQADExGVxxV",                   "https://mixdrop.sn/e/gjojl1pptpow89",  "https://streamtape.com/get_video?id=kpZO7OpaKbF6l2&expires=1755927970&ip=FRuOExyNRxSNFt&token=j1EN2K21sdWR&stream=1",  "https://www.secvideo1.online/get_file/12/3b370c31cd091769c32c56cc419d14d100d7961945/799000/799756/799756_720p.mp4"] },
-              ]
-            }
-          ],
-        },
-      ],
-    }
+        season: [
+          {
+            name: "Temporada 01",
+            thumb_season: "https://i.imgur.com/dRR1C5K.jpeg",
+            episodes: [
+              { title: "Episódio 001", subtitle: "", duration: "1:09:48", thumb: "https://i.imgur.com/wSPSsZz.jpeg", url: [ "https://filemoon.to/e/fohv33go6fjl/2Efu4ZQADExGVxxV",                   "https://mixdrop.sn/e/gjojl1pptpow89",  "https://streamtape.com/get_video?id=kpZO7OpaKbF6l2&expires=1755927970&ip=FRuOExyNRxSNFt&token=j1EN2K21sdWR&stream=1",  "https://www.secvideo1.online/get_file/12/3b370c31cd091769c32c56cc419d14d100d7961945/799000/799756/799756_720p.mp4"] },
+              { title: "Episódio 002", subtitle: "", duration: "49:05", thumb: "https://i.imgur.com/wSPSsZz.jpeg", url: [ "https://filemoon.to/e/fohv33go6fjl/2Efu4ZQADExGVxxV",                   "https://mixdrop.sn/e/gjojl1pptpow89",  "https://streamtape.com/get_video?id=kpZO7OpaKbF6l2&expires=1755927970&ip=FRuOExyNRxSNFt&token=j1EN2K21sdWR&stream=1",  "https://www.secvideo1.online/get_file/12/3b370c31cd091769c32c56cc419d14d100d7961945/799000/799756/799756_720p.mp4"] },
+              { title: "Episódio 003", subtitle: "", duration: "55:05", thumb: "https://i.imgur.com/wSPSsZz.jpeg", url: [ "https://filemoon.to/e/fohv33go6fjl/2Efu4ZQADExGVxxV",                   "https://mixdrop.sn/e/gjojl1pptpow89",  "https://streamtape.com/get_video?id=kpZO7OpaKbF6l2&expires=1755927970&ip=FRuOExyNRxSNFt&token=j1EN2K21sdWR&stream=1",  "https://www.secvideo1.online/get_file/12/3b370c31cd091769c32c56cc419d14d100d7961945/799000/799756/799756_720p.mp4"] },
+              { title: "Episódio 003", subtitle: "", duration: "55:05", thumb: "https://i.imgur.com/wSPSsZz.jpeg", url: [ "https://filemoon.to/e/fohv33go6fjl/2Efu4ZQADExGVxxV",                   "https://mixdrop.sn/e/gjojl1pptpow89",  "https://streamtape.com/get_video?id=kpZO7OpaKbF6l2&expires=1755927970&ip=FRuOExyNRxSNFt&token=j1EN2K21sdWR&stream=1",  "https://www.secvideo1.online/get_file/12/3b370c31cd091769c32c56cc419d14d100d7961945/799000/799756/799756_720p.mp4"] },
+              { title: "Episódio 003", subtitle: "", duration: "55:05", thumb: "https://i.imgur.com/wSPSsZz.jpeg", url: [ "https://filemoon.to/e/fohv33go6fjl/2Efu4ZQADExGVxxV",                   "https://mixdrop.sn/e/gjojl1pptpow89",  "https://streamtape.com/get_video?id=kpZO7OpaKbF6l2&expires=1755927970&ip=FRuOExyNRxSNFt&token=j1EN2K21sdWR&stream=1",  "https://www.secvideo1.online/get_file/12/3b370c31cd091769c32c56cc419d14d100d7961945/799000/799756/799756_720p.mp4"] },
+              { title: "Episódio 003", subtitle: "", duration: "55:05", thumb: "https://i.imgur.com/wSPSsZz.jpeg", url: [ "https://filemoon.to/e/fohv33go6fjl/2Efu4ZQADExGVxxV",                   "https://mixdrop.sn/e/gjojl1pptpow89",  "https://streamtape.com/get_video?id=kpZO7OpaKbF6l2&expires=1755927970&ip=FRuOExyNRxSNFt&token=j1EN2K21sdWR&stream=1",  "https://www.secvideo1.online/get_file/12/3b370c31cd091769c32c56cc419d14d100d7961945/799000/799756/799756_720p.mp4"] },
+              { title: "Episódio 003", subtitle: "", duration: "55:05", thumb: "https://i.imgur.com/wSPSsZz.jpeg", url: [ "https://filemoon.to/e/fohv33go6fjl/2Efu4ZQADExGVxxV",                   "https://mixdrop.sn/e/gjojl1pptpow89",  "https://streamtape.com/get_video?id=kpZO7OpaKbF6l2&expires=1755927970&ip=FRuOExyNRxSNFt&token=j1EN2K21sdWR&stream=1",  "https://www.secvideo1.online/get_file/12/3b370c31cd091769c32c56cc419d14d100d7961945/799000/799756/799756_720p.mp4"] },
+              { title: "Episódio 003", subtitle: "", duration: "55:05", thumb: "https://i.imgur.com/wSPSsZz.jpeg", url: [ "https://filemoon.to/e/fohv33go6fjl/2Efu4ZQADExGVxxV",                   "https://mixdrop.sn/e/gjojl1pptpow89",  "https://streamtape.com/get_video?id=kpZO7OpaKbF6l2&expires=1755927970&ip=FRuOExyNRxSNFt&token=j1EN2K21sdWR&stream=1",  "https://www.secvideo1.online/get_file/12/3b370c31cd091769c32c56cc419d14d100d7961945/799000/799756/799756_720p.mp4"] },
+              { title: "Episódio 003", subtitle: "", duration: "55:05", thumb: "https://i.imgur.com/wSPSsZz.jpeg", url: [ "https://filemoon.to/e/fohv33go6fjl/2Efu4ZQADExGVxxV",                   "https://mixdrop.sn/e/gjojl1pptpow89",  "https://streamtape.com/get_video?id=kpZO7OpaKbF6l2&expires=1755927970&ip=FRuOExyNRxSNFt&token=j1EN2K21sdWR&stream=1",  "https://www.secvideo1.online/get_file/12/3b370c31cd091769c32c56cc419d14d100d7961945/799000/799756/799756_720p.mp4"] },
+
+            ]
+          }
+        ],
+      },
+
+    ],
+  }
 ];
 
 //=======================================================================
@@ -114,36 +88,37 @@ let speedCarrouselBar       = 5;     //VELOCIDADE DAS ANIMAÇÕES DO CARROUSEL
 //=======================================================================
 //ICONES
 //=======================================================================
-const homeIconBase64        = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGAAAABgCAYAAADimHc4AAAACXBIWXMAAAsTAAALEwEAmpwYAAADEUlEQVR4nO2c24tNcRiGn3Em5RQKERnjhguSJCkkpORGrqQ0pST/gn+BK7lxIYm0c+VKkyTJhZRERIxyyjAzTuP4atda0ST2zF57/771re+pp6ZpLt733dP01awWBEEQBEEQBEEQlIMuoAYMZta/XpY6VFXYDLwDNMz69zalDuedfcCXv4yf+w3oTh3SK0eAn/8YP7f+M0eBjtSBvTAOONHA8MM9BYxPHb7sTAUujWL83MvAtNQlyso84FYT4+feARamLlM2VgC9BYyf+xxYlbpUWdgC9Bc4fu57YEfqctbZD3xtwfh/nqkHU5e0SEd2OqpNHosz9TcTgNNtHD/3PDCJijMd6Ekwfm5PlqGSzAduJxw/9y6wiIqxEnhmYPzcF8BqKsJWYMDA6BrmB2AnzjmQnYIy6nfgEA5p95mpAs7UMThhInDGwKgaoReAyZScGcAVA2NqlF4HZlNSFgP3DIyoJn0IdFIy1gAvDYyngnwDrKck7AI+GhhNBfsZ2INxuo2fmSrgTD2MQcp2ZsrTmVo/M88aGEVttmbhTJ0JXDUwhhJ5A5iTavwlwH0DIyixj7JHJdvKWuCVgfIyYh+woV3j7wY+GSgtYw4Be9vxeOAPA2Vl1PyxyMIZCxw3UFAl8WT2SGUh1P9xfc5AKZXMi8CUZsefBVwzUEYl9SYwd7TjLwUeGCihkvsYWD7S8dcBrw2ElxPfAhsbHX97dlKlDi1nDmXb/penBsLKqU8a+QAsPa8jZ/Y2+icoPgRaMv42WoAqbnJUcZOjipscVdzkqOImRxU3Oaq4yVHFTY71gjKez31BGc/nvqCM53NfUMbzuS8o4/ncF5TxfO4Lyng+9wVlPJ/7gjKez31BGc/nvqCM53NfUMbzuS8o4/ncF5TxfO4Lyng+9wVlPJ/7gjKez31BGc/nvqCM53NfUMbzuS8o4/ncF5TxfO4Lyng+9wVlPF/TDLawXH8F8jVNrcWvjvSer2m6sreFFF2ur6C3FVrPVwgLsvfxF/FO6IHsN6uzQvmCIAiCIAiCIAiCIAgC/PMLPuW3uHQ1X/MAAAAASUVORK5CYII=';
-const historyIconBase64     = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGAAAABgCAYAAADimHc4AAAACXBIWXMAAAsTAAALEwEAmpwYAAAGnUlEQVR4nO2deahXRRTHP9ZTM8wtskxfGWUiIi1ELyhMU8wsS7CNCMulghYriRZazKioiBajMlAraM80so2iiKgI0sqsbCE1X4tmpj5b1efEwHnweOhvzv3duXfmXu8H5r/3fufMfO/MnZkzcy5UVFRUVFRUVFRUVFTERW9gDHAZ8CDwOrAC+AH4HdgIGGAT0Ax8DbwNzAGuBU4D+oauRJHoCowD7gWWANulgdOWlcB8YCKwT+hKxshxwCPAH54avFb5F1gkvaOB3ZgG4EIZNkyg8jNwHdCDiDlFxldbJnj4vS7ANBnHTSTFvktmAd2JkOZ2jm4DzknxWyOBbyNocFOjR1wA7EFEdHTSvhjPr2M28xiwI4JGNoryITCISNiZg0l6wmjgtwga1SQsW4CLiQBTpwidgJs8TCW3yPz/NmAqMAo4THpV+9IfOBGYAtwJvACs8SDEk0A3AmLqEMHOtV9NUekVwK3ACUDnlP4fAlwKvJPiYVgqAgfBJBTBPo0f1zk/f1qeYtt7sqC/zHZ+qcO/VcDhBMAkEGF/4POEFdsmizD7v3mxFzC9DiHWAUeQM0ka8seEFVoMDCEcdt5/D7A1gc9r8+4JJqOFz1nEwzDgiwT+2wdtQF7OZTHHHkicG4EPJajHkrxmRz4bf3YBNsCmAv8p6/NUHg75anw7+/BFI7AAaJGyEBjs8ffHAn8p65X5Yi1tw9vth6s9N/6GndjZ4HlcHq4UwS4UDyViAban3MDryIIatuzq1/dOsGaG9H6Gaxcvw0/aXdT2tNSws5ls3gmaOk4i8neALxGMo2TBowq7v2YV2PElQL1b2TEIYKeoyxS27f5V1AL46AkmgACWoxTvA7vA7Bm7AGlFMIEEQE5ruOzf6NtoS4YiTCiYAD1kL6iWfRvC3dOn0UUZCWDE2SIJYLlK4cN4nwYHZ3heZ00BBdhb0Qte9m20URY5mz03/tgCCoCER2v58E+sR1x8YCIQoFER3jyTkmIiEACJMdfy43FKiolEgMsdfnxPSTGRCDBQ4Uspj8abSARAce7oVEqIiUiA5xy+2JMXpcNEJMAshy/3UUJMRAJMcvhiQ6Wlw0QkwPEOXz6jhJiIBGh0+PITu6EATTn60tfhi90z2u0E2CSX/vKgl8OX9T4NzZa4p40PvAeMIAwtShHy6AndFBEyL0Y+3cmPtwKnkz8LFQLkJYKrB3g5pXFNDQNrsjwPUyM+sTESEQYr7hSk5k2HEXuyOG+apHFDizDcYfsjH0bechg5lzA0RSDC2Q67L+VxKGkm4Th6F+dE85od3e6waScuqZnuMPIiYWlK2BN8Dpmu4dnLoeQxintTeb+I04jwAf5Y77Bltyq8rPZcN9yHEp4mpQitngLmQx12tvq8QeO6PzWDOGhSitDPg61bFHeLvfGA4r4UBRGh2ZMd12Fde9/MG+MVT5XPK0JZimBTGaRliKI9TsLzxeZNBYv+DJMXbmu7J3+yp9+eo9gF9Xo+1DJPcVfKpimIje7AAR5/bz/gb0db2Jv/3hmp6HY2O0rZmaVoB5vvwjs2i9R3it2/PHM+5E1/6emuMGRm66KLFOrPpbw8o6j/eVk60FWRYaRVdgnLxgjFgnR1HpkAZiiegtVZ3JUKSB9l9q0r8nCmi+JdYOTUWOg9Ih/YOryiqO9XHrJ7eV2YlWVWdIOyrnaWmCuvKZzaETBg4+uWvCbV5rMEoJ9iO7ZtV7CIt0UmKpP82ZScB4ZyckKCK6lF6gmTlUk67Izv5NDOPqwUwXblmyN/MXdSrnTbyh1EQGdF4L59eT7SKWofCa9q6/FuTNm/7A3y5QmT3o0iHkZ3SFLuKsti3Hg8WA4imQRD0lxP0al6GSC3GXckzOob7d2vg+r4LsAWCe/l+UT1lPFbmxeurazKM11lvQyo8xsBf0oYL8vI2pGSRt+1o7mrGG/I3pqI3glfzKZDsYeBr5eTB2lmTfZ/j5Ee9kkKfxYXMfVAgyKYbxRlvSS/mClbvcdKRvTeMgPrKmPyIIkF24xcd0mjuZJqaN5T92cRXsyTcXVmKzeBy1r50lIp6JvgXL+JoNj1wL6UkDOAbyJoYLOLslx6bKnpLIGLdRE0ePvbjFOKPtbXc9ZoGvBlwIZfKj4E/UZMaDrJVsC8nD5laA+YPZHzddbC0EUyjMyWT6G0nWpLW+zh4rslsB7NBloR6CX77VfKKvkNGbJWSm/ZKh//WScJkpbIpQn7t5fIV5jsb1RUVFRUVFRUVFRUVBAL/wObPLflU9ygPQAAAABJRU5ErkJggg==';
-const favoritesIconBase64   = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAACXBIWXMAAAsTAAALEwEAmpwYAAACd0lEQVR4nO2azUtUURjGf6MhCgXRBykRtAoCm6Ai/4TSRRQVQQQOBQYmBNWyRdG+CLTa+bFzF7SoTR9QCxdFVkhQWUJBqwSzjNSaOPBeuEQz3jn3zj3vnM4PntXF932fBzz3nHMHAoFAIBAIBPJlIzAGfBGNAhv4T2gBXgHlv/RSnnlP/z/MRzLPvKYAvK4SwBugCY/prmI+0n485l6CAO7iKduAXwkC+A1sx0NuJDAfaQjPWAvM1xDAd2AdHnGhBvORzuMJzcC0RQAz8rcNzyEL85EO4gGPUgTwkAakCegAdgG9KcxH6pVaHRp2ieuBTtmtlYCLwCBwG5gAPgFLGZiupCXpMSE9B2WGkszUKTNmzgnLhcyV3gHHszJ/THZn5QaTmfloFgG8UGDGVpNZBLCgwIitzI4yNZMKjNjqeRYBHGngNeAwGdEPLCswlVTL9bhe2wd8VWBuJX0DDlAnisBHBSYr6TOwhzqzWenCOAVsJSfWyN1dWYkeyKVLrrTI1x3X5seBVhze819y+Jq8LjM4pwQs5mjcnApP48G9X9lSppc6ruUYwFUU8iTHAB6jjGbZgeV5yluFIoo5mo+0A0WcchDASRRxy0EAN1HEMwcBPEUJrcBPBwEsutwCx+lyYD7SXhRwxnL4OWBANGdZw/R2zqjF4HeALbEa7ZYnyxEUMFXDwB+Aniq1zLP3NdQzvZ2zkPD0Zo6uqxPUa5MjdpKF1ew+nTOd4HW12/JHVfdXqP0WBZyrMNws0Jfyk3ZBasxW6HEWBRSAK8CP2PvZLE6bMuxhag3HPr2bf7vLWm6D4helxTr/usvU3im9AoFAIBAIBAKk4A/urZv0O3FdhQAAAABJRU5ErkJggg==';
-const favoritesS2IconBase64 = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGQAAABkCAYAAABw4pVUAAAACXBIWXMAAAsTAAALEwEAmpwYAAAD4UlEQVR4nO2cy4vOURjHPy65bZQ7uS9YUCZJGAkRWQlJ0ZAQJUSy4A+QhYjFoKhhMQuS3URMuSyQkMiGGsmlKbzjOmbMo6Mjk1sz7/zO7zznfZ9PfetdvJfne573nPM7VzAMwzAMwzAMwzAMwzAMwzAMwzAMw8iDMcA6oBqoB54Bb4A24APwErgH1AL7gEqgZ4A43HfO9r9R63/zpY+hzcfUAFzxsa4FRlMiDAZ2edNShN4BJ4GZGcQyCzgFFIqM5S6wExhEggwDDgEfizQvf9EtYGERsSzyn80qDleTDgJDSYAewDb/z5ZAqutgE+KayIsB43gLbAW6o5QRvt2VHFQA1vwnlqouNE2d1SXfIqhiKvAqpwKQdtr/2z/UvT4QIY4XQAVKmAs0RSgE8arxiXA6EzEOVyPnxE7GtMjJEK9jwHEFcRR8axGFkcBrBYUgyuTGNMPzToYbXF1TYF6Uqt4/cebGbgWmRbl25JWMUcB7BYZFuZr8UCA41QrMSiI6EjoZLuNfFBiVRPQ59KBxrwKTkpj2hEzIYwUGJTE9DJWMiQrMSaIaHyIhWxQYk0S1MURCTiowJonqRIiE3FBgTBLV1RAJea7AmCQqt38gczTM6kqiciuomdOqwJgkqpYQCbEaQpfWSTLH+hB09SGPFBiTRPUgRELqFRiTRHU5REKOKjAmiepwiITY1AlFa1OIhFQqMCaJKou9yX/Q25ZuKUbvfdkF4YICg5KYzhGQzQoMSmLaEDIhbn34qwKTkoiagSEE5qwCo5KI3Amt4CxUYFQS0bw8EtLNL9zHNisJTJe4ssqFFQoMi3ItJUdc5m8qMC1KdTvP2vGTBQqMi0K1+UNMUTitoABEmdzR62gMtEM7tFejP5sflZUKCkKUaDlKsCMK/FgvUoObzbyjoFAkku4DfVHGuDLtT14BY1HKtIzvNxHl+gTMQDnLy2RTXSuwjERwd0x9U1BoEnDwF+SIQUjW+8BLMRlbSJTNJVZTWlOsGb+zqkRWGZv9ILgkWJL4Zu0CsJgSYzLwVEHhSif1xMdekgzM8dY5yUDX89ikEJueiewTPgH0oozY4U8WiTK1+Is8y5Lpvo0WJWrwe5jLmv5+/5JE1nlgQOzC0ERVpIlJd2PP9hibElKgIuejc25/2ZTYprXTx9/H+y3wfJS7ybRfbLMpURmow3cd9/zY5lLu8GsyTEaN/04jg0Wvxi5enL86tolSY0iRJ7jq8rodtFzZ2MGzjk2hTy8Zv5jgt978Kxnu0XlSu/cbOT0eH/5Hx22Ps5FH+J+93GtDySTl9NhBGIZhGIZhGIZhGIZhGITkO/octMIinUkwAAAAAElFTkSuQmCC';
-const animesIconBase64      = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAACXBIWXMAAAsTAAALEwEAmpwYAAAA50lEQVR4nO3Vv0kEQRTA4U/BxPAywfwKsAEbMDS1BVs4LMGLTK1BbMC7XHMDU8HE6AKRkQ0WLGD+7AzvBy/deR8MO0RRFEWNSoOM1gsEREAserReICACYtEj9wef8DUC5BgrbPHTM+R/azyPAJm7wvsIkKkT3OK7d8jcGR7w2ztk7gL7ESBTR3jrHbLCfcYrpjZkemdu8Jn73FQRconXAmemWpBzPBYCpBqQU2xwKIxIpSDT3+gaHxUAqRTkLvP7kFpBWo3WCwREQCx6tF4gIEaFRL22b3BddiUguwaQlxKQKIqiSK7+AIURFUL7hB/5AAAAAElFTkSuQmCC';
-const channelsIconBase64    = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAACXBIWXMAAAsTAAALEwEAmpwYAAADKUlEQVR4nO1ZSWsUQRT+BJ0Bo3FFnfGgouAG4sHlbDy5RjBq1PgPkqC44yEeE8EkLr9BvbnicjVq4sZEFFzvRpGAk1zcMvKgWsrnV3b1TE9PDv1BwTD91dfv1fLeq2ogRYoUKVKkqB52AGhB7XHA2FIWNgP4CaAEoBO1w2ljwy8AjVE7rwAwYgSC1oHk0aFsEJuW+XbOAHiuBII2D8kh77DhKYBJPgKnHAI3kDxuOmw54TMKeklJew2gHsmjHsBbYk8xbHVcJJ1+AFijeBOM03Ejb7RtrDM2aLt6XSIzAYx6duitQgAINjZ733lil6ycGUzoECF/NQ7a2A5gzOJIeIwrxJaM9lb1fLZZTtq+dib2mBC7FWcqgM+E11yBE3uJ3icAUxyrwG6PtNh8NcpB0zH7mCOKNFXgSJND8wjJbZozpjd9MyENKqEsgCHCu0qMy5ppHzD7btT8bjPPNK4R3Y8mp9l4SXi7bMI5QjirRDYSzncAC8jsDjpGWVrBcGwsNFol1RoUr4dw5L8/uOexXM4QziUyE/9zwnZGz8xlwutSnN2Ec8cmfCCEVUrkAeHsU5x2DyeC1qr67iecPsVZTTjvbMIwIeiwy5xd7BH5XK1f9RUtzZF32phFOF9sAlufujBjyXKy4rDyxtWEa6OOcOSdNjKE8y0OR+oqcESSrQ3JG5pTjOrIeFhaSwjnfdSl5bPZ+zw2e1vMm/1+1M1+1yP8dhGOhEwbWRNaw5wokGR3hfA6PcLv7agJsSFCQixETIiLHKX6Bo9666+EuIcQXiiRjCkbfEqUjFk6/SYAjJgCr5XMhOC6Z4nyKqxEyXsWjUcdo7wT8ReNhxVvJeGIzXO14EDYtCVYxg+R0M6W/0MmeNARxyXk2diWwMFqCzlYsRwlUdL7qCsjkeRRt4c8u+AY5OkuMXY2lmiyVvHkgiCH+JEjlw/rHRGtO0yITeGbGl0HTTMJj5U3c8I6n3REEbksSxq3HLbIkTsUUiw+cwj8E+qqiJzDhicAJvqKLB+nl9hFAEujimyyPivUwokAx63PCnKnVhYax8mHnpZyvo2kSJEiRYoU8MRvmE9/FfKn/30AAAAASUVORK5CYII';
-const moviesIconBase64      = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADwAAAA8CAYAAAA6/NlyAAAACXBIWXMAAAsTAAALEwEAmpwYAAABWklEQVR4nO2aO04DMRRFT0E2EKUiSUUxBdvIWlgLLQWLAEVKg5BoYBGwCj4Rky6iMBrJQSjCGmd+ecb3SLebzNyjxB7bCgghhBDCGnNgCWwAl1iqziugOET2w0Dxtll7l1qWBsp2ldsY4RR/xqGUMcL7H4q9bui07f+DhANIGAkjYRIQdomnlmMXTFb4DpgCZ8A18PXfhWd79z0HHlIQDtH0QQvgpUcRc8IVI+ACeM1FeMcYuAS2uQjvKPwkl43w7/H9nJNwxUnk+O5N2HU8qcQyAR6H6OGMCFec5iY8zUl4AjwdQzhEX8Kxi5LYXqaFs3ktFbksPMbAVcOtY1LCIz9O3xpOREkJL6xvD11uBwCuYe69dDZHPM5IanG5C4ewKiLhOiQcQMJImCSENwZkuspnjPDKQNGuchO7N10bKNs273+s54PM/Z+6SgPFD03pv9loWSGEEEIwCN9pId6v9CL0IgAAAABJRU5ErkJggg==';
-const novelsIconBase64      = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAACXBIWXMAAAsTAAALEwEAmpwYAAAA8UlEQVR4nO3aMWoCURSF4b8ICCFVsBDcQbICt5DWfUznItyUtemSLkVKd6CVzRHhFcPtMgm57w7ng1sK54cBixmwehbAAByBC6Dkm2QNfHQwXr8JWXQYoSkhQwej9Rch73MJOc8lRJ3ej2UPlkOC7MFySJA9WA4JsgfLIUH2YDkkyB4shwTZg+WQIHuwHBJkD5ZDguzBckiQPVgOCbIHyyFB9mA5JMgeLIcE2YPlkGD84/tLnzdgSUFqdwAeKEztXiju2kLub3dL+24hG4rbt5BP4JHCnoFTi/kCtsCKol5Hj1gvN9kTsGv/JWU/qjH+2Q0wMsm2YlkwMAAAAABJRU5ErkJggg==';
-const minecraftIconBase64   = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAACXBIWXMAAAsTAAALEwEAmpwYAAAA6ElEQVR4nO2ZMQ7CMBAEt4KGJ5CaP6DwMXgRKFI+BojkA0tzFSLBPsuxgR1pu9xpx3IRyYAQQtRMA6ADMALgwhkB9AB2KeVvBYrzJXfrEk1XQXlaLh6BEteGExk8Aqws0ZQuTAngRwX2MzNtQBHvfDTeRaknSQkYEoAEIAG+SZtR4LCEQK4TZuJeCVACKCMw92/zibYGgVQogQkkEAglMMFfCnChmSBCF6/s+3XmmWhCFx8BbACcMs9Ew8oSzdcLjBWUpuXhEegrKE7L2SOws8eF0uWvALZw0tjjwlCg+GAn7y4vhBDIzhOzgN/txYqywwAAAABJRU5ErkJggg==';
-const seriesIconBase64      = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAACXBIWXMAAAsTAAALEwEAmpwYAAABxElEQVR4nO3ZP2sUQRzG8Q+xiNhIILYRLWMj2tolrZ0aX4EivgC72Nqazhegha2VKZQY25SWkoBWitFGzpA7VhZ+B8uR3Ca53bvZMF+YZu/f893hubuZIZPJZDInZwnr+IoPOsY81vAeAxQxOiOyjBf4UQn/D29xFxckzGU8wudK+HJ8wTMsSpg5rOA1epXwv7CBm6n3ZikC7FbCD6ILa9GNZHszj/t4h8NKgG/Rh2up92Z5ggAz780CnmJnJMBOXC8fb6M3C3iCBykU97S9mcMq3lQ+92ASka0Gi7sbUqXccVzFc+yNzPpwnJnhG9QFELOzEbM1fF0vZnMl7vJRXMRDbI6ItyLSRnFvxBfGz5rwRVsi5Z29g1f4W3nO77h26wziMxHZaqC4RQoixQl7U1fcZETqfun7DQoU0xK5gpfYbyF8MU2Ram86LdI/LyJFFpFFTkUWkUVkkXFkEc2P/nkR+dh1kf34Q7rYRZFBrCLL1eQlDbCNT1MU2YvFWLkoa52mRWZ2tFA0JDLzo4ViApE/sdNyWwJsj+nNccXdjE24cjMuaYojxvfYgLuuQxxE+F7sX62O2SJNmnt4XHO0kMlkzI7/Dl4A1TYi2ZUAAAAASUVORK5CYII=';
-const biblicalIconBase64    = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAACXBIWXMAAAsTAAALEwEAmpwYAAAA0UlEQVR4nO3UOw7CMBBF0VuSImwBVgQsBYVNImgJGyH9oEgurBQo5IM95l1p2niOIhuUSloFNMAN6ABLNLPaA23C5W0JSJURwuZALhksb0tA7qVAulIgltlMbo3DBUEQBDFByAOy9jmTE+TLBBnb3152EwRBRiUIgiDIpwRBELKFLDmTS724CTIo9eImyKDUi5sgg+KPPIADUOMwixBbHGdh+j9BCZAa571KgdwC5IjzmgBpvV/2KrxYPeYJnDyDdhEm9cxuA5yBa/QAuIQoftQbj1q63jmvEcwAAAAASUVORK5CYII=';
-const twitchIconBase64      = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAACXBIWXMAAAsTAAALEwEAmpwYAAAA8ElEQVR4nO3RsQ3CMBBG4UdNj4COURiFTcwmrMIMSCQFEkPQc4gBcOzjkjine5JLy/8ng+NWwAOQhZyfHRsYJxaQiwfIGnh5gJwaGCYWkKvm0oRJyaYD8PYAOWu/ccKkZNPTC0QCMl0SEOohpXc1b0hACAgByRQQCQgByRUQCQgByRUQUUDGTDxAkgdIqtnUKiRl9nRLgaTMlh7YLwGSNIjWIGkAsctdLoFooLlRtacfQowFsUR0JYgxILMgrCGzISwhsyIwetgScQM2KLIaYPUTWw0CLwgaAHzP/V9Ebc0PLM0FAi8IvCDwgsALghb7APBVkMnu8/RMAAAAAElFTkSuQmCC';
-const youtubeIconBase64     = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAACXBIWXMAAAsTAAALEwEAmpwYAAACFElEQVR4nO2ZT0hUQRzHP5qBN0OxY+hJ6xJ0yIvgRQovXrrrkmB4CjoFeSgQ9iwdPQpCGwQdPKl0CILFP0gaIcIi4h6KWBMjdXWZeDAPtljfb7Y3szvCfOB7Wtjf78PO7Jv3GwgEAoFAIGDMdeA2MApMAa+AOeAdsAysAbvAN6Ck8xtQVTmu+qwIfAXywBLwBngNTAMZ4AFwC0v0ADPAZ6D8T1ONyhHwAXgCtP+PxGPgV5OaV5dkG7hTj0S0fCoeNK5qZA/oNpG4Bux70LBKSNZE5K4HjSohBRORRx40qgzSIYk886BJZZD7ksisB00qg4xLIu9TFhgGtnzY8J9SFohoAyaB7w5FFiSRTQsiMZ16qZ47EFmSRHYtisT0AYuWRTYlkaIDkZhhfcywIVKURH46FIlP0U+Bw5R1zoCWpEJpT7mmxPvnwtVDsdwgkS4LIjeSCqT9yU2XVtolXAFakwodON7sX1J+v9KJ3jIT2XEg0u/g77cgiWxckQfiuiTy0YJIvA9KDgSUzook8jZlgRE9HVGOMy+JZBvQhI28lEQmPGhSGWRMEhnyoEllkEFJpNvjUZDSqZiOhJY9aFYlJOrPiHs15ra+5BQYoA4e6oG08ig/9BS0bqJ1+BxYBU6a1PyJrv8CuIkFopNmrx73Z/T4P7oGyOn357x+EBarrg6O67hWyNW4VuiVTriBQCAQCAT4mz8yJp3ulSURNAAAAABJRU5ErkJggg==';
-const homeIconSvg           = `<svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="192" height="192" viewBox="0 0 24 24"><path d="M 12 2 A 1 1 0 0 0 11.289062 2.296875 L 1.203125 11.097656 A 0.5 0.5 0 0 0 1 11.5 A 0.5 0.5 0 0 0 1.5 12 L 4 12 L 4 20 C 4 20.552 4.448 21 5 21 L 9 21 C 9.552 21 10 20.552 10 20 L 10 14 L 14 14 L 14 20 C 14 20.552 14.448 21 15 21 L 19 21 C 19.552 21 20 20.552 20 20 L 20 12 L 22.5 12 A 0.5 0.5 0 0 0 23 11.5 A 0.5 0.5 0 0 0 22.796875 11.097656 L 12.716797 2.3027344 A 1 1 0 0 0 12.710938 2.296875 A 1 1 0 0 0 12 2 z"></path></svg>`;
-const kickIconSvg           = `<svg role="img" viewBox="-5 0 30 30" xmlns="http://www.w3.org/2000/svg" id="Kick--Streamline-Simple-Icons" class="custom-icon"><path d="M1.333 0h8v5.333H12V2.667h2.667V0h8v8H20v2.667h-2.667v2.666H20V16h2.667v8h-8v-2.667H12v-2.666H9.333V24h-8Z" fill="#000000" stroke-width="1"></path></svg>`;
-const homeIconImg           = 'https://i.imgur.com/xS20AuN.png';
-const historyIconImg        = 'https://i.imgur.com/nxaxTS3.png';
-const favoritesIconImg      = 'https://i.imgur.com/LAcxXkU.png'; //'https://i.imgur.com/UmEAJ1G.png';
+const iconHome        = `https://img.icons8.com/material-rounded/96/home.png`;
+const iconHistory     = `https://img.icons8.com/deco-glyph/96/time-machine.png`;
+const iconFavorite    = `https://img.icons8.com/material-rounded/96/star--v1.png`;
+const iconAnimes      = `https://img.icons8.com/fluency-systems-filled/96/tv-show.png`;
+const iconChannel     = `https://img.icons8.com/ios-filled/100/online--v1.png`;
+const iconMovies      = `https://img.icons8.com/ios-glyphs/90/cinema---v1.png`;
+const iconNovels      = `https://img.icons8.com/ios-filled/100/literature--v1.png`;
+const iconMinecraft   = `https://img.icons8.com/fluency-systems-regular/48/minecraft-grass-cube.png`; //https://img.icons8.com/external-those-icons-fill-those-icons/96/external-Minecraft-video-games-those-icons-fill-those-icons.png
+const iconSeries      = `<svg role="img" viewBox="0 0 256 256" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg" class="custom-icon"><path d="M200,88V200a16,16,0,0,1-16,16H40a16,16,0,0,1-16-16V88A16,16,0,0,1,40,72H184A16,16,0,0,1,200,88Zm16-48H64a8,8,0,0,0,0,16H216V176a8,8,0,0,0,16,0V56A16,16,0,0,0,216,40Z" fill="#000000"></path></svg>`; //`https://img.icons8.com/ios-filled/100/bursts.png`;
+const iconBiblical    = `https://img.icons8.com/ios-filled/100/holy-bible.png`;
+const iconTwitch      = `https://img.icons8.com/ios-filled/100/twitch.png`;
+const iconYoutube     = `https://img.icons8.com/external-tal-revivo-bold-tal-revivo/96/external-youtube-is-an-american-video-sharing-and-now-googles-subsidiaries-logo-bold-tal-revivo.png`;
+const iconKick        = `<svg role="img" viewBox="-5 0 30 30" xmlns="http://www.w3.org/2000/svg" id="Kick--Streamline-Simple-Icons" class="custom-icon"><path d="M1.333 0h8v5.333H12V2.667h2.667V0h8v8H20v2.667h-2.667v2.666H20V16h2.667v8h-8v-2.667H12v-2.666H9.333V24h-8Z" fill="#000000" stroke-width="1"></path></svg>`;
+const iconContinue    = `https://img.icons8.com/fluency-systems-filled/48/pause.png`;
+
+const iconHomeGif      = 'https://i.imgur.com/xS20AuN.png';
+const iconHistoryGif   = 'https://i.imgur.com/MShsVT9.png'; //'https://i.imgur.com/nxaxTS3.png';
+const iconFavoriteGif  = 'https://i.imgur.com/LAcxXkU.png'; //'https://i.imgur.com/UmEAJ1G.png';
+const iconContinueGif  = `https://i.imgur.com/cJSsnd3.png`;
 
 function getIcon(groupName) {
   const name = groupName.toLowerCase();
   
-  if (name.includes('animes'))    return { type: 'base64', value: animesIconBase64,    alt: 'animes' };
-  if (name.includes('canais'))    return { type: 'base64', value: channelsIconBase64,  alt: 'canais' };
-  if (name.includes('filmes'))    return { type: 'base64', value: moviesIconBase64,    alt: 'filmes' };
-  if (name.includes('novelas'))   return { type: 'base64', value: novelsIconBase64,    alt: 'novelas' };
-  if (name.includes('minecraft')) return { type: 'base64', value: minecraftIconBase64, alt: 'minecraft' };
-  if (name.includes('bíblicas'))  return { type: 'base64', value: biblicalIconBase64,  alt: 'séries bíblicas' };
-  if (name.includes('séries'))    return { type: 'base64', value: seriesIconBase64,    alt: 'séries' };
-  if (name.includes('streams'))   return { type: 'base64', value: twitchIconBase64,    alt: 'streams' };
+  if (name.includes('animes'))    return { type: 'img', value: iconAnimes,    alt: 'animes' };
+  if (name.includes('canais'))    return { type: 'img', value: iconChannel,   alt: 'canais' };
+  if (name.includes('filmes'))    return { type: 'img', value: iconMovies,    alt: 'filmes' };
+  if (name.includes('novelas'))   return { type: 'img', value: iconNovels,    alt: 'novelas' };
+  if (name.includes('minecraft')) return { type: 'img', value: iconMinecraft, alt: 'minecraft' };
+  if (name.includes('bíblicas'))  return { type: 'img', value: iconBiblical,  alt: 'séries bíblicas' };
+  if (name.includes('séries'))    return { type: 'svg', value: iconSeries,    alt: 'séries' };
+  if (name.includes('streams'))   return { type: 'img', value: iconTwitch,    alt: 'streams' };
 
   return { type: 'fa', value: 'fas fa-layer-group' }; 
 }
@@ -151,9 +126,9 @@ function getIcon(groupName) {
 function setupStreamIcons(link) {
   const text = "Streams";
   const icons = [
-    { type: 'base64', value: twitchIconBase64,  alt: 'twitch'  },
-    { type: 'svg',    value: kickIconSvg,       alt: 'kick'    },
-    { type: 'base64', value: youtubeIconBase64, alt: 'youtube' },
+    { type: 'img', value: iconTwitch,  alt: 'twitch'  },
+    { type: 'svg', value: iconKick,    alt: 'kick'    },
+    { type: 'img', value: iconYoutube, alt: 'youtube' },
   ];
   let currentIndex = 0;
 
@@ -161,7 +136,7 @@ function setupStreamIcons(link) {
     const iconData = icons[currentIndex];
     let newIconHTML = '';
     if (iconData.type === 'svg') newIconHTML = iconData.value;
-    else if (iconData.type === 'base64') newIconHTML = `<img src="${iconData.value}" class="custom-icon" alt="${iconData.alt}">`;
+    else if (iconData.type === 'img') newIconHTML = `<img src="${iconData.value}" class="custom-icon" alt="${iconData.alt}">`;
     link.innerHTML = `${newIconHTML} ${text}`;
     currentIndex = (currentIndex + 1) % icons.length;
   }
@@ -182,19 +157,19 @@ function saveFavorites(favorites) {
   localStorage.setItem('favorites', JSON.stringify(favorites));
 }
 
-function isFavorite(serieName) {
+function isFavorite(cardName) {
   const favorites = getFavorites();
-  return favorites.some(fav => fav.name === serieName);
+  return favorites.some(fav => fav.card_name === cardName);
 }
 
-function toggleFavorite(serie) {
+function toggleFavorite(cardData) {
   const favorites = getFavorites();
-  const index = favorites.findIndex(fav => fav.name === serie.name);
+  const index = favorites.findIndex(fav => fav.card_name === cardData.name);
   
   if (index > -1) {
     favorites.splice(index, 1);
   } else {
-    favorites.push(serie);
+    favorites.push({ ...cardData, card_name: cardData.name });
   }
   saveFavorites(favorites);
   return index === -1;
@@ -204,9 +179,19 @@ function updateCarouselFavorites() {
   const carouselButtons = document.querySelectorAll('#carousel .favorite-button-s2');
   
   carouselButtons.forEach(button => {
-    if (button.getAttribute('data-serie')) {
-      const serieData = JSON.parse(button.getAttribute('data-serie'));
-      const isNowFavorite = isFavorite(serieData.name);
+    const subgroupData = button.getAttribute('data-subgroup');
+    if (subgroupData) {
+      const subgroup = JSON.parse(subgroupData);
+      const allFavorite = isAllCardsFavorite(subgroup);
+      button.classList.toggle('active', allFavorite);
+      
+      const tooltip = button.querySelector('.tooltip-text');
+      if (tooltip) {
+        tooltip.textContent = allFavorite ? 'Remover todos dos favoritos' : 'Adicionar todos aos favoritos';
+      }
+    } else if (button.getAttribute('data-card')) {
+      const cardData = JSON.parse(button.getAttribute('data-card'));
+      const isNowFavorite = isFavorite(cardData.name);
       
       button.classList.toggle('active', isNowFavorite);
       
@@ -230,21 +215,39 @@ function attachFavoriteListeners(container = document) {
     const handler = function(e) {
       e.preventDefault();
       e.stopPropagation();
-      
-      const serieData = JSON.parse(this.getAttribute('data-serie'));
-      const nowFavorite = toggleFavorite(serieData);
 
-      updateCarouselFavorites();
+      const subgroupData = this.getAttribute('data-subgroup');
+      if (subgroupData) {
+        const subgroup = JSON.parse(subgroupData);
+        const allManualFavorites = areAllFavoritesManual(subgroup);
+        const newState = toggleAllCardsFavorite(subgroup);
+        const currentAllFavorite = isAllCardsFavorite(subgroup);
 
-      if (this.classList.contains('favorite-button-s2')) {
-        this.classList.toggle('active', nowFavorite);
+        this.classList.toggle('active', currentAllFavorite);
+
+        updateAllCardButtonsState(subgroup);
+
         this.classList.add('heart-pulse');
         this.addEventListener('animationend', () => {
           this.classList.remove('heart-pulse');
         }, { once: true });
+        const tooltip = this.querySelector('.tooltip-text');
+        if (tooltip) {
+          if (currentAllFavorite && allManualFavorites) {
+            tooltip.textContent = 'Remover todos dos favoritos';
+          } else if (currentAllFavorite) {
+            tooltip.textContent = 'Remover favoritos automáticos';
+          } else {
+            tooltip.textContent = 'Adicionar todos aos favoritos';
+          }
+        }
+
       } else {
+        const cardData = JSON.parse(this.getAttribute('data-card'));
+        const nowFavorite = toggleFavoriteIndividual(cardData);
+
         this.classList.toggle('favorited', nowFavorite);
-        
+
         const star = this.querySelector('.rating__star');
         if (star) {
           const ring = star.querySelector('.rating__star-ring');
@@ -269,11 +272,13 @@ function attachFavoriteListeners(container = document) {
             lines.forEach(line => line.style.animation = 'starLine 1s ease-in-out reverse forwards');
           }
         }
-      }
 
-      const tooltip = this.querySelector('.tooltip-text');
-      if (tooltip) {
-        tooltip.textContent = nowFavorite ? 'Remover dos favoritos' : 'Adicionar aos favoritos';
+        const tooltip = this.querySelector('.tooltip-text');
+        if (tooltip) {
+          tooltip.textContent = nowFavorite ? 'Remover dos favoritos' : 'Adicionar aos favoritos';
+        }
+
+        updateCarouselButtonState(cardData);
       }
 
       this.classList.add('pulse');
@@ -283,7 +288,7 @@ function attachFavoriteListeners(container = document) {
       if (currentPath === generateSlug('Início') || currentPath === generateSlug('Favoritos')) {
         if (!this._lastClick || Date.now() - this._lastClick > 300) {
           this._lastClick = Date.now();
-          loadPageContent(currentPath);
+          setTimeout(() => loadPageContent(currentPath), 0);
         }
       }
     };
@@ -293,17 +298,240 @@ function attachFavoriteListeners(container = document) {
   });
 }
 
+function toggleFavoriteIndividual(cardData) {
+  const favorites = getFavorites();
+  const index = favorites.findIndex(fav => fav.card_name === cardData.name);
+  
+  if (index > -1) {
+    favorites.splice(index, 1);
+  } else {
+    favorites.push({ ...cardData, card_name: cardData.name });
+  }
+  
+  saveFavorites(favorites);
+  return index === -1;
+}
+
+function updateAllCardButtonsState(subgroup) {
+  if (!subgroup.card_buttons) return;
+  
+  const favorites = getFavorites();
+  
+  subgroup.card_buttons.forEach(card => {
+    const isCardFavorite = favorites.some(fav => fav.card_name === card.name);
+    const cardButtons = document.querySelectorAll(`.favorite-button[data-card*="${card.name}"]`);
+    
+    cardButtons.forEach(button => {
+      button.classList.toggle('favorited', isCardFavorite);
+
+      const star = button.querySelector('.rating__star');
+      if (star) {
+        const ring = star.querySelector('.rating__star-ring');
+        const stroke = star.querySelector('.rating__star-stroke');
+        const fill = star.querySelector('.rating__star-fill');
+        const lines = star.querySelectorAll('.rating__star-line');
+
+        [ring, stroke, fill, ...lines].forEach(el => {
+          if (el) el.style.animation = 'none';
+        });
+        button.offsetHeight;
+
+        if (isCardFavorite) {
+          if (ring) ring.style.animation = 'starRing 1s ease-in-out forwards';
+          if (stroke) stroke.style.animation = 'starStroke 1s ease-in-out forwards';
+          if (fill) fill.style.animation = 'starFill 1s ease-in-out forwards';
+          lines.forEach(line => line.style.animation = 'starLine 1s ease-in-out forwards');
+        } else {
+          if (ring) ring.style.animation = 'starRing 1s ease-in-out reverse forwards';
+          if (stroke) stroke.style.animation = 'starStroke 1s ease-in-out reverse forwards';
+          if (fill) fill.style.animation = 'starFill 1s ease-in-out reverse forwards';
+          lines.forEach(line => line.style.animation = 'starLine 1s ease-in-out reverse forwards');
+        }
+      }
+
+      const tooltip = button.querySelector('.tooltip-text');
+      if (tooltip) {
+        tooltip.textContent = isCardFavorite ? 'Remover dos favoritos' : 'Adicionar aos favoritos';
+      }
+    });
+  });
+}
+
+function updateCarouselButtonState(cardData) {
+  const subgroup = findSubgroupByName(cardData.subgroup_name || cardData.group_name);
+  if (!subgroup) return;
+  
+  const allFavorite = isAllCardsFavorite(subgroup);
+  const allManual = areAllFavoritesManual(subgroup);
+  const carouselButtons = document.querySelectorAll(`.favorite-button-s2[data-subgroup*="${subgroup.name}"]`);
+  
+  carouselButtons.forEach(button => {
+    button.classList.toggle('active', allFavorite);
+    
+    const tooltip = button.querySelector('.tooltip-text');
+    if (tooltip) {
+      if (allFavorite && allManual) {
+        tooltip.textContent = 'Remover todos dos favoritos';
+      } else if (allFavorite) {
+        tooltip.textContent = 'Remover favoritos automáticos';
+      } else {
+        tooltip.textContent = 'Adicionar todos aos favoritos';
+      }
+    }
+  });
+}
+
+function areAllFavoritesManual(subgroup) {
+  if (!subgroup.card_buttons || subgroup.card_buttons.length === 0) return false;
+  const favorites = getFavorites();
+  
+  return subgroup.card_buttons.every(card => {
+    const favoriteData = favorites.find(fav => fav.card_name === card.name);
+    return favoriteData && !favoriteData.auto_favorited;
+  });
+}
+
+function isAllCardsFavorite(subgroup) {
+  if (!subgroup.card_buttons || subgroup.card_buttons.length === 0) return false;
+  const favorites = getFavorites();
+  return subgroup.card_buttons.every(card => 
+    favorites.some(fav => fav.card_name === card.name)
+  );
+}
+
+function toggleAllCardsFavorite(subgroup) {
+  if (!subgroup.card_buttons || subgroup.card_buttons.length === 0) return false;
+
+  const favorites = getFavorites();
+  const allCardsFavorite = isAllCardsFavorite(subgroup);
+  const allManualFavorites = areAllFavoritesManual(subgroup);
+  
+  if (allCardsFavorite && allManualFavorites) {
+    for (let i = favorites.length - 1; i >= 0; i--) {
+      const fav = favorites[i];
+      const isFromThisSubgroup = subgroup.card_buttons.some(card => card.name === fav.card_name);
+      
+      if (isFromThisSubgroup) {
+        favorites.splice(i, 1);
+      }
+    }
+    saveFavorites(favorites);
+    return false;
+  }
+  
+  if (!allCardsFavorite) {
+    subgroup.card_buttons.forEach(card => {
+      const isAlreadyFavorite = favorites.some(fav => fav.card_name === card.name);
+      if (!isAlreadyFavorite) {
+        favorites.push({ ...card, card_name: card.name, auto_favorited: true });
+      }
+    });
+    saveFavorites(favorites);
+    return true;
+    
+  } else {
+    let anyRemoved = false;
+    for (let i = favorites.length - 1; i >= 0; i--) {
+      const fav = favorites[i];
+      const isFromThisSubgroup = subgroup.card_buttons.some(card => card.name === fav.card_name);
+      
+      if (isFromThisSubgroup && fav.auto_favorited) {
+        favorites.splice(i, 1);
+        anyRemoved = true;
+      }
+    }
+    
+    saveFavorites(favorites);
+    return !anyRemoved;
+  }
+}
+
+function renderFavoritesPage(favoritesGroup) {
+  let html = '';
+
+  html += `<section id="favorites-page-container">`;
+  html += `<div class="favorites-cards-container category-layout">`;
+
+  favoritesGroup.group.forEach(subgroup => {
+    if (subgroup.card_buttons) {
+      subgroup.card_buttons.forEach(card => {
+        if (card.visible === false || !card.name) return;
+
+        const urls = card.thumb_buttons.url;
+        const selectedThumb = randomImagesCards 
+          ? urls[Math.floor(Math.random() * urls.length)] 
+          : urls[0];
+        const subgroupSlug = generateSlug(subgroup.name);
+        const actualGroupSlug = subgroup.original_group ? generateSlug(subgroup.original_group) : 'favoritos';
+        const currentIsFavorite = isFavorite(card.name);
+        const containerClass = card.enabled === false ? 'disabled' : '';
+        const watchButtonClass = card.enabled === false ? 'watch-button disabled' : 'watch-button';
+        const watchButtonText = card.enabled === false ? 'INDISPONÍVEL' : 'ASSISTIR';
+
+        html += `
+          <div class="card-container ${containerClass}" data-subgroup-slug="${subgroupSlug}">
+            <div class="inner-container">
+                <div class="border-outer"></div> 
+                <div class="main-card" style="background-image: url('${selectedThumb}')"></div>
+                <div class="glow-layer-1"></div>
+                <div class="glow-layer-2"></div>
+            </div>
+
+            <div class="overlay-1"></div>
+            <div class="overlay-2"></div>
+            <div class="background-glow"></div>
+
+            <div id="group-series-button" data-subgroup-slug="${subgroupSlug}" data-group-slug="${actualGroupSlug}">
+              <div class="info">
+                <h2>${card.name}</h2>
+                <p>TEST</p>
+                <button class="${watchButtonClass}">${watchButtonText}</button>
+              </div>
+              <button class="favorite-button ${currentIsFavorite ? 'favorited' : ''}" data-card='${JSON.stringify(card)}'>
+                <svg class="rating__star" width="24" height="24" viewBox="0 0 32 32" aria-hidden="true">
+                  <g transform="translate(16,16)">
+                    <circle class="rating__star-ring" fill="none" stroke="#000" stroke-width="16" r="8" transform="scale(0)" />
+                  </g>
+                  <g stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <g transform="translate(16,16) rotate(180)">
+                      <polygon class="rating__star-stroke" points="0,15 4.41,6.07 14.27,4.64 7.13,-2.32 8.82,-12.14 0,-7.5 -8.82,-12.14 -7.13,-2.32 -14.27,4.64 -4.41,6.07" fill="none" />
+                      <polygon class="rating__star-fill" points="0,15 4.41,6.07 14.27,4.64 7.13,-2.32 8.82,-12.14 0,-7.5 -8.82,-12.14 -7.13,-2.32 -14.27,4.64 -4.41,6.07" fill="#000" />
+                    </g>
+                    <g transform="translate(16,16)" stroke-dasharray="12 12" stroke-dashoffset="12">
+                      <polyline class="rating__star-line" transform="rotate(0)" points="0 4,0 16" />
+                      <polyline class="rating__star-line" transform="rotate(72)" points="0 4,0 16" />
+                      <polyline class="rating__star-line" transform="rotate(144)" points="0 4,0 16" />
+                      <polyline class="rating__star-line" transform="rotate(216)" points="0 4,0 16" />
+                      <polyline class="rating__star-line" transform="rotate(288)" points="0 4,0 16" />
+                    </g>
+                  </g>
+                </svg>
+                <span class="tooltip-text black tooltip-top">${currentIsFavorite ? 'Remover dos favoritos' : 'Adicionar aos favoritos'}</span>
+              </button>
+            </div>
+          </div>
+        `;
+      });
+    }
+  });
+  
+  html += `</div>`;
+  html += '</section>';
+  
+  return html;
+}
+
 //=======================================================================
-// FILTRO DE SÉRIES/GRUPOS
+// FILTRO DE SÉRIES/GRUPOS (adaptado para favoritos por card)
 //=======================================================================
 function getFilteredItems(path) {
   const segments = path.split('/').filter(s => s);
 
   if (segments.length === 2) {
-    const [groupSlug, seriesSlug] = segments;
-    const series = findSeriesByGroupAndSlug(groupSlug, seriesSlug);
-    if (series) {
-      return [{ type: 'series', data: series }];
+    const [groupSlug, subgroupSlug] = segments;
+    const subgroup = findSubgroupByGroupAndSlug(groupSlug, subgroupSlug);
+    if (subgroup) {
+      return [{ type: 'subgroup', data: subgroup }];
     }
   }
 
@@ -311,17 +539,53 @@ function getFilteredItems(path) {
     const singlePath = segments[0];
 
     if (singlePath === generateSlug('Favoritos')) {
-      return seriesData.map(groupItem => ({
-          ...groupItem,
-          group: groupItem.group ? groupItem.group.filter(item => isFavorite(item.name)) : []
-      })).filter(groupItem => groupItem.group.length > 0);
+      const allFavorites = [];
+      seriesData.forEach(groupItem => {
+        if (groupItem.group) {
+          groupItem.group.forEach(subgroup => {
+            if (subgroup.card_buttons) {
+              subgroup.card_buttons.forEach(card => {
+                if (isFavorite(card.name)) {
+                  allFavorites.push({ ...subgroup, card: card, original_group: groupItem.group_name });
+                }
+              });
+            }
+          });
+        }
+      });
+
+      const groupedFavorites = {};
+      allFavorites.forEach(item => {
+        const key = `${item.original_group}-${item.name}`;
+        if (!groupedFavorites[key]) {
+          groupedFavorites[key] = { ...item, card_buttons: [] };
+        }
+        if (!groupedFavorites[key].card_buttons.includes(item.card)) {
+          groupedFavorites[key].card_buttons.push(item.card);
+        }
+      });
+
+      const favoritesGroup = {
+        group_name: "Favoritos",
+        group_slug: "favoritos",
+        visible: true,
+        group: Object.values(groupedFavorites)
+      };
+      return [favoritesGroup];
 
     } else if (singlePath === generateSlug('Início')) {
       const allFavorites = [];
       seriesData.forEach(groupItem => {
           if (groupItem.group) {
-              const favoritesInGroup = groupItem.group.filter(item => isFavorite(item.name));
-              allFavorites.push(...favoritesInGroup);
+              groupItem.group.forEach(subgroup => {
+                if (subgroup.card_buttons) {
+                  subgroup.card_buttons.forEach(card => {
+                    if (isFavorite(card.name)) {
+                      allFavorites.push({ ...subgroup, card: card, original_group: groupItem.group_name });
+                    }
+                  });
+                }
+              });
           }
       });
 
@@ -329,15 +593,25 @@ function getFilteredItems(path) {
           .filter(groupItem => groupItem.visible && groupItem.group && groupItem.group.length > 0)
           .map(groupItem => ({
               ...groupItem,
-              group: [...groupItem.group]
+              group: groupItem.group.filter(subgroup => subgroup.card_buttons && subgroup.card_buttons.some(card => card.visible !== false))
           }));
 
       if (allFavorites.length > 0) {
+          const groupedFavorites = {};
+          allFavorites.forEach(item => {
+            const key = `${item.original_group}-${item.name}`;
+            if (!groupedFavorites[key]) {
+              groupedFavorites[key] = { ...item, card_buttons: [] };
+            }
+            if (!groupedFavorites[key].card_buttons.includes(item.card)) {
+              groupedFavorites[key].card_buttons.push(item.card);
+            }
+          });
           const favoritesGroup = {
               group_name: "Favoritos",
               group_slug: "favoritos",
               visible: true,
-              group: allFavorites
+              group: Object.values(groupedFavorites)
           };
           return [favoritesGroup, ...homepageGroups];
       }
@@ -350,19 +624,19 @@ function getFilteredItems(path) {
   return [];
 }
 
-function findSeriesByGroupAndSlug(groupSlug, seriesSlug) {
+function findSubgroupByGroupAndSlug(groupSlug, subgroupSlug) {
   const matchingGroup = seriesData.find(groupItem => generateSlug(groupItem.group_name) === groupSlug);
   if (matchingGroup && matchingGroup.group) {
-    const series = matchingGroup.group.find(item => generateSlug(item.name) === seriesSlug);
-    if (series) {
-      return { ...series, group_name: matchingGroup.group_name };
+    const subgroup = matchingGroup.group.find(item => generateSlug(item.name) === subgroupSlug);
+    if (subgroup) {
+      return { ...subgroup, group_name: matchingGroup.group_name };
     }
   }
   return null;
 }
 
 function attachSeriesNavigationListeners(container = document) {
-  const seriesButtons = container.querySelectorAll('#group-series-button[data-series-slug][data-group-slug]');
+  const seriesButtons = container.querySelectorAll('#group-series-button[data-subgroup-slug][data-group-slug]');
   
   seriesButtons.forEach(button => {
     button.addEventListener('click', function(e) {
@@ -370,20 +644,24 @@ function attachSeriesNavigationListeners(container = document) {
         return;
       }
       
+      if (this.closest('.card-container.disabled')) {
+        return;
+      }
+      
       e.preventDefault();
       const groupSlug = this.getAttribute('data-group-slug');
-      const seriesSlug = this.getAttribute('data-series-slug');
-      window.location.hash = `#${groupSlug}/${seriesSlug}`;
+      const subgroupSlug = this.getAttribute('data-subgroup-slug');
+      window.location.hash = `#${groupSlug}/${subgroupSlug}`;
     });
   });
 }
 
-function findSeriesByName(seriesName) {
+function findSubgroupByName(subgroupName) {
   for (const groupItem of seriesData) {
     if (groupItem.group) {
-      const series = groupItem.group.find(item => item.name === seriesName);
-      if (series) {
-        return { ...series, group_name: groupItem.group_name };
+      const subgroup = groupItem.group.find(item => item.name === subgroupName);
+      if (subgroup) {
+        return { ...subgroup, group_name: groupItem.group_name };
       }
     }
   }
@@ -400,33 +678,45 @@ function loadPageContent(path) {
   const isFavoritesPage = segments.length === 1 && segments[0] === generateSlug('Favoritos');
   const isHomePage = segments.length === 1 && segments[0] === generateSlug('Início');
   const filteredItems = getFilteredItems(path);
-  const isSeriesPage = filteredItems.length > 0 && filteredItems[0].type === 'series';
+  const isSubgroupPage = filteredItems.length > 0 && filteredItems[0].type === 'subgroup';
 
   if (isHomePage) {
     const globalContinueHtml = renderGlobalContinueWatching();
     if (globalContinueHtml) {
-      html += `
-        ${globalContinueHtml}
-      `;
+      html += `${globalContinueHtml}`;
     }
 
     const allFavorites = [];
     seriesData.forEach(groupItem => {
       if (groupItem.group) {
-        const favoritesInGroup = groupItem.group.filter(item => isFavorite(item.name)).map(item => ({
-          ...item,
-          original_group: groupItem.group_name
-        }));
-        allFavorites.push(...favoritesInGroup);
+        groupItem.group.forEach(subgroup => {
+          if (subgroup.card_buttons) {
+            subgroup.card_buttons.forEach(card => {
+              if (isFavorite(card.name)) {
+                allFavorites.push({ ...subgroup, card: card, original_group: groupItem.group_name });
+              }
+            });
+          }
+        });
       }
     });
 
     if (allFavorites.length > 0) {
+      const groupedFavorites = {};
+      allFavorites.forEach(item => {
+        const key = `${item.original_group}-${item.name}`;
+        if (!groupedFavorites[key]) {
+          groupedFavorites[key] = { ...item, card_buttons: [] };
+        }
+        if (!groupedFavorites[key].card_buttons.includes(item.card)) {
+          groupedFavorites[key].card_buttons.push(item.card);
+        }
+      });
       const favoritesGroup = {
         group_name: "Favoritos",
         group_slug: "favoritos",
         visible: true,
-        group: allFavorites
+        group: Object.values(groupedFavorites)
       };
       
       html += renderGroupSection(favoritesGroup, true);
@@ -436,7 +726,7 @@ function loadPageContent(path) {
       .filter(groupItem => groupItem.visible && groupItem.group && groupItem.group.length > 0)
       .map(groupItem => ({
         ...groupItem,
-        group: [...groupItem.group]
+        group: groupItem.group.filter(subgroup => subgroup.card_buttons && subgroup.card_buttons.some(card => card.visible !== false))
       }));
 
     homepageGroups.forEach(groupItem => {
@@ -446,7 +736,6 @@ function loadPageContent(path) {
     });
 
   } else if (isFavoritesPage) {
-    html += '<h1 class="main-favorites-title">Meus Favoritos</h1>';
     
     if (filteredItems.length > 0) {
       filteredItems.forEach(groupItem => {
@@ -456,20 +745,20 @@ function loadPageContent(path) {
       html += '<p>Você ainda não adicionou nenhum item aos favoritos.</p>';
     }
 
-  } else if (isSeriesPage) {
-    const series = filteredItems[0].data;
-    let activeInThisSeries = [];
-    series.season.forEach((season, s) => {
+  } else if (isSubgroupPage) {
+    const subgroup = filteredItems[0].data;
+    let activeInThisSubgroup = [];
+    subgroup.season.forEach((season, s) => {
       for (let e = 0; e < season.episodes.length; e++) {
-        const w = getWatchedEpisode(series.name, s, e);
+        const w = getWatchedEpisode(subgroup.name, s, e);
         if (w && w.active) {
-          activeInThisSeries.push({ seasonIdx: s, epIdx: e });
+          activeInThisSubgroup.push({ seasonIdx: s, epIdx: e });
           break;
         }
       }
     });
 
-    if (activeInThisSeries.length > 0) {
+    if (activeInThisSubgroup.length > 0) {
       html += `
         <section id="continue-watching">
           <header class="group-title-header">
@@ -478,8 +767,8 @@ function loadPageContent(path) {
           <div class="continue-episodes-container">
       `;
 
-      activeInThisSeries.forEach((seasonActive) => {
-        const season = series.season[seasonActive.seasonIdx];
+      activeInThisSubgroup.forEach((seasonActive) => {
+        const season = subgroup.season[seasonActive.seasonIdx];
         const episode = season.episodes[seasonActive.epIdx];
         const thumb = episode.thumb || season.thumb_season;
         const urls = episode.url || [];
@@ -488,11 +777,11 @@ function loadPageContent(path) {
         const paddedEp = epNum.toString().padStart(3, '0');
 
         html += `
-          <div class="continue-episode-container">
-            <div id="continue-episode-button" 
+          <div class="continue-episodes-container-card">
+            <div id="continue-episodes-button" 
                 style="background-image: url('${thumb}');" 
                 data-urls='${JSON.stringify(urls)}' 
-                data-series-name="${series.name}" 
+                data-subgroup-name="${subgroup.name}" 
                 data-season-index="${seasonActive.seasonIdx}" 
                 data-episode-index="${seasonActive.epIdx}" 
                 onclick="playContinueEpisode(this)">
@@ -506,7 +795,7 @@ function loadPageContent(path) {
               <span class="badge-duration">${episode.duration}</span>
               <p>T${seasonNum} - EP ${paddedEp}</p>
               <div class="remove-button" 
-                  data-series-name="${series.name}" 
+                  data-subgroup-name="${subgroup.name}" 
                   data-season-index="${seasonActive.seasonIdx}" 
                   data-episode-index="${seasonActive.epIdx}">✕</div>
             </div>
@@ -521,25 +810,25 @@ function loadPageContent(path) {
     }
 
     html += `
-      <section id="series-header">
+      <section id="subgroup-header">
         <header class="group-title-header">
           <button class="back-button" onclick="history.back()">
             <i class="fas fa-arrow-left"></i> Voltar
           </button>
-          <h1 class="series-title">${series.name}</h1>
+          <h1 class="subgroup-title">${subgroup.name}</h1>
         </header>
       </section>
     `;
 
     html += `
-      <section id="series-episodes">
+      <section id="subgroup-episodes">
         <div class="episodes-container">
     `;
 
-    series.season.forEach((season, seasonIndex) => {
+    subgroup.season.forEach((season, seasonIndex) => {
       season.episodes.forEach((episode, episodeIndex) => {
         const firstUrl = episode.url && episode.url.length > 0 ? episode.url[0] : '#';
-        const watchedData = getWatchedEpisode(series.name, seasonIndex, episodeIndex);
+        const watchedData = getWatchedEpisode(subgroup.name, seasonIndex, episodeIndex);
         const isWatched = watchedData && watchedData.watched;
         const isActive = watchedData && watchedData.active;
         
@@ -549,9 +838,9 @@ function loadPageContent(path) {
         buttonClasses = buttonClasses.trim();
         
         html += `
-          <div class="episode-container slide-in-right" style="opacity: 1;">
+          <div class="episodes-container-card slide-in-right" style="opacity: 1;">
             <div id="episode-button" 
-                data-series-name="${series.name}"
+                data-subgroup-name="${subgroup.name}"
                 data-url="${firstUrl}" 
                 data-urls='${JSON.stringify(episode.url || [])}'
                 data-season-index="${seasonIndex}"
@@ -583,7 +872,7 @@ function loadPageContent(path) {
     `;
 
     setTimeout(() => {
-      updateSeriesContinueWatching(series.name);
+      updateSubgroupContinueWatching(subgroup.name);
     }, 0);
 
   } else {
@@ -598,21 +887,21 @@ function loadPageContent(path) {
 
   contentContainer.innerHTML = html;
 
-  if (isSeriesPage) {
+  if (isSubgroupPage) {
     const removeBtns = contentContainer.querySelectorAll('.remove-button');
     removeBtns.forEach(removeBtn => {
       removeBtn.addEventListener('click', function(e) {
         e.preventDefault();
         e.stopPropagation();
-        const seriesName = this.getAttribute('data-series-name');
+        const subgroupName = this.getAttribute('data-subgroup-name');
         const seasonIdx = parseInt(this.getAttribute('data-season-index'));
         const epIdx = parseInt(this.getAttribute('data-episode-index'));
-        removeContinueWatching(seriesName, seasonIdx, epIdx);
+        removeContinueWatching(subgroupName, seasonIdx, epIdx);
       });
     });
     loadEpisodeImages();
     updateEpisodeUI();
-    updateSeriesContinueWatching();
+    updateSubgroupContinueWatching();
   }
 
   if (isHomePage) {
@@ -621,10 +910,10 @@ function loadPageContent(path) {
         removeBtn.addEventListener('click', function(e) {
           e.preventDefault();
           e.stopPropagation();
-          const seriesName = this.getAttribute('data-series-name');
+          const subgroupName = this.getAttribute('data-subgroup-name');
           const seasonIdx = parseInt(this.getAttribute('data-season-index'));
           const epIdx = parseInt(this.getAttribute('data-episode-index'));
-          removeContinueWatching(seriesName, seasonIdx, epIdx);
+          removeContinueWatching(subgroupName, seasonIdx, epIdx);
           loadPageContent(getCurrentPath());
         });
     });
@@ -633,7 +922,7 @@ function loadPageContent(path) {
     initializeHomePageFeatures();
   }
   
-  if (!isSeriesPage) {
+  if (!isSubgroupPage) {
     attachSeriesNavigationListeners(contentContainer);
   }
   
@@ -710,39 +999,56 @@ function renderGroupSection(groupItem, isHomePage) {
   let displayGroupName = groupItem.group_name;
   let iconHTML = '';
   
-  if (groupItem.group_name === 'Favoritos') {
-    iconHTML = `<img src="${favoritesIconBase64}" class="custom-icon" alt="Favoritos Icon">`;
-  } else {
+  if (groupItem.group_name.includes('favoritos') || groupItem.group_name.includes('Favoritos')) {
+    iconHTML = `<img src="${iconFavorite}" class="custom-icon" alt="Favoritos Icon">`;
+    let totalCards = 0;
+    groupItem.group.forEach(subgroup => {
+      if (subgroup.card_buttons) {
+        totalCards += subgroup.card_buttons.length;
+      }
+    });
+    displayGroupName = `Conteúdos favoritos (${totalCards})`;
+
+    if (totalCards === 0) {
+      return `
+        <section id="group-favoritos-header">
+          <header class="group-title-header">
+            <h2 class="favorites-header">${iconHTML} ${displayGroupName}</h2>
+          </header>
+          <div class="no-favorites-container">
+            <p>Você ainda não adicionou nenhum item aos favoritos.</p>
+          </div>
+        </section>
+      `;
+    }
+  } 
+  else {
     const iconData = getIcon(groupItem.group_name);
     if (iconData.type === 'fa') {
       iconHTML = `<i class="${iconData.value}"></i>`;
-    } else if (iconData.type === 'base64') {
+    } else if (iconData.type === 'img') {
       iconHTML = `<img src="${iconData.value}" class="custom-icon" alt="${iconData.alt || groupItem.group_name + ' Icon'}">`;
     } else if (iconData.type === 'svg') {
       iconHTML = iconData.value;
     }
-  }
-  
-  const sortedGroup = [...groupItem.group].sort((a, b) => {
-    if (a.enabled !== false && b.enabled === false) return -1;
-    if (b.enabled !== false && a.enabled === false) return 1;
-    return a.name.localeCompare(b.name);
-  });
 
-  const visibleItems = sortedGroup.filter(item => item.visible !== false && item.name);
-  const count = visibleItems.length;
-
-  let fullDisplayName = displayGroupName;
-  if (groupItem.group_name === 'Favoritos') {
-    fullDisplayName += ` (${count})`;
-  } else {
-    fullDisplayName += ` (${count} disponíveis)`;
+    let totalCards = 0;
+    groupItem.group.forEach(subgroup => {
+      if (subgroup.card_buttons) {
+        subgroup.card_buttons.forEach(card => {
+          if (card.visible !== false && card.enabled !== false) {
+            totalCards++;
+          }
+        });
+      }
+    });
+    displayGroupName += ` (${totalCards} disponíveis)`;
   }
   
   const favoritesClass = groupItem.group_name === 'Favoritos' ? 'favorites-header' : '';
-  html += `<h2 class="${favoritesClass}">${iconHTML} ${fullDisplayName}</h2>`;
+  html += `<h2 class="${favoritesClass}">${iconHTML} ${displayGroupName}</h2>`;
   
-  if (isHomePage && groupItem.group_name !== 'Favoritos') {
+  if (isHomePage && !groupItem.group_name.includes('favoritos')) {
     html += `
     <button class="explore-button" data-group="${groupSlug}">
       <svg xmlns="http://www.w3.org/2000/svg" class="arr-2" viewBox="0 0 24 24">
@@ -771,62 +1077,67 @@ function renderGroupSection(groupItem, isHomePage) {
 
   html += `<div class="group-cards-container ${layoutClass}">`;
 
-  visibleItems.forEach(item => {
-    const urls = item.thumb_buttons.url;
-    const selectedThumb = randomImagesCards 
-      ? urls[Math.floor(Math.random() * urls.length)] 
-      : urls[0];
-    const isEnabled = item.enabled !== false;
-    const watchButtonClass = isEnabled ? 'watch-button' : 'watch-button disabled';
-    const watchButtonText = isEnabled ? 'ASSISTIR' : 'INDISPONÍVEL';
-    const currentIsFavorite = isFavorite(item.name);
-    const containerClass = isEnabled ? '' : 'disabled';
-    const seriesSlug = generateSlug(item.name);
-    const actualGroupSlug = item.original_group ? generateSlug(item.original_group) : groupSlug;
+  groupItem.group.forEach(subgroup => {
+    if (subgroup.card_buttons) {
+      subgroup.card_buttons.forEach(card => {
+        if (card.visible === false || !card.name) return;
 
-    html += `
-      <div class="card-container ${containerClass}" data-series-slug="${seriesSlug}">
-        <div class="inner-container">
-            <div class="border-outer"></div> 
-            <div class="main-card" style="background-image: url('${selectedThumb}')"></div>
-            <div class="glow-layer-1"></div>
-            <div class="glow-layer-2"></div>
-        </div>
+        const urls = card.thumb_buttons.url;
+        const selectedThumb = randomImagesCards 
+          ? urls[Math.floor(Math.random() * urls.length)] 
+          : urls[0];
+        const subgroupSlug = generateSlug(subgroup.name);
+        const actualGroupSlug = subgroup.original_group ? generateSlug(subgroup.original_group) : groupSlug;
+        const currentIsFavorite = isFavorite(card.name);
+        const containerClass = card.enabled === false ? 'disabled' : '';
+        const watchButtonClass = card.enabled === false ? 'watch-button disabled' : 'watch-button';
+        const watchButtonText = card.enabled === false ? 'INDISPONÍVEL' : 'ASSISTIR';
 
-        <div class="overlay-1"></div>
-        <div class="overlay-2"></div>
-        <div class="background-glow"></div>
+        html += `
+          <div class="card-container ${containerClass}" data-subgroup-slug="${subgroupSlug}">
+            <div class="inner-container">
+                <div class="border-outer"></div> 
+                <div class="main-card" style="background-image: url('${selectedThumb}')"></div>
+                <div class="glow-layer-1"></div>
+                <div class="glow-layer-2"></div>
+            </div>
 
-        <div id="group-series-button" data-series-slug="${seriesSlug}" data-group-slug="${actualGroupSlug}">
-          <div class="info">
-            <h2>${item.name}</h2>
-            <p>TEST</p>
-            <button class="${watchButtonClass}">${watchButtonText}</button>
+            <div class="overlay-1"></div>
+            <div class="overlay-2"></div>
+            <div class="background-glow"></div>
+
+            <div id="group-series-button" data-subgroup-slug="${subgroupSlug}" data-group-slug="${actualGroupSlug}">
+              <div class="info">
+                <h2>${card.name}</h2>
+                <p>TEST</p>
+                <button class="${watchButtonClass}">${watchButtonText}</button>
+              </div>
+              <button class="favorite-button ${currentIsFavorite ? 'favorited' : ''}" data-card='${JSON.stringify(card)}'>
+                <svg class="rating__star" width="24" height="24" viewBox="0 0 32 32" aria-hidden="true">
+                  <g transform="translate(16,16)">
+                    <circle class="rating__star-ring" fill="none" stroke="#000" stroke-width="16" r="8" transform="scale(0)" />
+                  </g>
+                  <g stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <g transform="translate(16,16) rotate(180)">
+                      <polygon class="rating__star-stroke" points="0,15 4.41,6.07 14.27,4.64 7.13,-2.32 8.82,-12.14 0,-7.5 -8.82,-12.14 -7.13,-2.32 -14.27,4.64 -4.41,6.07" fill="none" />
+                      <polygon class="rating__star-fill" points="0,15 4.41,6.07 14.27,4.64 7.13,-2.32 8.82,-12.14 0,-7.5 -8.82,-12.14 -7.13,-2.32 -14.27,4.64 -4.41,6.07" fill="#000" />
+                    </g>
+                    <g transform="translate(16,16)" stroke-dasharray="12 12" stroke-dashoffset="12">
+                      <polyline class="rating__star-line" transform="rotate(0)" points="0 4,0 16" />
+                      <polyline class="rating__star-line" transform="rotate(72)" points="0 4,0 16" />
+                      <polyline class="rating__star-line" transform="rotate(144)" points="0 4,0 16" />
+                      <polyline class="rating__star-line" transform="rotate(216)" points="0 4,0 16" />
+                      <polyline class="rating__star-line" transform="rotate(288)" points="0 4,0 16" />
+                    </g>
+                  </g>
+                </svg>
+                <span class="tooltip-text black tooltip-top">${currentIsFavorite ? 'Remover dos favoritos' : 'Adicionar aos favoritos'}</span>
+              </button>
+            </div>
           </div>
-          <button class="favorite-button ${currentIsFavorite ? 'favorited' : ''}" data-serie='${JSON.stringify(item)}'>
-            <svg class="rating__star" width="24" height="24" viewBox="0 0 32 32" aria-hidden="true">
-              <g transform="translate(16,16)">
-                <circle class="rating__star-ring" fill="none" stroke="#000" stroke-width="16" r="8" transform="scale(0)" />
-              </g>
-              <g stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <g transform="translate(16,16) rotate(180)">
-                  <polygon class="rating__star-stroke" points="0,15 4.41,6.07 14.27,4.64 7.13,-2.32 8.82,-12.14 0,-7.5 -8.82,-12.14 -7.13,-2.32 -14.27,4.64 -4.41,6.07" fill="none" />
-                  <polygon class="rating__star-fill" points="0,15 4.41,6.07 14.27,4.64 7.13,-2.32 8.82,-12.14 0,-7.5 -8.82,-12.14 -7.13,-2.32 -14.27,4.64 -4.41,6.07" fill="#000" />
-                </g>
-                <g transform="translate(16,16)" stroke-dasharray="12 12" stroke-dashoffset="12">
-                  <polyline class="rating__star-line" transform="rotate(0)" points="0 4,0 16" />
-                  <polyline class="rating__star-line" transform="rotate(72)" points="0 4,0 16" />
-                  <polyline class="rating__star-line" transform="rotate(144)" points="0 4,0 16" />
-                  <polyline class="rating__star-line" transform="rotate(216)" points="0 4,0 16" />
-                  <polyline class="rating__star-line" transform="rotate(288)" points="0 4,0 16" />
-                </g>
-              </g>
-            </svg>
-            <span class="tooltip-text black tooltip-top">${currentIsFavorite ? 'Remover dos favoritos' : 'Adicionar aos favoritos'}</span>
-          </button>
-        </div>
-      </div>
-    `;
+        `;
+      });
+    }
   });
   
   html += `</div>`;
@@ -852,19 +1163,19 @@ function saveWatchedEpisodes(watched) {
   localStorage.setItem('watchedEpisodes', JSON.stringify(watched));
 }
 
-function getWatchedEpisode(seriesName, seasonIndex, episodeIndex) {
+function getWatchedEpisode(subgroupName, seasonIndex, episodeIndex) {
   const watched = getWatchedEpisodes();
-  const key = `${seriesName}-${seasonIndex}-${episodeIndex}`;
+  const key = `${subgroupName}-${seasonIndex}-${episodeIndex}`;
   return watched[key] || null;
 }
 
-function markEpisodeAsWatched(seriesName, seasonIndex, episodeIndex) {
+function markEpisodeAsWatched(subgroupName, seasonIndex, episodeIndex) {
   const watched = getWatchedEpisodes();
-  const currentKey = `${seriesName}-${seasonIndex}-${episodeIndex}`;
+  const currentKey = `${subgroupName}-${seasonIndex}-${episodeIndex}`;
 
   Object.keys(watched).forEach(key => {
     const [sName, sIndex, eIndex] = key.split('-');
-    if (sName === seriesName && parseInt(sIndex) === seasonIndex && key !== currentKey) {
+    if (sName === subgroupName && parseInt(sIndex) === seasonIndex && key !== currentKey) {
       if (watched[key]) {
         watched[key].active = false;
         console.log(`Desativado active em: ${key}`);
@@ -876,35 +1187,35 @@ function markEpisodeAsWatched(seriesName, seasonIndex, episodeIndex) {
     watched: true,
     active: true,
     timestamp: Date.now(),
-    series: seriesName,
+    subgroup: subgroupName,
     season: seasonIndex,
     episode: episodeIndex
   };
 
   saveWatchedEpisodes(watched);
   updateEpisodeUI();
-  console.log(`Marcado em ${seriesName}: Ep ${episodeIndex + 1}`);
+  console.log(`Marcado em ${subgroupName}: Ep ${episodeIndex + 1}`);
 }
 
-function getActiveEpisodesBySeries() {
+function getActiveEpisodesBySubgroup() {
   const watched = getWatchedEpisodes();
-  const activeBySeries = {};
+  const activeBySubgroup = {};
   
   Object.keys(watched).forEach(key => {
     const data = watched[key];
     if (data && data.active) {
-      const [seriesName, seasonIndex, episodeIndex] = key.split('-');
+      const [subgroupName, seasonIndex, episodeIndex] = key.split('-');
       
-      if (!activeBySeries[seriesName]) {
-        activeBySeries[seriesName] = [];
+      if (!activeBySubgroup[subgroupName]) {
+        activeBySubgroup[subgroupName] = [];
       }
       
-      const existingSeasonIndex = activeBySeries[seriesName].findIndex(
+      const existingSeasonIndex = activeBySubgroup[subgroupName].findIndex(
         item => item.seasonIndex === parseInt(seasonIndex)
       );
       
       if (existingSeasonIndex === -1) {
-        activeBySeries[seriesName].push({
+        activeBySubgroup[subgroupName].push({
           seasonIndex: parseInt(seasonIndex),
           episodeIndex: parseInt(episodeIndex),
           data: data
@@ -913,15 +1224,15 @@ function getActiveEpisodesBySeries() {
     }
   });
   
-  return activeBySeries;
+  return activeBySubgroup;
 }
 
 function updateEpisodeUI() {
-  const seriesTitle = document.querySelector('.series-title')?.textContent || '';
-  if (!seriesTitle) return;
+  const subgroupTitle = document.querySelector('.subgroup-title')?.textContent || '';
+  if (!subgroupTitle) return;
 
   const watched = getWatchedEpisodes();
-  const episodeButtons = document.querySelectorAll('#episode-button[data-series-name="' + seriesTitle + '"]');
+  const episodeButtons = document.querySelectorAll('#episode-button[data-subgroup-name="' + subgroupTitle + '"]');
   episodeButtons.forEach(button => {
     button.classList.remove('watched', 'active');
     const existingBadge = button.querySelector('.badge-watched');
@@ -931,8 +1242,8 @@ function updateEpisodeUI() {
   });
 
   Object.keys(watched).forEach(key => {
-    const [storedSeriesName, seasonIdx, epIdx] = key.split('-');
-    if (storedSeriesName !== seriesTitle) return;
+    const [storedSubgroupName, seasonIdx, epIdx] = key.split('-');
+    if (storedSubgroupName !== subgroupTitle) return;
 
     const data = watched[key];
     if (data && data.watched) {
@@ -966,10 +1277,10 @@ function playEpisode(element) {
   const firstUrl = urls.length > 0 ? urls[0] : '#';
   const seasonIndex = parseInt(element.getAttribute('data-season-index'));
   const episodeIndex = parseInt(element.getAttribute('data-episode-index'));
-  const seriesTitle = document.querySelector('.series-title').textContent;
+  const subgroupTitle = document.querySelector('.subgroup-title').textContent;
 
-  markEpisodeAsWatched(seriesTitle, seasonIndex, episodeIndex);
-  updateSeriesContinueWatching(seriesTitle);
+  markEpisodeAsWatched(subgroupTitle, seasonIndex, episodeIndex);
+  updateSubgroupContinueWatching(subgroupTitle);
 
   if (firstUrl && firstUrl !== '#') {
     window.open(firstUrl, '_blank');
@@ -1026,25 +1337,25 @@ function loadEpisodeImages() {
 //=======================================================================
 //CONTINUE ASSISTINDO
 //=======================================================================
-function updateSeriesContinueWatching(seriesName) {
-  if (!document.querySelector('#series-header')) return;
+function updateSubgroupContinueWatching(subgroupName) {
+  if (!document.querySelector('#subgroup-header')) return;
 
   const watched = getWatchedEpisodes();
-  let activeInThisSeries = [];
+  let activeInThisSubgroup = [];
 
   Object.keys(watched).forEach(key => {
-    const [storedSeriesName, seasonIdx, epIdx] = key.split('-');
-    if (storedSeriesName === seriesName && watched[key] && watched[key].active) {
-      activeInThisSeries.push({ seasonIdx: parseInt(seasonIdx), epIdx: parseInt(epIdx) });
+    const [storedSubgroupName, seasonIdx, epIdx] = key.split('-');
+    if (storedSubgroupName === subgroupName && watched[key] && watched[key].active) {
+      activeInThisSubgroup.push({ seasonIdx: parseInt(seasonIdx), epIdx: parseInt(epIdx) });
     }
   });
 
   let continueSection = document.getElementById('continue-watching');
-  const seriesHeader = document.getElementById('series-header');
-  const seriesEpisodes = document.getElementById('series-episodes');
+  const subgroupHeader = document.getElementById('subgroup-header');
+  const subgroupEpisodes = document.getElementById('subgroup-episodes');
 
   let html = '';
-  if (activeInThisSeries.length > 0) {
+  if (activeInThisSubgroup.length > 0) {
     html += `
       <section id="continue-watching">
         <header class="group-title-header">
@@ -1053,11 +1364,11 @@ function updateSeriesContinueWatching(seriesName) {
         <div class="continue-episodes-container">
     `;
 
-    activeInThisSeries.forEach((seasonActive) => {
-      const series = findSeriesByName(seriesName);
-      if (!series || !series.season[seasonActive.seasonIdx]) return;
+    activeInThisSubgroup.forEach((seasonActive) => {
+      const subgroup = findSubgroupByName(subgroupName);
+      if (!subgroup || !subgroup.season[seasonActive.seasonIdx]) return;
 
-      const season = series.season[seasonActive.seasonIdx];
+      const season = subgroup.season[seasonActive.seasonIdx];
       const episode = season.episodes[seasonActive.epIdx];
       const thumb = episode.thumb || season.thumb_season;
       const urls = episode.url || [];
@@ -1070,7 +1381,7 @@ function updateSeriesContinueWatching(seriesName) {
           <div id="continue-episode-button" 
               style="background-image: url('${thumb}');" 
               data-urls='${JSON.stringify(urls)}' 
-              data-series-name="${seriesName}" 
+              data-subgroup-name="${subgroupName}" 
               data-season-index="${seasonActive.seasonIdx}" 
               data-episode-index="${seasonActive.epIdx}" 
               onclick="playContinueEpisode(this)">
@@ -1081,10 +1392,10 @@ function updateSeriesContinueWatching(seriesName) {
               <span class="trash-bar bar2"></span>
               <span class="trash-bar bar3"></span>
             </span>
-            <span class="badge-duration">${episode.duration}</span> <!-- Corrigido: duration, não duration -->
+            <span class="badge-duration">${episode.duration}</span>
             <p>T${seasonNum} - EP ${paddedEp}</p>
             <div class="remove-button" 
-                data-series-name="${seriesName}" 
+                data-subgroup-name="${subgroupName}" 
                 data-season-index="${seasonActive.seasonIdx}" 
                 data-episode-index="${seasonActive.epIdx}">✕</div>
           </div>
@@ -1098,7 +1409,7 @@ function updateSeriesContinueWatching(seriesName) {
     `;
   }
 
-  if (activeInThisSeries.length === 0) {
+  if (activeInThisSubgroup.length === 0) {
     if (continueSection) {
       continueSection.remove();
     }
@@ -1108,10 +1419,10 @@ function updateSeriesContinueWatching(seriesName) {
   if (!continueSection) {
     continueSection = document.createElement('section');
     continueSection.id = 'continue-watching';
-    if (seriesHeader) {
-      seriesHeader.parentNode.insertBefore(continueSection, seriesHeader);
-    } else if (seriesEpisodes) {
-      seriesEpisodes.parentNode.insertBefore(continueSection, seriesEpisodes);
+    if (subgroupHeader) {
+      subgroupHeader.parentNode.insertBefore(continueSection, subgroupHeader);
+    } else if (subgroupEpisodes) {
+      subgroupEpisodes.parentNode.insertBefore(continueSection, subgroupEpisodes);
     } else {
       document.getElementById('page-content').insertAdjacentElement('afterbegin', continueSection);
     }
@@ -1124,11 +1435,11 @@ function updateSeriesContinueWatching(seriesName) {
     removeBtn.addEventListener('click', function(e) {
       e.preventDefault();
       e.stopPropagation();
-      const rmSeriesName = this.getAttribute('data-series-name');
+      const rmSubgroupName = this.getAttribute('data-subgroup-name');
       const rmSeasonIdx = parseInt(this.getAttribute('data-season-index'));
       const rmEpIdx = parseInt(this.getAttribute('data-episode-index'));
-      removeContinueWatching(rmSeriesName, rmSeasonIdx, rmEpIdx);
-      updateSeriesContinueWatching(rmSeriesName);
+      removeContinueWatching(rmSubgroupName, rmSeasonIdx, rmEpIdx);
+      updateSubgroupContinueWatching(rmSubgroupName);
     });
   });
 
@@ -1142,12 +1453,12 @@ function updateSeriesContinueWatching(seriesName) {
 }
 
 function renderGlobalContinueWatching() {
-  const activeBySeries = getActiveEpisodesBySeries();
+  const activeBySubgroup = getActiveEpisodesBySubgroup();
   let html = '';
   let totalEpisodes = 0;
 
-  Object.keys(activeBySeries).forEach(seriesName => {
-    totalEpisodes += activeBySeries[seriesName].length;
+  Object.keys(activeBySubgroup).forEach(subgroupName => {
+    totalEpisodes += activeBySubgroup[subgroupName].length;
   });
 
   if (totalEpisodes === 0) return '';
@@ -1160,14 +1471,14 @@ function renderGlobalContinueWatching() {
       <div class="global-continue-container">
   `;
 
-  Object.keys(activeBySeries).forEach(seriesName => {
-    const seriesData = findSeriesByName(seriesName);
-    if (!seriesData) return;
+  Object.keys(activeBySubgroup).forEach(subgroupName => {
+    const subgroupData = findSubgroupByName(subgroupName);
+    if (!subgroupData) return;
 
-    const activeEpisodes = activeBySeries[seriesName];
+    const activeEpisodes = activeBySubgroup[subgroupName];
     
     activeEpisodes.forEach(active => {
-      const season = seriesData.season[active.seasonIndex];
+      const season = subgroupData.season[active.seasonIndex];
       const episode = season.episodes[active.episodeIndex];
       const thumb = episode.thumb || season.thumb_season;
       const urls = episode.url || [];
@@ -1180,7 +1491,7 @@ function renderGlobalContinueWatching() {
           <div id="continue-episode-button" 
               style="background-image: url('${thumb}');" 
               data-urls='${JSON.stringify(urls)}' 
-              data-series-name="${seriesName}" 
+              data-subgroup-name="${subgroupName}" 
               data-season-index="${active.seasonIndex}" 
               data-episode-index="${active.episodeIndex}" 
               onclick="playContinueEpisode(this)">
@@ -1192,10 +1503,10 @@ function renderGlobalContinueWatching() {
               <span class="trash-bar bar3"></span>
             </span>
             <span class="badge-duration">${episode.duration}</span>
-            <h1 class="series-name">${seriesName}</h1>
+            <h1 class="series-name">${subgroupName}</h1>
             <h3 class="episode-info">T${seasonNum} - EP ${paddedEp}</h3>
             <div class="remove-button" 
-                data-series-name="${seriesName}" 
+                data-subgroup-name="${subgroupName}" 
                 data-season-index="${active.seasonIndex}" 
                 data-episode-index="${active.episodeIndex}">✕</div>
           </div>
@@ -1216,15 +1527,15 @@ function playContinueEpisode(element) {
   const urlsStr = element.getAttribute('data-urls');
   const urls = urlsStr ? JSON.parse(urlsStr) : [];
   const firstUrl = urls.length > 0 ? urls[0] : '#';
-  const seriesName = element.getAttribute('data-series-name');
+  const subgroupName = element.getAttribute('data-subgroup-name');
   const seasonIdx = parseInt(element.getAttribute('data-season-index'));
   const epIdx = parseInt(element.getAttribute('data-episode-index'));
 
-  markEpisodeAsWatched(seriesName, seasonIdx, epIdx);
+  markEpisodeAsWatched(subgroupName, seasonIdx, epIdx);
 
-  const seriesTitleElement = document.querySelector('.series-title');
-  if (seriesTitleElement && seriesTitleElement.textContent.trim() === seriesName) {
-    updateSeriesContinueWatching(seriesName);
+  const subgroupTitleElement = document.querySelector('.subgroup-title');
+  if (subgroupTitleElement && subgroupTitleElement.textContent.trim() === subgroupName) {
+    updateSubgroupContinueWatching(subgroupName);
   } else {
     const currentPath = getCurrentPath();
     if (currentPath === generateSlug('Início')) {
@@ -1237,16 +1548,16 @@ function playContinueEpisode(element) {
   }
 }
 
-function removeContinueWatching(seriesName, seasonIdx, epIdx) {
+function removeContinueWatching(subgroupName, seasonIdx, epIdx) {
   const watched = getWatchedEpisodes();
-  const key = `${seriesName}-${seasonIdx}-${epIdx}`;
+  const key = `${subgroupName}-${seasonIdx}-${epIdx}`;
   if (watched[key]) {
     watched[key].active = false;
     saveWatchedEpisodes(watched);
     updateEpisodeUI();
 
-    if (document.querySelector('#series-header')) {
-      updateSeriesContinueWatching(seriesName);
+    if (document.querySelector('#subgroup-header')) {
+      updateSubgroupContinueWatching(subgroupName);
     }
 
     const currentPath = getCurrentPath();
@@ -1294,23 +1605,21 @@ function getCarouselData(path) {
   if (isHomePage) {
     seriesData.forEach(groupItem => {
       if (groupItem.group) {
-        const homepageItems = groupItem.group.filter(item => 
-          item.enabled !== false && 
-          item.carrousel && 
-          item.carrousel.enabled && 
-          item.carrousel.homepage
+        const homepageSubgroups = groupItem.group.filter(subgroup => 
+          subgroup.carrousel && 
+          subgroup.carrousel.enabled && 
+          subgroup.carrousel.homepage
         );
-        data.push(...homepageItems);
+        data.push(...homepageSubgroups);
       }
     });
   } else {
     const groupSlug = segments.length >= 1 ? segments[0] : '';
     const matchingGroup = seriesData.find(groupItem => generateSlug(groupItem.group_name) === groupSlug && groupItem.visible);
     if (matchingGroup && matchingGroup.group) {
-      data = matchingGroup.group.filter(item => 
-        item.enabled !== false && 
-        item.carrousel && 
-        item.carrousel.enabled
+      data = matchingGroup.group.filter(subgroup => 
+        subgroup.carrousel && 
+        subgroup.carrousel.enabled
       );
     }
   }
@@ -1352,8 +1661,8 @@ function renderCarrousel(path) {
     const data = getCarouselData(path);
     const originalSlides = [];
 
-    data.forEach(item => {
-      const carrousel = item.carrousel;
+    data.forEach(subgroup => {
+      const carrousel = subgroup.carrousel;
       const slide = document.createElement('div');
       slide.classList.add('carousel-slide');
       let thumbUrl;
@@ -1376,15 +1685,54 @@ function renderCarrousel(path) {
         logoHtml = `<h1>${carrousel.title}</h1>`;
       }
 
-      const currentIsFavorite = typeof isFavorite === 'function' && isFavorite(item.name);
-      const serieDataJson = JSON.stringify(item);
+      let infoHtml = '';
+      if (carrousel.info && carrousel.info.enabled) {
+        const numSeasons = subgroup.season ? subgroup.season.length : 0;
+        let totalEpisodes = 0;
+        if (subgroup.season) {
+          subgroup.season.forEach(season => {
+            if (season.episodes) totalEpisodes += season.episodes.length;
+          });
+        }
+        const seasonText = numSeasons === 1 ? 'Temporada: 1' : `Temporadas: ${numSeasons}`;
+        const episodeText = totalEpisodes === 1 ? 'Episódio: 1' : `Episódios: ${totalEpisodes}`;
+
+        const infoBadges = [];
+        if (carrousel.info.text && carrousel.info.text.trim()) {
+          infoBadges.push(`<span class="info-badge-text">${carrousel.info.text}</span>`);
+        }
+        if (carrousel.info.season) {
+          infoBadges.push(`<span class="info-badge">${seasonText}</span>`);
+        }
+        if (carrousel.info.episodes) {
+          infoBadges.push(`<span class="info-badge">${episodeText}</span>`);
+        }
+        if (carrousel.info.finalized) {
+          infoBadges.push(`<span class="info-badge">Finalizada</span>`);
+        }
+        if (infoBadges.length > 0) {
+          infoHtml = `<div class="carousel-info-badges">${infoBadges.join(' ')}</div>`;
+        }
+      }
+
+      let favoriteBtnHtml = '';
+      if (carrousel.favorite !== false) {
+        const allFavorite = isAllCardsFavorite(subgroup);
+        const subgroupDataJson = JSON.stringify(subgroup);
+        favoriteBtnHtml = `
+          <button class="favorite-button-s2 ${allFavorite ? 'active' : ''}" data-subgroup='${subgroupDataJson}'>
+            <span class="tooltip-text black tooltip-side">${allFavorite ? 'Remover todos dos favoritos' : 'Adicionar todos aos favoritos'}</span>
+          </button>
+        `;
+      }
 
       content.innerHTML = `
         ${logoHtml}
+        ${infoHtml}
         <p>${carrousel.description.trim()}</p>
         <div class="carousel-actions">
           <button class="btn btn-primary"><i class="fas fa-play"></i>Assistir Agora</button>
-          <button class="favorite-button-s2 ${currentIsFavorite ? 'active' : ''}" data-serie='${serieDataJson}'></button>
+          ${favoriteBtnHtml}
         </div>
       `;
 
@@ -1417,6 +1765,7 @@ function renderCarrousel(path) {
         if (progress) progress.style.display = 'none';
         const dotsContainer = document.getElementById('dots');
         if (dotsContainer) dotsContainer.style.display = 'none';
+        carousel.style.cursor = 'default';
       }
     } else {
       carousel.style.display = 'none';
@@ -1675,15 +2024,15 @@ document.addEventListener('DOMContentLoaded', () => {
   let mainMenuItems;
   if (iconsAnimated) {
     mainMenuItems = [
-      { name: 'Início',    icon: homeIconImg, path: generateSlug('Início'), active: true },
-      { name: 'Histórico', icon: historyIconImg, path: generateSlug('Histórico') },
-      { name: 'Favoritos', icon: favoritesIconImg, path: generateSlug('Favoritos') }
+      { name: 'Início',    icon: iconHomeGif, path: generateSlug('Início'), active: true },
+      { name: 'Histórico', icon: iconHistoryGif, path: generateSlug('Histórico') },
+      { name: 'Favoritos', icon: iconFavoriteGif, path: generateSlug('Favoritos') }
     ];
   } else {
     mainMenuItems = [
-      { name: 'Início',    icon: homeIconBase64, path: generateSlug('Início'), active: true },
-      { name: 'Histórico', icon: historyIconBase64, path: generateSlug('Histórico') },
-      { name: 'Favoritos', icon: favoritesIconBase64, path: generateSlug('Favoritos') }
+      { name: 'Início',    icon: iconHome, path: generateSlug('Início'), active: true },
+      { name: 'Histórico', icon: iconHistory, path: generateSlug('Histórico') },
+      { name: 'Favoritos', icon: iconFavorite, path: generateSlug('Favoritos') }
     ];
   }
 
@@ -1721,7 +2070,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       if (iconData.type === 'fa') {
         iconHTML = `<i class="${iconData.value}"></i>`;
-      } else if (iconData.type === 'base64') {
+      } else if (iconData.type === 'img') {
         iconHTML = `<img src="${iconData.value}" class="custom-icon" alt="${iconData.alt || item.group_name + ' Icon'}">`;
       } else if (iconData.type === 'svg') {
         iconHTML = iconData.value;
@@ -1742,8 +2091,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const allMenuLinks = document.querySelectorAll('.sidebar nav ul li a');
     allMenuLinks.forEach(link => {
-        link.addEventListener('click', async function (event) {
-            event.preventDefault();
+        link.addEventListener('click', async function (e) {
+            e.preventDefault();
             let path = this.getAttribute('data-path') || this.getAttribute('data-group');
             if (!path) return;
 
@@ -1768,14 +2117,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
       const contentContainer = document.getElementById('page-content');
       const filteredItems = getFilteredItems(path);
-      const isSeriesPage = filteredItems.length > 0 && filteredItems[0].type === 'series';
-      if (isSeriesPage) {
-        const series = filteredItems[0].data;
+      const isSubgroupPage = filteredItems.length > 0 && filteredItems[0].type === 'subgroup';
+      if (isSubgroupPage) {
+        const subgroup = filteredItems[0].data;
         setTimeout(() => {
-          updateSeriesContinueWatching(series.name);
+          updateSubgroupContinueWatching(subgroup.name);
         }, 0);
       }
-      if (!isSeriesPage) {
+      if (!isSubgroupPage) {
         attachSeriesNavigationListeners(contentContainer);
       }
     });
@@ -1789,13 +2138,13 @@ document.addEventListener('DOMContentLoaded', () => {
     if (streamsLink) setupStreamIcons(streamsLink);
 
     setTimeout(() => {
-      hideLoader();
+      hideLoader(Date.now());
       attachFavoriteListeners();
       updateCarouselFavorites();
       
       const filteredItems = getFilteredItems(currentPath);
-      const isSeriesPage = filteredItems.length > 0 && filteredItems[0].type === 'series';
-      if (!isSeriesPage) {
+      const isSubgroupPage = filteredItems.length > 0 && filteredItems[0].type === 'subgroup';
+      if (!isSubgroupPage) {
         attachSeriesNavigationListeners();
       }
     }, 100);

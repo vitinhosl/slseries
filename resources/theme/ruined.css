@@ -13,12 +13,18 @@
     --color-carrousel_back:         rgb(38, 38, 58, 0.7);
     --color-carrousel_bar:          rgb(0, 255, 115, 1.0);
 
+    --color-badge_color:            rgb(0, 255, 115);
+    --color-badge_text:             rgb(224, 224, 224);
+    --color-badge_background:       rgb(38, 38, 58, 0.7);
+
     --color-sidebar_background:     rgb(20, 20, 28);
     --color-sidebar_title:          rgb(0, 255, 115);
     --color-sidebar_text:           rgb(224, 224, 224);
     --color-sidebar_divider:        rgb(58, 58, 97);
     --color-sidebar_button:         rgb(0, 255, 115, 0.5);
     --color-sidebar_button_h:       rgb(58, 58, 97);
+    --color-sidebar_button_icon:    rgb(0, 255, 115);
+    --color-sidebar_button_convert: invert(44%) sepia(91%) saturate(1805%) hue-rotate(107deg) brightness(101%) contrast(101%);
     --color-sidebar_scroll:         rgb(41, 41, 41);
 
     --color-explore_button:         rgb(58, 58, 97);
