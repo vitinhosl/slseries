@@ -939,19 +939,22 @@ function calculateTotalCards(groupItem) {
 }
 
 function renderGroupSection(groupItem, isHomePage) {
-  // Ordenar os subgrupos por nome (ordem alfabética)
   const sortedSubgroups = [...groupItem.group].sort((a, b) => {
+    const aHasEnabled = a.card_buttons && a.card_buttons.some(card => card.enabled !== false);
+    const bHasEnabled = b.card_buttons && b.card_buttons.some(card => card.enabled !== false);
+    
+    if (aHasEnabled !== bHasEnabled) {
+      return aHasEnabled ? -1 : 1;
+    }
+    
     return a.name.localeCompare(b.name);
   });
 
-  // Para cada subgrupo, ordenar os card_buttons: enabled true primeiro, depois enabled false
   sortedSubgroups.forEach(subgroup => {
     if (subgroup.card_buttons) {
       subgroup.card_buttons.sort((a, b) => {
-        // Primeiro: enabled true (valor 0) vem antes de enabled false (valor 1)
         const enabledOrder = (a.enabled === false ? 1 : 0) - (b.enabled === false ? 1 : 0);
         
-        // Se têm o mesmo status de enabled, ordena por nome
         if (enabledOrder === 0) {
           return a.name.localeCompare(b.name);
         }
@@ -1039,10 +1042,8 @@ function renderGroupSection(groupItem, isHomePage) {
 
   html += `<div class="group-cards-container ${layoutClass}">`;
 
-  // Usar os subgrupos ordenados
   sortedSubgroups.forEach(subgroup => {
     if (subgroup.card_buttons) {
-      // Usar os card_buttons já ordenados (enabled true primeiro, depois enabled false)
       subgroup.card_buttons.forEach(card => {
         if (card.visible === false || !card.name) return;
 
