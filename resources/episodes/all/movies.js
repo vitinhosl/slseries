@@ -6,42 +6,158 @@ export const moviesData = [
             //HARRY POTTER
             {
                 name: "Harry Potter",
-                enabled: false,
-                visible: true,
-                thumb_buttons: {
-                    url: [
-                    "https://i.imgur.com/wdXyskp.png", //HARRY POTTER 1: EA PEDRA FILOSOFAL
-                    "https://i.imgur.com/SJYo00O.png", //HARRY POTTER 2: EA CÂMARA SECRETA
-                    "https://i.imgur.com/zmMRzon.png", //HARRY POTTER 3: EO CÁLICE DE FOGO
-                    "https://i.imgur.com/bqh8keV.png", //HARRY POTTER 4: EO PRISIONEIRO DE AZKABAN
-                    "https://i.imgur.com/IdOkjj3.png", //HARRY POTTER 5: EA ORDEM DA FÊNIX
-                    "https://i.imgur.com/RWt83mC.png", //HARRY POTTER 6: EO ENIGMA DO PRÍNCIPE
-                    "https://i.imgur.com/csXAXhz.png", //HARRY POTTER 7: EAS RELIQUIAS DA MORTE PT 1
-                    "https://i.imgur.com/N6aK9dg.png", //HARRY POTTER 8: EAS RELIQUIAS DA MORTE PT 2
+                card_buttons: [
+                    {
+                        name: "Harry Potter",
+                        title: "E a Pedra Filosofal",
+                        enabled: true,
+                        visible: true,
+                        acumulative: true,
+                        info: true,
+                        badge: "",
+                        thumb_buttons: {
+                            url: [
+                                "https://beam-images.warnermediacdn.com/BEAM_LWM_DELIVERABLES/4b990c5d-38ab-4daf-8092-2617cbc6d062/e1d06a4d-6659-11f0-b80d-02a07e508a33?host=wbd-images.prod-vod.h264.io&partner=beamcom&w=320",
+                                "https://i.imgur.com/wdXyskp.png",
+                                "https://i.imgur.com/8xGK1SM.png",
+                            ],
+                        },
+                    },
 
-                    "https://i.imgur.com/8xGK1SM.png", //HARRY POTTER 1: EA PEDRA FILOSOFAL
-                    "https://i.imgur.com/C76mOFX.png", //HARRY POTTER 2: EA CÂMARA SECRETA
-                    "https://i.imgur.com/SzZpgyk.png", //HARRY POTTER 3: EO CÁLICE DE FOGO
-                    "https://i.imgur.com/E4sncKt.png", //HARRY POTTER 4: EO PRISIONEIRO DE AZKABAN
-                    "https://i.imgur.com/ClbbCiS.png", //HARRY POTTER 5: EA ORDEM DA FÊNIX
-                    "https://i.imgur.com/JVYBDl1.png", //HARRY POTTER 6: EO ENIGMA DO PRÍNCIPE
-                    "https://i.imgur.com/df4o6Du.png", //HARRY POTTER 7: EAS RELIQUIAS DA MORTE PT 1
-                    "https://i.imgur.com/4vclUJV.png", //HARRY POTTER 8: EAS RELIQUIAS DA MORTE PT 2
-                    ],
-                },
-                badge: "",
-                title: "", //TEXTO DO BOTÃO ENABLED OFF
+                    {
+                        name: "Harry Potter 2",
+                        title: "E a Câmara Secreta",
+                        enabled: true,
+                        visible: true,
+                        acumulative: true,
+                        info: true,
+                        badge: "",
+                        thumb_buttons: {
+                            url: [
+                                "https://beam-images.warnermediacdn.com/BEAM_LWM_DELIVERABLES/48674b82-9076-4080-a40c-379efad5eb89/76cfaf1b-6659-11f0-85e1-12d03b70fa8b?host=wbd-images.prod-vod.h264.io&partner=beamcom&w=320",
+                                "https://i.imgur.com/SJYo00O.png",
+                                "https://i.imgur.com/C76mOFX.png",
+                            ],
+                        },
+                    },
+
+                    {
+                        name: "Harry Potter 3",
+                        title: "E o Prisioneiro de Azkaban",
+                        enabled: true,
+                        visible: true,
+                        acumulative: true,
+                        info: true,
+                        badge: "",
+                        thumb_buttons: {
+                            url: [
+                                "https://beam-images.warnermediacdn.com/BEAM_LWM_DELIVERABLES/73553a76-1658-45f6-9e26-1b9c4443b0d6/e05e56a8-689b-49ea-a4be-ea5548656204?host=wbd-images.prod-vod.h264.io&partner=beamcom&w=320",
+                                "https://i.imgur.com/zmMRzon.png",
+                                "https://i.imgur.com/SzZpgyk.png",
+                            ],
+                        },
+                    },
+
+                    {
+                        name: "Harry Potter 4",
+                        title: "E o Cálice de Fogo",
+                        enabled: true,
+                        visible: true,
+                        acumulative: true,
+                        info: true,
+                        badge: "",
+                        thumb_buttons: {
+                            url: [
+                                "https://beam-images.warnermediacdn.com/BEAM_LWM_DELIVERABLES/d2e9ff29-e71d-4eae-9a4b-7cd0e00236ea/b46623fc-5a7f-4019-b2e5-714909ce0319?host=wbd-images.prod-vod.h264.io&partner=beamcom&w=320",
+                                "https://i.imgur.com/bqh8keV.png",
+                                "https://i.imgur.com/E4sncKt.png",
+                            ],
+                        },
+                    },
+
+                    {
+                        name: "Harry Potter 5",
+                        title: "E a Ordem da Fênix",
+                        enabled: true,
+                        visible: true,
+                        acumulative: true,
+                        info: true,
+                        badge: "",
+                        thumb_buttons: {
+                            url: [
+                                "https://beam-images.warnermediacdn.com/BEAM_LWM_DELIVERABLES/25768909-39b8-4cb2-a39f-e059460f7add/bf042df5-6659-11f0-be5e-0afff99ad1ad?host=wbd-images.prod-vod.h264.io&partner=beamcom&w=320",
+                                "https://i.imgur.com/IdOkjj3.png",
+                                "https://i.imgur.com/ClbbCiS.png",
+                            ],
+                        },
+                    },
+
+                    {
+                        name: "Harry Potter 6",
+                        title: "E o Enigma do Príncipe",
+                        enabled: true,
+                        visible: true,
+                        acumulative: true,
+                        info: true,
+                        badge: "",
+                        thumb_buttons: {
+                            url: [
+                                "https://beam-images.warnermediacdn.com/BEAM_LWM_DELIVERABLES/cba1d85a-5ef4-4ba3-b537-1d24554fe85c/e1abf244-6659-11f0-85e1-12d03b70fa8b?host=wbd-images.prod-vod.h264.io&partner=beamcom&w=320",
+                                "https://i.imgur.com/RWt83mC.png",
+                                "https://i.imgur.com/JVYBDl1.png",
+                            ],
+                        },
+                    },
+
+                    {
+                        name: "Harry Potter 7)",
+                        title: "E as Relíquias da Morte (PT 1)",
+                        enabled: true,
+                        visible: true,
+                        acumulative: true,
+                        info: true,
+                        badge: "",
+                        thumb_buttons: {
+                            url: [
+                                "https://beam-images.warnermediacdn.com/BEAM_LWM_DELIVERABLES/2c394a2d-7d1d-481d-a420-76ee1bee01a7/d9c2c446-00b6-4e1e-a489-9495abcbe27c?host=wbd-images.prod-vod.h264.io&partner=beamcom&w=320",
+                                "https://i.imgur.com/csXAXhz.png",
+                                "https://i.imgur.com/df4o6Du.png",
+                            ],
+                        },
+                    },
+
+                    {
+                        name: "Harry Potter 7",
+                        title: "E as Relíquias da Morte (PT 2)",
+                        enabled: true,
+                        visible: true,
+                        acumulative: true,
+                        info: true,
+                        badge: "",
+                        thumb_buttons: {
+                            url: [
+                                "https://beam-images.warnermediacdn.com/BEAM_LWM_DELIVERABLES/1890c8c5-2f40-4140-a363-064428201826/be267855-6659-11f0-85e1-12d03b70fa8b?host=wbd-images.prod-vod.h264.io&partner=beamcom&w=320",
+                                "https://i.imgur.com/N6aK9dg.png",
+                                "https://i.imgur.com/4vclUJV.png",
+                            ],
+                        },
+                    },
+                ],
+
                 carrousel: {
                     enabled: false,
                     homepage: false,
+                    favorite: true,
                     title: "HARRY POTTER",
                     logo: { enabled: false, minimalist: false, url: "" },
                     thumb: [""],
                     text: "",
                     description: `
                         
-                    `
+                    `,
+                    info: { enabled: false, text: "", season: false, episodes: false, finalized: false}
                 },
+
                 description: {
                     title: "HARRY POTTER",
                     thumb: [
@@ -87,103 +203,271 @@ export const moviesData = [
 
             //ANIMAIS FANTASTICOS
             {
-            name: "Animais Fantasticos",
-            enabled: false,
-            visible: true,
-            thumb_buttons: {
-                url: [
-                "https://i.imgur.com/69wXwwB.png", //ANIMAIS FANTÁSTICOS 1: E ONDE HABITAM
-                "https://i.imgur.com/kTpeOQv.png", //ANIMAIS FANTÁSTICOS 2: OS CRIMES DE GRINDELWALD
-                "https://i.imgur.com/FimdmeZ.png", //ANIMAIS FANTÁSTICOS 3: OS SEGREDOS DE DUMBLEDORE
-                "https://i.imgur.com/vUWlvu6.png", //ANIMAIS FANTÁSTICOS 2: OS CRIMES DE GRINDELWALD
-                "https://i.imgur.com/mMDgW7V.png", //ANIMAIS FANTÁSTICOS 3: OS SEGREDOS DE DUMBLEDORE
+                name: "Animais Fantasticos",
+                card_buttons: [
+                    {
+                        name: "Animais Fantasticos",
+                        title: "E Onde Habitam",
+                        enabled: true,
+                        visible: true,
+                        acumulative: true,
+                        info: true,
+                        badge: "",
+                        thumb_buttons: {
+                            url: [
+                                "https://beam-images.warnermediacdn.com/BEAM_LWM_DELIVERABLES/d627b35d-31a0-4e62-af14-6ec2fd8fdaef/30ebd7f8-86af-47a3-bc44-7d6420fd30ff?host=wbd-images.prod-vod.h264.io&partner=beamcom&w=320",
+                                "https://i.imgur.com/69wXwwB.png",
+                            ],
+                        },
+                    },
+
+                    {
+                        name: "Animais Fantasticos 2",
+                        title: "Os Crimes de Grindelwald",
+                        enabled: true,
+                        visible: true,
+                        acumulative: true,
+                        info: true,
+                        badge: "",
+                        thumb_buttons: {
+                            url: [
+                                "https://beam-images.warnermediacdn.com/BEAM_LWM_DELIVERABLES/8c884d7f-cf56-469d-ab2f-38129155757f/d332c772-fc79-487e-afb2-eca958b805ac?host=wbd-images.prod-vod.h264.io&partner=beamcom&w=320",
+                                "https://i.imgur.com/kTpeOQv.png",
+                                "https://i.imgur.com/vUWlvu6.png",
+                            ],
+                        },
+                    },
+
+                    {
+                        name: "Animais Fantasticos 3",
+                        title: "Os Segredos de Dumbledore",
+                        enabled: true,
+                        visible: true,
+                        acumulative: true,
+                        info: true,
+                        badge: "",
+                        thumb_buttons: {
+                            url: [
+                                "https://beam-images.warnermediacdn.com/BEAM_LWM_DELIVERABLES/3cfe3099-e685-40fe-b858-a5013692e030/54e6a468-6ff5-40f5-887e-8e8695986c20?host=wbd-images.prod-vod.h264.io&partner=beamcom&w=320",
+                                "https://i.imgur.com/FimdmeZ.png",
+                                "https://i.imgur.com/mMDgW7V.png",
+                            ],
+                        },
+                    },
                 ],
-            },
-            badge: "",
-            title: "", //TEXTO DO BOTÃO ENABLED OFF
-            carrousel: {
-                enabled: false,
-                homapge: false,
-                title: "ANIMAIS FANTASTICOS",
-                                    logo: { enabled: false, minimalist: false, url: "" },
-                thumb: [""],
-                text: "",
-                description: `
-                    
-                `
-            },
-            description: {
-                title: "ANIMAIS FANTASTICOS",
-                thumb: [
-                    "https://i.imgur.com/XhVA7qP.jpeg",
-                ],
-                video: [
-                    "https://i.imgur.com/Tfae1ar.mp4",
-                    "https://drive.google.com/file/d/1SCtkaPtgTUqH25KvTfNGrd8rKaFUQUS9/preview?autoplay=1",
-                ],
-                sinopse:  `
-                    Quem se senta no trono de ferro controla os sete reinos. Game of Thrones segue a luta das famílias nobres que cobiçam esse poder. Nove famílias nobres lutam pelo controle sobre as terras míticas de Westeros, enquanto um antigo inimigo retorna depois de estar adormecido por milhares de anos.
-                `
-            },
-            season: [
-                {
-                    name: "Filmes",
-                    thumb_season: "https://i.imgur.com/sWx8cad.png",
-                    movies: false,
-                    episodes: [
-                    { title: "Episódio 001", subtitle: "", duration: "", thumb: "https://is1-ssl.mzstatic.com/image/thumb/Video221/v4/3e/8b/6c/3e8b6c91-8646-adb8-31e2-1768e85a5d04/a149d996-07e0-4cf2-b855-5342f2258b11_FANTASTIC_BEASTS_AWTFT_2024_H_DD_KA_TT_3840x2160_300dpi_BR.jpg/290x163.webp"           , url: [""] },
-                    { title: "Episódio 002", subtitle: "", duration: "", thumb: "https://is1-ssl.mzstatic.com/image/thumb/Video221/v4/56/42/20/56422092-b548-cc1a-b598-92d03717217a/a915cc2b-bf67-47f5-9a12-863395a298c7_FB_CRIMES_OF_GRINDELWALD_2024_H_DD_KA_TT_3840x2160_300dpi_BR.jpg/290x163.webp"         , url: [""] },
-                    { title: "Episódio 003", subtitle: "", duration: "", thumb: "https://is1-ssl.mzstatic.com/image/thumb/Video211/v4/7c/ce/a8/7ccea8a2-9b01-5576-0fb0-2c94a8823269/39aae040-4990-44bf-b1c8-dc7fddc22189_FantasticBeasts_SecretsDumbledore_2024_H_DD_KA_TT_3840x2160_300dpi_BR.jpg/290x163.webp", url: [""] },
-                    ]
+
+                carrousel: {
+                    enabled: false,
+                    homepage: false,
+                    favorite: true,
+                    title: "ANIMAIS FANTASTICOS",
+                    logo: { enabled: false, minimalist: false, url: "" },
+                    thumb: [""],
+                    text: "",
+                    description: `
+                        
+                    `,
+                    info: { enabled: false, text: "", season: false, episodes: false, finalized: false}
                 },
-            ]
+
+                description: {
+                    title: "ANIMAIS FANTASTICOS",
+                    thumb: [
+                        "https://i.imgur.com/XhVA7qP.jpeg",
+                    ],
+                    video: [
+                        "https://i.imgur.com/Tfae1ar.mp4",
+                        "https://drive.google.com/file/d/1SCtkaPtgTUqH25KvTfNGrd8rKaFUQUS9/preview?autoplay=1",
+                    ],
+                    sinopse:  `
+                        Quem se senta no trono de ferro controla os sete reinos. Game of Thrones segue a luta das famílias nobres que cobiçam esse poder. Nove famílias nobres lutam pelo controle sobre as terras míticas de Westeros, enquanto um antigo inimigo retorna depois de estar adormecido por milhares de anos.
+                    `
+                },
+
+                season: [
+                    {
+                        name: "Filmes",
+                        thumb_season: "https://i.imgur.com/sWx8cad.png",
+                        movies: false,
+                        episodes: [
+                        { title: "Episódio 001", subtitle: "", duration: "", thumb: "https://is1-ssl.mzstatic.com/image/thumb/Video221/v4/3e/8b/6c/3e8b6c91-8646-adb8-31e2-1768e85a5d04/a149d996-07e0-4cf2-b855-5342f2258b11_FANTASTIC_BEASTS_AWTFT_2024_H_DD_KA_TT_3840x2160_300dpi_BR.jpg/290x163.webp"           , url: [""] },
+                        { title: "Episódio 002", subtitle: "", duration: "", thumb: "https://is1-ssl.mzstatic.com/image/thumb/Video221/v4/56/42/20/56422092-b548-cc1a-b598-92d03717217a/a915cc2b-bf67-47f5-9a12-863395a298c7_FB_CRIMES_OF_GRINDELWALD_2024_H_DD_KA_TT_3840x2160_300dpi_BR.jpg/290x163.webp"         , url: [""] },
+                        { title: "Episódio 003", subtitle: "", duration: "", thumb: "https://is1-ssl.mzstatic.com/image/thumb/Video211/v4/7c/ce/a8/7ccea8a2-9b01-5576-0fb0-2c94a8823269/39aae040-4990-44bf-b1c8-dc7fddc22189_FantasticBeasts_SecretsDumbledore_2024_H_DD_KA_TT_3840x2160_300dpi_BR.jpg/290x163.webp", url: [""] },
+                        ]
+                    },
+                ]
             },
 
             //VELOZES E FURIOSOS
             {
                 name: "Velozes e Furiosos",
-                enabled: false,
-                visible: true,
-                thumb_buttons: {
-                    url: [
-                        "https://i.imgur.com/y8FBSks.jpeg", //VELOZES E FURIOSOS 1
-                        "https://i.imgur.com/bvJhA7q.jpeg", //VELOZES E FURIOSOS 2
-                        "https://i.imgur.com/06E4fD1.jpeg", //VELOZES E FURIOSOS 3
-                        "https://i.imgur.com/mUY6E2y.jpeg", //VELOZES E FURIOSOS 4
-                        "https://i.imgur.com/fCXyIWf.jpeg", //VELOZES E FURIOSOS 5
-                        "https://i.imgur.com/Z1W2iiO.jpeg", //VELOZES E FURIOSOS 6
-                        "https://i.imgur.com/mB9Pvi7.jpeg", //VELOZES E FURIOSOS 7
-                        "https://i.imgur.com/VEOSjQB.jpeg", //VELOZES E FURIOSOS 8
-                        "https://i.imgur.com/iGgpSAl.jpeg", //VELOZES E FURIOSOS 9
-                        "https://i.imgur.com/PjT4mwv.jpeg", //VELOZES E FURIOSOS 10
+                card_buttons: [
+                    {
+                        name: "Velozes e Furiosos",
+                        title: "+ Velozes + Furiosos",
+                        enabled: true,
+                        visible: true,
+                        acumulative: true,
+                        info: true,
+                        badge: "",
+                        thumb_buttons: {
+                            url: [
+                                "https://i.imgur.com/y8FBSks.jpeg",
+                            ],
+                        },
+                    },
+                    {
+                        name: "Velozes e Furiosos 2",
+                        title: "",
+                        enabled: true,
+                        visible: true,
+                        acumulative: true,
+                        info: true,
+                        badge: "",
+                        thumb_buttons: {
+                            url: [
+                                "https://i.imgur.com/bvJhA7q.jpeg",
+                                "https://i.imgur.com/mjTmEVq.png",
+                            ],
+                        },
+                    },
+                    {
+                        name: "Velozes e Furiosos 3",
+                        title: "Desafio em Tóquio",
+                        enabled: true,
+                        visible: true,
+                        acumulative: true,
+                        info: true,
+                        badge: "",
+                        thumb_buttons: {
+                            url: [
+                                "https://i.imgur.com/06E4fD1.jpeg",
+                                "https://i.imgur.com/8l1j8xn.png", 
+                                "https://i.imgur.com/mswA0Fu.jpeg",
+                            ],
+                        },
+                    },
+                    {
+                        name: "Velozes e Furiosos 4",
+                        title: "",
+                        enabled: true,
+                        visible: true,
+                        acumulative: true,
+                        info: true,
+                        badge: "",
+                        thumb_buttons: {
+                            url: [
+                                "https://i.imgur.com/mUY6E2y.jpeg",
+                                "https://i.imgur.com/mUY6E2y.jpeg",
+                                "https://i.imgur.com/ONRvfhk.jpeg",
+                            ],
+                        },
+                    },
+                    {
+                        name: "Velozes e Furiosos 5",
+                        title: "Operação Rio",
+                        enabled: true,
+                        visible: true,
+                        acumulative: true,
+                        info: true,
+                        badge: "",
+                        thumb_buttons: {
+                            url: [
+                                "https://i.imgur.com/fCXyIWf.jpeg",
+                                "https://i.imgur.com/lj7CR26.jpeg",
+                            ],
+                        },
+                    },
+                    {
+                        name: "Velozes e Furiosos 6",
+                        title: "",
+                        enabled: true,
+                        visible: true,
+                        acumulative: true,
+                        info: true,
+                        badge: "",
+                        thumb_buttons: {
+                            url: [
+                                "https://i.imgur.com/Z1W2iiO.jpeg",
+                                "https://i.imgur.com/Z1W2iiO.jpeg",
+                            ],
+                        },
+                    },
+                    {
+                        name: "Velozes e Furiosos 7",
+                        title: "",
+                        enabled: true,
+                        visible: true,
+                        acumulative: true,
+                        info: true,
+                        badge: "",
+                        thumb_buttons: {
+                            url: [
+                                "https://i.imgur.com/mB9Pvi7.jpeg",
+                                "https://i.imgur.com/mB9Pvi7.jpeg",
+                            ],
+                        },
+                    },
+                    {
+                        name: "Velozes e Furiosos 8",
+                        title: "",
+                        enabled: true,
+                        visible: true,
+                        acumulative: true,
+                        info: true,
+                        badge: "",
+                        thumb_buttons: {
+                            url: [
+                                "https://i.imgur.com/VEOSjQB.jpeg",
+                                "https://i.imgur.com/foMeLDd.png",
+                            ],
+                        },
+                    },
+                    {
+                        name: "Velozes e Furiosos 9",
+                        title: "",
+                        enabled: true,
+                        visible: true,
+                        acumulative: true,
+                        info: true,
+                        badge: "",
+                        thumb_buttons: {
+                            url: [
+                                "https://i.imgur.com/iGgpSAl.jpeg",
+                                "https://i.imgur.com/6RQyGF9.jpeg",
+                            ],
+                        },
+                    },
+                    {
+                        name: "Velozes e Furiosos 10",
+                        title: "",
+                        enabled: true,
+                        visible: true,
+                        acumulative: true,
+                        info: true,
+                        badge: "",
+                        thumb_buttons: {
+                            url: [
+                                "https://i.imgur.com/PjT4mwv.jpeg",
+                            ],
+                        },
+                    },
+                ],
 
-                        // "",  //VELOZES E FURIOSOS 1
-                        // "https://i.imgur.com/mjTmEVq.png",  //VELOZES E FURIOSOS 2
-                        // "https://i.imgur.com/mUY6E2y.jpeg", //VELOZES E FURIOSOS 4
-                        // "https://i.imgur.com/ONRvfhk.jpeg", //VELOZES E FURIOSOS 4
-                        // "https://i.imgur.com/8l1j8xn.png",  //VELOZES E FURIOSOS 3
-                        // "https://i.imgur.com/mswA0Fu.jpeg", //VELOZES E FURIOSOS 3
-                        // "https://i.imgur.com/lj7CR26.jpeg", //VELOZES E FURIOSOS 5
-                        // "https://i.imgur.com/Z1W2iiO.jpeg", //VELOZES E FURIOSOS 6
-                        // "https://i.imgur.com/mB9Pvi7.jpeg", //VELOZES E FURIOSOS 7
-                        // "https://i.imgur.com/foMeLDd.png",  //VELOZES E FURIOSOS 8
-                        // "https://i.imgur.com/6RQyGF9.jpeg", //VELOZES E FURIOSOS 9
-                        "", //VELOZES E FURIOSOS 10
-                    ],
-                },
-                badge: "",
-                title: "", //TEXTO DO BOTÃO ENABLED OFF
                 carrousel: {
                     enabled: false,
                     homepage: false,
+                    favorite: true,
                     title: "VELOZES FURIOSOS",
-                                        logo: { enabled: false, minimalist: false, url: "" },
+                    logo: { enabled: false, minimalist: false, url: "" },
                     thumb: [""],
                     text: "",
                     description: `
                         
-                    `
+                    `,
+                    info: { enabled: false, text: "", season: false, episodes: false, finalized: false}
                 },
+
                 description: {
                     title: "A CASA DO DRAGÃO",
                     thumb: [
@@ -196,6 +480,7 @@ export const moviesData = [
                         172 anos antes do nascimento de Daenerys, a protagonista da série original, a Casa do Dragão mostrará um dos eventos mais poderosos dentro do universo, a Dança dos Dragões. Momento esse que marca a guerra civil entre a família Targaryen.
                     `
                 },
+
                 season: [
                     {
                     name: "Temporada 01",
@@ -220,27 +505,51 @@ export const moviesData = [
             //TROPA DE ELITE
             {
                 name: "Tropa de Elite",
-                enabled: true,
-                visible: true,
-                thumb_buttons: {
-                    url: [
-                        "https://i.imgur.com/l8BHSFw.jpeg", //TROPA DE ELITE 1
-                        "https://i.imgur.com/1vI9zgQ.jpeg", //TROPA DE ELITE 2
-                    ],
-                },
-                badge: "",
-                title: "", //TEXTO DO BOTÃO ENABLED OFF
+                card_buttons: [
+                    {
+                        name: "Tropa de Elite",
+                        enabled: true,
+                        visible: true,
+                        acumulative: true,
+                        info: true,
+                        badge: "",
+                        thumb_buttons: {
+                            url: [
+                                "https://i.imgur.com/l8BHSFw.jpeg",
+                            ],
+                        },
+                    },
+
+                    {
+                        name: "Tropa de Elite 2",
+                        title: "O Inimigo Agora É Outro",
+                        enabled: true,
+                        visible: true,
+                        acumulative: true,
+                        info: true,
+                        badge: "",
+                        thumb_buttons: {
+                            url: [
+                                "https://i.imgur.com/1vI9zgQ.jpeg",
+                            ],
+                        },
+                    },
+                ],
+
                 carrousel: {
                     enabled: false,
                     homepage: false,
+                    favorite: true,
                     title: "TROPA DE ELITE",
-                                        logo: { enabled: false, minimalist: false, url: "" },
+                    logo: { enabled: false, minimalist: false, url: "" },
                     thumb: [""],
                     text: "",
                     description: `
                         
-                    `
+                    `,
+                    info: { enabled: false, text: "", season: false, episodes: false, finalized: false}
                 },
+
                 description: {
                     title: "TROPA DE ELITE",
                     thumb: [
@@ -252,6 +561,7 @@ export const moviesData = [
                         Este drama policial brasileiro acompanha um batalhão de operações especiais que defende a lei em uma favela governada pelo narcotráfico. Pressionado pela esposa a sair do batalhão, Rodrigo Nascimento procura um substituto. Ao mesmo tempo, dois amigos se candidatam ao curso de formação da Tropa de Elite.
                     `
                 },
+
                 season: [
                     {
                     name: "Filmes",

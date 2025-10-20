@@ -1,7 +1,7 @@
-// import { seriesAll } from './episodes/index.js';
-// const seriesData = seriesAll;
+import { seriesAll } from './episodes/index.js';
+const seriesData = seriesAll;
 
-const seriesData = [
+const seriesData2 = [
   {
     group_name: "Filmes",
     visible: true,
@@ -14,7 +14,8 @@ const seriesData = [
             name: "Tropa de Elite",
             enabled: true,
             visible: true,
-            info: true,
+            acumulative: true,
+            info: false,
             thumb_buttons: {
                 url: [
                   "https://i.imgur.com/l8BHSFw.jpeg",
@@ -26,6 +27,7 @@ const seriesData = [
             name: "Tropa de Elite 2",
             enabled: true,
             visible: true,
+            acumulative: true,
             info: true,
             thumb_buttons: {
                 url: [
@@ -72,18 +74,19 @@ const seriesData = [
       },
 
     ],
-  }
+  },
 ];
 
 //=======================================================================
 //CONFIGURAÇÕES
 //=======================================================================
+let groupSeriesButtonInfo   = true;  //ATIVA AS INFORMAÇÕES DOS BUTTONS
 let iconsAnimated           = false; //ATIVA AS ANIMAÇÕES DOS ICONES
 let randomImagesCards       = false; //AS IMAGENS ALEATÓRIAS DOS BOTÕES
 let randomImagesCarrousel   = false; //AS IMAGENS ALEATÓRIAS DO CARROUSEL
 let speedCarrouselBar       = 5;     //VELOCIDADE DAS ANIMAÇÕES DO CARROUSEL
 
-// localStorage.clear();
+localStorage.clear();
 
 //=======================================================================
 //ICONES
@@ -446,81 +449,6 @@ function toggleAllCardsFavorite(subgroup) {
   }
 }
 
-function renderFavoritesPage(favoritesGroup) {
-  let html = '';
-
-  html += `<section id="favorites-page-container">`;
-  html += `<div class="favorites-cards-container category-layout">`;
-
-  favoritesGroup.group.forEach(subgroup => {
-    if (subgroup.card_buttons) {
-      subgroup.card_buttons.forEach(card => {
-        if (card.visible === false || !card.name) return;
-
-        const urls = card.thumb_buttons.url;
-        const selectedThumb = randomImagesCards 
-          ? urls[Math.floor(Math.random() * urls.length)] 
-          : urls[0];
-        const subgroupSlug = generateSlug(subgroup.name);
-        const actualGroupSlug = subgroup.original_group ? generateSlug(subgroup.original_group) : 'favoritos';
-        const currentIsFavorite = isFavorite(card.name);
-        const containerClass = card.enabled === false ? 'disabled' : '';
-        const watchButtonClass = card.enabled === false ? 'watch-button disabled' : 'watch-button';
-        const watchButtonText = card.enabled === false ? 'INDISPONÍVEL' : 'ASSISTIR';
-
-        html += `
-          <div class="card-container ${containerClass}" data-subgroup-slug="${subgroupSlug}">
-            <div class="inner-container">
-                <div class="border-outer"></div> 
-                <div class="main-card" style="background-image: url('${selectedThumb}')"></div>
-                <div class="glow-layer-1"></div>
-                <div class="glow-layer-2"></div>
-            </div>
-
-            <div class="overlay-1"></div>
-            <div class="overlay-2"></div>
-            <div class="background-glow"></div>
-
-            <div id="group-series-button" data-subgroup-slug="${subgroupSlug}" data-group-slug="${actualGroupSlug}">
-              <div class="info">
-                <h2>${card.name}</h2>
-                <p>TEST</p>
-                <button class="${watchButtonClass}">${watchButtonText}</button>
-              </div>
-              <button class="favorite-button ${currentIsFavorite ? 'favorited' : ''}" data-card='${JSON.stringify(card)}'>
-                <svg class="rating__star" width="24" height="24" viewBox="0 0 32 32" aria-hidden="true">
-                  <g transform="translate(16,16)">
-                    <circle class="rating__star-ring" fill="none" stroke="#000" stroke-width="16" r="8" transform="scale(0)" />
-                  </g>
-                  <g stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <g transform="translate(16,16) rotate(180)">
-                      <polygon class="rating__star-stroke" points="0,15 4.41,6.07 14.27,4.64 7.13,-2.32 8.82,-12.14 0,-7.5 -8.82,-12.14 -7.13,-2.32 -14.27,4.64 -4.41,6.07" fill="none" />
-                      <polygon class="rating__star-fill" points="0,15 4.41,6.07 14.27,4.64 7.13,-2.32 8.82,-12.14 0,-7.5 -8.82,-12.14 -7.13,-2.32 -14.27,4.64 -4.41,6.07" fill="#000" />
-                    </g>
-                    <g transform="translate(16,16)" stroke-dasharray="12 12" stroke-dashoffset="12">
-                      <polyline class="rating__star-line" transform="rotate(0)" points="0 4,0 16" />
-                      <polyline class="rating__star-line" transform="rotate(72)" points="0 4,0 16" />
-                      <polyline class="rating__star-line" transform="rotate(144)" points="0 4,0 16" />
-                      <polyline class="rating__star-line" transform="rotate(216)" points="0 4,0 16" />
-                      <polyline class="rating__star-line" transform="rotate(288)" points="0 4,0 16" />
-                    </g>
-                  </g>
-                </svg>
-                <span class="tooltip-text black tooltip-top">${currentIsFavorite ? 'Remover dos favoritos' : 'Adicionar aos favoritos'}</span>
-              </button>
-            </div>
-          </div>
-        `;
-      });
-    }
-  });
-  
-  html += `</div>`;
-  html += '</section>';
-  
-  return html;
-}
-
 //=======================================================================
 // FILTRO DE SÉRIES/GRUPOS (adaptado para favoritos por card)
 //=======================================================================
@@ -838,15 +766,14 @@ function loadPageContent(path) {
         buttonClasses = buttonClasses.trim();
         
         html += `
-          <div class="episodes-container-card slide-in-right" style="opacity: 1;">
+          <div class="episodes-container-card slide-in-right" style="opacity: 1;"
+              data-subgroup-name="${subgroup.name}"
+              data-urls='${JSON.stringify(episode.url || [])}'
+              data-season-index="${seasonIndex}"
+              data-episode-index="${episodeIndex}"
+              onclick="playEpisode(this)">
             <div id="episode-button" 
-                data-subgroup-name="${subgroup.name}"
-                data-url="${firstUrl}" 
-                data-urls='${JSON.stringify(episode.url || [])}'
-                data-season-index="${seasonIndex}"
-                data-episode-index="${episodeIndex}"
                 class="${buttonClasses}" 
-                onclick="playEpisode(this)"
                 style="background-image: url('${episode.thumb || season.thumb_season}');">
               <img class="episode-thumb" 
                   data-src="${episode.thumb}" 
@@ -989,7 +916,51 @@ function initializeHomePageFeatures() {
   });
 }
 
+function calculateTotalCards(groupItem) {
+  let totalCards = 0;
+  groupItem.group.forEach(subgroup => {
+    if (!subgroup.card_buttons || subgroup.card_buttons.length === 0) return;
+
+    const enabledCards = subgroup.card_buttons.filter(card => card.visible !== false && card.enabled !== false);
+    if (enabledCards.length === 0) return;
+
+    const hasNonAcumulative = enabledCards.some(card => card.acumulative !== true);
+    let subgroupCount = 0;
+
+    if (!hasNonAcumulative) {
+      subgroupCount = enabledCards.length;
+    } else {
+      subgroupCount = 1;
+    }
+
+    totalCards += subgroupCount;
+  });
+  return totalCards;
+}
+
 function renderGroupSection(groupItem, isHomePage) {
+  // Ordenar os subgrupos por nome (ordem alfabética)
+  const sortedSubgroups = [...groupItem.group].sort((a, b) => {
+    return a.name.localeCompare(b.name);
+  });
+
+  // Para cada subgrupo, ordenar os card_buttons: enabled true primeiro, depois enabled false
+  sortedSubgroups.forEach(subgroup => {
+    if (subgroup.card_buttons) {
+      subgroup.card_buttons.sort((a, b) => {
+        // Primeiro: enabled true (valor 0) vem antes de enabled false (valor 1)
+        const enabledOrder = (a.enabled === false ? 1 : 0) - (b.enabled === false ? 1 : 0);
+        
+        // Se têm o mesmo status de enabled, ordena por nome
+        if (enabledOrder === 0) {
+          return a.name.localeCompare(b.name);
+        }
+        
+        return enabledOrder;
+      });
+    }
+  });
+
   const groupSlug = groupItem.group_slug || generateSlug(groupItem.group_name);
   let html = '';
   
@@ -1002,9 +973,9 @@ function renderGroupSection(groupItem, isHomePage) {
   if (groupItem.group_name.includes('favoritos') || groupItem.group_name.includes('Favoritos')) {
     iconHTML = `<img src="${iconFavorite}" class="custom-icon" alt="Favoritos Icon">`;
     let totalCards = 0;
-    groupItem.group.forEach(subgroup => {
+    sortedSubgroups.forEach(subgroup => {
       if (subgroup.card_buttons) {
-        totalCards += subgroup.card_buttons.length;
+        totalCards += subgroup.card_buttons.filter(card => card.visible !== false && isFavorite(card.name)).length;
       }
     });
     displayGroupName = `Conteúdos favoritos (${totalCards})`;
@@ -1032,16 +1003,7 @@ function renderGroupSection(groupItem, isHomePage) {
       iconHTML = iconData.value;
     }
 
-    let totalCards = 0;
-    groupItem.group.forEach(subgroup => {
-      if (subgroup.card_buttons) {
-        subgroup.card_buttons.forEach(card => {
-          if (card.visible !== false && card.enabled !== false) {
-            totalCards++;
-          }
-        });
-      }
-    });
+    const totalCards = calculateTotalCards({ ...groupItem, group: sortedSubgroups });
     displayGroupName += ` (${totalCards} disponíveis)`;
   }
   
@@ -1077,8 +1039,10 @@ function renderGroupSection(groupItem, isHomePage) {
 
   html += `<div class="group-cards-container ${layoutClass}">`;
 
-  groupItem.group.forEach(subgroup => {
+  // Usar os subgrupos ordenados
+  sortedSubgroups.forEach(subgroup => {
     if (subgroup.card_buttons) {
+      // Usar os card_buttons já ordenados (enabled true primeiro, depois enabled false)
       subgroup.card_buttons.forEach(card => {
         if (card.visible === false || !card.name) return;
 
@@ -1092,9 +1056,12 @@ function renderGroupSection(groupItem, isHomePage) {
         const containerClass = card.enabled === false ? 'disabled' : '';
         const watchButtonClass = card.enabled === false ? 'watch-button disabled' : 'watch-button';
         const watchButtonText = card.enabled === false ? 'INDISPONÍVEL' : 'ASSISTIR';
+        const shouldShowInfo = groupSeriesButtonInfo && card.info;
+        const infoClass = shouldShowInfo ? 'info' : '';
+        const hasInfoClass = shouldShowInfo ? 'has-info' : '';
 
         html += `
-          <div class="card-container ${containerClass}" data-subgroup-slug="${subgroupSlug}">
+          <div class="card-container ${containerClass} ${hasInfoClass}" data-subgroup-slug="${subgroupSlug}">
             <div class="inner-container">
                 <div class="border-outer"></div> 
                 <div class="main-card" style="background-image: url('${selectedThumb}')"></div>
@@ -1106,7 +1073,7 @@ function renderGroupSection(groupItem, isHomePage) {
             <div class="overlay-2"></div>
             <div class="background-glow"></div>
 
-            <div id="group-series-button" data-subgroup-slug="${subgroupSlug}" data-group-slug="${actualGroupSlug}">
+            <div id="group-series-button" class="${infoClass}" data-subgroup-slug="${subgroupSlug}" data-group-slug="${actualGroupSlug}">
               <div class="info">
                 <h2>${card.name}</h2>
                 <p>TEST</p>
@@ -1232,9 +1199,12 @@ function updateEpisodeUI() {
   if (!subgroupTitle) return;
 
   const watched = getWatchedEpisodes();
-  const episodeButtons = document.querySelectorAll('#episode-button[data-subgroup-name="' + subgroupTitle + '"]');
-  episodeButtons.forEach(button => {
+  const episodeCards = document.querySelectorAll('.episodes-container-card[data-subgroup-name="' + subgroupTitle + '"]');
+  
+  episodeCards.forEach(card => {
+    const button = card.querySelector('#episode-button');
     button.classList.remove('watched', 'active');
+    
     const existingBadge = button.querySelector('.badge-watched');
     if (existingBadge) {
       existingBadge.remove();
@@ -1249,34 +1219,38 @@ function updateEpisodeUI() {
     if (data && data.watched) {
       const seasonIdxNum = parseInt(seasonIdx);
       const epIdxNum = parseInt(epIdx);
-      const targetButton = Array.from(episodeButtons).find(btn => {
-        return btn.getAttribute('data-season-index') === seasonIdxNum.toString() && btn.getAttribute('data-episode-index') === epIdxNum.toString();
+      
+      // Encontrar o card correto
+      const targetCard = Array.from(episodeCards).find(card => {
+        return card.getAttribute('data-season-index') === seasonIdxNum.toString() && 
+               card.getAttribute('data-episode-index') === epIdxNum.toString();
       });
       
-      if (targetButton) {
-        targetButton.classList.add('watched');
+      if (targetCard) {
+        const button = targetCard.querySelector('#episode-button');
+        button.classList.add('watched');
         
-        if (!targetButton.querySelector('.badge-watched')) {
+        if (!button.querySelector('.badge-watched')) {
           const badge = document.createElement('span');
           badge.className = 'badge-watched';
           badge.textContent = '▶ ASSISTIDO';
-          targetButton.appendChild(badge);
+          button.appendChild(badge);
         }
         
         if (data.active) {
-          targetButton.classList.add('active');
+          button.classList.add('active');
         }
       }
     }
   });
 }
 
-function playEpisode(element) {
-  const urlsStr = element.getAttribute('data-urls') || '[]';
+function playEpisode(containerElement) {
+  const urlsStr = containerElement.getAttribute('data-urls') || '[]';
   const urls = JSON.parse(urlsStr);
   const firstUrl = urls.length > 0 ? urls[0] : '#';
-  const seasonIndex = parseInt(element.getAttribute('data-season-index'));
-  const episodeIndex = parseInt(element.getAttribute('data-episode-index'));
+  const seasonIndex = parseInt(containerElement.getAttribute('data-season-index'));
+  const episodeIndex = parseInt(containerElement.getAttribute('data-episode-index'));
   const subgroupTitle = document.querySelector('.subgroup-title').textContent;
 
   markEpisodeAsWatched(subgroupTitle, seasonIndex, episodeIndex);

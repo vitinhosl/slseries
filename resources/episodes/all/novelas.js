@@ -489,30 +489,40 @@ export const novelsData= [
             //REBELDE MEXICANO (RBD)
             {
                 name: "Rebelde",
-                enabled: true,
-                visible: true,
-                thumb_buttons: {
-                    url: [
-                        "https://image.tmdb.org/t/p/original/p5VjPouEYqRhHsWidIqd65q04Qt.jpg",
-                        // "https://i.imgur.com/SEnkwUw.jpeg", 
-                        // "https://s2.glbimg.com/ZL5vyy2AgnF4hB9zaOpsfIbnttA=/i.s3.glbimg.com/v1/AUTH_c3c606ff68e7478091d1ca496f9c5625/internal_photos/bs/2024/2/v/xY2nXpT1elFw5Zg5ChbQ/2024-4284-rebelde-t3-poster.jpg"
-                    ],
-                },
-                badge: "",
-                title: "", //TEXTO DO BOTÃO ENABLED OFF
+                card_buttons: [
+                    {
+                        name: "Rebelde",
+                        enabled: true,
+                        visible: true,
+                        acumulative: false,
+                        info: true,
+                        badge: "",
+                        thumb_buttons: {
+                            url: [
+                                "https://image.tmdb.org/t/p/original/p5VjPouEYqRhHsWidIqd65q04Qt.jpg",
+                                // "https://i.imgur.com/SEnkwUw.jpeg", 
+                                // "https://s2.glbimg.com/ZL5vyy2AgnF4hB9zaOpsfIbnttA=/i.s3.glbimg.com/v1/AUTH_c3c606ff68e7478091d1ca496f9c5625/internal_photos/bs/2024/2/v/xY2nXpT1elFw5Zg5ChbQ/2024-4284-rebelde-t3-poster.jpg"
+                            ],
+                        },
+                    },
+                ],
+
                 carrousel: {
                     enabled: false,
                     homepage: false,
+                    favorite: true,
                     title: "NOME",
-                                        logo: { enabled: false, minimalist: false, url: "" },
+                    logo: { enabled: false, minimalist: false, url: "" },
                     thumb: [
                         "",
                     ],
                     text: "",
                     description: `
 
-                    `
+                    `,
+                    info: { enabled: true, text: "", season: true, episodes: true, finalized: true}
                 },
+
                 description: {
                     enabled: true,
                     title: "REBELDE - RBD",
@@ -539,6 +549,7 @@ export const novelsData= [
                         as suas desavenças: uma grande paixão pela música.
                     `
                 },
+
                 season: [
                     {
                         name: "Temporada 01",
@@ -1009,36 +1020,46 @@ export const novelsData= [
             //REBELDE BRASILEIRO
             {
                 name: "Rebelde Brasileiro",
-                enabled: false,
-                visible: true,
-                thumb_buttons: {
-                    url: [
-                        "https://pp-vod-img-aws.akamaized.net/0069081/0069081_200.jpg",
-                        // "https://i.imgur.com/9BYbB7x.jpeg"
-                    ],
-                },
-                badge: "",
-                title: "", //TEXTO DO BOTÃO ENABLED OFF
+                card_buttons: [
+                    {
+                        name: "Rebelde Brasileiro",
+                        enabled: false,
+                        visible: true,
+                        acumulative: false,
+                        info: true,
+                        badge: "",
+                        thumb_buttons: {
+                            url: [
+                                "https://pp-vod-img-aws.akamaized.net/0069081/0069081_200.jpg",
+                                // "https://i.imgur.com/9BYbB7x.jpeg"
+                            ],
+                        },
+                    },
+                ],
+
                 carrousel: {
                     enabled: false,
                     homepage: false,
+                    favorite: true,
                     title: "REBELDE BRASILEIRO",
-                                        logo: { enabled: false, minimalist: false, url: "" },
+                    logo: { enabled: false, minimalist: false, url: "" },
                     thumb: [
                         "",
                     ],
                     text: "",
                     description: `
 
-                    `
+                    `,
+                    info: { enabled: true, text: "", season: false, episodes: true, finalized: true}
                 },
+
                 description: {
                     enabled: true,
                     title: "REBELDE - BRASILEIRO",
                     thumb: [
                         "https://pp-vod-img-aws.akamaized.net/0069081/playplus_thumb_1600.jpg",
                     ],
-                        effect: [
+                    effect: [
                         {
                             hover: true,
                             fade: 2,
@@ -1058,6 +1079,7 @@ export const novelsData= [
                         na música um objetivo comum.
                     `
                 },
+
                 season: [
                     {
                         name: "Temporada 01",
@@ -1074,28 +1096,39 @@ export const novelsData= [
             //A USURPADORA
             {
                 name: "A Usurpadora",
-                enabled: true,
-                visible: true,
-                thumb_buttons: {
-                    url: [
-                        "https://i.imgur.com/AcQ1Pm2.png",
-                    ],
-                },
-                badge: "",
-                title: "", //TEXTO DO BOTÃO ENABLED OFF
+                card_buttons: [
+                    {
+                        name: "A Usurpadora",
+                        enabled: true,
+                        visible: true,
+                        acumulative: false,
+                        info: true,
+                        badge: "",
+                        thumb_buttons: {
+                            url: [
+                                "https://s2-globo-play.glbimg.com/zuRXprrUcRlAiP4E5xG_Y8I6ynE=/362x536/https://s2-globo-play.glbimg.com/ZzhBiHPQ9fM9hIfVVDCLKSVENnk=/https://s2.glbimg.com/G_TyHh0IWsaL-_eKaUEipRHkCkA=/i.s3.glbimg.com/v1/AUTH_c3c606ff68e7478091d1ca496f9c5625/internal_photos/bs/2021/S/O/217rvFQ7aF9XToyoNyAQ/2021-2379-a-usurpadora-poster.jpg",
+                                "https://i.imgur.com/AcQ1Pm2.png",
+                            ],
+                        },
+                    },
+                ],
+
                 carrousel: {
                     enabled: false,
                     homepage: false,
+                    favorite: true,
                     title: "A USURPADORA",
-                                        logo: { enabled: false, minimalist: false, url: "" },
+                    logo: { enabled: false, minimalist: false, url: "" },
                     thumb: [
                         "",
                     ],
                     text: "",
                     description: `
 
-                    `
+                    `,
+                    info: { enabled: true, text: "", season: false, episodes: true, finalized: true}
                 },
+
                 description: {
                     enabled: true,
                     title: "A USURPADORA",
@@ -1118,6 +1151,7 @@ export const novelsData= [
                         A Usurpadora é uma envolvente história sobre as irmãs gêmeas Paulina e Paola, separadas ao nascer.  Quando Paola, uma mulher rica e manipuladora, força Paulina a assumir sua identidade para escapar  de sua vida familiar, a trama se transforma em um intenso drama de mentiras, vingança e redenção.  Com reviravoltas emocionantes e personagens marcantes, A Usurpadora conquistou o público com sua  mistura de romance e intriga, sendo até hoje uma das novelas mais lembradas da televisão.
                     `
                 },
+
                 season: [
                     {
                         name: "Temporada 01",
@@ -1228,7 +1262,6 @@ export const novelsData= [
                             { title: "Episódio 102", subtitle: "", duration: "41:36", thumb: "https://s03.video.glbimg.com/x216/9961726.jpg", url: ["https://cdn-novflix.com/storage5/AUS/AUS-102.mp4"] },
                         ]
                     }
-
                 ]
             }
         ]

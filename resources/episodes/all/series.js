@@ -6,20 +6,28 @@ export const seriesData = [
         //ALQUIMIA DAS ALMAS
         {
             name: "Alquimia das Almas",
-            enabled: true,
-            visible: true,
-            thumb_buttons: {
-              url: [
-                "https://i.imgur.com/kg0eddJ.jpeg",
-                "https://i.imgur.com/ZcQ3to0.jpeg",
-                "https://i.imgur.com/GDJhM4V.jpeg",
-              ],
-            },
-            badge: "",
-            title: "", //TEXTO DO BOTÃO ENABLED OFF
+            card_buttons: [
+              {
+                name: "Alquimia das Almas",
+                enabled: true,
+                visible: true,
+                acumulative: false,
+                info: true,
+                badge: "",
+                thumb_buttons: {
+                  url: [
+                    "https://i.imgur.com/kg0eddJ.jpeg",
+                    "https://i.imgur.com/ZcQ3to0.jpeg",
+                    "https://i.imgur.com/GDJhM4V.jpeg",
+                  ],
+                },
+              },
+            ],
+
             carrousel: {
                 enabled: false,
                 homepage: false,
+                favorite: true,
                 title: "ALQUIMIA DAS ALMAS",
                 logo: {
                   enabled: false,
@@ -30,8 +38,10 @@ export const seriesData = [
                 text: "",
                 description: `
                     
-                `
+                `,
+                info: { enabled: false, text: "", season: true, episodes: true, finalized: true }
             },
+
             description: {
                 title: "ALQUIMIA DAS ALMAS",
                 thumb: [
@@ -43,6 +53,7 @@ export const seriesData = [
                 Em Alquimia das Almas, conhecemos o mundo ficcional e fantástico de Daeho e seus personagens. Jang Wook é o herdeiro da nobre família Jang e possui a fama de maior encrenqueiro do reino. Por todo o país existem boatos sobre a verdadeira origem de Wook, um segredo que o rapaz terá de encarar em breve. O destino o leva até Deok Yi, uma guerreira de elite que está com a alma presa dentro de um corpo fisicamente fraco. Eventualmente, Deok Yi começa a trabalhar para Jang Wook enquanto, em segredo, ensina o herdeiro a lutar. Por outro lado, conhecemos a família Seo e o jovem Seo Yool. De boa aparência, inteligência e com exímia habilidade em artes marciais, Seo Yook é considerado perfeito. Go Won é o príncipe coroado de Daeho, um garoto cheio de esperança de se tornar um rei generoso para o país. 
                 `
             },
+
             season: [
                 {
                   name: "Temporada 01",
@@ -95,20 +106,28 @@ export const seriesData = [
         //GAME OF THRONES
         {
           name: "Game of Thrones",
-          enabled: false,
-          visible: true,
-          thumb_buttons: {
-            url: [
-              "https://i.imgur.com/KLwmxCI.jpeg",
-              "https://i.imgur.com/xf5vGSj.jpeg",
-              "https://i.imgur.com/viy45SG.jpeg",
-            ],
-          },
-          badge: "",
-          title: "", //TEXTO DO BOTÃO ENABLED OFF
+          card_buttons: [
+            {
+              name: "Game of Thrones",
+              enabled: false,
+              visible: true,
+              acumulative: false,
+              info: true,
+              badge: "",
+              thumb_buttons: {
+                url: [
+                  "https://i.imgur.com/KLwmxCI.jpeg",
+                  "https://i.imgur.com/xf5vGSj.jpeg",
+                  "https://i.imgur.com/viy45SG.jpeg",
+                ],
+              },
+            },
+          ],
+
           carrousel: {
               enabled: false,
               homepage: false,
+              favorite: true,
               title: "GAME OF THRONES",
               logo: {
                 enabled: false,
@@ -119,8 +138,10 @@ export const seriesData = [
               text: "",
               description: `
                   
-              `
+              `,
+              info: { enabled: false, text: "", season: true, episodes: true, finalized: true }
           },
+
           description: {
               title: "GAME OF THRONES",
               thumb: [
@@ -130,6 +151,7 @@ export const seriesData = [
                 Quem se senta no trono de ferro controla os sete reinos. Game of Thrones segue a luta das famílias nobres que cobiçam esse poder. Nove famílias nobres lutam pelo controle sobre as terras míticas de Westeros, enquanto um antigo inimigo retorna depois de estar adormecido por milhares de anos.
               `
           },
+
           season: [
               {
                 name: "Temporada 01",
@@ -154,19 +176,26 @@ export const seriesData = [
         //A RODA DO TEMPO
         {
             name: "A Roda do Tempo",
-            enabled: false,
-            visible: true,
-            thumb_buttons: {
-              url: [
-                "https://i.imgur.com/LLWJSeR.jpeg",
-              ],
-            },
-            badge: "",
-            type: "",
-            title: "", //TEXTO DO BOTÃO ENABLED OFF
+            card_buttons: [
+              {
+                name: "A Roda do Tempo",
+                enabled: false,
+                visible: true,
+                acumulative: false,
+                info: true,
+                badge: "",
+                thumb_buttons: {
+                  url: [
+                    "https://i.imgur.com/LLWJSeR.jpeg",
+                  ],
+                }, 
+              },
+            ],
+
             carrousel: {
                 enabled: false,
                 homepage: false,
+                favorite: true,
                 title: "A RODA DO TEMPO",
                 logo: {
                   enabled: false,
@@ -177,8 +206,10 @@ export const seriesData = [
                 text: "",
                 description: `
                     
-                `
+                `,
+                info: { enabled: false, text: "", season: true, episodes: true, finalized: false }
             },
+
             description: {
                 title: "A RODA DO TEMPO",
                 thumb: [
@@ -192,6 +223,7 @@ export const seriesData = [
                   Com os Amaldiçoados soltos pelo mundo, os heróis da Luz devem traçar seus próprios caminhos e reunir forças ocultas enquanto enfrentam as próprias Sombras.
                 `
             },
+
             season: [
                 {
                   name: "Temporada 01",
@@ -207,19 +239,27 @@ export const seriesData = [
         //SOMBRA E OSSOS
         {
           name: "Sombra e Ossos",
-          enabled: false,
-          visible: true,
-          thumb_buttons: {
-            url: [
-              "https://i.imgur.com/g4rzDUb.png",
-              "https://i.imgur.com/NwXQXGJ.jpeg",
-            ],
-          },
-          badge: "",
-          title: "", //TEXTO DO BOTÃO ENABLED OFF
+          card_buttons: [
+            {
+              name: "Sombra e Ossos",
+              enabled: true,
+              visible: true,
+              acumulative: false,
+              info: true,
+              badge: "",
+              thumb_buttons: {
+                url: [
+                  "https://i.imgur.com/g4rzDUb.png",
+                  "https://i.imgur.com/NwXQXGJ.jpeg",
+                ],
+              },
+            },
+          ],
+
           carrousel: {
               enabled: false,
               homepage: false,
+              favorite: true,
               title: "SOMBRA E OSSOS",
               logo: {
                 enabled: false,
@@ -230,8 +270,10 @@ export const seriesData = [
               text: "",
               description: `
                   
-              `
+              `,
+              info: { enabled: false, text: "", season: true, episodes: true, finalized: true }
           },
+
           description: {
               title: "SOMBRA E OSSOS",
               thumb: [
@@ -244,6 +286,7 @@ export const seriesData = [
                 Em um mundo atormentado por trevas e criaturas monstruosas, uma jovem cartógrafa embarca em uma perigosa jornada que pode mudar o destino de sua nação.
               `
           },
+
           season: [
               {
                 name: "Temporada 01",
@@ -259,21 +302,29 @@ export const seriesData = [
         //O SENHOR DOS ANÉIS:OS ANÉIS DE PODER
         {
           name: "Os Anéis de Poder",
-          enabled: true,
-          visible: true,
-          thumb_buttons: {
-            url: [
-              "https://i.imgur.com/SKEOHMc.jpeg",
-              "https://i.imgur.com/IYshKlx.png",
-              "https://i.imgur.com/aRUogCZ.png",
-              // "https://i.imgur.com/JbRssVI.jpeg",
-            ],
-          },
-          badge: "",
-          title: "", //TEXTO DO BOTÃO ENABLED OFF
+          card_buttons: [
+            {
+              name: "Os Anéis de Poder",
+              enabled: true,
+              visible: true,
+              acumulative: false,
+              info: true,
+              badge: "",
+              thumb_buttons: {
+                url: [
+                  "https://i.imgur.com/SKEOHMc.jpeg",
+                  "https://i.imgur.com/IYshKlx.png",
+                  "https://i.imgur.com/aRUogCZ.png",
+                  // "https://i.imgur.com/JbRssVI.jpeg",
+                ],
+              },
+            },
+          ],
+
           carrousel: {
               enabled: false,
               homepage: false,
+              favorite: true,
               title: "SENHOR DOS ANÉIS: OS ANÉIS DE PODER",
               logo: {
                 enabled: false,
@@ -284,8 +335,10 @@ export const seriesData = [
               text: "",
               description: `
                   
-              `
+              `,
+              info: { enabled: false, text: "", season: true, episodes: true, finalized: false }
           },
+
           description: {
               title: "SENHOR DOS ANÉIS: OS ANÉIS DE PODER",
               thumb: [
@@ -297,6 +350,7 @@ export const seriesData = [
                 Sauron retornou... Com planos de dominar toda a Terra-média.
               `
           },
+
           season: [
               {
                 name: "Temporada 01",
@@ -335,20 +389,28 @@ export const seriesData = [
         //GREYS ANATOMY
         {
           name: "Grey's Anatomy",
-          enabled: false,
-          visible: true,
-          thumb_buttons: {
-            url: [
-              "https://i.imgur.com/ef7S2Nv.jpeg",
-              "https://i.imgur.com/gIQ8dU8.png",
-              "https://i.imgur.com/nzSQsLk.png",
-            ],
-          },
-          badge: "",
-          title: "", //TEXTO DO BOTÃO ENABLED OFF
+          card_buttons: [
+            {
+              name: "Grey's Anatomy",
+              enabled: false,
+              visible: true,
+              acumulative: false,
+              info: true,
+              badge: "",
+              thumb_buttons: {
+                url: [
+                  "https://i.imgur.com/ef7S2Nv.jpeg",
+                  "https://i.imgur.com/gIQ8dU8.png",
+                  "https://i.imgur.com/nzSQsLk.png",
+                ],
+              },
+            },
+          ],
+
           carrousel: {
               enabled: false,
               homepage: false,
+              favorite: true,
               title: "GREY'S ANATOMY",
               logo: {
                 enabled: false,
@@ -359,8 +421,10 @@ export const seriesData = [
               text: "",
               description: `
                   
-              `
+              `,
+              info: { enabled: false, text: "", season: true, episodes: true, finalized: true }
           },
+
           description: {
               title: "GREY'S ANATOMY",
               thumb: [
@@ -374,6 +438,7 @@ export const seriesData = [
                 O drama médico de alta intensidade, agora em sua 15ª temporada, segue Meredith Grey e a equipe de médicos do Grey Sloan Memorial que se deparam com decisões de vida ou morte diariamente. Eles buscam conforto um do outro, e, às vezes, mais do que apenas amizade. Juntos, eles descobrem que nem a medicina nem as relações podem ser definidas em preto e branco.
               `
           },
+
           season: [
               {
                 name: "Temporada 01",
@@ -389,19 +454,27 @@ export const seriesData = [
         //A CASA DO DRAGÃO
         {
           name: "A Casa do Dragão",
-          enabled: false,
-          visible: true,
-          thumb_buttons: {
-            url: [
-              "https://i.imgur.com/5fvFZ7s.png",
-              "https://i.imgur.com/2eWdHrM.png",
-            ],
-          },
-          badge: "",
-          title: "", //TEXTO DO BOTÃO ENABLED OFF
+          card_buttons: [
+            {
+              name: "A Casa do Dragão",
+              enabled: false,
+              visible: true,
+              acumulative: false,
+              info: true,
+              badge: "",
+              thumb_buttons: {
+                url: [
+                  "https://i.imgur.com/5fvFZ7s.png",
+                  "https://i.imgur.com/2eWdHrM.png",
+                ],
+              },
+            },
+          ],
+
           carrousel: {
               enabled: false,
               homepage: false,
+              favorite: true,
               title: "A CASA DO DRAGÃO",
               logo: {
                 enabled: false,
@@ -412,8 +485,10 @@ export const seriesData = [
               text: "",
               description: `
                   
-              `
+              `,
+              info: { enabled: false, text: "", season: true, episodes: true, finalized: false }
           },
+
           description: {
               title: "A CASA DO DRAGÃO",
               thumb: [
@@ -426,6 +501,7 @@ export const seriesData = [
                 172 anos antes do nascimento de Daenerys, a protagonista da série original, a Casa do Dragão mostrará um dos eventos mais poderosos dentro do universo, a Dança dos Dragões. Momento esse que marca a guerra civil entre a família Targaryen.
               `
           },
+
           season: [
               {
                 name: "Temporada 01",

@@ -11,6 +11,9 @@ export const minecraftData = [
                         name: "Casa Automática",
                         enabled: true,
                         visible: true,
+                        acumulative: false,
+                        info: true,
+                        badge: "",
                         thumb_buttons: {
                             url: [
                                 "https://i.imgur.com/bG5XyaM.png", 
@@ -21,11 +24,10 @@ export const minecraftData = [
                     },
                 ],
 
-                badge: "",
-                title: "", //TEXTO DO BOTÃO ENABLED OFF
                 carrousel: {
                     enabled: false,
                     homepage: false,
+                    favorite: true,
                     title: "EM BUSCA DA CASA AUTOMÁTICA",
                     logo: { enabled: false, minimalist: false, url: "" },
                     thumb: [
@@ -34,8 +36,10 @@ export const minecraftData = [
                     text: "",
                     description: `
 
-                    `
+                    `,
+                    info: { enabled: false, text: "", season: true, episodes: true, finalized: false }
                 },
+
                 description: {
                     enabled: true,
                     title: "EM BUSCA DA CASA AUTOMÁTICA",
@@ -61,6 +65,7 @@ export const minecraftData = [
                     importantes como a Farm de Guardian e a Mega Mob Trap.
                     `
                 },
+
                 season: [
                     {
                         name: "Temporada 01",
@@ -468,20 +473,28 @@ export const minecraftData = [
             //CRAFT GAMES
             {
                 name: "Craft Games",
-                enabled: false,
-                visible: true,
-                thumb_buttons: {
-                    url: [
-                        "https://i.imgur.com/2HtrltH.png",
-                        "https://i.imgur.com/7A5rAwe.png", //MESMA DE CIMA SEM LOGO
-                        "https://i.imgur.com/r9JKRFi.png",
-                    ],
-                },
-                badge: "",
-                title: "", //TEXTO DO BOTÃO ENABLED OFF
+                card_buttons: [
+                    {
+                        name: "Craft Games",
+                        enabled: false,
+                        visible: true,
+                        acumulative: false,
+                        info: true,
+                        badge: "",
+                        thumb_buttons: {
+                            url: [
+                                "https://i.imgur.com/2HtrltH.png",
+                                "https://i.imgur.com/7A5rAwe.png", //MESMA DE CIMA SEM LOGO
+                                "https://i.imgur.com/r9JKRFi.png",
+                            ],
+                        },
+                    },
+                ],
+
                 carrousel: {
                     enabled: false,
                     homepage: false,
+                    favorite: true,
                     title: "CRAFT GAMES",
                     logo: { enabled: false, minimalist: false, url: "" },
                     thumb: [
@@ -490,8 +503,10 @@ export const minecraftData = [
                     text: "",
                     description: `
 
-                    `
+                    `,
+                    info: { enabled: false, text: "", season: true, episodes: true, finalized: false }
                 },
+
                 description: {
                     enabled: true,
                     title: "CRAFT GAMES",
@@ -515,6 +530,7 @@ export const minecraftData = [
 
                     `
                 },
+
                 season: [
                     {
                         name: "Temporada 01",

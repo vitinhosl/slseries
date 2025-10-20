@@ -6,20 +6,28 @@ export const animesData = [
             //SOLO LEVELING
             {
                 name: "Solo Leveling",
-                enabled: true,
-                visible: true,
-                thumb_buttons: {
-                    url: [
-                        // "https://animesbr.tv/wp-content/uploads/2025/01/vTCjCkwHn3bfqVLdQjZke3c8w7l-200x300.jpg",
-                        "https://i.imgur.com/B54Pi2i.jpeg",
-                        "https://i.imgur.com/YtFlIIe.jpeg",
-                    ],
-                },
-                badge: "",
-                title: "", //TEXTO DO BOTÃO ENABLED OFF
+                card_buttons: [
+                    {
+                        name: "Solo Leveling",
+                        enabled: true,
+                        visible: true,
+                        acumulative: false,
+                        info: true,
+                        badge: "",
+                        thumb_buttons: {
+                            url: [
+                                // "https://animesbr.tv/wp-content/uploads/2025/01/vTCjCkwHn3bfqVLdQjZke3c8w7l-200x300.jpg",
+                                "https://i.imgur.com/B54Pi2i.jpeg",
+                                "https://i.imgur.com/YtFlIIe.jpeg",
+                            ],
+                        },
+                    },
+                ],
+
                 carrousel: {
                     enabled: false,
                     homepage: false,
+                    favorite: true,
                     title: "SOLO LEVELING",
                     logo: { enabled: false, minimalist: false, url: "" },
                     thumb: [
@@ -28,8 +36,10 @@ export const animesData = [
                     text: "",
                     description: `
 
-                    `
+                    `,
+                    info: { enabled: false, text: "", season: true, episodes: true, finalized: false }
                 },
+
                 description: {
                     enabled: false,
                     title: "SOLO LEVELING",
@@ -59,6 +69,7 @@ export const animesData = [
                         Jinwoo decide aceitar essa missão, tornando-se assim a única pessoa capaz de subir de nível!
                     `
                 },
+
                 season: [
                     {
                         name: "Temporada 01",
@@ -106,26 +117,36 @@ export const animesData = [
             //GACHIAKUTA
             {
                 name: "Gachiakuta",
-                enabled: true,
-                visible: true,
-                thumb_buttons: {
-                    url: [
-                        "https://i.imgur.com/ooWl5H3.jpeg",
-                    ],
-                },
-                badge: "",
-                title: "", //TEXTO DO BOTÃO ENABLED OFF
+                card_buttons: [
+                    {
+                        name: "Gachiakuta",
+                        enabled: true,
+                        visible: true,
+                        acumulative: false,
+                        info: true,
+                        badge: "",
+                        thumb_buttons: {
+                            url: [
+                                "https://i.imgur.com/ooWl5H3.jpeg",
+                            ],
+                        },
+                    },
+                ],
+
                 carrousel: {
                     enabled: false,
                     homepage: false,
+                    favorite: true,
                     title: "GACHIAKUTA",
                     logo: { enabled: false, minimalist: false, url: "" },
                     thumb: [""],
                     text: "",
                     description: `
                         
-                    `
+                    `,
+                    info: { enabled: false, text: "", season: true, episodes: true, finalized: false }
                 },
+
                 description: {
                     title: "GACHIAKUTA",
                     thumb: [
@@ -139,6 +160,7 @@ export const animesData = [
                         Em uma cidade flutuante onde os ricos descartam seu lixo (e pessoas), Rudo é acusado falsamente de homicídio e jogado no Abismo, um lugar infernal onde vivem monstros de lixo mutantes. Para sobreviver, ele precisa conquistar um novo poder e se unir aos errantes Zeladores. Rudo não quer apenas lutar com os monstros, mas também contra os corruptos que o jogaram no Inferno.
                     `
                 },
+
                 season: [
                     {
                     name: "Temporada 01",
@@ -165,18 +187,26 @@ export const animesData = [
             //KAIJU NO 8
             {
                 name: "Kaiju no. 8",
-                enabled: true,
-                visible: true,
-                thumb_buttons: {
-                    url: [
-                        "https://i.imgur.com/P099HnZ.jpeg",
-                    ],
-                },
-                badge: "",
-                title: "", //TEXTO DO BOTÃO ENABLED OFF
+                card_buttons: [
+                    {
+                        name: "Kaiju nº 8",
+                        enabled: true,
+                        visible: true,
+                        acumulative: false,
+                        info: true,
+                        badge: "",
+                        thumb_buttons: {
+                            url: [
+                                "https://i.imgur.com/P099HnZ.jpeg",
+                            ],
+                        },
+                    },
+                ],
+
                 carrousel: {
                     enabled: false,
                     homepage: false,
+                    favorite: true,
                     title: "Kaiju N.º 8",
                     logo: { enabled: false, minimalist: false, url: "" },
                     thumb: [
@@ -185,8 +215,10 @@ export const animesData = [
                     text: "",
                     description: `
 
-                    `
+                    `,
+                    info: { enabled: false, text: "", season: true, episodes: true, finalized: false }
                 },
+
                 description: {
                     enabled: true,
                     title: "Kaiju N.º 8",
@@ -209,6 +241,7 @@ export const animesData = [
                         A história gira em torno de Kafka Hibino, um homem de 32 anos que pretende entrar nas Forças de Defesa e cumprir a promessa com sua amiga de infância, Mina Ashiro. Ele faz amizade com seu novo colega de trabalho Reno Ichikawa, enquanto limpam restos de Kaijus, e a determinação dele em entrar ans Forças de Defesa inspira Kafka a cumprir sua promessa de infância e passar no exame de admissão para ficar ao lado de Mina, protegendo a humanidade. Quando um pequeno Kaiju entra dentro de Kafka, ele ganha uma força sobre-humana e poderes suficiente para lutar com os Kaiju. Ele trabalha para conquistar a confiança de seus colegas humanos, derrotando Kaijus cada vez mais poderosos e mantendo o mundo seguro.
                     `
                 },
+
                 season: [
                     {
                         name: "Temporada 01",
@@ -251,22 +284,30 @@ export const animesData = [
             },
 
             //HAIKYU
-            {
+            {   
                 name: "Haikyu",
-                enabled: false,
-                visible: true,
-                thumb_buttons: {
-                    url: [
-                        // "https://animesbr.tv/wp-content/uploads/2025/01/vTCjCkwHn3bfqVLdQjZke3c8w7l-200x300.jpg",
-                        "https://animesonlinecc.to/wp-content/uploads/2020/01/6R2GkrQW8ZRlZAhEdVKwJjrANwS-185x278.jpg",
-                        "https://animefire.plus/img/animes/haikyuu-large.webp",
-                    ],
-                },
-                badge: "",
-                title: "", //TEXTO DO BOTÃO ENABLED OFF
+                card_buttons: [
+                    {
+                        name: "Haikyu",
+                        enabled: false,
+                        visible: true,
+                        acumulative: false,
+                        info: true,
+                        badge: "",
+                        thumb_buttons: {
+                            url: [
+                                // "https://animesbr.tv/wp-content/uploads/2025/01/vTCjCkwHn3bfqVLdQjZke3c8w7l-200x300.jpg",
+                                "https://animesonlinecc.to/wp-content/uploads/2020/01/6R2GkrQW8ZRlZAhEdVKwJjrANwS-185x278.jpg",
+                                "https://animefire.plus/img/animes/haikyuu-large.webp",
+                            ],
+                        },
+                    },
+                ],
+
                 carrousel: {
                     enabled: false,
                     homepage: false,
+                    favorite: true,
                     title: "HAIKYU",
                     logo: { enabled: false, minimalist: false, url: "" },
                     thumb: [
@@ -275,8 +316,10 @@ export const animesData = [
                     text: "",
                     description: `
 
-                    `
+                    `,
+                    info: { enabled: false, text: "", season: true, episodes: true, finalized: false }
                 },
+
                 description: {
                     enabled: false,
                     title: "HAIKYU",
@@ -299,6 +342,7 @@ export const animesData = [
 
                     `
                 },
+
                 season: [
                     {
                         name: "Temporada 01",

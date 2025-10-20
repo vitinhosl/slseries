@@ -632,7 +632,9 @@ body {
 }
 
 .no-favorites-container {
-	margin-left: 10px;
+  color: #888;
+  margin-left: 10px;
+  font-size: 1.2em;
 }
 
 /* =============================================== */
@@ -834,6 +836,19 @@ body {
 	pointer-events: none;
 }
 
+#group-series-button.info .info {
+  display: block;
+}
+
+.card-container:not(.has-info) .inner-container .main-card::after,
+#group-series-button:not(.info) .info {
+  display: none;
+}
+
+.card-container.has-info {
+  position: relative;
+}
+
 .card-container:has(#group-series-button:hover) .main-card::after {
 	opacity: 1;
 }
@@ -977,7 +992,7 @@ body {
 }
 
 .card-container:has(#group-series-button:hover) {
-	background: linear-gradient(-30deg, oklch(from var(--color-groupcard_border_h) 0.3 calc(c / 2) h / 0.4), transparent, oklch(from var(--color-groupcard_border_h) 0.3 calc(c / 2) h / 0.4)), linear-gradient(to bottom, var(--color-background), var(--color-background));
+	/* background: linear-gradient(-30deg, oklch(from var(--color-groupcard_border_h) 0.3 calc(c / 2) h / 0.4), transparent, oklch(from var(--color-groupcard_border_h) 0.3 calc(c / 2) h / 0.4)), linear-gradient(to bottom, var(--color-background), var(--color-background)); */
 }
 
 .card-container:has(#group-series-button:hover) .border-outer {
@@ -1794,11 +1809,22 @@ body {
 	margin: 10px 10px 10px 10px;
 }
 
+.episodes-container {
+	margin-top: 20px;
+}
+
 .continue-episodes-container-card,
 .episodes-container-card {
 	border-radius: 8px;
 	gap: 5px;
-	background: rgba(255, 255, 255, 0.1);
+	background: linear-gradient(to top, color-mix(in srgb, var(--color-groupcard_header) 50%, transparent), color-mix(in srgb, var(--color-groupcard_header) 30%, transparent));
+	cursor: pointer;
+	transition: transform 0.3s ease;
+}
+
+.continue-episodes-container-card:hover,
+.episodes-container-card:hover {
+    transform: translateY(-5px);
 }
 
 .continue-episode-container {
@@ -1846,11 +1872,10 @@ body {
     user-select: none;
 }
 
-#continue-episode-button:hover,
-#episode-button:hover {
+/* #episode-button:hover, */
+#continue-episode-button:hover {
     /* transform: scale(1.05); */
     transform: translateY(-5px);
-    
 }
 
 #continue-episode-button h1 {
@@ -2130,12 +2155,16 @@ body {
     pointer-events: none;
 }
 
+
+
+
+
+
 #continue-episode-button::before,
 #episode-button::before {
     border: 1px solid var(--color-episode_button_hover);
     box-shadow: 0 0px 20px rgba(15, 15, 15, 0.4), 0 0px 20px rgba(15, 15, 15, 0.1);
 	background-image: linear-gradient(to bottom, color-mix(in srgb, var(--color-episode_button_hover) 50%, transparent), var(--color-background));
-
 }
 
 #continue-episode-button:has(.remove-button:hover)::before,
@@ -2228,15 +2257,13 @@ body {
 
 .episode-subtitle,
 .episode-title {
-  margin-top: 0px;
-  /* margin-left: 10px; */
   font-size: 13px;
   text-align: left;
   color: rgb(233, 244, 251);
   width: 220px;
   text-align: left;
   word-break: break-word;
-  /* padding: 10px 0; */
+  padding: 5px 5px 5px 10px;
 }
 
 .remove-button {
@@ -2312,6 +2339,14 @@ body {
 	gap: 10px
 }
 
-.episode-subtitle, .episode-title { 
-	padding: 5px 5px 2px 7px
-}
+
+
+
+
+
+
+
+
+
+
+

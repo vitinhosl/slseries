@@ -11,6 +11,9 @@ export const biblicalData = [
                     name: "A Terra Prometida",
                     enabled: true,
                     visible: true,
+                    acumulative: false,
+                    info: true,
+                    badge: "",
                     thumb_buttons: {
                         url: [
                             "https://i.imgur.com/3FzZHWW.jpeg",
@@ -23,8 +26,7 @@ export const biblicalData = [
                     }
                 },
             ],
-            badge: "",
-            title: "", //TEXTO DO BOTÃO ENABLED OFF
+
             carrousel: {
                 enabled: true,
                 homepage: true,
@@ -39,6 +41,7 @@ export const biblicalData = [
                     Após a morte de Moisés, Josué é o novo líder dos hebreus e terá que cumprir uma difícil missão ordenada por Deus: Comandar as 12 tribos de Israel na conquista de Canaã, a Terra Prometida. Continuação da saga Os Dez Mandamentos.
                 `
             },
+
             description: {
                 enabled: true,
                 title: "A TERRA PROMETIDA",
@@ -65,6 +68,7 @@ export const biblicalData = [
                     a Terra Prometida. Continuação da saga Os Dez Mandamentos.
                 `
             },
+
             season: [
                 {
                     name: "Temporada 01",
@@ -258,21 +262,28 @@ export const biblicalData = [
           //OS DEZ MANDAMENTOS - 2 TEMPORADAS
           {
             name: "Os Dez Mandamentos",
-            enabled: true,
-            visible: true,
-            thumb_buttons: {
-                url: [
-                    "https://i.imgur.com/r1nTkeV.jpeg",
-                    "https://pp-vod-img-aws.akamaized.net/0090405/0090405_200.jpg",
-                    "https://i.imgur.com/m0rO0NY.jpeg", //https://i.imgur.com/YzVAFeq.jpeg
-                    "https://i.imgur.com/CFnQGfS.jpeg",
-                    "https://i.imgur.com/qUETt6r.jpeg",
-                    "https://i.imgur.com/kZw3NcV.jpeg",
-                    // "https://i.imgur.com/yU7qkUV.jpeg" //MESMA DE CIMA IMGUR
-                ],
-            },
-            badge: "",
-            title: "", //TEXTO DO BOTÃO ENABLED OFF
+            card_buttons: [
+                {
+                    name: "Os Dez Mandamentos",
+                    enabled: true,
+                    visible: true,
+                    acumulative: false,
+                    info: true,
+                    badge: "",
+                    thumb_buttons: {
+                        url: [
+                            "https://i.imgur.com/r1nTkeV.jpeg",
+                            "https://pp-vod-img-aws.akamaized.net/0090405/0090405_200.jpg",
+                            "https://i.imgur.com/m0rO0NY.jpeg", //https://i.imgur.com/YzVAFeq.jpeg
+                            "https://i.imgur.com/CFnQGfS.jpeg",
+                            "https://i.imgur.com/qUETt6r.jpeg",
+                            "https://i.imgur.com/kZw3NcV.jpeg",
+                            // "https://i.imgur.com/yU7qkUV.jpeg" //MESMA DE CIMA IMGUR
+                        ],
+                    },
+                },
+            ],
+
             carrousel: {
                 enabled: true,
                 homepage: true,
@@ -287,6 +298,7 @@ export const biblicalData = [
                     Grande sucesso da televisão brasileira, este épico bíblico narra a saga de Moisés, o hebreu que escapou da morte ainda bebê, virou príncipe do Egito e acabou se transformando no líder escolhido por Deus para libertar seu povo da escravidão.
                 `
             },
+
             description: {
                 enabled: true,
                 title: "OS DEZ MANDAMENTOS",
@@ -317,6 +329,7 @@ export const biblicalData = [
                     líder escolhido por Deus para libertar seu povo da escravidão.
                 `
             },
+
             season: [
                 //TEMPORADA 01 - EPISÓDIOS 176
                 {
@@ -608,20 +621,27 @@ export const biblicalData = [
           //JEZABEL
           {
             name: "Jezabel",
-            enabled: true,
-            visible: true,
-            thumb_buttons: {
-                url: [
-                    "https://i.imgur.com/pgGkftW.jpeg",
-                    "https://i.imgur.com/gxlYNza.jpeg",
-                    "https://i.imgur.com/lmTWoCz.jpeg",
-                    "https://i.imgur.com/Z3WUXd9.jpeg",
-                    "https://pp-vod-img-aws.akamaized.net/0069716/0069716_200.jpg",
-                    // "https://i.imgur.com/KK33zSJ.jpeg", //MESMA DE CIMA IMGUR
-                ],
-            },
-            badge: "",
-            title: "", //TEXTO DO BOTÃO ENABLED OFF
+            card_buttons: [
+                {
+                    name: "Jezabel",
+                    enabled: true,
+                    visible: true,
+                    acumulative: false,
+                    info: true,
+                    badge: "",
+                    thumb_buttons: {
+                        url: [
+                            "https://i.imgur.com/pgGkftW.jpeg",
+                            "https://i.imgur.com/gxlYNza.jpeg",
+                            "https://i.imgur.com/lmTWoCz.jpeg",
+                            "https://i.imgur.com/Z3WUXd9.jpeg",
+                            "https://pp-vod-img-aws.akamaized.net/0069716/0069716_200.jpg",
+                            // "https://i.imgur.com/KK33zSJ.jpeg", //MESMA DE CIMA IMGUR
+                        ],
+                    },
+                },
+            ],
+
             carrousel: {
                 enabled: true,
                 homepage: false,
@@ -636,6 +656,7 @@ export const biblicalData = [
                     A trama contará a história da princesa fenícia Jezabel, uma princesa idólatra que se casa com o rei Acabe e usa sua beleza e maldade para tentar impor ao povo israelita aceitar a adoração ao seus deuses pagãos. 
                 `
             },
+
             description: {
                 enabled: true,
                 title: "JEZABEL",
@@ -662,6 +683,7 @@ export const biblicalData = [
                     aceitar a adoração ao seus deuses pagãos. 
                 `
             },
+
             season: [
                 {
                     name: "Temporada 01",
@@ -757,20 +779,26 @@ export const biblicalData = [
           //REI DAVI
           {
             name: "Rei Davi",
-            enabled: true,
-            visible: true,
-            thumb_buttons: {
-                url: [
-                    "https://i.imgur.com/xvMBheq.jpeg",
-                    "https://i.imgur.com/sSJVhSO.jpeg",
-                    "https://i.imgur.com/L4TWRcP.png",
-                    // "https://pp-vod-img-aws.akamaized.net/0088301/0088301_200.jpg",
-                    // "https://i.imgur.com/C6y6k4S.jpeg", //MESMA DE CIMA IMGUR
-                ],
-            },
-            badge: "",
-            type: "Temporadas",
-            title: "", //TEXTO DO BOTÃO ENABLED OFF
+            card_buttons: [
+                {
+                    name: "Rei Davi",
+                    enabled: true,
+                    visible: true,
+                    acumulative: false,
+                    info: true,
+                    badge: "",
+                    thumb_buttons: {
+                        url: [
+                            "https://i.imgur.com/xvMBheq.jpeg",
+                            "https://i.imgur.com/sSJVhSO.jpeg",
+                            "https://i.imgur.com/L4TWRcP.png",
+                            // "https://pp-vod-img-aws.akamaized.net/0088301/0088301_200.jpg",
+                            // "https://i.imgur.com/C6y6k4S.jpeg", //MESMA DE CIMA IMGUR
+                        ],
+                    },
+                },
+            ],
+
             carrousel: {
                 enabled: true,
                 homepage: false,
@@ -784,6 +812,7 @@ export const biblicalData = [
                     Rei Davi é uma mini série bíblica brasileira que conta a história de Davi, o pastor de ovelhas quederrotou o gigante Golias e que foi escolhido por Deus para governar seu povo.
                 `
             },
+
             description: {
                 enabled: true,
                 title: "REI DAVI",
@@ -812,6 +841,7 @@ export const biblicalData = [
                     por Deus para governar seu povo.
                 `
             },
+
             season: [
                 {
                     name: "Temporada 01",
@@ -876,20 +906,27 @@ export const biblicalData = [
           //JOSÉ DO EGITO
           {
             name: "José do Egito",
-            enabled: true,
-            visible: true,
-            thumb_buttons: {
-                url: [
-                    "https://i.imgur.com/Oxrdzg6.jpeg",
-                    "https://i.imgur.com/Okgpw3g.png",
-                    "https://i.imgur.com/Rv08WY2.jpeg",
-                    "https://pp-vod-img-aws.akamaized.net/0068517/0068517_200.jpg",
-                    "https://i.imgur.com/d6wuK0u.jpeg",
-                    // "https://i.imgur.com/X2VwwBQ.jpeg", //MESMA DE CIMA IMGUR
-                ],
-            },
-            badge: "",
-            title: "", //TEXTO DO BOTÃO ENABLED OFF
+            card_buttons: [
+                {
+                    name: "José do Egito",
+                    enabled: true,
+                    visible: true,
+                    acumulative: false,
+                    info: true,
+                    badge: "",
+                    thumb_buttons: {
+                        url: [
+                            "https://i.imgur.com/Oxrdzg6.jpeg",
+                            "https://i.imgur.com/Okgpw3g.png",
+                            "https://i.imgur.com/Rv08WY2.jpeg",
+                            "https://pp-vod-img-aws.akamaized.net/0068517/0068517_200.jpg",
+                            "https://i.imgur.com/d6wuK0u.jpeg",
+                            // "https://i.imgur.com/X2VwwBQ.jpeg", //MESMA DE CIMA IMGUR
+                        ],
+                    },
+                },
+            ],
+
             carrousel: {
                 enabled: true,
                 homepage: false,
@@ -903,6 +940,7 @@ export const biblicalData = [
                     Após ser vendido como escravo pelos irmãos e levado para o Egito, José é injustiçado, caluniado, preso e humilhado. A vida de José é um exemplo de pureza e perdão.
                 `
             },
+
             description: {
                 enabled: true,
                 title: "JOSÉ DO EGITO",
@@ -929,6 +967,7 @@ export const biblicalData = [
                     de pureza e perdão.
                 `
             },
+
             season: [
                 {
                     name: "",
@@ -990,21 +1029,28 @@ export const biblicalData = [
           //JESUS
           {
             name: "Jesus",
-            enabled: true,
-            visible: true,
-            thumb_buttons: {
-                url: [
-                    "https://pp-vod-img-aws.akamaized.net/0347485/0347485_200.jpg",
-                    "https://i.imgur.com/hbM64ht.jpeg",
-                    "https://i.imgur.com/7zmHXhy.png",
-                    "https://i.imgur.com/lVCtz63.jpeg",
-                    "https://i.imgur.com/WjRXSvX.jpeg",
-                    "https://i.imgur.com/JX2Coo5.png",
-                    // "https://i.imgur.com/HWkdzd6.jpeg" //MESMA DE CIMA IMGUR
-                ],
-            },
-            badge: "",
-            title: "", //TEXTO DO BOTÃO ENABLED OFF
+            card_buttons: [
+                {
+                    name: "Jesus",
+                    enabled: true,
+                    visible: true,
+                    acumulative: false,
+                    info: true,
+                    badge: "",
+                    thumb_buttons: {
+                        url: [
+                            "https://pp-vod-img-aws.akamaized.net/0347485/0347485_200.jpg",
+                            "https://i.imgur.com/hbM64ht.jpeg",
+                            "https://i.imgur.com/7zmHXhy.png",
+                            "https://i.imgur.com/lVCtz63.jpeg",
+                            "https://i.imgur.com/WjRXSvX.jpeg",
+                            "https://i.imgur.com/JX2Coo5.png",
+                            // "https://i.imgur.com/HWkdzd6.jpeg" //MESMA DE CIMA IMGUR
+                        ],
+                    },
+                },
+            ],
+
             carrousel: {
                 enabled: true,
                 homepage: false,
@@ -1018,6 +1064,7 @@ export const biblicalData = [
                     Quando a história dos homens estava perto de cair em desgraça, a história do mundo muda para sempre após a chegada do Salvador. Jesus, a novela, conta pela primeira vez na íntegra a trajetória do homem que revolucionou a humanidade com sua palavra e suas ações e dividiu a história em dois: antes e depois de Cristo.
                 `
             },
+
             description: {
                 enabled: true,
                 title: "JESUS",
@@ -1045,6 +1092,7 @@ export const biblicalData = [
                     ações e dividiu a história em dois: antes e depois de Cristo.
                 `
             },
+
             season: [
                 {
                     name: "Temporada 01",
@@ -1253,20 +1301,27 @@ export const biblicalData = [
           //GÊNESIS
           {
             name: "Gênesis",
-            enabled: true,
-            visible: true,
-            thumb_buttons: {
-                url: [
-                    "https://pp-vod-img-aws.akamaized.net/0191984/0191984_200.jpg",
-                    "https://i.imgur.com/jkRZshy.jpeg",
-                    "https://i.imgur.com/Ld0UYWx.jpeg",
-                    // "https://imgur.com/a/NZ5fHnx", //MESMA DE CIMA IMGUR
-                    "https://i.imgur.com/A68fp1F.jpeg",
-                    "https://i.imgur.com/xHqjptH.jpeg",
-                ],
-            },
-            badge: "",
-            title: "", //TEXTO DO BOTÃO ENABLED OFF
+            card_buttons: [
+                {
+                    name: "Gênesis",
+                    enabled: true,
+                    visible: true,
+                    acumulative: false,
+                    info: true,
+                    badge: "",
+                    thumb_buttons: {
+                        url: [
+                            "https://pp-vod-img-aws.akamaized.net/0191984/0191984_200.jpg",
+                            "https://i.imgur.com/jkRZshy.jpeg",
+                            "https://i.imgur.com/Ld0UYWx.jpeg",
+                            // "https://imgur.com/a/NZ5fHnx", //MESMA DE CIMA IMGUR
+                            "https://i.imgur.com/A68fp1F.jpeg",
+                            "https://i.imgur.com/xHqjptH.jpeg",
+                        ],
+                    },
+                },
+            ],
+
             carrousel: {
                 enabled: true,
                 homepage: false,
@@ -1280,6 +1335,7 @@ export const biblicalData = [
                     Gênesis vai lhe ajudar a entender aquilo que você sempre quis, mas nunca teve coragem de questionar. Sim, ela é cheia de histórias fascinantes, com muita emoção, talentosos profissionais, ela conta a nossa história.
                 `
             },
+
             description: {
                 enabled: true,
                 title: "GÊNESIS",
@@ -1308,6 +1364,7 @@ export const biblicalData = [
                     mas acima de tudo, ela conta a nossa história.
                 `
             },
+
             season: [
                 {
                     name: "Temporada 01",
@@ -1543,19 +1600,26 @@ export const biblicalData = [
           //O RICO E LÁZARO
           {
             name: "O Rico e Lázaro",
-            enabled: true,
-            visible: true,
-            thumb_buttons: {
-                url: [
-                    "https://i.imgur.com/kDT7mQX.png",
-                    "https://pp-vod-img-aws.akamaized.net/0068614/0068614_200.jpg",
-                    "https://i.imgur.com/uFrpJHB.jpeg",
-                    "https://i.imgur.com/io3Xbpv.jpeg",
-                    // "https://i.imgur.com/6wEQHLg.jpeg", //MESMA DE CIMA IMGUR
-                ],
-            },
-            badge: "",
-            title: "", //TEXTO DO BOTÃO ENABLED OFF
+            card_buttons: [
+                {
+                    name: "O Rico e Lázaro",
+                    enabled: true,
+                    visible: true,
+                    acumulative: false,
+                    info: true,
+                    badge: "",
+                    thumb_buttons: {
+                        url: [
+                            "https://i.imgur.com/kDT7mQX.png",
+                            "https://pp-vod-img-aws.akamaized.net/0068614/0068614_200.jpg",
+                            "https://i.imgur.com/uFrpJHB.jpeg",
+                            "https://i.imgur.com/io3Xbpv.jpeg",
+                            // "https://i.imgur.com/6wEQHLg.jpeg", //MESMA DE CIMA IMGUR
+                        ],
+                    },
+                },
+            ],
+
             carrousel: {
                 enabled: true,
                 homepage: false,
@@ -1569,6 +1633,7 @@ export const biblicalData = [
                     Após o governo de vários reis que se afastaram de Deus, Jerusalém encontra-se mergulhada na idolatria. A grande amizade de Zac e Asher é abalada pelo amor que ambos sentem pela companheira de infância, Joana. Ao contrário deles, ela acredita nas profecias de Jeremias e empenha-se para que o povo hebreu se volte novamente para Deus.
                 `
             },
+
             description: {
                 enabled: true,
                 title: "O RICO E LÁZARO",
@@ -1596,6 +1661,7 @@ export const biblicalData = [
                     e empenha-se para que o povo hebreu se volte novamente para Deus.
                 `
             },
+
             season: [
                 {
                     name: "Temporada 01",
@@ -1792,18 +1858,25 @@ export const biblicalData = [
           //A RAINHA DA PÉRSIA
           {
             name: "A Rainha da Pérsia",
-            enabled: true,
-            visible: true,
-            thumb_buttons: {
-                url: [
-                    "https://i.imgur.com/FvREJ6n.jpeg",
-                    "https://i.imgur.com/tKjng2c.png", //MESMA DE CIMA IMGUR
-                    "https://i.imgur.com/mVFwj6U.jpeg",
-                    // "https://pp-vod-img-aws.akamaized.net/0433417/0433417_200.jpg",
-                ],
-            },
-            badge: "",
-            title: "", //TEXTO DO BOTÃO ENABLED OFF
+            card_buttons: [
+                {
+                    name: "A Rainha da Pérsia",
+                    enabled: true,
+                    visible: true,
+                    acumulative: false,
+                    info: true,
+                    badge: "",
+                    thumb_buttons: {
+                        url: [
+                            "https://i.imgur.com/FvREJ6n.jpeg",
+                            "https://i.imgur.com/tKjng2c.png", //MESMA DE CIMA IMGUR
+                            "https://i.imgur.com/mVFwj6U.jpeg",
+                            // "https://pp-vod-img-aws.akamaized.net/0433417/0433417_200.jpg",
+                        ],
+                    },
+                },
+            ],
+
             carrousel: {
                 enabled: true,
                 homepage: false,
@@ -1817,6 +1890,7 @@ export const biblicalData = [
                     A Rainha da Pérsia é uma série que nos transporta para os tempos antigos da Bíblia, onde a vida de uma jovem judia, Hadassah, também conhecida como Ester, se entrelaça com o futuro de uma nação inteira. 
                 `
             },
+
             description: {
                 enabled: true,
                 title: "A RAINHA DA PÉRSIA",
@@ -1843,6 +1917,7 @@ export const biblicalData = [
                     com o futuro de uma nação inteira.
                 `
             },
+
             season: [
                 {
                     name: "Temporada 01",
@@ -1888,21 +1963,28 @@ export const biblicalData = [
           //A HISTÓRIA DE ESTER
           {
             name: "A História de Ester",
-            enabled: true,
-            visible: true,
-            thumb_buttons: {
-                url: [
-                    "https://pp-vod-img-aws.akamaized.net/0068508/0068508_200.jpg",
-                    "https://i.imgur.com/jjT6cds.jpeg",
-                    "https://i.imgur.com/YqgmJBA.jpeg",
-                    "https://i.imgur.com/V8NXWLT.jpeg",
-                    "https://i.imgur.com/jhQjNXM.jpeg",
-                    "https://i.imgur.com/o389C2U.jpeg",
-                    // "https://i.imgur.com/30c5JJ4.jpeg", //MESMA DE CIMA IMGUR
-                ],
-            },
-            badge: "",
-            title: "", //TEXTO DO BOTÃO ENABLED OFF
+            card_buttons: [
+                {
+                    name: "A História de Ester",
+                    enabled: true,
+                    visible: true,
+                    acumulative: false,
+                    info: true,
+                    badge: "",
+                    thumb_buttons: {
+                        url: [
+                            "https://pp-vod-img-aws.akamaized.net/0068508/0068508_200.jpg",
+                            "https://i.imgur.com/jjT6cds.jpeg",
+                            "https://i.imgur.com/YqgmJBA.jpeg",
+                            "https://i.imgur.com/V8NXWLT.jpeg",
+                            "https://i.imgur.com/jhQjNXM.jpeg",
+                            "https://i.imgur.com/o389C2U.jpeg",
+                            // "https://i.imgur.com/30c5JJ4.jpeg", //MESMA DE CIMA IMGUR
+                        ],
+                    },
+                },
+            ],
+
             carrousel: {
                 enabled: false,
                 homepage: false,
@@ -1914,6 +1996,7 @@ export const biblicalData = [
                     
                 `
             },
+
             description: {
                 enabled: true,
                 title: "A HISTÓRIA DE ESTER",
@@ -1940,6 +2023,7 @@ export const biblicalData = [
                     entre uma mulher do povo, Ester e o rei Assuero.
                 `
             },
+
             season: [
                 {
                     name: "Temporada 01",
@@ -1964,19 +2048,26 @@ export const biblicalData = [
           //APOCALIPSE
           {
             name: "Apocalipse",
-            enabled: true,
-            visible: true,
-            thumb_buttons: {
-                url: [
-                    "https://i.imgur.com/gEPrg5k.jpeg",
-                    "https://i.imgur.com/KwwrJdX.jpeg",
-                    "https://pp-vod-img-aws.akamaized.net/0070604/0070604_200.jpg",
-                    "https://i.imgur.com/9vxK9Zf.jpeg",
-                    // "https://i.imgur.com/r4GPwF5.jpeg", //MESMA DE CIMA IMGUR
-                ],
-            },
-            badge: "",
-            title: "", //TEXTO DO BOTÃO ENABLED OFF
+            card_buttons: [
+                {
+                    name: "Apocalipse",
+                    enabled: true,
+                    visible: true,
+                    acumulative: false,
+                    info: true,
+                    badge: "",
+                    thumb_buttons: {
+                        url: [
+                            "https://i.imgur.com/gEPrg5k.jpeg",
+                            "https://i.imgur.com/KwwrJdX.jpeg",
+                            "https://pp-vod-img-aws.akamaized.net/0070604/0070604_200.jpg",
+                            "https://i.imgur.com/9vxK9Zf.jpeg",
+                            // "https://i.imgur.com/r4GPwF5.jpeg", //MESMA DE CIMA IMGUR
+                        ],
+                    },
+                },
+            ],
+
             carrousel: {
                 enabled: false,
                 homepage: false,
@@ -1988,6 +2079,7 @@ export const biblicalData = [
                     
                 `
             },
+
             description: {
                 enabled: true,
                 title: "APOCALIPSE",
@@ -2014,6 +2106,7 @@ export const biblicalData = [
                     amores proibidos, intrigas e muita ação.
                 `
             },
+
             season: [
                 {
                     name: "Temporada 01",
@@ -2183,42 +2276,49 @@ export const biblicalData = [
           //REIS - 13 TEMPORADAS
           {
             name: "Reis",
-            enabled: true,
-            visible: true,
-            thumb_buttons: {
-                url: [
-                    "https://i.imgur.com/hhnDLbk.jpeg", //00 PADRÃO // "https://i.imgur.com/HxmEXcN.jpeg",
+            card_buttons: [
+                {
+                    name: "Reis",
+                    enabled: true,
+                    visible: true,
+                    acumulative: false,
+                    info: true,
+                    badge: "",
+                    thumb_buttons: {
+                        url: [
+                            "https://i.imgur.com/hhnDLbk.jpeg", //00 PADRÃO // "https://i.imgur.com/HxmEXcN.jpeg",
 
-                    "https://i.imgur.com/8YEOWSo.jpeg", //01 A DECEPÇÃO
-                    "https://i.imgur.com/9hNDiiK.jpeg", //02 A INGRATIDÃO
-                    "https://i.imgur.com/epmdgai.jpeg", //03 A REJEIÇÃO
-                    "https://i.imgur.com/DApw1J7.jpeg", //04 A ESCOLHA
-                    "https://i.imgur.com/flscpX3.jpeg", //05 A PERSEGUIÇÃO
-                    "https://i.imgur.com/XepJ91H.jpeg", //06 A CONQUISTA
-                    "https://i.imgur.com/ZQg9S6K.jpeg", //07 O PECADO
-                    "https://i.imgur.com/SdIiQCL.jpeg", //08 A CONSEQUÊNCIA
-                    "https://i.imgur.com/YRiYUw6.jpeg", //09 A SUCESSÃO
-                    "https://i.imgur.com/LV4TIWw.jpeg", //10 A DECADÊNCIA
-                    "https://i.imgur.com/FeU4Ew9.jpeg", //11 A DIVISÃO
-                    "https://i.imgur.com/e4ibeoV.jpeg", //12 A EMBOSCADA
-                    "https://i.imgur.com/Z08Mkgy.jpeg", //13 A ESPERANÇA
+                            "https://i.imgur.com/8YEOWSo.jpeg", //01 A DECEPÇÃO
+                            "https://i.imgur.com/9hNDiiK.jpeg", //02 A INGRATIDÃO
+                            "https://i.imgur.com/epmdgai.jpeg", //03 A REJEIÇÃO
+                            "https://i.imgur.com/DApw1J7.jpeg", //04 A ESCOLHA
+                            "https://i.imgur.com/flscpX3.jpeg", //05 A PERSEGUIÇÃO
+                            "https://i.imgur.com/XepJ91H.jpeg", //06 A CONQUISTA
+                            "https://i.imgur.com/ZQg9S6K.jpeg", //07 O PECADO
+                            "https://i.imgur.com/SdIiQCL.jpeg", //08 A CONSEQUÊNCIA
+                            "https://i.imgur.com/YRiYUw6.jpeg", //09 A SUCESSÃO
+                            "https://i.imgur.com/LV4TIWw.jpeg", //10 A DECADÊNCIA
+                            "https://i.imgur.com/FeU4Ew9.jpeg", //11 A DIVISÃO
+                            "https://i.imgur.com/e4ibeoV.jpeg", //12 A EMBOSCADA
+                            "https://i.imgur.com/Z08Mkgy.jpeg", //13 A ESPERANÇA
 
-                    // RECORD THUMBS
-                    //"https://pp-vod-img-aws.akamaized.net/0256021/0256021_200.jpg", //01 A DECEPÇÃO
-                    //"https://pp-vod-img-aws.akamaized.net/0260819/0260819_200.jpg", //02 A INGRATIDÃO
-                    //"https://pp-vod-img-aws.akamaized.net/0276558/0276558_200.jpg", //03 A REJEIÇÃO
-                    //"https://pp-vod-img-aws.akamaized.net/0283103/0283103_200.jpg", //04 A ESCOLHA
-                    //"https://pp-vod-img-aws.akamaized.net/0337855/0337855_200.jpg", //05 A PERSEGUIÇÃO
-                    //"https://pp-vod-img-aws.akamaized.net/0366700/0366700_200.jpg", //06 A CONQUISTA
-                    //"https://pp-vod-img-aws.akamaized.net/0373820/0373820_200.jpg", //07 O PECADO
-                    //"https://pp-vod-img-aws.akamaized.net/0384653/0384653_200.jpg", //08 A CONSEQUÊNCIA
-                    //"https://pp-vod-img-aws.akamaized.net/0396070/0396070_200.jpg", //09 A SUCESSÃO
-                    //"https://pp-vod-img-aws.akamaized.net/0424348/0424348_200.jpg", //10 A DECADÊNCIA
-                    //"https://pp-vod-img-aws.akamaized.net/0429062/0429062_200.jpg", //11 A DIVISÃO
-                ],
-            },
-            badge: "",
-            title: "", //TEXTO DO BOTÃO ENABLED OFF
+                            // RECORD THUMBS
+                            //"https://pp-vod-img-aws.akamaized.net/0256021/0256021_200.jpg", //01 A DECEPÇÃO
+                            //"https://pp-vod-img-aws.akamaized.net/0260819/0260819_200.jpg", //02 A INGRATIDÃO
+                            //"https://pp-vod-img-aws.akamaized.net/0276558/0276558_200.jpg", //03 A REJEIÇÃO
+                            //"https://pp-vod-img-aws.akamaized.net/0283103/0283103_200.jpg", //04 A ESCOLHA
+                            //"https://pp-vod-img-aws.akamaized.net/0337855/0337855_200.jpg", //05 A PERSEGUIÇÃO
+                            //"https://pp-vod-img-aws.akamaized.net/0366700/0366700_200.jpg", //06 A CONQUISTA
+                            //"https://pp-vod-img-aws.akamaized.net/0373820/0373820_200.jpg", //07 O PECADO
+                            //"https://pp-vod-img-aws.akamaized.net/0384653/0384653_200.jpg", //08 A CONSEQUÊNCIA
+                            //"https://pp-vod-img-aws.akamaized.net/0396070/0396070_200.jpg", //09 A SUCESSÃO
+                            //"https://pp-vod-img-aws.akamaized.net/0424348/0424348_200.jpg", //10 A DECADÊNCIA
+                            //"https://pp-vod-img-aws.akamaized.net/0429062/0429062_200.jpg", //11 A DIVISÃO
+                        ],
+                    },
+                },
+            ],
+
             carrousel: {
                 enabled: false,
                 homepage: false,
@@ -2230,6 +2330,7 @@ export const biblicalData = [
                     
                 `
             },
+
             description: {
                 enabled: true,
                 title: "REIS",
@@ -2256,6 +2357,7 @@ export const biblicalData = [
                     Israel, seguindo a liderança apenas do seu Deus — até agora.
                 `
             },
+
             season: [
                 //TEMPORADA 01 - A DECEPÇÃO   (24 EPISÓDIOS)
                 {
@@ -2942,18 +3044,25 @@ export const biblicalData = [
           //SANSÃO E DALILA
           {
             name: "Sansão e Dalila",
-            enabled: true,
-            visible: true,
-            thumb_buttons: {
-                url: [
-                    "https://pp-vod-img-aws.akamaized.net/0069029/0069029_200.jpg",
-                    "https://i.imgur.com/ObzeTJc.jpeg",
-                    "https://i.imgur.com/AUF8QiG.jpeg",
-                    // "https://i.imgur.com/5IoZDhV.jpeg", //MESMA DE CIMA IMGUR
-                ],
-            },
-            badge: "",
-            title: "", //TEXTO DO BOTÃO ENABLED OFF
+            card_buttons: [
+                {
+                    name: "Sansão e Dalila",
+                    enabled: true,
+                    visible: true,
+                    acumulative: false,
+                    info: true,
+                    badge: "",
+                    thumb_buttons: {
+                        url: [
+                            "https://pp-vod-img-aws.akamaized.net/0069029/0069029_200.jpg",
+                            "https://i.imgur.com/ObzeTJc.jpeg",
+                            "https://i.imgur.com/AUF8QiG.jpeg",
+                            // "https://i.imgur.com/5IoZDhV.jpeg", //MESMA DE CIMA IMGUR
+                        ],
+                    },
+                },
+            ],
+
             carrousel: {
                 enabled: false,
                 homepage: false,
@@ -2965,6 +3074,7 @@ export const biblicalData = [
                     
                 `
             },
+
             description: {
                 enabled: true,
                 title: "SANSÃO E DALILA",
@@ -2993,6 +3103,7 @@ export const biblicalData = [
                     como um voto de consagração divina.
                 `
             },
+
             season: [
                 {
                     name: "Temporada 01",
@@ -3029,19 +3140,26 @@ export const biblicalData = [
           //LIA
           {
             name: "Lia",
-            enabled: true,
-            visible: true,
-            thumb_buttons: {
-                url: [
-                    "https://i.imgur.com/9vEih6n.jpeg",
-                    "https://i.imgur.com/h8a6jYP.jpeg",
-                    "https://pp-vod-img-aws.akamaized.net/0072028/0072028_200.jpg",
-                    "https://i.imgur.com/89IFTki.jpeg",
-                    // "https://i.imgur.com/3aJXqgl.jpeg", //MESMA DE CIMA IMGUR
-                ],
-            },
-            badge: "",
-            title: "", //TEXTO DO BOTÃO ENABLED OFF
+            card_buttons: [
+                {
+                    name: "Lia",
+                    enabled: true,
+                    visible: true,
+                    acumulative: false,
+                    info: true,
+                    badge: "",
+                    thumb_buttons: {
+                        url: [
+                            "https://i.imgur.com/9vEih6n.jpeg",
+                            "https://i.imgur.com/h8a6jYP.jpeg",
+                            "https://pp-vod-img-aws.akamaized.net/0072028/0072028_200.jpg",
+                            "https://i.imgur.com/89IFTki.jpeg",
+                            // "https://i.imgur.com/3aJXqgl.jpeg", //MESMA DE CIMA IMGUR
+                        ],
+                    },
+                },
+            ],
+
             carrousel: {
                 enabled: false,
                 homepage: false,
@@ -3053,6 +3171,7 @@ export const biblicalData = [
                     
                 `
             },
+
             description: {
                 enabled: true,
                 title: "LIA",
@@ -3079,6 +3198,7 @@ export const biblicalData = [
                     as irmãs, Lia e Raquel;e de suas concubinas: Bila e Zilpa.
                 `
             },
+
             season: [
                 {
                     name: "Temporada 01",
@@ -3103,16 +3223,23 @@ export const biblicalData = [
           //NEEMIAS
           {
             name: "Neemias",
-            enabled: true,
-            visible: true,
-            thumb_buttons: {
-                url: [
-                    "https://i.imgur.com/PIyJSbp.jpeg",
-                    // "https://i.imgur.com/tzBW2PF.jpeg",
-                ],
-            },
-            badge: "",
-            title: "", //TEXTO DO BOTÃO ENABLED OFF
+            card_buttons: [
+                {
+                    name: "Neemias",
+                    enabled: true,
+                    visible: true,
+                    acumulative: false,
+                    info: true,
+                    badge: "",
+                    thumb_buttons: {
+                        url: [
+                            "https://i.imgur.com/PIyJSbp.jpeg",
+                            // "https://i.imgur.com/tzBW2PF.jpeg",
+                        ],
+                    },
+                },
+            ],
+
             carrousel: {
                 enabled: false,
                 homepage: false,
@@ -3124,6 +3251,7 @@ export const biblicalData = [
                     
                 `
             },
+
             description: {
                 enabled: true,
                 title: "NEEMIAS",
@@ -3147,6 +3275,7 @@ export const biblicalData = [
                     Jerusalém liderada por Neemias após o exílio babilônico
                 `
             },
+
             season: [
                 {
                     name: "Temporada 01",
@@ -3168,19 +3297,26 @@ export const biblicalData = [
           //A BÍBLIA
           {
             name: "A Bíblia",
-            enabled: true,
-            visible: true,
-            thumb_buttons: {
-                url: [
-                    // "https://i.imgur.com/clkVNbb.jpeg",
-                    "https://pp-vod-img-aws.akamaized.net/0238038/0238038_200.jpg",
-                    "https://i.imgur.com/nymmbbY.png",
-                    "https://i.imgur.com/hG0IuOV.jpeg",
-                    // "https://i.imgur.com/jgSVF31.jpeg", //MESMA DE CIMA IMGUR
-                ],
-            },
-            badge: "",
-            title: "", //TEXTO DO BOTÃO ENABLED OFF
+            card_buttons: [
+                {
+                    name: "A Bíblia",
+                    enabled: true,
+                    visible: true,
+                    acumulative: false,
+                    info: true,
+                    badge: "",
+                    thumb_buttons: {
+                        url: [
+                            // "https://i.imgur.com/clkVNbb.jpeg",
+                            "https://pp-vod-img-aws.akamaized.net/0238038/0238038_200.jpg",
+                            "https://i.imgur.com/nymmbbY.png",
+                            "https://i.imgur.com/hG0IuOV.jpeg",
+                            // "https://i.imgur.com/jgSVF31.jpeg", //MESMA DE CIMA IMGUR
+                        ],
+                    },
+                },
+            ],
+
             carrousel: {
                 enabled: false,
                 homepage: false,
@@ -3192,6 +3328,7 @@ export const biblicalData = [
                     
                 `
             },
+
             description: {
                 enabled: true,
                 title: "A BÍBLIA",
@@ -3218,6 +3355,7 @@ export const biblicalData = [
                     novelas "Gênesis", "Os Dez Mandamentos" e "Terra Prometida".
                 `
             },
+
             season: [
                 {
                     name: "A Bíblia",
@@ -3324,18 +3462,25 @@ export const biblicalData = [
           //MILAGRES DE JESUS
           {
             name: "Milagres de Jesus",
-            enabled: true,
-            visible: true,
-            thumb_buttons: {
-                url: [
-                    "https://i.imgur.com/u8ldcJl.png",
-                    "https://pp-vod-img-aws.akamaized.net/0073274/0073274_200.jpg",
-                    "https://i.imgur.com/E5Z4xtV.jpeg",
-                    // "https://i.imgur.com/h6WWLOl.jpeg", //MESMA DE CIMA IMGUR
-                ],
-            },
-            badge: "",
-            title: "", //TEXTO DO BOTÃO ENABLED OFF
+            card_buttons: [
+                {
+                    name: "Milagres de Jesus",
+                    enabled: true,
+                    visible: true,
+                    acumulative: false,
+                    info: true,
+                    badge: "",
+                    thumb_buttons: {
+                        url: [
+                            "https://i.imgur.com/u8ldcJl.png",
+                            "https://pp-vod-img-aws.akamaized.net/0073274/0073274_200.jpg",
+                            "https://i.imgur.com/E5Z4xtV.jpeg",
+                            // "https://i.imgur.com/h6WWLOl.jpeg", //MESMA DE CIMA IMGUR
+                        ],
+                    },
+                },
+            ],
+
             carrousel: {
                 enabled: false,
                 homepage: false,
@@ -3348,6 +3493,7 @@ export const biblicalData = [
 
                 `
             },
+
             description: {
                 enabled: true,
                 title: "MILAGRES DE JESUS",
@@ -3361,6 +3507,7 @@ export const biblicalData = [
                     que foram beneficiados por seus milagres no Novo Testamento.
                 `
             },
+
             season: [
                 {
                     name: "Temporada 01",
@@ -3418,20 +3565,27 @@ export const biblicalData = [
           //PAULO, O APÓSTOLO
           {
             name: "Paulo o Apóstolo",
-            enabled: true,
-            visible: true,
-            thumb_buttons: {
-                url: [
-                    "https://i.imgur.com/okQVATu.jpeg",
-                    "https://i.imgur.com/uWJmjyN.jpeg",
-                    "https://i.imgur.com/mH6sHVr.jpeg",
-                    "https://i.imgur.com/4g0vsCZ.jpeg",
-                    // "https://pp-vod-img-aws.akamaized.net/0503079/0503079_200.jpg",
-                    // "https://i.imgur.com/kcwpdNz.png", //MESMA DE CIMA IMGUR
-                ],
-            },
-            badge: "",
-            title: "", //TEXTO DO BOTÃO ENABLED OFF
+            card_buttons: [
+                {
+                    name: "Paulo o Apóstolo",
+                    enabled: true,
+                    visible: true,
+                    acumulative: false,
+                    info: true,
+                    badge: "",
+                    thumb_buttons: {
+                        url: [
+                            "https://i.imgur.com/okQVATu.jpeg",
+                            "https://i.imgur.com/uWJmjyN.jpeg",
+                            "https://i.imgur.com/mH6sHVr.jpeg",
+                            "https://i.imgur.com/4g0vsCZ.jpeg",
+                            // "https://pp-vod-img-aws.akamaized.net/0503079/0503079_200.jpg",
+                            // "https://i.imgur.com/kcwpdNz.png", //MESMA DE CIMA IMGUR
+                        ],
+                    },
+                },
+            ],
+
             carrousel: {
                 enabled: false,
                 homepage: false,
@@ -3448,6 +3602,7 @@ export const biblicalData = [
                     
                 `
             },
+
             description: {
                 enabled: true,
                 title: "PAULO O APÓSTOLO",
@@ -3473,6 +3628,7 @@ export const biblicalData = [
                     encontro inesperado, tem sua vida transformada para sempre.
                 `
             },
+
             season: [
                 {
                     name: "Temporada 01",
@@ -3541,16 +3697,23 @@ export const biblicalData = [
           //A VIDA DE JÓ
           {
             name: "A Vida de Jó",
-            enabled: true,
-            visible: true,
-            thumb_buttons: {
-                url: [
-                    "https://i.imgur.com/3RfyOs1.png",
-                    "https://i.imgur.com/MOrLAIA.png",
-                ],
-            },
-            badge: "",
-            title: "", //TEXTO DO BOTÃO ENABLED OFF
+            card_buttons: [
+                {
+                    name: "A Vida de Jó",
+                    enabled: true,
+                    visible: true,
+                    acumulative: false,
+                    info: true,
+                    badge: "",
+                    thumb_buttons: {
+                        url: [
+                            "https://i.imgur.com/3RfyOs1.png",
+                            "https://i.imgur.com/MOrLAIA.png",
+                        ],
+                    },
+                },
+            ],
+
             carrousel: {
                 enabled: false,
                 homepage: false,
@@ -3562,6 +3725,7 @@ export const biblicalData = [
                     
                 `
             },
+
             description: {
                 enabled: true,
                 title: "A VIDA DE JÓ",
@@ -3573,6 +3737,7 @@ export const biblicalData = [
                     A minissérie A Vida de Jó narra a história de um homem íntegro e profundamente temente a Deus, cuja existência é marcada por fé, provações e um intenso conflito espiritual que colocará em contraste os mais diversos dilemas humanos.
                 `
             },
+
             season: [
                 {
                     name: "Temporada 01",
@@ -3607,17 +3772,24 @@ export const biblicalData = [
           //O SENHOR E A SERVA
           {
             name: "O Senhor e a Serva",
-            enabled: true,
-            visible: true,
-            thumb_buttons: {
-                url: [
-                    "https://i.imgur.com/5RLytoA.jpeg",
-                    "https://pp-vod-img-aws.akamaized.net/0527835/0527835_200.jpg",
-                    // "https://i.imgur.com/Ml7yVr1.jpeg", //MESMA DE CIMA IMGUR
-                ],
-            },
-            badge: "NOVIDADE",
-            title: "", //TEXTO DO BOTÃO ENABLED OFF
+            card_buttons: [
+                {
+                    name: "O Senhor e a Serva",
+                    enabled: true,
+                    visible: true,
+                    acumulative: false,
+                    info: true,
+                    badge: "",
+                    thumb_buttons: {
+                        url: [
+                            "https://i.imgur.com/5RLytoA.jpeg",
+                            "https://pp-vod-img-aws.akamaized.net/0527835/0527835_200.jpg",
+                            // "https://i.imgur.com/Ml7yVr1.jpeg", //MESMA DE CIMA IMGUR
+                        ],
+                    },
+                },
+            ],
+
             carrousel: {
                 enabled: false,
                 homepage: false,
@@ -3629,6 +3801,7 @@ export const biblicalData = [
                     
                 `
             },
+
             description: {
                 enabled: true,
                 title: "O SENHOR E A SERVA",
@@ -3642,18 +3815,23 @@ export const biblicalData = [
                     Em uma impiedosa e decadente Roma, que se reergue após o avassalador incêndio, um encontro inesperado entre uma jovem cristã e um ex-capitão de guerra romano causará o choque de dois mundos contrastantes, trazendo à luz dores secretas, motivações antes incompreendidas e resoluções reveladoras sobre renúncia, sacrifício, redenção — ou, como também se pode chamar, amor.
                 `
             },
+
             season: [
                 {
                     name: "Temporada 01",
                     thumb_season: "https://i.imgur.com/KhLlS6K.jpeg", //https://i.imgur.com/9Qq92fG.png //https://i.imgur.com/KhLlS6K.jpeg
                     movies: false,
                     episodes: [
-                        { title: "Episódio 001", subtitle: "", duration: "1:01:55", thumb: "https://i.imgur.com/uqD5igE.png", url: ["https://ok.ru/videoembed/10015373396697", "https://cdn-novflix.com/storage1/SERVA/SERVA-001.mp4", ] },
-                        { title: "Episódio 002", subtitle: "", duration: "44:19"  , thumb: "https://i.imgur.com/D7Gg9zI.png", url: ["https://ok.ru/videoembed/10017705298649", "https://cdn-novflix.com/storage1/SERVA/SERVA-002.mp4", ] },
-                        { title: "Episódio 003", subtitle: "", duration: "55:00"  , thumb: "https://i.imgur.com/quKJnqu.png", url: ["https://ok.ru/videoembed/10017747634905", "https://cdn-novflix.com/storage1/SERVA/SERVA-003.mp4", ] },
-                        { title: "Episódio 004", subtitle: "", duration: "55:00"  , thumb: "https://i.imgur.com/xT5V4op.png", url: ["https://cdn-novflix.com/storage1/SERVA/SERVA-004.mp4", ] },
-                        { title: "Episódio 005", subtitle: "", duration: "55:00"  , thumb: "https://i.imgur.com/gvUPhlI.png", url: ["https://cdn-novflix.com/storage1/SERVA/SERVA-005.mp4", ] },
-                        { title: "Episódio 006", subtitle: "", duration: "55:00"  , thumb: "https://i.imgur.com/ynfGleE.png", url: ["https://cdn-novflix.com/storage1/SERVA/SERVA-006.mp4", ] },
+                        { title: "Episódio 001", subtitle: "", duration: "1:01:54", thumb: "https://i.imgur.com/uqD5igE.png" , url: ["https://ok.ru/videoembed/10015373396697", "https://cdn-novflix.com/storage1/SERVA/SERVA-001.mp4", ] },
+                        { title: "Episódio 002", subtitle: "", duration: "44:18"  , thumb: "https://i.imgur.com/D7Gg9zI.png" , url: ["https://ok.ru/videoembed/10017705298649", "https://cdn-novflix.com/storage1/SERVA/SERVA-002.mp4", ] },
+                        { title: "Episódio 003", subtitle: "", duration: "55:00"  , thumb: "https://i.imgur.com/quKJnqu.png" , url: ["https://ok.ru/videoembed/10017747634905", "https://cdn-novflix.com/storage1/SERVA/SERVA-003.mp4", ] },
+                        { title: "Episódio 004", subtitle: "", duration: "57:51"  , thumb: "https://i.imgur.com/xT5V4op.png" , url: ["https://ok.ru/videoembed/10057141193433", "https://cdn-novflix.com/storage1/SERVA/SERVA-004.mp4", ] },
+                        { title: "Episódio 005", subtitle: "", duration: "52:10"  , thumb: "https://i.imgur.com/gvUPhlI.png" , url: ["https://ok.ru/videoembed/10057144077017", "https://cdn-novflix.com/storage1/SERVA/SERVA-005.mp4", ] },
+                        { title: "Episódio 006", subtitle: "", duration: "51:30"  , thumb: "https://i.imgur.com/ynfGleE.png" , url: ["https://ok.ru/videoembed/10057161116377", "https://cdn-novflix.com/storage1/SERVA/SERVA-006.mp4", ] },
+                        { title: "Episódio 007", subtitle: "", duration: "44:36"  , thumb: "https://i.imgur.com/KhLlS6K.jpeg", url: ["https://ok.ru/videoembed/10094223624921", "https://cdn-novflix.com/storage1/SERVA/SERVA-007.mp4", ] },
+                        { title: "Episódio 008", subtitle: "", duration: "40:20"  , thumb: "https://i.imgur.com/KhLlS6K.jpeg", url: ["https://ok.ru/videoembed/10098597432025", "https://cdn-novflix.com/storage1/SERVA/SERVA-008.mp4", ] },
+                        { title: "Episódio 009", subtitle: "", duration: "51:12"  , thumb: "https://i.imgur.com/KhLlS6K.jpeg", url: ["https://ok.ru/videoembed/10098841815769", "https://cdn-novflix.com/storage1/SERVA/SERVA-009.mp4", ] },
+                        { title: "Episódio 010", subtitle: "", duration: "51:40"  , thumb: "https://i.imgur.com/KhLlS6K.jpeg", url: ["https://ok.ru/videoembed/10099745884889", "https://cdn-novflix.com/storage1/SERVA/SERVA-010.mp4", ] },
                     ]
                 },
             ]
