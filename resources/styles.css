@@ -632,8 +632,9 @@ body {
 	white-space: nowrap; 
 }
 
+.no-results-container,
 .no-favorites-container {
-  color: #888;
+  color: var(--color-explore_button_text);
   margin-left: 10px;
   font-size: 1.2em;
 }
@@ -1279,11 +1280,13 @@ body {
 	opacity: 1;
 }
 
+.result-header,
 .favorites-header {
 	color: var(--color-favorite_text);
 	text-shadow: 0 2px 10px var(--color-favorite_text);
 }
 
+.result-header p,
 .favorites-header p {
 	position: relative;
 	padding: 12px 48px;

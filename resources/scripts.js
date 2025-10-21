@@ -105,15 +105,18 @@ const iconTwitch      = `https://img.icons8.com/ios-filled/100/twitch.png`;
 const iconYoutube     = `https://img.icons8.com/external-tal-revivo-bold-tal-revivo/96/external-youtube-is-an-american-video-sharing-and-now-googles-subsidiaries-logo-bold-tal-revivo.png`;
 const iconKick        = `<svg role="img" viewBox="-5 0 30 30" xmlns="http://www.w3.org/2000/svg" id="Kick--Streamline-Simple-Icons" class="custom-icon"><path d="M1.333 0h8v5.333H12V2.667h2.667V0h8v8H20v2.667h-2.667v2.666H20V16h2.667v8h-8v-2.667H12v-2.666H9.333V24h-8Z" fill="#000000" stroke-width="1"></path></svg>`;
 const iconContinue    = `https://img.icons8.com/fluency-systems-filled/48/pause.png`;
+const iconSearch      = `https://img.icons8.com/sf-regular/96/search.png`;
 
 const iconHomeGif      = 'https://i.imgur.com/xS20AuN.png';
 const iconHistoryGif   = 'https://i.imgur.com/MShsVT9.png'; //'https://i.imgur.com/nxaxTS3.png';
 const iconFavoriteGif  = 'https://i.imgur.com/LAcxXkU.png'; //'https://i.imgur.com/UmEAJ1G.png';
 const iconContinueGif  = `https://i.imgur.com/cJSsnd3.png`;
+const iconSearchGif    = `https://i.imgur.com/PcIRA4C.png`;
 
 function getIcon(groupName) {
   const name = groupName.toLowerCase();
   
+  if (name.includes('resultados') || name.includes('search') || name.includes('pesquisa')) return { type: 'img', value: iconSearch, alt: 'search' };
   if (name.includes('animes'))    return { type: 'img', value: iconAnimes,    alt: 'animes' };
   if (name.includes('canais'))    return { type: 'img', value: iconChannel,   alt: 'canais' };
   if (name.includes('filmes'))    return { type: 'img', value: iconMovies,    alt: 'filmes' };
@@ -943,7 +946,7 @@ function calculateTotalCards(groupItem) {
   return totalCards;
 }
 
-function renderGroupSection(groupItem, isHomePage) {
+function renderGroupSection(groupItem, isHomePage, skipHeader = false) {
   const sortedSubgroups = [...groupItem.group].sort((a, b) => {
     const aHasEnabled = a.card_buttons && a.card_buttons.some(card => card.enabled !== false);
     const bHasEnabled = b.card_buttons && b.card_buttons.some(card => card.enabled !== false);
@@ -972,71 +975,73 @@ function renderGroupSection(groupItem, isHomePage) {
   const groupSlug = groupItem.group_slug || generateSlug(groupItem.group_name);
   let html = '';
   
-  html += `<section id="group-${groupSlug}-header">`;
-  html += `<header class="group-title-header">`;
-  
-  let displayGroupName = groupItem.group_name;
-  let iconHTML = '';
-  
-  if (groupItem.group_name.includes('favoritos') || groupItem.group_name.includes('Favoritos')) {
-    iconHTML = `<img src="${iconFavorite}" class="custom-icon" alt="Favoritos Icon">`;
-    let totalCards = 0;
-    sortedSubgroups.forEach(subgroup => {
-      if (subgroup.card_buttons) {
-        totalCards += subgroup.card_buttons.filter(card => card.visible !== false && isFavorite(card.name)).length;
-      }
-    });
-    displayGroupName = `Conteúdos favoritos (${totalCards})`;
+  if (!skipHeader) {
+    html += `<section id="group-${groupSlug}-header">`;
+    html += `<header class="group-title-header">`;
+    
+    let displayGroupName = groupItem.group_name;
+    let iconHTML = '';
+    
+    if (groupItem.group_name.includes('favoritos') || groupItem.group_name.includes('Favoritos')) {
+      iconHTML = `<img src="${iconFavorite}" class="custom-icon" alt="Favoritos Icon">`;
+      let totalCards = 0;
+      sortedSubgroups.forEach(subgroup => {
+        if (subgroup.card_buttons) {
+          totalCards += subgroup.card_buttons.filter(card => card.visible !== false && isFavorite(card.name)).length;
+        }
+      });
+      displayGroupName = `Conteúdos favoritos (${totalCards})`;
 
-    if (totalCards === 0) {
-      return `
-        <section id="group-favoritos-header">
-          <header class="group-title-header">
-            <h2 class="favorites-header">${iconHTML} ${displayGroupName}</h2>
-          </header>
-          <div class="no-favorites-container">
-            <p>Você ainda não adicionou nenhum item aos favoritos.</p>
-          </div>
-        </section>
+      if (totalCards === 0) {
+        return `
+          <section id="group-favoritos-header">
+            <header class="group-title-header">
+              <h2 class="favorites-header">${iconHTML} ${displayGroupName}</h2>
+            </header>
+            <div class="no-favorites-container">
+              <p>Você ainda não adicionou nenhum item aos favoritos.</p>
+            </div>
+          </section>
+        `;
+      }
+    } 
+    else {
+      const iconData = getIcon(groupItem.group_name);
+      if (iconData.type === 'fa') {
+        iconHTML = `<i class="${iconData.value}"></i>`;
+      } else if (iconData.type === 'img') {
+        iconHTML = `<img src="${iconData.value}" class="custom-icon" alt="${iconData.alt || groupItem.group_name + ' Icon'}">`;
+      } else if (iconData.type === 'svg') {
+        iconHTML = iconData.value;
+      }
+
+      const totalCards = calculateTotalCards({ ...groupItem, group: sortedSubgroups });
+      displayGroupName += ` (${totalCards} disponíveis)`;
+    }
+    
+    const favoritesClass = groupItem.group_name === 'Favoritos' ? 'favorites-header' : '';
+    html += `<h2 class="${favoritesClass}">${iconHTML} ${displayGroupName}</h2>`;
+    
+    if (isHomePage && !groupItem.group_name.includes('favoritos')) {
+      html += `
+      <button class="explore-button" data-group="${groupSlug}">
+        <svg xmlns="http://www.w3.org/2000/svg" class="arr-2" viewBox="0 0 24 24">
+          <path
+            d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"
+          ></path>
+        </svg>
+        <span class="text">Explorar</span>
+        <span class="circle"></span>
+        <svg xmlns="http://www.w3.org/2000/svg" class="arr-1" viewBox="0 0 24 24">
+          <path
+            d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"
+          ></path>
+        </svg>
+      </button>
       `;
     }
-  } 
-  else {
-    const iconData = getIcon(groupItem.group_name);
-    if (iconData.type === 'fa') {
-      iconHTML = `<i class="${iconData.value}"></i>`;
-    } else if (iconData.type === 'img') {
-      iconHTML = `<img src="${iconData.value}" class="custom-icon" alt="${iconData.alt || groupItem.group_name + ' Icon'}">`;
-    } else if (iconData.type === 'svg') {
-      iconHTML = iconData.value;
-    }
-
-    const totalCards = calculateTotalCards({ ...groupItem, group: sortedSubgroups });
-    displayGroupName += ` (${totalCards} disponíveis)`;
+    html += `</header>`;
   }
-  
-  const favoritesClass = groupItem.group_name === 'Favoritos' ? 'favorites-header' : '';
-  html += `<h2 class="${favoritesClass}">${iconHTML} ${displayGroupName}</h2>`;
-  
-  if (isHomePage && !groupItem.group_name.includes('favoritos')) {
-    html += `
-    <button class="explore-button" data-group="${groupSlug}">
-      <svg xmlns="http://www.w3.org/2000/svg" class="arr-2" viewBox="0 0 24 24">
-        <path
-          d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"
-        ></path>
-      </svg>
-      <span class="text">Explorar</span>
-      <span class="circle"></span>
-      <svg xmlns="http://www.w3.org/2000/svg" class="arr-1" viewBox="0 0 24 24">
-        <path
-          d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"
-        ></path>
-      </svg>
-    </button>
-    `;
-  }
-  html += `</header>`;
       
   const layoutClass = isHomePage ? 'home-layout' : 'category-layout';
   html += `<div class="group-cards-header ${layoutClass}">`;
@@ -1119,7 +1124,10 @@ function renderGroupSection(groupItem, isHomePage) {
     html += `<button class="nav-arrow next" aria-label="Próximos cartões"><i class="fas fa-chevron-right"></i></button>`;
   }
   html += `</div>`;
-  html += '</section>';
+
+  if (!skipHeader) {
+    html += '</section>';
+  }
   
   return html;
 }
@@ -1999,6 +2007,180 @@ function hideLoader(startTime) {
     }, delay);
 }
 
+function searchInput() {
+  const searchInputEl = document.querySelector('.search-bar input');
+  const searchButton = document.querySelector('.search-bar button');
+  const searchMenuItemLi = document.getElementById('search-menu-item');
+
+  function deactivateSidebar() {
+    document.querySelectorAll('.sidebar nav ul li').forEach(li => {
+      li.classList.remove('active');
+    });
+  }
+
+  function activateSearchIcon() {
+    if (searchMenuItemLi) {
+      searchMenuItemLi.classList.add('active');
+    }
+  }
+
+  function performSearch(query) {
+    if (!query || query.trim() === '') return;
+
+    const lowerQuery = query.toLowerCase().trim();
+    const allMatchingItems = [];
+
+    seriesData.forEach(groupItem => {
+      if (!groupItem.visible || !groupItem.group) return;
+
+      groupItem.group.forEach(subgroup => {
+        if (!subgroup.card_buttons) return;
+
+        subgroup.card_buttons.forEach(card => {
+          if (card.visible !== false && 
+              card.enabled !== false && 
+              card.name.toLowerCase().includes(lowerQuery)) {
+            allMatchingItems.push({ 
+              ...subgroup, 
+              card: card, 
+              original_group: groupItem.group_name 
+            });
+          }
+        });
+      });
+    });
+
+    deactivateSidebar();
+    activateSearchIcon();
+
+    window.location.hash = `#search/${encodeURIComponent(query)}`;
+
+    const contentContainer = document.getElementById('page-content');
+    let html = `<section id="search-results">`;
+
+    const iconData = getIcon('search');
+    let iconHTML = '';
+    if (iconData.type === 'img') {
+      iconHTML = `<img src="${iconData.value}" class="custom-icon" alt="${iconData.alt}">`;
+    } else if (iconData.type === 'fa') {
+      iconHTML = `<i class="${iconData.value}"></i>`;
+    } else if (iconData.type === 'svg') {
+      iconHTML = iconData.value;
+    }
+
+    let titleText = `Resultados da Pesquisa para "${query}"`;
+    if (allMatchingItems.length > 0) {
+      titleText += ` (${allMatchingItems.length} itens)`;
+    }
+
+    html += `
+      <header class="group-title-header">
+        <h2>${iconHTML} ${titleText}</h2>
+        <button class="explore-button back-button" onclick="goToHome()">
+          <svg xmlns="http://www.w3.org/2000/svg" class="arr-2" viewBox="0 0 24 24">
+            <path d="M7.8284 13L13.1924 18.3641L11.7782 19.7783L4 12L11.7782 4.22168L13.1924 5.63589L7.8284 11H20V13H7.8284Z"></path>
+          </svg>
+          <span class="text">Voltar ao Início</span>
+          <span class="circle"></span>
+          <svg xmlns="http://www.w3.org/2000/svg" class="arr-1" viewBox="0 0 24 24">
+            <path d="M7.8284 13L13.1924 18.3641L11.7782 19.7783L4 12L11.7782 4.22168L13.1924 5.63589L7.8284 11H20V13H7.8284Z"></path>
+          </svg>
+        </button>
+      </header>
+    `;
+
+    if (allMatchingItems.length === 0) {
+      html += `
+        <div class="no-results-container">
+          <p>Nenhum resultado encontrado para "${query}". Tente outra busca.</p>
+        </div>
+      `;
+    } else {
+      const groupedSearchResults = {};
+      allMatchingItems.forEach(item => {
+        const key = `${item.original_group}-${item.name}`;
+        if (!groupedSearchResults[key]) {
+          groupedSearchResults[key] = { ...item, card_buttons: [] };
+        }
+
+        const cardExists = groupedSearchResults[key].card_buttons.some(existingCard => 
+          existingCard.name === item.card.name
+        );
+        if (!cardExists) {
+          groupedSearchResults[key].card_buttons.push(item.card);
+        }
+      });
+
+      const searchGroup = {
+        group_name: `Resultados para "${query}"`,
+        group_slug: "search-results",
+        visible: true,
+        group: Object.values(groupedSearchResults)
+      };
+
+      html += renderGroupSection(searchGroup, false, true);
+    }
+
+    html += '</section>';
+
+    contentContainer.innerHTML = html;
+
+    attachSeriesNavigationListeners(contentContainer);
+    attachFavoriteListeners(contentContainer);
+    updateCarouselFavorites();
+
+    const carousel = document.getElementById('carousel');
+    if (carousel) carousel.style.display = 'none';
+
+    window.goToHome = function() {
+      window.location.hash = `#${generateSlug('Início')}`;
+      if (searchMenuItemLi) searchMenuItemLi.classList.remove('active');
+    };
+  }
+
+  if (searchInputEl) {
+    searchInputEl.addEventListener('keyup', function(e) {
+      if (e.key === 'Enter') {
+        const query = this.value;
+        performSearch(query);
+      }
+    });
+  }
+
+  if (searchButton) {
+    searchButton.addEventListener('click', function() {
+      const query = searchInputEl.value;
+      performSearch(query);
+    });
+  }
+
+  function handleSearchFromURL() {
+    const hash = window.location.hash;
+    if (hash.startsWith('#search/')) {
+      const encodedQuery = hash.substring(8);
+      const query = decodeURIComponent(encodedQuery);
+      if (query) {
+        performSearch(query);
+      }
+    }
+  }
+
+  window.addEventListener('hashchange', function(e) {
+    const path = getCurrentPath();
+    if (path.startsWith('search/')) {
+      const encodedQuery = path.substring(7);
+      const query = decodeURIComponent(encodedQuery);
+      if (query) {
+        performSearch(query);
+        e.preventDefault();
+        return false;
+      }
+    }
+  });
+
+  handleSearchFromURL();
+}
+
 document.addEventListener('DOMContentLoaded', () => {
   const menuContainer = document.getElementById('dynamic-content-menu');
   const mainMenuList = document.getElementById('main-menu-list');
@@ -2117,6 +2299,7 @@ document.addEventListener('DOMContentLoaded', () => {
     activateByPath(currentPath);
     loadPageContent(currentPath);
     renderCarrousel(currentPath);
+    searchInput();
 
     const streamsLink = document.querySelector('a[data-group="' + generateSlug('Streams') + '"]');
     if (streamsLink) setupStreamIcons(streamsLink);
