@@ -6,18 +6,24 @@ export const channelData = [
             //ESPN
             {
                 name: "Espn",
-                enabled: true,
-                visible: true,
-                thumb_buttons: {
-                    url: [
-                        "https://i.imgur.com/53B8dup.jpeg"
-                    ]
-                },
-                badge: "",
-                title: "", //TEXTO DO BOTÃO ENABLED OFF
+                card_buttons: [
+                    {
+                        name: "Espn",
+                        enabled: true,
+                        visible: true,
+                        info: true,
+                        badge: "",
+                        thumb_buttons: {
+                            url: [
+                                "https://i.imgur.com/53B8dup.jpeg"
+                            ]
+                        },
+                    }
+                ],
                 carrousel: {
                     enabled: false,
                     homepage: false,
+                    favorite: true,
                     title: "ESPN",
                     logo: { enabled: false, minimalist: false, url: "" },
                     thumb: [
@@ -26,8 +32,10 @@ export const channelData = [
                     text: "",
                     description: `
 
-                    `
+                    `,
+                    info: { enabled: false, text: "", season: true, episodes: true, finalized: false }
                 },
+
                 description: {
                     enabled: false,
                     title: "ESPN",
@@ -50,6 +58,7 @@ export const channelData = [
 
                     `
                 },
+
                 season: [
                     {
                         name: "",
@@ -69,22 +78,25 @@ export const channelData = [
             //SPORTV
             {
                 name: "SporTv",
-                enabled: true,
-                thumb_buttons: {
-                    url: [
-                        "https://i.imgur.com/m8tPb5P.jpeg"
-                    ],
-                },
-                badge: "",
-                type: "Canais",
-                canais: true,
-                youtube: false,
-                visible: true,
-                title: "", //TEXTO DO BOTÃO ENABLED OFF
+                card_buttons: [
+                    {
+                        name: "SporTv",
+                        enabled: true,
+                        visible: true,
+                        info: true,
+                        badge: "",
+                        thumb_buttons: {
+                            url: [
+                                "https://i.imgur.com/m8tPb5P.jpeg"
+                            ],
+                        },     
+                    }
+                ],
 
                 carrousel: {
                     enabled: false,
                     homepage: false,
+                    favorite: true,
                     title: "SPORTV",
                     logo: { enabled: false, minimalist: false, url: "" },
                     thumb: [
@@ -93,8 +105,10 @@ export const channelData = [
                     text: "",
                     description: `
 
-                    `
+                    `,
+                    info: { enabled: false, text: "", season: true, episodes: true, finalized: false }
                 },
+
                 description: {
                     enabled: false,
                     title: "SPORTV",
@@ -117,6 +131,7 @@ export const channelData = [
 
                     `
                 },
+
                 season: [
                     {
                         name: "",
@@ -135,18 +150,25 @@ export const channelData = [
             //PREMIERE
             {
                 name: "Premiere",
-                enabled: true,
-                visible: true,
-                thumb_buttons: {
-                    url: [
-                        "https://i.imgur.com/NLvBCb3.jpeg"
-                    ],
-                },
-                badge: "",
-                title: "", //TEXTO DO BOTÃO ENABLED OFF
+                card_buttons: [
+                    {
+                        name: "Premiere",
+                        enabled: true,
+                        visible: true,
+                        info: true,
+                        badge: "",
+                        thumb_buttons: {
+                            url: [
+                                "https://i.imgur.com/NLvBCb3.jpeg"
+                            ],
+                        },
+                    }
+                ],
+
                 carrousel: {
                     enabled: false,
                     homepage: false,
+                    favorite: true,
                     title: "PREMIERE",
                     logo: { enabled: false, minimalist: false, url: "" },
                     thumb: [
@@ -155,8 +177,10 @@ export const channelData = [
                     text: "",
                     description: `
 
-                    `
+                    `,
+                    info: { enabled: false, text: "", season: true, episodes: true, finalized: false }
                 },
+
                 description: {
                     enabled: false,
                     title: "PREMIERE",
@@ -179,6 +203,7 @@ export const channelData = [
 
                     `
                 },
+
                 season: [
                     {
                         name: "",
@@ -195,8 +220,7 @@ export const channelData = [
                         ]
                     },
                 ]
-            },
-            
+            },  
         ]
     },
 ];

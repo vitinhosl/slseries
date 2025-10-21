@@ -65,8 +65,8 @@ const seriesData2 = [
               { title: "Episódio 003", subtitle: "", duration: "55:05", thumb: "https://i.imgur.com/wSPSsZz.jpeg", url: [ "https://filemoon.to/e/fohv33go6fjl/2Efu4ZQADExGVxxV",                   "https://mixdrop.sn/e/gjojl1pptpow89",  "https://streamtape.com/get_video?id=kpZO7OpaKbF6l2&expires=1755927970&ip=FRuOExyNRxSNFt&token=j1EN2K21sdWR&stream=1",  "https://www.secvideo1.online/get_file/12/3b370c31cd091769c32c56cc419d14d100d7961945/799000/799756/799756_720p.mp4"] },
               { title: "Episódio 003", subtitle: "", duration: "55:05", thumb: "https://i.imgur.com/wSPSsZz.jpeg", url: [ "https://filemoon.to/e/fohv33go6fjl/2Efu4ZQADExGVxxV",                   "https://mixdrop.sn/e/gjojl1pptpow89",  "https://streamtape.com/get_video?id=kpZO7OpaKbF6l2&expires=1755927970&ip=FRuOExyNRxSNFt&token=j1EN2K21sdWR&stream=1",  "https://www.secvideo1.online/get_file/12/3b370c31cd091769c32c56cc419d14d100d7961945/799000/799756/799756_720p.mp4"] },
               { title: "Episódio 003", subtitle: "", duration: "55:05", thumb: "https://i.imgur.com/wSPSsZz.jpeg", url: [ "https://filemoon.to/e/fohv33go6fjl/2Efu4ZQADExGVxxV",                   "https://mixdrop.sn/e/gjojl1pptpow89",  "https://streamtape.com/get_video?id=kpZO7OpaKbF6l2&expires=1755927970&ip=FRuOExyNRxSNFt&token=j1EN2K21sdWR&stream=1",  "https://www.secvideo1.online/get_file/12/3b370c31cd091769c32c56cc419d14d100d7961945/799000/799756/799756_720p.mp4"] },
-              { title: "Episódio 003", subtitle: "", duration: "55:05", thumb: "https://i.imgur.com/wSPSsZz.jpeg", url: [ "https://filemoon.to/e/fohv33go6fjl/2Efu4ZQADExGVxxV",                   "https://mixdrop.sn/e/gjojl1pptpow89",  "https://streamtape.com/get_video?id=kpZO7OpaKbF6l2&expires=1755927970&ip=FRuOExyNRxSNFt&token=j1EN2K21sdWR&stream=1",  "https://www.secvideo1.online/get_file/12/3b370c31cd091769c32c56cc419d14d100d7961945/799000/799756/799756_720p.mp4"] },
-              { title: "Episódio 003", subtitle: "", duration: "55:05", thumb: "https://i.imgur.com/wSPSsZz.jpeg", url: [ "https://filemoon.to/e/fohv33go6fjl/2Efu4ZQADExGVxxV",                   "https://mixdrop.sn/e/gjojl1pptpow89",  "https://streamtape.com/get_video?id=kpZO7OpaKbF6l2&expires=1755927970&ip=FRuOExyNRxSNFt&token=j1EN2K21sdWR&stream=1",  "https://www.secvideo1.online/get_file/12/3b370c31cd091769c32c56cc419d14d100d7961945/799000/799756/799756_720p.mp4"] },
+              { title: "Episódio 003", subtitle: "", duration: "55:05", thumb: "", url: [ "https://filemoon.to/e/fohv33go6fjl/2Efu4ZQADExGVxxV",                   "https://mixdrop.sn/e/gjojl1pptpow89",  "https://streamtape.com/get_video?id=kpZO7OpaKbF6l2&expires=1755927970&ip=FRuOExyNRxSNFt&token=j1EN2K21sdWR&stream=1",  "https://www.secvideo1.online/get_file/12/3b370c31cd091769c32c56cc419d14d100d7961945/799000/799756/799756_720p.mp4"] },
+              { title: "Episódio 003", subtitle: "", duration: "55:05", thumb: "", url: [ "https://filemoon.to/e/fohv33go6fjl/2Efu4ZQADExGVxxV",                   "https://mixdrop.sn/e/gjojl1pptpow89",  "https://streamtape.com/get_video?id=kpZO7OpaKbF6l2&expires=1755927970&ip=FRuOExyNRxSNFt&token=j1EN2K21sdWR&stream=1",  "https://www.secvideo1.online/get_file/12/3b370c31cd091769c32c56cc419d14d100d7961945/799000/799756/799756_720p.mp4"] },
 
             ]
           }
@@ -99,7 +99,7 @@ const iconChannel     = `https://img.icons8.com/ios-filled/100/online--v1.png`;
 const iconMovies      = `https://img.icons8.com/ios-glyphs/90/cinema---v1.png`;
 const iconNovels      = `https://img.icons8.com/ios-filled/100/literature--v1.png`;
 const iconMinecraft   = `https://img.icons8.com/fluency-systems-regular/48/minecraft-grass-cube.png`; //https://img.icons8.com/external-those-icons-fill-those-icons/96/external-Minecraft-video-games-those-icons-fill-those-icons.png
-const iconSeries      = `<svg role="img" viewBox="0 0 256 256" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg" class="custom-icon"><path d="M200,88V200a16,16,0,0,1-16,16H40a16,16,0,0,1-16-16V88A16,16,0,0,1,40,72H184A16,16,0,0,1,200,88Zm16-48H64a8,8,0,0,0,0,16H216V176a8,8,0,0,0,16,0V56A16,16,0,0,0,216,40Z" fill="#000000"></path></svg>`; //`https://img.icons8.com/ios-filled/100/bursts.png`;
+const iconSeries      = `<svg role="img" viewBox="20 20 216 216" xmlns="http://www.w3.org/2000/svg" class="custom-icon"><path d="M200,88V200a16,16,0,0,1-16,16H40a16,16,0,0,1-16-16V88A16,16,0,0,1,40,72H184A16,16,0,0,1,200,88Zm16-48H64a8,8,0,0,0,0,16H216V176a8,8,0,0,0,16,0V56A16,16,0,0,0,216,40Z" fill="#000000"></path></svg>`; //`https://img.icons8.com/ios-filled/100/bursts.png`;
 const iconBiblical    = `https://img.icons8.com/ios-filled/100/holy-bible.png`;
 const iconTwitch      = `https://img.icons8.com/ios-filled/100/twitch.png`;
 const iconYoutube     = `https://img.icons8.com/external-tal-revivo-bold-tal-revivo/96/external-youtube-is-an-american-video-sharing-and-now-googles-subsidiaries-logo-bold-tal-revivo.png`;
@@ -765,6 +765,9 @@ function loadPageContent(path) {
         if (isWatched) buttonClasses += 'watched ';
         buttonClasses = buttonClasses.trim();
         
+        const episodeThumb = episode.thumb || '';
+        const hasEpisodeThumb = !!episodeThumb;
+
         html += `
           <div class="episodes-container-card slide-in-right" style="opacity: 1;"
               data-subgroup-name="${subgroup.name}"
@@ -774,14 +777,16 @@ function loadPageContent(path) {
               onclick="playEpisode(this)">
             <div id="episode-button" 
                 class="${buttonClasses}" 
-                style="background-image: url('${episode.thumb || season.thumb_season}');">
+                style="background-image: url('${season.thumb_season}');">
+              ${hasEpisodeThumb ? `
               <img class="episode-thumb" 
-                  data-src="${episode.thumb}" 
+                  data-src="${episodeThumb}" 
                   data-fallback="${season.thumb_season}" 
                   alt="${episode.title}" 
                   loading="lazy"
-                  src="${episode.thumb || season.thumb_season}"
+                  src=""
                   style="opacity: 0; transition: opacity 0.3s ease-in;">
+              ` : ''}
               <span class="icon-btn"></span>
               ${isWatched ? '<span class="badge-watched">▶ ASSISTIDO</span>' : ''}
               <span class="badge-duration">${episode.duration}</span>
@@ -1272,39 +1277,43 @@ function loadEpisodeImages() {
                 const src = img.dataset.src;
                 const fallback = img.dataset.fallback;
 
-                if (thumbnailCache[src]) {
-                    img.src = thumbnailCache[src];
-                    img.closest('#episode-button').style.backgroundImage = `url('${thumbnailCache[src]}')`;
-                } else {
-                    img.style.opacity = '0';
-                    img.src = src;
-                    img.onload = () => {
-                        thumbnailCache[src] = src;
-                        img.closest('#episode-button').style.backgroundImage = `url('${src}')`;
-                        img.style.transition = 'opacity 0.3s ease-in';
-                        img.style.opacity = '1';
-                    };
-                    img.onerror = () => {
-                        img.src = fallback;
-                        thumbnailCache[src] = fallback;
-                        img.closest('#episode-button').style.backgroundImage = `url('${fallback}')`;
-                        img.style.transition = 'opacity 0.3s ease-in';
-                        img.style.opacity = '1';
-                    };
+                if (!src) {
+                    observer.unobserve(img);
+                    return;
                 }
-                observer.unobserve(img);
+
+                if (thumbnailCache[src]) {
+                    img.closest('#episode-button').style.backgroundImage = `url('${thumbnailCache[src]}')`;
+                    observer.unobserve(img);
+                    return;
+                }
+
+                img.src = src;
+                img.style.opacity = '0';
+
+                img.onload = () => {
+                    thumbnailCache[src] = src;
+                    img.closest('#episode-button').style.backgroundImage = `url('${src}')`;
+                    observer.unobserve(img);
+                };
+
+                img.onerror = () => {
+                    if (!thumbnailCache[fallback]) {
+                        thumbnailCache[fallback] = fallback;
+                    }
+                    img.src = '';
+                    observer.unobserve(img);
+                };
             }
         });
     }, { rootMargin: '200px' });
 
-    document.querySelectorAll('.episode-thumb').forEach(img => {
-        if (!img.src || img.src === '') {
+    document.querySelectorAll('.episode-thumb[data-src]').forEach(img => {
+        const src = img.dataset.src;
+        if (thumbnailCache[src]) {
+            img.closest('#episode-button').style.backgroundImage = `url('${thumbnailCache[src]}')`;
+        } else {
             observer.observe(img);
-        } else if (thumbnailCache[img.dataset.src]) {
-            img.style.opacity = '0';
-            img.src = thumbnailCache[img.dataset.src];
-            img.style.transition = 'opacity 0.3s ease-in';
-            img.style.opacity = '1';
         }
     });
 }

@@ -16,12 +16,35 @@ export const animesData = [
                         badge: "",
                         thumb_buttons: {
                             url: [
-                                // "https://animesbr.tv/wp-content/uploads/2025/01/vTCjCkwHn3bfqVLdQjZke3c8w7l-200x300.jpg",
+                                // "https://jouninreact.com.br/_next/image?url=https%3A%2F%2Fpublic.jouninreact.com.br%2Fmedias%2FLeituras%2FSolo%2520Leveling%2Fposter.gif&w=640&q=75",
+                                // "https://i.pinimg.com/736x/e4/a0/87/e4a0871660e82e9430adae7253ca912d.jpg",
+                                // "https://i.pinimg.com/736x/81/81/2c/81812c62399095334acbb6ac3f06c8ab.jpg",
+                                "https://i.pinimg.com/736x/f8/95/eb/f895eb4272badf0c58b27c3bcc393452.jpg",
+                                "https://i.imgur.com/XZ1HGIH.gif",
                                 "https://i.imgur.com/B54Pi2i.jpeg",
                                 "https://i.imgur.com/YtFlIIe.jpeg",
                             ],
                         },
                     },
+
+                    // {
+                    //     name: "Solo Leveling 2",
+                    //     enabled: true,
+                    //     visible: true,
+                    //     acumulative: false,
+                    //     info: true,
+                    //     badge: "",
+                    //     thumb_buttons: {
+                    //         url: [
+                    //             "https://jouninreact.com.br/_next/image?url=https%3A%2F%2Fpublic.jouninreact.com.br%2Fmedias%2FLeituras%2FSolo%2520Leveling%2Fposter.gif&w=640&q=75",
+                    //             "https://i.pinimg.com/736x/e4/a0/87/e4a0871660e82e9430adae7253ca912d.jpg",
+                    //             "https://i.pinimg.com/736x/81/81/2c/81812c62399095334acbb6ac3f06c8ab.jpg",
+                    //             "https://i.imgur.com/XZ1HGIH.gif",
+                    //             "https://i.imgur.com/B54Pi2i.jpeg",
+                    //             "https://i.imgur.com/YtFlIIe.jpeg",
+                    //         ],
+                    //     },
+                    // },
                 ],
 
                 carrousel: {
@@ -127,6 +150,7 @@ export const animesData = [
                         badge: "",
                         thumb_buttons: {
                             url: [
+                                "https://jouninreact.com.br/_next/image?url=https%3A%2F%2Fpublic.jouninreact.com.br%2Fmedias%2FAnimes%2FGachiakuta%2Fposter.jpg&w=640&q=75",
                                 "https://i.imgur.com/ooWl5H3.jpeg",
                             ],
                         },
@@ -197,6 +221,7 @@ export const animesData = [
                         badge: "",
                         thumb_buttons: {
                             url: [
+                                "https://jouninreact.com.br/_next/image?url=https%3A%2F%2Fpublic.jouninreact.com.br%2Fmedias%2FAnimes%2FKaiju%2520NO.8%2Fposter.jpg&w=640&q=75",
                                 "https://i.imgur.com/P099HnZ.jpeg",
                             ],
                         },
@@ -296,6 +321,8 @@ export const animesData = [
                         badge: "",
                         thumb_buttons: {
                             url: [
+                                "https://i.pinimg.com/1200x/45/0f/92/450f92c5e315cd5a717f0f2678802f58.jpg",
+                                "https://i.pinimg.com/736x/f3/84/39/f38439787f3ea9e357d39c1ae12675c2.jpg",
                                 // "https://animesbr.tv/wp-content/uploads/2025/01/vTCjCkwHn3bfqVLdQjZke3c8w7l-200x300.jpg",
                                 "https://animesonlinecc.to/wp-content/uploads/2020/01/6R2GkrQW8ZRlZAhEdVKwJjrANwS-185x278.jpg",
                                 "https://animefire.plus/img/animes/haikyuu-large.webp",
@@ -353,7 +380,236 @@ export const animesData = [
                        ]
                     }
                 ]
-            }
+            },
+
+            //JUJUTSU KAISEN
+            {
+                name: "Jujutsu Kaisen",
+                card_buttons: [
+                    {
+                        name: "Jujutsu Kaisen",
+                        enabled: false,
+                        visible: true,
+                        acumulative: false,
+                        info: true,
+                        badge: "",
+                        thumb_buttons: {
+                            url: [
+                                "https://i.pinimg.com/736x/41/0e/1a/410e1a0b539cdffd780fdce8ad552ec2.jpg",
+                                "https://jouninreact.com.br/_next/image?url=https%3A%2F%2Fpublic.jouninreact.com.br%2Fmedias%2FAnimes%2FJujutsu%2520Kaisen%2Fposter.gif&w=256&q=75",
+                            ],
+                        },
+                    },
+                ],
+
+                carrousel: {
+                    enabled: false,
+                    homepage: false,
+                    favorite: true,
+                    title: "SOLO LEVELING",
+                    logo: { enabled: false, minimalist: false, url: "" },
+                    thumb: [
+                        "",
+                    ],
+                    text: "",
+                    description: `
+
+                    `,
+                    info: { enabled: false, text: "", season: true, episodes: true, finalized: false }
+                },
+
+                description: {
+                    enabled: false,
+                    title: "SOLO LEVELING",
+                    thumb: [
+                        "",
+                    ],
+                    effect: [
+                        {
+                        hover: true,
+                        fade: 2,
+                        duration: 60,
+                        opacity: 0.5,
+                        mixBlend: 'soft-light',
+                        links: [
+                            ""
+                        ],
+                        },
+                    ],
+                    sinopse:  `
+
+                    `
+                },
+
+                season: [
+                    {
+                        name: "Temporada 01",
+                        thumb_season: "https://i.imgur.com/mNG5KTx.jpeg",
+                        movies: false,
+                        episodes: [
+                            { title: "Episódio 001", subtitle: "", duration: "", thumb: "https://i.imgur.com/e8cPXdj.jpeg", url: ["https://secvideo1.online/embed/852574/", "https://secvideo1.online/embed/852573/"] },
+                        ]
+                    },
+                ]
+            },
+
+            //TOKYO REVENGERS
+            {
+                name: "Tokyo Revengers",
+                card_buttons: [
+                    {
+                        name: "Tokyo Revengers",
+                        enabled: false,
+                        visible: true,
+                        acumulative: false,
+                        info: true,
+                        badge: "",
+                        thumb_buttons: {
+                            url: [
+                                "https://jouninreact.com.br/_next/image?url=https%3A%2F%2Fpublic.jouninreact.com.br%2Fmedias%2FAnimes%2FTokyo%2520Revengers%2Fposter.jpg&w=640&q=75",
+                            ],
+                        },
+                    },
+                ],
+
+                carrousel: {
+                    enabled: false,
+                    homepage: false,
+                    favorite: true,
+                    title: "SOLO LEVELING",
+                    logo: { enabled: false, minimalist: false, url: "" },
+                    thumb: [
+                        "",
+                    ],
+                    text: "",
+                    description: `
+
+                    `,
+                    info: { enabled: false, text: "", season: true, episodes: true, finalized: false }
+                },
+
+                description: {
+                    enabled: false,
+                    title: "TOKYO REVENGERS",
+                    thumb: [
+                        "",
+                    ],
+                    effect: [
+                        {
+                        hover: true,
+                        fade: 2,
+                        duration: 60,
+                        opacity: 0.5,
+                        mixBlend: 'soft-light',
+                        links: [
+                            ""
+                        ],
+                        },
+                    ],
+                    sinopse:  `
+
+                    `
+                },
+
+                season: [
+                    {
+                        name: "Temporada 01",
+                        thumb_season: "https://i.imgur.com/mNG5KTx.jpeg",
+                        movies: false,
+                        episodes: [
+                            { title: "Episódio 001", subtitle: "", duration: "", thumb: "https://i.imgur.com/e8cPXdj.jpeg", url: ["https://secvideo1.online/embed/852574/", "https://secvideo1.online/embed/852573/"] },
+                        ]
+                    },
+                ]
+            },
+
+            //NARUTO
+            {
+                name: "Naruto",
+                card_buttons: [
+                    {
+                        name: "Naruto Clássico",
+                        enabled: false,
+                        visible: true,
+                        acumulative: false,
+                        info: true,
+                        badge: "",
+                        thumb_buttons: {
+                            url: [
+                                "https://i.pinimg.com/736x/c8/f4/43/c8f44307f15de1c9ade539b6651eaf16.jpg",
+                                "https://i.pinimg.com/736x/78/a0/d0/78a0d0536e61b19c4d7d1eee60357a69.jpg",
+                                "https://i.pinimg.com/1200x/14/4d/bd/144dbd787aee8afb25aadf23c83bd154.jpg",
+                            ],
+                        },
+                    },
+
+                    {
+                        name: "Naruto Shippuden",
+                        enabled: false,
+                        visible: true,
+                        acumulative: false,
+                        info: true,
+                        badge: "",
+                        thumb_buttons: {
+                            url: [
+                                "https://i.pinimg.com/1200x/cc/f3/08/ccf308815217fc81e3b98bfaff79ca39.jpg",
+                                "https://i.pinimg.com/736x/04/3e/0a/043e0a112016a7c8bb62d3dd8fff3253.jpg",
+                                "https://i.pinimg.com/736x/58/41/3f/58413f6892df4dea588954afa2be43ce.jpg",
+                            ],
+                        },
+                    },
+                ],
+
+                carrousel: {
+                    enabled: false,
+                    homepage: false,
+                    favorite: true,
+                    title: "NARUTO",
+                    logo: { enabled: false, minimalist: false, url: "" },
+                    thumb: [
+                        "",
+                    ],
+                    text: "",
+                    description: `
+
+                    `,
+                    info: { enabled: false, text: "", season: true, episodes: true, finalized: false }
+                },
+
+                description: {
+                    enabled: false,
+                    title: "NARUTO",
+                    thumb: [
+                        "",
+                    ],
+                    effect: [
+                        {
+                        hover: true,
+                        fade: 2,
+                        duration: 60,
+                        opacity: 0.5,
+                        mixBlend: 'soft-light',
+                        links: [
+                            ""
+                        ],
+                        },
+                    ],
+                    sinopse:  `
+
+                    `
+                },
+
+                season: [
+                    {
+                        name: "Temporada 01",
+                        thumb_season: "https://i.imgur.com/mNG5KTx.jpeg",
+                        movies: false,
+                        episodes: [
+                            { title: "Episódio 001", subtitle: "", duration: "", thumb: "https://i.imgur.com/e8cPXdj.jpeg", url: ["https://secvideo1.online/embed/852574/", "https://secvideo1.online/embed/852573/"] },
+                        ]
+                    },
+                ]
+            },
         ]
     },
 ];
