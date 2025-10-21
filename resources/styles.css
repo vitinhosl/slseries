@@ -33,7 +33,7 @@ body {
 	overflow-y: auto;
 	z-index: 200;
 	outline: none;
-  	user-select: none;
+	user-select: none;
 	/* box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5);  */
 }
 
@@ -42,6 +42,7 @@ body {
 	font-weight: 700;
 	color: var(--color-logo_text);
 	padding: 0 25px 25px;
+	padding: 0 25px 17px;
 	letter-spacing: 0.5px;
 	display: flex;
 	align-items: center;
@@ -77,12 +78,12 @@ body {
 	padding: 0;
 	margin-top: 10px;
 	outline: none;
-  	user-select: none;
+	user-select: none;
 }
 
 .sidebar li a {
 	outline: none;
-  	user-select: none;
+	user-select: none;
 	display: flex;
 	align-items: center;
 	padding: 12px 25px;
@@ -99,7 +100,7 @@ body {
 	vertical-align: middle;
 	filter: invert(100%);
 	outline: none;
-  	user-select: none;
+	user-select: none;
 }
 
 .sidebar li a i {
@@ -110,13 +111,13 @@ body {
 
 /* .sidebar li.active .custom-icon, */
 .sidebar li a:hover:not(.active a) .custom-icon {
-    filter: var(--color-sidebar_button_convert);
-    color: var(--color-sidebar_button_icon);
-    fill: var(--color-sidebar_button_icon);
+	filter: var(--color-sidebar_button_convert);
+	color: var(--color-sidebar_button_icon);
+	fill: var(--color-sidebar_button_icon);
 }
 
 .sidebar nav ul li a i {
-    transition: color 0.3s ease;
+	transition: color 0.3s ease;
 }
 
 #main-menu-list {
@@ -149,7 +150,6 @@ body {
 	padding: 5px;
 }
 
-
 .navbar {
 	display: flex;
 	justify-content: space-between;
@@ -160,6 +160,11 @@ body {
 	left: 300px;
 	right: 0;
 	background-color: var(--color-top_bar);
+	background-color: color-mix(in srgb, var(--color-top_bar) 70%, transparent);
+	backdrop-filter: blur(10px);
+	-webkit-backdrop-filter: blur(10px);
+	box-shadow: 0 2px 5px color-mix(in srgb, var(--color-top_bar) 70%, transparent);
+	/* box-shadow: 0 1px 1px var(--color-top_bar); */
 	z-index: 100;
 	margin-bottom: 0;
 }
@@ -604,39 +609,39 @@ body {
 	text-align: center;
 }
 
-.carousel-info-badges { 
-	display: flex; 
-	gap: 8px; 
-	margin: 8px 0; 
-	flex-wrap: wrap; 
+.carousel-info-badges {
+	display: flex;
+	gap: 8px;
+	margin: 8px 0;
+	flex-wrap: wrap;
 }
 
-.info-badge-text, 
-.info-badge { 
+.info-badge-text,
+.info-badge {
 	background: linear-gradient(to bottom, var(--color-badge_background) 0%, var(--color-background) 100%);
 	color: var(--color-badge_text);
-	padding: 4px 8px; 
-	border-radius: 12px; 
-	font-size: 0.8em; 
+	padding: 4px 8px;
+	border-radius: 12px;
+	font-size: 0.8em;
 }
 
 .info-badge-text {
 	background: linear-gradient(to bottom, var(--color-badge_color) 0%, var(--color-background) 100%);
 }
 
-.tooltip-side { 
-	position: absolute; 
-	right: -80px; 
-	top: 50%; 
-	transform: translateY(-50%); 
-	white-space: nowrap; 
+.tooltip-side {
+	position: absolute;
+	right: -80px;
+	top: 50%;
+	transform: translateY(-50%);
+	white-space: nowrap;
 }
 
 .no-results-container,
 .no-favorites-container {
-  color: var(--color-explore_button_text);
-  margin-left: 10px;
-  font-size: 1.2em;
+	color: var(--color-explore_button_text);
+	margin-left: 10px;
+	font-size: 1.2em;
 }
 
 /* =============================================== */
@@ -839,16 +844,16 @@ body {
 }
 
 #group-series-button.info .info {
-  display: block;
+	display: block;
 }
 
 .card-container:not(.has-info) .inner-container .main-card::after,
 #group-series-button:not(.info) .info {
-  display: none;
+	display: none;
 }
 
 .card-container.has-info {
-  position: relative;
+	position: relative;
 }
 
 .card-container:has(#group-series-button:hover) .main-card::after {
@@ -1796,143 +1801,145 @@ body {
 /* BUTTON CARDS SÉRIES */
 /* =============================================== */
 .global-continue-container {
- display: flex;
- flex-wrap: wrap;
- gap: 20px;
- /* margin-left: 10px; */
+	display: flex;
+	flex-wrap: wrap;
+	gap: 20px;
+	/* margin-left: 10px; */
 }
 
 .continue-episodes-container,
 .episodes-container {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 5px;
-  border-radius: 8px;
-  margin: 10px 10px 10px 10px;
+	display: flex;
+	flex-wrap: wrap;
+	gap: 5px;
+	border-radius: 8px;
+	margin: 10px 10px 10px 10px;
 }
 
 .episodes-container {
-  margin-top: 20px;
+	margin-top: 20px;
 }
 
 .continue-episodes-container-card,
 .episodes-container-card {
-  border-radius: 8px;
-  gap: 5px;
-  background: color-mix(in srgb, var(--color-groupcard_header) 50%, transparent);
-  cursor: pointer;
-  transition: transform 0.3s ease;
+	border-radius: 8px;
+	gap: 5px;
+	background: color-mix(in srgb, var(--color-groupcard_header) 50%, transparent);
+	cursor: pointer;
+	transition: transform 0.3s ease;
 }
 
 .continue-episodes-container-card:hover,
 .episodes-container-card:hover {
-  /* filter: brightness(1.5); */
-  background: color-mix(in srgb, var(--color-groupcard_border) 75%, transparent);
+	/* filter: brightness(1.5); */
+	background: color-mix(in srgb, var(--color-groupcard_border) 75%, transparent);
 
-  /* background: linear-gradient(to right, color-mix(in srgb, var(--color-groupcard_border) 100%, transparent), color-mix(in srgb, var(--color-background) 100%, transparent)); */
-  transform: translateY(-5px);
+	/* background: linear-gradient(to right, color-mix(in srgb, var(--color-groupcard_border) 100%, transparent), color-mix(in srgb, var(--color-background) 100%, transparent)); */
+	transform: translateY(-5px);
 }
 
 .continue-episode-container {
-  margin-left: -10px;
+	margin-left: -10px;
 }
 
 .episode-container {
-  margin-left: 10px;
+	margin-left: 10px;
 }
 
 #continue-episode-button,
 #episode-button {
-  position: relative;
-  width: 250px;
-  width: 248px;
-  height: 150px;
-  background-color: var(--color-episode_button);
-  /* border: 1px solid var(--color-episode_button_border); */
-  border-radius: 10px;
-  /* padding: 20px; */
-  text-align: center;
-  color: white;
-  cursor: pointer;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  margin: 10px 10px 10px 10px;
-  transition: background-image 0.3s ease-in-out, transform 0.3s ease, all 0.3s ease-out;
-  user-select: none;
+	position: relative;
+	width: 250px;
+	width: 248px;
+	height: 150px;
+	background-color: var(--color-episode_button);
+	/* border: 1px solid var(--color-episode_button_border); */
+	border-radius: 10px;
+	/* padding: 20px; */
+	text-align: center;
+	color: white;
+	cursor: pointer;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	margin: 10px 10px 10px 10px;
+	transition: background-image 0.3s ease-in-out, transform 0.3s ease, all 0.3s ease-out;
+	user-select: none;
 }
 
-#continue-episode-button, #episode-button {
-  width: 228px;
-  width: 266px;
+#continue-episode-button,
+#episode-button {
+	width: 228px;
+	width: 266px;
 }
 
-.continue-episodes-container, .episodes-container {
-  gap: 20px
+.continue-episodes-container,
+.episodes-container {
+	gap: 20px
 }
 
 #continue-episode-button:hover,
 #episode-button:hover {
-  /* border: 1px solid transparent; */
+	/* border: 1px solid transparent; */
 }
 
 .episode-thumb {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  opacity: 0;
-  transition: opacity 0.3s ease-in;
-  user-select: none;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	opacity: 0;
+	transition: opacity 0.3s ease-in;
+	user-select: none;
 }
 
 /* #episode-button:hover, */
 #continue-episode-button:hover {
-  /* transform: scale(1.05); */
-  transform: translateY(-5px);
+	/* transform: scale(1.05); */
+	transform: translateY(-5px);
 }
 
 #continue-episode-button h1 {
-  font-size: 13px;
-  color: white;
-  text-align: center;
-  position: absolute;
-  bottom: 10px;
-  left: 50%;
-  transform: translateX(-50%);
-  font-weight: bold;
-  background: linear-gradient(to bottom, rgb(250, 247, 228), rgb(226, 179, 127));
-  text-shadow: 2px 2px 5px rgba(145, 87, 33, 0.7);
-  -webkit-background-clip: text;
-  color: transparent;
-  
-  position: relative;
-  top: 5%;
+	font-size: 13px;
+	color: white;
+	text-align: center;
+	position: absolute;
+	bottom: 10px;
+	left: 50%;
+	transform: translateX(-50%);
+	font-weight: bold;
+	background: linear-gradient(to bottom, rgb(250, 247, 228), rgb(226, 179, 127));
+	text-shadow: 2px 2px 5px rgba(145, 87, 33, 0.7);
+	-webkit-background-clip: text;
+	color: transparent;
+
+	position: relative;
+	top: 5%;
 }
 
 #continue-episode-button h3,
 #continue-episode-button p,
 #episode-button p {
-  font-size: 13px;
-  color: white;
-  text-align: center;
-  position: absolute;
-  bottom: 10px;
-  left: 50%;
-  transform: translateX(-50%);
-  font-weight: bold;
-  background: linear-gradient(to bottom, rgb(250, 247, 228), rgb(226, 179, 127));
-  text-shadow: 2px 2px 5px rgba(145, 87, 33, 0.7);
-  -webkit-background-clip: text;
-  color: transparent;
-  position: relative;
-  top: 80%;
+	font-size: 13px;
+	color: white;
+	text-align: center;
+	position: absolute;
+	bottom: 10px;
+	left: 50%;
+	transform: translateX(-50%);
+	font-weight: bold;
+	background: linear-gradient(to bottom, rgb(250, 247, 228), rgb(226, 179, 127));
+	text-shadow: 2px 2px 5px rgba(145, 87, 33, 0.7);
+	-webkit-background-clip: text;
+	color: transparent;
+	position: relative;
+	top: 80%;
 }
 
 #continue-episode-button h3 {
-  top: 65%;
+	top: 65%;
 }
 
 .continue-episodes-container-card:hover #continue-episode-button h3,
@@ -1943,54 +1950,54 @@ body {
 #continue-episode-button:hover h1,
 #continue-episode-button:hover p,
 #episode-button:hover p {
-  background: linear-gradient(to bottom, rgb(200, 209, 214), rgb(255, 255, 255));
-  text-shadow: 2px 2px 5px rgba(255, 255, 255, 0.7);
-  -webkit-background-clip: text;
-  color: transparent;
+	background: linear-gradient(to bottom, rgb(200, 209, 214), rgb(255, 255, 255));
+	text-shadow: 2px 2px 5px rgba(255, 255, 255, 0.7);
+	-webkit-background-clip: text;
+	color: transparent;
 }
 
 .continue-episodes-container-card:hover #continue-episode-button::after,
 .episodes-container-card:hover #episode-button::after,
 #continue-episode-button:hover::after,
 #episode-button:hover::after {
-  content: "";
-  position: absolute;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background-size: cover;
-  background-position: center;
-  opacity: 0.6;
-  pointer-events: none;
-  top: 45%;
-  width: 80px;
-  height: 80px;
-  transition: background-image 0.3s ease-in-out, transform 0.3s ease, all 0.3s ease-out;
+	content: "";
+	position: absolute;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	background-size: cover;
+	background-position: center;
+	opacity: 0.6;
+	pointer-events: none;
+	top: 45%;
+	width: 80px;
+	height: 80px;
+	transition: background-image 0.3s ease-in-out, transform 0.3s ease, all 0.3s ease-out;
 }
 
 #continue-episode-button:hover::after {
-  /* background-image: url('https://i.imgur.com/Uj4TeJR.png'); */
-  /* background-image: url('https://i.imgur.com/J9tWuW3.png'); */
+	/* background-image: url('https://i.imgur.com/Uj4TeJR.png'); */
+	/* background-image: url('https://i.imgur.com/J9tWuW3.png'); */
 }
 
 #continue-episode-button:has(.remove-button:hover)::after {
-  /* background-image: url('https://i.imgur.com/txA8oYd.png'); */
+	/* background-image: url('https://i.imgur.com/txA8oYd.png'); */
 }
 
 .icon-btn {
-  position: absolute;
-  top: 45%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 70px;
-  height: 70px;
-  background: rgb(255, 255, 255);
-  border: none;
-  border-radius: 50%;
-  cursor: pointer;
-  outline: none;
-  transition: transform 0.2s ease, opacity 0.3s ease;
-  opacity: 0;
-  pointer-events: none;
+	position: absolute;
+	top: 45%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	width: 70px;
+	height: 70px;
+	background: rgb(255, 255, 255);
+	border: none;
+	border-radius: 50%;
+	cursor: pointer;
+	outline: none;
+	transition: transform 0.2s ease, opacity 0.3s ease;
+	opacity: 0;
+	pointer-events: none;
 }
 
 /* ÍCONE DE PLAY/LIXEIRA */
@@ -1998,116 +2005,116 @@ body {
 .episodes-container-card:hover #episode-button .icon-btn,
 #continue-episode-button:hover .icon-btn,
 #episode-button:hover .icon-btn {
-  opacity: 0.6;
-  pointer-events: auto;
-  transform: translate(-50%, -50%) scale(1);
+	opacity: 0.6;
+	pointer-events: auto;
+	transform: translate(-50%, -50%) scale(1);
 }
 
 #continue-episode-button:has(.remove-button:hover) .icon-btn,
 #episode-button:has(.remove-button:hover) .icon-btn {
-  opacity: 0.6;
-  pointer-events: auto;
-  transform: translate(-50%, -50%) scale(1);
+	opacity: 0.6;
+	pointer-events: auto;
+	transform: translate(-50%, -50%) scale(1);
 }
 
 .icon-btn:active {
-  transform: translate(-50%, -50%) scale(0.95);
+	transform: translate(-50%, -50%) scale(0.95);
 }
 
 .icon-btn::before {
-  content: "";
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 0;
-  height: 0;
-  border-top: 15px solid transparent;
-  border-bottom: 15px solid transparent;
-  border-left: 25px solid rgb(35, 35, 35);
-  transform: translate(-40%, -50%) scale(1);
-  transition: transform 0.3s ease, opacity 0.3s ease;
-  opacity: 1;
+	content: "";
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	width: 0;
+	height: 0;
+	border-top: 15px solid transparent;
+	border-bottom: 15px solid transparent;
+	border-left: 25px solid rgb(35, 35, 35);
+	transform: translate(-40%, -50%) scale(1);
+	transition: transform 0.3s ease, opacity 0.3s ease;
+	opacity: 1;
 }
 
 .icon-btn::after {
-  content: "";
-  position: absolute;
-  bottom: 20px;
-  left: 50%;
-  width: 15px;
-  height: 18px;
-  border: 3px solid rgb(35, 35, 35);
-  border-top: none;
-  border-radius: 0 0 3px 3px;
-  transform: translate(-50%, 20%) scaleY(0);
-  transform-origin: bottom center;
-  transition: transform 0.3s ease, opacity 0.3s ease;
-  opacity: 0;
+	content: "";
+	position: absolute;
+	bottom: 20px;
+	left: 50%;
+	width: 15px;
+	height: 18px;
+	border: 3px solid rgb(35, 35, 35);
+	border-top: none;
+	border-radius: 0 0 3px 3px;
+	transform: translate(-50%, 20%) scaleY(0);
+	transform-origin: bottom center;
+	transition: transform 0.3s ease, opacity 0.3s ease;
+	opacity: 0;
 }
 
 .icon-btn .trash-lid {
-  position: absolute;
-  top: 22px;
-  left: 50%;
-  width: 26px;
-  height: 4px;
-  background: rgb(35, 35, 35);
-  border-radius: 3px;
-  transform: translateX(-50%) scaleX(0);
-  transform-origin: center center;
-  transition: transform 0.3s ease, opacity 0.3s ease;
-  opacity: 0;
+	position: absolute;
+	top: 22px;
+	left: 50%;
+	width: 26px;
+	height: 4px;
+	background: rgb(35, 35, 35);
+	border-radius: 3px;
+	transform: translateX(-50%) scaleX(0);
+	transform-origin: center center;
+	transition: transform 0.3s ease, opacity 0.3s ease;
+	opacity: 0;
 }
 
 .icon-btn .trash-handle {
-  position: absolute;
-  top: 19px;
-  left: 50%;
-  width: 10px;
-  height: 5px;
-  background: rgb(35, 35, 35);
-  border-radius: 2px;
-  transform: translateX(-50%) scaleX(0);
-  transform-origin: center center;
-  transition: transform 0.3s ease 0.05s, opacity 0.3s ease 0.05s;
-  opacity: 0;
+	position: absolute;
+	top: 19px;
+	left: 50%;
+	width: 10px;
+	height: 5px;
+	background: rgb(35, 35, 35);
+	border-radius: 2px;
+	transform: translateX(-50%) scaleX(0);
+	transform-origin: center center;
+	transition: transform 0.3s ease 0.05s, opacity 0.3s ease 0.05s;
+	opacity: 0;
 }
 
 .icon-btn .trash-bar {
-  position: absolute;
-  bottom: 27px;
-  width: 2px;
-  height: 12px;
-  background: rgb(35, 35, 35);
-  transform: scaleY(0);
-  transform-origin: bottom center;
-  transition: transform 0.3s ease 0.1s, opacity 0.3s ease 0.1s;
-  opacity: 0;
+	position: absolute;
+	bottom: 27px;
+	width: 2px;
+	height: 12px;
+	background: rgb(35, 35, 35);
+	transform: scaleY(0);
+	transform-origin: bottom center;
+	transition: transform 0.3s ease 0.1s, opacity 0.3s ease 0.1s;
+	opacity: 0;
 }
 
 .icon-btn .trash-bar.bar2 {
-  height: 14px;
-  bottom: 26px;
+	height: 14px;
+	bottom: 26px;
 }
 
 .icon-btn .trash-bar.bar1 {
-  left: calc(49% - 4px);
+	left: calc(49% - 4px);
 }
 
 .icon-btn .trash-bar.bar2 {
-  left: 49%;
+	left: 49%;
 }
 
 .icon-btn .trash-bar.bar3 {
-  left: calc(49% + 4px);
+	left: calc(49% + 4px);
 }
 
 .continue-episodes-container-card:hover #continue-episode-button .icon-btn::before,
 .episodes-container-card:hover #episode-button .icon-btn::before,
 #continue-episode-button:hover .icon-btn::before,
 #episode-button:hover .icon-btn::before {
-  transform: translate(-40%, -50%) scale(1);
-  opacity: 1;
+	transform: translate(-40%, -50%) scale(1);
+	opacity: 1;
 }
 
 .continue-episodes-container-card:hover #continue-episode-button .icon-btn::after,
@@ -2126,56 +2133,56 @@ body {
 #episode-button:hover .icon-btn .trash-handle,
 #continue-episode-button:hover .icon-btn .trash-bar,
 #episode-button:hover .icon-btn .trash-bar {
-  transform: translate(-50%, 20%) scaleY(0); 
-  opacity: 0;
+	transform: translate(-50%, 20%) scaleY(0);
+	opacity: 0;
 }
 
 #continue-episode-button:has(.remove-button:hover) .icon-btn::before,
 #episode-button:has(.remove-button:hover) .icon-btn::before {
-  transform: translate(-40%, -50%) scale(0);
-  opacity: 0;
+	transform: translate(-40%, -50%) scale(0);
+	opacity: 0;
 }
 
 #continue-episode-button:has(.remove-button:hover) .icon-btn::after,
 #episode-button:has(.remove-button:hover) .icon-btn::after {
-  transform: translate(-50%, 0) scaleY(1);
-  opacity: 1;
+	transform: translate(-50%, 0) scaleY(1);
+	opacity: 1;
 }
 
 #continue-episode-button:has(.remove-button:hover) .icon-btn .trash-lid,
 #episode-button:has(.remove-button:hover) .icon-btn .trash-lid {
-  transform: translateX(-50%) scaleX(1);
-  opacity: 1;
+	transform: translateX(-50%) scaleX(1);
+	opacity: 1;
 }
 
 #continue-episode-button:has(.remove-button:hover) .icon-btn .trash-handle,
 #episode-button:has(.remove-button:hover) .icon-btn .trash-handle {
-  transform: translateX(-50%) scaleX(1);
-  opacity: 1;
+	transform: translateX(-50%) scaleX(1);
+	opacity: 1;
 }
 
 #continue-episode-button:has(.remove-button:hover) .icon-btn .trash-bar,
 #episode-button:has(.remove-button:hover) .icon-btn .trash-bar {
-  transform: scaleY(1);
-  opacity: 1;
+	transform: scaleY(1);
+	opacity: 1;
 }
 
 #continue-episode-button::after,
 #episode-button::after {
-  content: "";
-  position: absolute;
-  left: 50%;
-  transform: translate(-50%, -50%) scale(0.5);
-  /* background-image: url('https://i.imgur.com/Uj4TeJR.png'); */
-  /* background-image: url('https://i.imgur.com/J9tWuW3.png'); */
-  background-size: cover;
-  background-position: center;
-  opacity: 0;
-  pointer-events: none;
-  top: 45%;
-  width: 80px;
-  height: 80px;
-  transition: transform 0.3s ease, opacity 0.3s ease;
+	content: "";
+	position: absolute;
+	left: 50%;
+	transform: translate(-50%, -50%) scale(0.5);
+	/* background-image: url('https://i.imgur.com/Uj4TeJR.png'); */
+	/* background-image: url('https://i.imgur.com/J9tWuW3.png'); */
+	background-size: cover;
+	background-position: center;
+	opacity: 0;
+	pointer-events: none;
+	top: 45%;
+	width: 80px;
+	height: 80px;
+	transition: transform 0.3s ease, opacity 0.3s ease;
 }
 
 /* Efeito de Borda/Sombra no hover) */
@@ -2183,35 +2190,33 @@ body {
 .episodes-container-card:hover #episode-button::before,
 #continue-episode-button:hover::before,
 #episode-button:hover::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  border-radius: 8px;
-  pointer-events: none;
-  
-  /* ESTILOS ESPECÍFICOS DO HOVER */
-  border: 1px solid color-mix(in srgb, var(--color-episode_button_hover) 80%, transparent);
-  box-shadow: 0 0px 20px rgba(15, 15, 15, 0.4), 0 0px 20px rgba(15, 15, 15, 0.1);
-  /* background-image: linear-gradient(to bottom, color-mix(in srgb, var(--color-episode_button_hover) 50%, transparent), var(--color-background)); */
-  background: color-mix(in srgb, var(--color-background) 50%, transparent);
+	content: "";
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	border-radius: 8px;
+	pointer-events: none;
+
+	/* ESTILOS ESPECÍFICOS DO HOVER */
+	border: 1px solid color-mix(in srgb, var(--color-episode_button_hover) 80%, transparent);
+	box-shadow: 0 0px 20px rgba(15, 15, 15, 0.4), 0 0px 20px rgba(15, 15, 15, 0.1);
+	/* background-image: linear-gradient(to bottom, color-mix(in srgb, var(--color-episode_button_hover) 50%, transparent), var(--color-background)); */
+	background: color-mix(in srgb, var(--color-background) 50%, transparent);
 }
 
 #continue-episode-button::before,
-#episode-button::before {
-
-}
+#episode-button::before {}
 
 #continue-episode-button:has(.remove-button:hover)::before,
 #episode-button:has(.remove-button:hover)::before {
-  border: 1px solid rgb(255, 0, 0);
-  box-shadow: 0 4px 10px rgba(255, 0, 0, 0.4), 0 8px 20px rgba(253, 0, 0, 0.1);
-  background-color: rgba(94, 0, 0, 0.8);
-  transition: background-image 0.3s ease-in-out, transform 0.3s ease, all 0.3s ease-out;
-  background-image: none;
-  /* border: 1px solid rgb(237, 0, 73);
+	border: 1px solid rgb(255, 0, 0);
+	box-shadow: 0 4px 10px rgba(255, 0, 0, 0.4), 0 8px 20px rgba(253, 0, 0, 0.1);
+	background-color: rgba(94, 0, 0, 0.8);
+	transition: background-image 0.3s ease-in-out, transform 0.3s ease, all 0.3s ease-out;
+	background-image: none;
+	/* border: 1px solid rgb(237, 0, 73);
   box-shadow: 0 4px 10px rgba(152, 1, 39, 0.4), 0 8px 20px rgba(152, 1, 39, 0.1);
   background-color: rgba(102, 1, 39, 0.8); */
 }
@@ -2219,51 +2224,51 @@ body {
 #episode-button.active.watched::before,
 #continue-episode-button.active::before,
 #episode-button.active::before {
-  border: 1px solid rgb(8, 237, 0);
-  box-shadow: 0 4px 10px rgba(14, 152, 1, 0.4), 0 8px 20px rgba(1, 152, 1, 0.1);
-  background-color: rgba(4, 102, 1, 0.8);
-  background-image: none;
+	border: 1px solid rgb(8, 237, 0);
+	box-shadow: 0 4px 10px rgba(14, 152, 1, 0.4), 0 8px 20px rgba(1, 152, 1, 0.1);
+	background-color: rgba(4, 102, 1, 0.8);
+	background-image: none;
 }
 
 #episode-button.watched::before {
-  border: 1px solid rgb(237, 0, 73);
-  background-color: rgba(102, 1, 39, 0.8);
-  box-shadow: 0 4px 10px rgba(152, 1, 39, 0.4), 0 8px 20px rgba(152, 1, 39, 0.1);
+	border: 1px solid rgb(237, 0, 73);
+	background-color: rgba(102, 1, 39, 0.8);
+	box-shadow: 0 4px 10px rgba(152, 1, 39, 0.4), 0 8px 20px rgba(152, 1, 39, 0.1);
 
-  border: 1px solid rgb(237, 0, 73, 0.5);
-  background-color: rgba(63, 2, 25, 0.8);
-  background-image: none;
+	border: 1px solid rgb(237, 0, 73, 0.5);
+	background-color: rgba(63, 2, 25, 0.8);
+	background-image: none;
 }
 
 #episode-button.watched::before,
 #continue-series-episodes #episode-button.active::before,
 #episode-button.active::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  border-radius: 8px;
-  pointer-events: none;
+	content: "";
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	border-radius: 8px;
+	pointer-events: none;
 }
 
 #episode-button.watched::after,
 #continue-series-episodes #episode-button.active::after,
 #episode-button.active::after {
-  content: "";
-  position: absolute;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  /* background-image: url('https://i.imgur.com/J9tWuW3.png'); */
-  /* background-image: url('https://i.imgur.com/Uj4TeJR.png'); */
-  background-size: cover;
-  background-position: center;
-  opacity: 0.6;
-  pointer-events: none;
-  top: 45%;
-  width: 80px;
-  height: 80px;
+	content: "";
+	position: absolute;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	/* background-image: url('https://i.imgur.com/J9tWuW3.png'); */
+	/* background-image: url('https://i.imgur.com/Uj4TeJR.png'); */
+	background-size: cover;
+	background-position: center;
+	opacity: 0.6;
+	pointer-events: none;
+	top: 45%;
+	width: 80px;
+	height: 80px;
 }
 
 /* Efeitos de HOVER nas classes active/watched */
@@ -2274,125 +2279,103 @@ body {
 #continue-series-episodes #episode-button.active:hover::before,
 #episode-button.active.watched:hover::before,
 #episode-button.active:hover::before {
-  border: 1px solid rgb(10, 255, 2);
-  box-shadow: 0 2px 5px rgba(23, 255, 2, 0.7), 0 6px 15px rgba(23, 255, 2, 0.3);
-  background-color: rgba(32, 255, 2, 0.4);
-  background-image: none;
+	border: 1px solid rgb(10, 255, 2);
+	box-shadow: 0 2px 5px rgba(23, 255, 2, 0.7), 0 6px 15px rgba(23, 255, 2, 0.3);
+	background-color: rgba(32, 255, 2, 0.4);
+	background-image: none;
 }
 
 
 /* Hover do Card no estado WATCHED - Foco Rosa/Brilhante */
 .episodes-container-card:hover #episode-button.watched::before,
 #episode-button.watched:hover::before {
-  border: 1px solid rgb(255, 2, 102);
-  box-shadow: 0 2px 5px rgba(255, 2, 102, 0.7), 0 6px 15px rgba(255, 2, 102, 0.3);
-  background-color: rgba(255, 2, 102, 0.4);
-  background-image: none;
+	border: 1px solid rgb(255, 2, 102);
+	box-shadow: 0 2px 5px rgba(255, 2, 102, 0.7), 0 6px 15px rgba(255, 2, 102, 0.3);
+	background-color: rgba(255, 2, 102, 0.4);
+	background-image: none;
 }
 
 /* Efeitos de texto em classes active/watched */
 #episode-button.watched p,
 #continue-episode-button.active p,
 #episode-button.active p {
-  background: linear-gradient(to bottom, rgb(200, 209, 214), rgb(255, 255, 255));
-  text-shadow: 2px 2px 5px rgba(255, 255, 255, 0.7);
-  -webkit-background-clip: text;
-  color: transparent;
+	background: linear-gradient(to bottom, rgb(200, 209, 214), rgb(255, 255, 255));
+	text-shadow: 2px 2px 5px rgba(255, 255, 255, 0.7);
+	-webkit-background-clip: text;
+	color: transparent;
 }
 
 .episode-subtitle,
 .episode-title {
- font-size: 13px;
- text-align: left;
- color: rgb(233, 244, 251);
- width: 220px;
- text-align: left;
- word-break: break-word;
- padding: 5px 5px 5px 10px;
+	font-size: 13px;
+	text-align: left;
+	color: rgb(233, 244, 251);
+	width: 220px;
+	text-align: left;
+	word-break: break-word;
+	padding: 5px 5px 5px 10px;
 }
 
 .remove-button {
-  position: absolute;
-  top: 5px;
-  right: 5px;
-  cursor: pointer;
-  font-size: 18px;
-  background: rgba(255, 255, 255, 0.2);
-  padding: 2px;
-  border-radius: 50%;
-  width: 30px;
-  height: 30px;
-  transition: all 0.3s ease;
+	position: absolute;
+	top: 5px;
+	right: 5px;
+	cursor: pointer;
+	font-size: 18px;
+	background: rgba(255, 255, 255, 0.2);
+	padding: 2px;
+	border-radius: 50%;
+	width: 30px;
+	height: 30px;
+	transition: all 0.3s ease;
 }
 
 .remove-button:hover {
-  background: rgba(255, 255, 255, 0.5);
+	background: rgba(255, 255, 255, 0.5);
 }
 
 .episode-item {
-  margin-bottom: 5px;
+	margin-bottom: 5px;
 }
 
-.episode-item a {
-
-}
+.episode-item a {}
 
 .episode-item ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
+	list-style: none;
+	padding: 0;
+	margin: 0;
 }
 
 .episode-item li {
-  margin-bottom: 5px;
+	margin-bottom: 5px;
 }
 
 .badge-watched {
- position: absolute;
- top: 10px;
- right: 10px;
- background: rgba(25, 25, 25, 0.7);
- box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
- color: #fff;
- padding: 5px 10px;
- font-size: 10px;
- font-weight: bold;
- text-transform: uppercase;
- border-radius: 15px;
- z-index: 10;
- transition: background-color 0.3s ease, transform 0.3s ease, opacity 0.3s ease, background 1.3s ease;
+	position: absolute;
+	top: 10px;
+	right: 10px;
+	background: rgba(25, 25, 25, 0.7);
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+	color: #fff;
+	padding: 5px 10px;
+	font-size: 10px;
+	font-weight: bold;
+	text-transform: uppercase;
+	border-radius: 15px;
+	z-index: 10;
+	transition: background-color 0.3s ease, transform 0.3s ease, opacity 0.3s ease, background 1.3s ease;
 }
 
 .badge-duration {
- position: absolute;
- bottom: 10px;
- right: 10px;
- background-color: rgba(25, 25, 25, 0.7);
- color: white;
- padding: 0px 8px;
- font-size: 12px;
- border-radius: 12px;
- line-height: 24px;
- height: 24px;
+	position: absolute;
+	bottom: 10px;
+	right: 10px;
+	background-color: rgba(25, 25, 25, 0.7);
+	color: white;
+	padding: 0px 8px;
+	font-size: 12px;
+	border-radius: 12px;
+	line-height: 24px;
+	height: 24px;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
