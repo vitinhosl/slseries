@@ -1,7 +1,7 @@
-import { seriesAll } from './episodes/index.js';
-const seriesData = seriesAll;
+// import { seriesAll } from './episodes/index.js';
+// const seriesData = seriesAll;
 
-const seriesData2 = [
+const seriesData = [
   {
     group_name: "Filmes",
     visible: true,
@@ -86,7 +86,7 @@ let randomImagesCards       = false; //AS IMAGENS ALEATÓRIAS DOS BOTÕES
 let randomImagesCarrousel   = false; //AS IMAGENS ALEATÓRIAS DO CARROUSEL
 let speedCarrouselBar       = 5;     //VELOCIDADE DAS ANIMAÇÕES DO CARROUSEL
 
-localStorage.clear();
+// localStorage.clear();
 
 //=======================================================================
 //ICONES
@@ -304,20 +304,6 @@ function attachFavoriteListeners(container = document) {
   });
 }
 
-function toggleFavoriteIndividual(cardData) {
-  const favorites = getFavorites();
-  const index = favorites.findIndex(fav => fav.card_name === cardData.name);
-  
-  if (index > -1) {
-    favorites.splice(index, 1);
-  } else {
-    favorites.push({ ...cardData, card_name: cardData.name });
-  }
-  
-  saveFavorites(favorites);
-  return index === -1;
-}
-
 function updateAllCardButtonsState(subgroup) {
   if (!subgroup.card_buttons) return;
   
@@ -452,8 +438,22 @@ function toggleAllCardsFavorite(subgroup) {
   }
 }
 
+function toggleFavoriteIndividual(cardData) {
+  const favorites = getFavorites();
+  const index = favorites.findIndex(fav => fav.card_name === cardData.name);
+  
+  if (index > -1) {
+    favorites.splice(index, 1);
+  } else {
+    favorites.push({ ...cardData, card_name: cardData.name });
+  }
+  
+  saveFavorites(favorites);
+  return index === -1;
+}
+
 //=======================================================================
-// FILTRO DE SÉRIES/GRUPOS (adaptado para favoritos por card)
+// FILTRO DE SÉRIES/GRUPOS
 //=======================================================================
 function getFilteredItems(path) {
   const segments = path.split('/').filter(s => s);
@@ -678,68 +678,6 @@ function loadPageContent(path) {
 
   } else if (isSubgroupPage) {
     const subgroup = filteredItems[0].data;
-    let activeInThisSubgroup = [];
-    subgroup.season.forEach((season, s) => {
-      for (let e = 0; e < season.episodes.length; e++) {
-        const w = getWatchedEpisode(subgroup.name, s, e);
-        if (w && w.active) {
-          activeInThisSubgroup.push({ seasonIdx: s, epIdx: e });
-          break;
-        }
-      }
-    });
-
-    if (activeInThisSubgroup.length > 0) {
-      html += `
-        <section id="continue-watching">
-          <header class="group-title-header">
-            <h2>Continue Assistindo</h2>
-          </header>
-          <div class="continue-episodes-container">
-      `;
-
-      activeInThisSubgroup.forEach((seasonActive) => {
-        const season = subgroup.season[seasonActive.seasonIdx];
-        const episode = season.episodes[seasonActive.epIdx];
-        const thumb = episode.thumb || season.thumb_season;
-        const urls = episode.url || [];
-        const seasonNum = seasonActive.seasonIdx + 1;
-        const epNum = seasonActive.epIdx + 1;
-        const paddedEp = epNum.toString().padStart(3, '0');
-
-        html += `
-          <div class="continue-episodes-container-card">
-            <div id="continue-episodes-button" 
-                style="background-image: url('${thumb}');" 
-                data-urls='${JSON.stringify(urls)}' 
-                data-subgroup-name="${subgroup.name}" 
-                data-season-index="${seasonActive.seasonIdx}" 
-                data-episode-index="${seasonActive.epIdx}" 
-                onclick="playContinueEpisode(this)">
-              <span class="icon-btn">
-                <span class="trash-lid"></span>
-                <span class="trash-handle"></span>
-                <span class="trash-bar bar1"></span>
-                <span class="trash-bar bar2"></span>
-                <span class="trash-bar bar3"></span>
-              </span>
-              <span class="badge-duration">${episode.duration}</span>
-              <p>T${seasonNum} - EP ${paddedEp}</p>
-              <div class="remove-button" 
-                  data-subgroup-name="${subgroup.name}" 
-                  data-season-index="${seasonActive.seasonIdx}" 
-                  data-episode-index="${seasonActive.epIdx}">✕</div>
-            </div>
-          </div>
-        `;
-      });
-
-      html += `
-          </div>
-        </section>
-      `;
-    }
-
     html += `
       <section id="subgroup-header">
         <header class="group-title-header">
@@ -808,8 +746,10 @@ function loadPageContent(path) {
 
     setTimeout(() => {
       updateSubgroupContinueWatching(subgroup.name);
-    }, 0);
+    }, 100);
 
+  } else if (segments.length === 1 && segments[0] === generateSlug('Histórico')) {
+     html += renderHistoryPage();
   } else {
     if (filteredItems.length > 0) {
       filteredItems.forEach(groupItem => {
@@ -838,6 +778,26 @@ function loadPageContent(path) {
     updateEpisodeUI();
     updateSubgroupContinueWatching();
   }
+
+if (segments.length === 1 && segments[0] === generateSlug('Histórico')) {
+  const removeBtns = contentContainer.querySelectorAll('.remove-log-button');
+  removeBtns.forEach(btn => {
+    btn.addEventListener('click', function(e) {
+      e.preventDefault();
+      e.stopPropagation();
+
+      const historyItem = this.closest('.history-log-item');
+      const onclickAttr = this.getAttribute('onclick');
+      const match = onclickAttr ? onclickAttr.match(/removeHistoryLog\(([^)]+)\)/) : null;
+      
+      if (match) {
+        const logId = parseFloat(match[1]);
+        removeHistoryLog(logId);
+        loadPageContent(generateSlug('Histórico'));
+      }
+    });
+  });
+}
 
   if (isHomePage) {
       const globalRemoveBtns = contentContainer.querySelectorAll('#global-continue-watching .remove-button');
@@ -1133,6 +1093,264 @@ function renderGroupSection(groupItem, isHomePage, skipHeader = false) {
 }
 
 //=======================================================================
+// HISTÓRICO
+//=======================================================================
+function getHistoryLogs() {
+  const history = localStorage.getItem('historyLogs');
+  return history ? JSON.parse(history) : [];
+}
+
+function saveHistoryLogs(logs) {
+  localStorage.setItem('historyLogs', JSON.stringify(logs));
+}
+
+function addHistoryLog(subgroupName, seasonIndex, episodeIndex, episodeTitle, thumb) {
+  const logs = getHistoryLogs();
+  const timestamp = Date.now();
+  const date = new Date(timestamp);
+  const formattedDate = `${date.getDate().toString().padStart(2, '0')}/${(date.getMonth() + 1).toString().padStart(2, '0')}/${date.getFullYear()}`;
+  const formattedTime = `${date.getHours().toString().padStart(2, '0')}:${date.getMinutes().toString().padStart(2, '0')}`;
+
+  const log = {
+    id: Date.now() + Math.random(),
+    subgroupName,
+    seasonIndex,
+    episodeIndex,
+    episodeTitle,
+    thumb,
+    timestamp,
+    date: formattedDate,
+    time: formattedTime
+  };
+
+  const filteredLogs = logs.filter(logEntry => 
+    !(logEntry.subgroupName === subgroupName && 
+      logEntry.seasonIndex === seasonIndex && 
+      logEntry.episodeIndex === episodeIndex)
+  );
+
+  filteredLogs.unshift(log);
+  saveHistoryLogs(filteredLogs);
+}
+
+function removeHistoryLog(logId) {
+  const logs = getHistoryLogs();
+  const logToRemove = logs.find(log => log.id === logId);
+  
+  if (logToRemove) {
+    const watched = getWatchedEpisodes();
+    const key = `${logToRemove.subgroupName}-${logToRemove.seasonIndex}-${logToRemove.episodeIndex}`;
+    
+    if (watched[key]) {
+      watched[key].watched = false;
+      watched[key].active = false;
+      saveWatchedEpisodes(watched);
+    }
+  }
+  
+  const filteredLogs = logs.filter(log => log.id !== logId);
+  saveHistoryLogs(filteredLogs);
+  updateEpisodeUI();
+  
+  const currentPath = getCurrentPath();
+  if (currentPath.includes('/')) {
+    const segments = currentPath.split('/');
+    if (segments.length === 2) {
+      const subgroupName = findSubgroupByGroupAndSlug(segments[0], segments[1])?.name;
+      if (subgroupName) {
+        updateSubgroupContinueWatching(subgroupName);
+      }
+    }
+  }
+}
+
+function clearAllHistoryLogs() {
+  const logs = getHistoryLogs();
+  
+  const watched = getWatchedEpisodes();
+  
+  logs.forEach(log => {
+    const key = `${log.subgroupName}-${log.seasonIndex}-${log.episodeIndex}`;
+    if (watched[key]) {
+      watched[key].watched = false;
+      watched[key].active = false;
+    }
+  });
+  
+  saveWatchedEpisodes(watched);
+  saveHistoryLogs([]);
+  updateEpisodeUI();
+}
+
+function formatDateTime(timestamp) {
+  const date = new Date(timestamp);
+  return `${date.getDate().toString().padStart(2, '0')}/${(date.getMonth() + 1).toString().padStart(2, '0')}/${date.getFullYear()} - ${date.getHours().toString().padStart(2, '0')}:${date.getMinutes().toString().padStart(2, '0')}`;
+}
+
+function getGroupForSubgroup(subgroupName) {
+  for (const groupItem of seriesData) {
+    if (groupItem.group) {
+      const subgroup = groupItem.group.find(item => item.name === subgroupName);
+      if (subgroup) {
+        return groupItem.group_name;
+      }
+    }
+  }
+  return 'Desconhecido';
+}
+
+function renderHistoryPage() {
+  const logs = getHistoryLogs();
+  const totalLogs = logs.length;
+  
+  let iconHTML = '';
+  if (iconsAnimated) {
+    iconHTML = `<img src="${iconHistoryGif}" class="custom-icon" alt="Histórico Icon">`;
+  } else {
+    iconHTML = `<img src="${iconHistory}" class="custom-icon" alt="Histórico Icon">`;
+  }
+  
+  let html = `
+    <section id="history-header">
+      <header class="group-title-header">
+        <h2 class="history-header">${iconHTML} Histórico (${totalLogs} registros)</h2>
+        ${totalLogs > 0 ? `
+          <button class="explore-button clear-all-button" onclick="showClearAllModal()">
+            <svg xmlns="http://www.w3.org/2000/svg" class="arr-2" viewBox="-6 -6 36 36">
+              <path d="M 10 2 L 9 3 L 3 3 L 3 5 L 21 5 L 21 3 L 15 3 L 14 2 L 10 2 z M 4.3652344 7 L 6.0683594 22 L 17.931641 22 L 19.634766 7 L 4.3652344 7 z"></path>
+            </svg>
+      
+            <span class="text">Limpar todos</span>
+            <span class="circle"></span>
+
+            <svg xmlns="http://www.w3.org/2000/svg" class="arr-1" viewBox="-6 -6 36 36">
+              <path d="M 10 2 L 9 3 L 3 3 L 3 5 L 21 5 L 21 3 L 15 3 L 14 2 L 10 2 z M 4.3652344 7 L 6.0683594 22 L 17.931641 22 L 19.634766 7 L 4.3652344 7 z"></path>
+            </svg>
+          </button>
+
+        ` : ''}
+      </header>
+    </section>
+  `;
+
+  if (totalLogs === 0) {
+    html += `
+      <div class="no-history-container">
+        <p>Você ainda não assistiu nenhum episódio.</p>
+      </div>
+    `;
+    return html;
+  }
+
+  const groupedLogs = {};
+  logs.forEach(log => {
+    const groupName = getGroupForSubgroup(log.subgroupName);
+    if (!groupedLogs[groupName]) {
+      groupedLogs[groupName] = [];
+    }
+    groupedLogs[groupName].push(log);
+  });
+
+  Object.keys(groupedLogs).forEach(groupName => {
+    html += `
+      <section id="group-${generateSlug(groupName)}-history">
+        <header class="group-title-header">
+          <h3>${groupName} (${groupedLogs[groupName].length} itens)</h3>
+        </header>
+        <div class="history-group-container">
+    `;
+
+    groupedLogs[groupName].forEach(log => {
+      const subgroup = findSubgroupByName(log.subgroupName);
+      const seasonNum = log.seasonIndex + 1;
+      const epNum = log.episodeIndex + 1;
+      const paddedEp = epNum.toString().padStart(3, '0');
+      const thumb = log.thumb || (subgroup && subgroup.season && subgroup.season[log.seasonIndex] ? subgroup.season[log.seasonIndex].thumb_season : '');
+
+      html += `
+        <div class="history-log-item">
+          <div class="history-log-thumb" style="background-image: url('${thumb}');"></div>
+          <div class="history-log-info">
+            <h4>${log.subgroupName}</h4>
+            <p class="episode-details">Temporada ${seasonNum} - Episódio ${paddedEp}: ${log.episodeTitle}</p>
+            <p class="log-date">${formatDateTime(log.timestamp)}</p>
+          </div>
+          <button class="button remove-log-button" data-log-id="${log.id}">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 69 14" class="svgIcon bin-top">
+              <g clip-path="url(#clip0_35_24)"> <path fill="black" d="M20.8232 2.62734L19.9948 4.21304C19.8224 4.54309 19.4808 4.75 19.1085 4.75H4.92857C2.20246 4.75 0 6.87266 0 9.5C0 12.1273 2.20246 14.25 4.92857 14.25H64.0714C66.7975 14.25 69 12.1273 69 9.5C69 6.87266 66.7975 4.75 64.0714 4.75H49.8915C49.5192 4.75 49.1776 4.54309 49.0052 4.21305L48.1768 2.62734C47.3451 1.00938 45.6355 0 43.7719 0H25.2281C23.3645 0 21.6549 1.00938 20.8232 2.62734ZM64.0023 20.0648C64.0397 19.4882 63.5822 19 63.0044 19H5.99556C5.4178 19 4.96025 19.4882 4.99766 20.0648L8.19375 69.3203C8.44018 73.0758 11.6746 76 15.5712 76H53.4288C57.3254 76 60.5598 73.0758 60.8062 69.3203L64.0023 20.0648Z"></path></g><defs> <clipPath id="clip0_35_24"><rect fill="white" height="14" width="69"></rect></clipPath></defs>
+            </svg>
+
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 69 57" class="svgIcon bin-bottom">
+              <g clip-path="url(#clip0_35_22)"> <path fill="black" d="M20.8232 -16.3727L19.9948 -14.787C19.8224 -14.4569 19.4808 -14.25 19.1085 -14.25H4.92857C2.20246 -14.25 0 -12.1273 0 -9.5C0 -6.8727 2.20246 -4.75 4.92857 -4.75H64.0714C66.7975 -4.75 69 -6.8727 69 -9.5C69 -12.1273 66.7975 -14.25 64.0714 -14.25H49.8915C49.5192 -14.25 49.1776 -14.4569 49.0052 -14.787L48.1768 -16.3727C47.3451 -17.9906 45.6355 -19 43.7719 -19H25.2281C23.3645 -19 21.6549 -17.9906 20.8232 -16.3727ZM64.0023 1.0648C64.0397 0.4882 63.5822 0 63.0044 0H5.99556C5.4178 0 4.96025 0.4882 4.99766 1.0648L8.19375 50.3203C8.44018 54.0758 11.6746 57 15.5712 57H53.4288C57.3254 57 60.5598 54.0758 60.8062 50.3203L64.0023 1.0648Z"></path></g><defs><clipPath id="clip0_35_22"><rect fill="white" height="57" width="69"></rect></clipPath></defs>
+            </svg>
+          </button>
+        </div>
+      `;
+    });
+
+    html += `
+        </div>
+      </section>
+    `;
+  });
+
+  return html;
+}
+
+function showClearAllModal() {
+  const modalHtml = `
+    <div id="clear-all-modal" class="modal-overlay">
+      <div class="modal-content-custom modal-group">
+        <button class="modal-close-btn" onclick="hideClearAllModal()">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+        <div class="modal-icon-container">
+          <svg
+            fill="currentColor"
+            viewBox="0 0 20 20"
+            class="modal-icon"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              clip-rule="evenodd"
+              d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z"
+              fill-rule="evenodd"
+            ></path>
+          </svg>
+          <h2 class="modal-title">Deseja continuar?</h2>
+          <p class="modal-description">
+            Tem certeza que deseja limpar todo o histórico? Esta ação não pode ser desfeita.
+          </p>
+        </div>
+        <div class="modal-buttons-custom">
+          <button class="modal-btn modal-btn-cancel" onclick="hideClearAllModal()">
+            Cancelar
+          </button>
+          <button class="modal-btn modal-btn-confirm" onclick="confirmClearAll()">
+            Confirmar
+          </button>
+        </div>
+      </div>
+    </div>
+  `;
+  document.body.insertAdjacentHTML('beforeend', modalHtml);
+}
+
+function hideClearAllModal() {
+  const modal = document.getElementById('clear-all-modal');
+  if (modal) modal.remove();
+}
+
+function confirmClearAll() {
+  clearAllHistoryLogs();
+  hideClearAllModal();
+  loadPageContent(generateSlug('Histórico'));
+}
+
+//=======================================================================
 // SISTEMA DE EPISÓDIOS
 //=======================================================================
 function getWatchedEpisodes() {
@@ -1213,6 +1431,7 @@ function updateEpisodeUI() {
   if (!subgroupTitle) return;
 
   const watched = getWatchedEpisodes();
+  const historyLogs = getHistoryLogs();
   const episodeCards = document.querySelectorAll('.episodes-container-card[data-subgroup-name="' + subgroupTitle + '"]');
   
   episodeCards.forEach(card => {
@@ -1225,35 +1444,32 @@ function updateEpisodeUI() {
     }
   });
 
-  Object.keys(watched).forEach(key => {
-    const [storedSubgroupName, seasonIdx, epIdx] = key.split('-');
-    if (storedSubgroupName !== subgroupTitle) return;
-
-    const data = watched[key];
-    if (data && data.watched) {
-      const seasonIdxNum = parseInt(seasonIdx);
-      const epIdxNum = parseInt(epIdx);
+  episodeCards.forEach(card => {
+    const seasonIndex = parseInt(card.getAttribute('data-season-index'));
+    const episodeIndex = parseInt(card.getAttribute('data-episode-index'));
+    const button = card.querySelector('#episode-button');
+    
+    const isInHistory = historyLogs.some(log => 
+      log.subgroupName === subgroupTitle && 
+      log.seasonIndex === seasonIndex && 
+      log.episodeIndex === episodeIndex
+    );
+    
+    const key = `${subgroupTitle}-${seasonIndex}-${episodeIndex}`;
+    const watchedData = watched[key];
+    
+    if (isInHistory && watchedData && watchedData.watched) {
+      button.classList.add('watched');
       
-      // Encontrar o card correto
-      const targetCard = Array.from(episodeCards).find(card => {
-        return card.getAttribute('data-season-index') === seasonIdxNum.toString() && 
-               card.getAttribute('data-episode-index') === epIdxNum.toString();
-      });
+      if (!button.querySelector('.badge-watched')) {
+        const badge = document.createElement('span');
+        badge.className = 'badge-watched';
+        badge.textContent = '▶ ASSISTIDO';
+        button.appendChild(badge);
+      }
       
-      if (targetCard) {
-        const button = targetCard.querySelector('#episode-button');
-        button.classList.add('watched');
-        
-        if (!button.querySelector('.badge-watched')) {
-          const badge = document.createElement('span');
-          badge.className = 'badge-watched';
-          badge.textContent = '▶ ASSISTIDO';
-          button.appendChild(badge);
-        }
-        
-        if (data.active) {
-          button.classList.add('active');
-        }
+      if (watchedData.active) {
+        button.classList.add('active');
       }
     }
   });
@@ -1266,8 +1482,11 @@ function playEpisode(containerElement) {
   const seasonIndex = parseInt(containerElement.getAttribute('data-season-index'));
   const episodeIndex = parseInt(containerElement.getAttribute('data-episode-index'));
   const subgroupTitle = document.querySelector('.subgroup-title').textContent;
+  const episodeTitle = containerElement.querySelector('.episode-title').textContent;
+  const episodeThumb = containerElement.querySelector('.episode-thumb') ? containerElement.querySelector('.episode-thumb').dataset.src : '';
 
   markEpisodeAsWatched(subgroupTitle, seasonIndex, episodeIndex);
+  addHistoryLog(subgroupTitle, seasonIndex, episodeIndex, episodeTitle, episodeThumb);
   updateSubgroupContinueWatching(subgroupTitle);
 
   if (firstUrl && firstUrl !== '#') {
@@ -2025,6 +2244,11 @@ function searchInput() {
   }
 
   function performSearch(query) {
+    window.removeHistoryLog = removeHistoryLog;
+    window.showClearAllModal = showClearAllModal;
+    window.hideClearAllModal = hideClearAllModal;
+    window.confirmClearAll = confirmClearAll;
+
     if (!query || query.trim() === '') return;
 
     const lowerQuery = query.toLowerCase().trim();

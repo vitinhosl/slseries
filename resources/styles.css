@@ -637,6 +637,7 @@ body {
 	white-space: nowrap;
 }
 
+.no-history-container,
 .no-results-container,
 .no-favorites-container {
 	color: var(--color-explore_button_text);
@@ -1285,6 +1286,7 @@ body {
 	opacity: 1;
 }
 
+.history-header,
 .result-header,
 .favorites-header {
 	color: var(--color-favorite_text);
@@ -2378,4 +2380,313 @@ body {
 	line-height: 24px;
 	height: 24px;
 }
+
+/*=======================================================================*/
+/* HISTÓRICO - ESTILOS */
+/*=======================================================================*/
+.history-group-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.history-log-item {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 15px;
+  background: linear-gradient(to right, var(--color-history_background) 0%, var(--color-background) 100%);
+  border-radius: 8px;
+  border-left: 3px solid var(--color-history_border);
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.history-log-item:hover {
+  background: linear-gradient(to right, var(--color-history_hover) 0%, var(--color-background) 100%);
+  transform: translateY(-5px);
+}
+
+.history-log-thumb {
+  width: 180px; 
+  height: 100px;
+  background-color: var(--color-history_hover);
+  background-size: cover;
+  background-position: center;
+  border-radius: 6px;
+  flex-shrink: 0;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.history-log-item:hover .history-log-thumb {
+  background-color: var(--color-history_background);
+}
+
+.history-log-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.history-log-info h4 {
+  margin: 0 0 5px 0;
+  font-size: 1.1em;
+  color: var(--color-history_title);
+  text-shadow: 0 2px 5px color-mix(in srgb, var(--color-history_title) 70%, transparent);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.episode-details {
+  margin: 0 0 5px 0;
+  color: color-mix(in srgb, var(--color-history_text) 50%, transparent);
+  font-size: 0.95em;
+}
+
+.log-date {
+  margin: 0;
+  color: color-mix(in srgb, var(--color-history_text) 40%, transparent);
+  font-size: 0.85em;
+  font-style: italic;
+}
+
+/* REMOVE LOG BUTTON */
+.remove-log-button {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: rgb(20, 20, 20);
+  border: none;
+  font-weight: 600;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.164);
+  cursor: pointer;
+  transition-duration: 0.3s;
+  overflow: hidden;
+  position: relative;
+  gap: 1px;
+}
+
+.svgIcon {
+  width: 12px;
+  transition-duration: 0.3s;
+}
+
+.svgIcon path {
+  fill: white;
+}
+
+.remove-log-button:hover {
+  width: 140px;
+  border-radius: 50px;
+  transition-duration: 0.3s;
+  background-color: rgb(255, 69, 69);
+  align-items: center;
+  gap: 0;
+}
+
+.remove-log-button:hover .bin-bottom {
+  width: 50px;
+  transition-duration: 0.3s;
+  transform: translateY(60%);
+}
+
+.bin-top {
+  transform-origin: bottom right;
+}
+
+.remove-log-button:hover .bin-top {
+  width: 50px;
+  transition-duration: 0.3s;
+  transform: translateY(60%) rotate(160deg);
+}
+
+.remove-log-button::before {
+  position: absolute;
+  top: -20px;
+  content: "Deletar";
+  color: white;
+  transition-duration: 0.3s;
+  font-size: 2px;
+}
+
+.remove-log-button:hover::before {
+  font-size: 13px;
+  opacity: 1;
+  transform: translateY(35px);
+  transition-duration: 0.3s;
+}
+
+/* MODAL */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  /* backdrop-filter: blur(2px); */
+}
+
+.modal-content-custom {
+  user-select: none;
+  width: 400px;
+  height: 400px;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  background-color: #1f2937;
+  border: 1px solid #1f2937;
+  border-radius: 1rem;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); /* shadow-lg */
+}
+
+.modal-icon-container {
+  text-align: center;
+  padding: 1.75rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-icon {
+  width: 6rem;
+  height: 6rem;
+  margin: 0 auto;
+  fill: var(--color-trash);
+}
+
+.modal-icon {
+  animation: bounce 0.5s ease-in-out;
+  animation: bounce 2s ease-in-out infinite;
+}
+
+.modal-title {
+  font-size: 1.25rem;
+  font-weight: bold;
+  padding: 1rem 0;
+  color: #e5e7eb;
+  margin: 0;
+}
+
+.modal-description {
+  font-weight: bold;
+  font-size: 18px;
+  color: #6b7280;
+  padding: 0 0.5rem;
+  margin: 0;
+  line-height: 1.4;
+}
+
+.modal-close-btn {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #6b7280;
+  padding: 4px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  z-index: 10;
+}
+
+.modal-close-btn:hover {
+  background-color: #374151;
+  color: #e5e7eb;
+}
+
+.modal-buttons-custom {
+  padding: 0.5rem;
+  margin-top: 0.5rem;
+  text-align: center;
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-btn {
+  padding: 0.5rem 1.25rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  border: 2px solid;
+  border-radius: 9999px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  font-family: inherit;
+}
+
+.modal-btn-cancel {
+  background-color: #374151;
+  border-color: #4b5563;
+  color: #d1d5db;
+}
+
+.modal-btn-cancel:hover {
+  border-color: #374151;
+  background-color: #1f2937;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+}
+
+.modal-btn-confirm {
+  background-color: var(--color-history_border);
+  border-color: var(--color-history_border);
+  color: white;
+}
+
+.modal-btn-confirm:hover {
+  background-color: transparent;
+  border-color: var(--color-history_border);
+  color: var(--color-history_border);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+}
+
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-10px);
+  }
+  60% {
+    transform: translateY(-5px);
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

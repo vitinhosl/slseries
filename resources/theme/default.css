@@ -49,6 +49,13 @@
     --color-episode_text:           rgb(33, 33, 33);
     --color-episode_text_h:         rgb(33, 33, 33);
 
+    --color-history_border:         rgb(255, 2, 102);
+    --color-history_background:     rgb(33, 33, 33);
+    --color-history_hover:          rgb(50, 50, 50, 1.0);
+    --color-history_title:          rgb(255, 2, 102);
+    --color-history_text:           var(--color-text);
+    --color-trash:                  rgb(255, 2, 102);
+
     --color-favorite_text:          rgb(255, 2, 102);
     --color-favorite_button:        rgb(255, 2, 102);
     --color-favorite_button_h:      rgb(187, 0, 73);

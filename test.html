@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML/CSS Notifications</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #1a1a1a;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            padding: 20px;
+            align-items: center;
+        }
+
+        /*=======================================================================*/
+        /* ALERTA */
+        /*=======================================================================*/
+        .alert-container {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            width: 240px;
+            font-size: 12px;
+            z-index: 50;
+        }
+
+        .alert {
+            cursor: default;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            height: 56px;
+            border-radius: 8px;
+            background-color: #232531;
+            padding: 0 10px;
+            color: white;
+        }
+
+        .alert-content {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+        }
+
+        .icon-wrapper {
+            padding: 4px;
+            border-radius: 8px;
+            backdrop-filter: blur(10px);
+            background-color: rgba(255, 255, 255, 0.05);
+        }
+
+        .alert-icon {
+            width: 24px;
+            height: 24px;
+            stroke-width: 1.5;
+            stroke: currentColor;
+            fill: none;
+        }
+
+        .alert-text p:first-child {
+            color: white;
+            margin: 0;
+            line-height: 1.2;
+        }
+
+        .alert-text p:last-child {
+            color: #9ca3af;
+            margin: 0;
+            line-height: 1.2;
+        }
+
+        .close-button {
+            color: #6b7280;
+            padding: 4px;
+            border-radius: 6px;
+            border: none;
+            background: none;
+            cursor: pointer;
+            transition: background-color 0.15s ease-in-out;
+        }
+
+        .close-button-icon {
+            width: 24px;
+            height: 24px;
+            stroke-width: 1.5;
+            stroke: currentColor;
+            fill: none;
+        }
+
+        .success .icon-wrapper {
+            color: #2b9875
+        }
+
+        .success .close-button:hover {
+            background-color: rgba(255, 255, 255, 0.05);
+        }
+
+        .error .icon-wrapper {
+            color: #d65563;
+        }
+
+        .error .close-button:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="alert-container">
+        <div class="alert success">
+            <div class="alert-content">
+                <div class="icon-wrapper">
+                    <svg class="alert-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5"></path>
+                    </svg>
+                </div>
+                <div class="alert-text">
+                    <p>Tropa de Elite</p>
+                    <p>Favoritada com sucesso!</p>
+                </div>
+            </div>
+            <button class="close-button" aria-label="Close success alert">
+                <svg class="close-button-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12"></path>
+                </svg>
+            </button>
+        </div>
+    </div>
+
+    <div class="alert-container">
+        <div class="alert error">
+            <div class="alert-content">
+                <div class="icon-wrapper">
+                    <svg class="alert-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m9-.75a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 3.75h.008v.008H12v-.008Z"></path>
+                    </svg>
+                </div>
+                <div class="alert-text">
+                    <p>Tropa de Elite</p>
+                    <p>Não foi possivel favoritar!</p>
+                </div>
+            </div>
+            <button class="close-button" aria-label="Close error alert">
+                <svg class="close-button-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12"></path>
+                </svg>
+            </button>
+        </div>
+    </div>
+
+</body>
+</html>
