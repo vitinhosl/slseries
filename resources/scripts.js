@@ -6,72 +6,203 @@ const seriesData = [
     group_name: "Filmes",
     visible: true,
     group: [
-      //HARRY POTTER
-      {
-        name: "Tropa de Elite SERIE",
-        card_buttons: [
-          {
-            name: "Tropa de Elite",
-            enabled: true,
-            visible: true,
-            acumulative: true,
-            info: false,
-            thumb_buttons: {
-                url: [
-                  "https://i.imgur.com/l8BHSFw.jpeg",
+            //HARRY POTTER
+            {
+                name: "Harry Potter",
+                card_buttons: [
+                    {
+                        name: "Harry Potter",
+                        title: "E a Pedra Filosofal",
+                        enabled: true,
+                        visible: true,
+                        acumulative: true,
+                        info: true,
+                        badge: "",
+                        thumb_buttons: {
+                            url: [
+                                "https://beam-images.warnermediacdn.com/BEAM_LWM_DELIVERABLES/4b990c5d-38ab-4daf-8092-2617cbc6d062/e1d06a4d-6659-11f0-b80d-02a07e508a33?host=wbd-images.prod-vod.h264.io&partner=beamcom&w=320",
+                                "https://i.imgur.com/wdXyskp.png",
+                                "https://i.imgur.com/8xGK1SM.png",
+                            ],
+                        },
+                    },
+
+                    {
+                        name: "Harry Potter 2",
+                        title: "E a Câmara Secreta",
+                        enabled: true,
+                        visible: true,
+                        acumulative: true,
+                        info: true,
+                        badge: "",
+                        thumb_buttons: {
+                            url: [
+                                "https://beam-images.warnermediacdn.com/BEAM_LWM_DELIVERABLES/48674b82-9076-4080-a40c-379efad5eb89/76cfaf1b-6659-11f0-85e1-12d03b70fa8b?host=wbd-images.prod-vod.h264.io&partner=beamcom&w=320",
+                                "https://i.imgur.com/SJYo00O.png",
+                                "https://i.imgur.com/C76mOFX.png",
+                            ],
+                        },
+                    },
+
+                    {
+                        name: "Harry Potter 3",
+                        title: "E o Prisioneiro de Azkaban",
+                        enabled: true,
+                        visible: true,
+                        acumulative: true,
+                        info: true,
+                        badge: "",
+                        thumb_buttons: {
+                            url: [
+                                "https://beam-images.warnermediacdn.com/BEAM_LWM_DELIVERABLES/73553a76-1658-45f6-9e26-1b9c4443b0d6/e05e56a8-689b-49ea-a4be-ea5548656204?host=wbd-images.prod-vod.h264.io&partner=beamcom&w=320",
+                                "https://i.imgur.com/zmMRzon.png",
+                                "https://i.imgur.com/SzZpgyk.png",
+                            ],
+                        },
+                    },
+
+                    {
+                        name: "Harry Potter 4",
+                        title: "E o Cálice de Fogo",
+                        enabled: true,
+                        visible: true,
+                        acumulative: true,
+                        info: true,
+                        badge: "",
+                        thumb_buttons: {
+                            url: [
+                                "https://beam-images.warnermediacdn.com/BEAM_LWM_DELIVERABLES/d2e9ff29-e71d-4eae-9a4b-7cd0e00236ea/b46623fc-5a7f-4019-b2e5-714909ce0319?host=wbd-images.prod-vod.h264.io&partner=beamcom&w=320",
+                                "https://i.imgur.com/bqh8keV.png",
+                                "https://i.imgur.com/E4sncKt.png",
+                            ],
+                        },
+                    },
+
+                    {
+                        name: "Harry Potter 5",
+                        title: "E a Ordem da Fênix",
+                        enabled: true,
+                        visible: true,
+                        acumulative: true,
+                        info: true,
+                        badge: "",
+                        thumb_buttons: {
+                            url: [
+                                "https://beam-images.warnermediacdn.com/BEAM_LWM_DELIVERABLES/25768909-39b8-4cb2-a39f-e059460f7add/bf042df5-6659-11f0-be5e-0afff99ad1ad?host=wbd-images.prod-vod.h264.io&partner=beamcom&w=320",
+                                "https://i.imgur.com/IdOkjj3.png",
+                                "https://i.imgur.com/ClbbCiS.png",
+                            ],
+                        },
+                    },
+
+                    {
+                        name: "Harry Potter 6",
+                        title: "E o Enigma do Príncipe",
+                        enabled: true,
+                        visible: true,
+                        acumulative: true,
+                        info: true,
+                        badge: "",
+                        thumb_buttons: {
+                            url: [
+                                "https://beam-images.warnermediacdn.com/BEAM_LWM_DELIVERABLES/cba1d85a-5ef4-4ba3-b537-1d24554fe85c/e1abf244-6659-11f0-85e1-12d03b70fa8b?host=wbd-images.prod-vod.h264.io&partner=beamcom&w=320",
+                                "https://i.imgur.com/RWt83mC.png",
+                                "https://i.imgur.com/JVYBDl1.png",
+                            ],
+                        },
+                    },
+
+                    {
+                        name: "Harry Potter 7)",
+                        title: "E as Relíquias da Morte (PT 1)",
+                        enabled: true,
+                        visible: true,
+                        acumulative: true,
+                        info: true,
+                        badge: "",
+                        thumb_buttons: {
+                            url: [
+                                "https://beam-images.warnermediacdn.com/BEAM_LWM_DELIVERABLES/2c394a2d-7d1d-481d-a420-76ee1bee01a7/d9c2c446-00b6-4e1e-a489-9495abcbe27c?host=wbd-images.prod-vod.h264.io&partner=beamcom&w=320",
+                                "https://i.imgur.com/csXAXhz.png",
+                                "https://i.imgur.com/df4o6Du.png",
+                            ],
+                        },
+                    },
+
+                    {
+                        name: "Harry Potter 7",
+                        title: "E as Relíquias da Morte (PT 2)",
+                        enabled: true,
+                        visible: true,
+                        acumulative: true,
+                        info: true,
+                        badge: "",
+                        thumb_buttons: {
+                            url: [
+                                "https://beam-images.warnermediacdn.com/BEAM_LWM_DELIVERABLES/1890c8c5-2f40-4140-a363-064428201826/be267855-6659-11f0-85e1-12d03b70fa8b?host=wbd-images.prod-vod.h264.io&partner=beamcom&w=320",
+                                "https://i.imgur.com/N6aK9dg.png",
+                                "https://i.imgur.com/4vclUJV.png",
+                            ],
+                        },
+                    },
                 ],
-            },
-          },
 
-          {
-            name: "Tropa de Elite 2",
-            enabled: true,
-            visible: true,
-            acumulative: true,
-            info: true,
-            thumb_buttons: {
-                url: [
-                  "https://i.imgur.com/l8BHSFw.jpeg",
+                carrousel: {
+                    enabled: false,
+                    homepage: false,
+                    favorite: true,
+                    title: "HARRY POTTER",
+                    logo: { enabled: false, minimalist: false, url: "" },
+                    thumb: [""],
+                    text: "",
+                    description: `
+                        
+                    `,
+                    info: { enabled: false, text: "", season: false, episodes: false, finalized: false}
+                },
+
+                description: {
+                    title: "HARRY POTTER",
+                    thumb: [
+                        "https://i.imgur.com/UPY13oJ.png",
+                    ],
+                    sinopse:  `
+                        Quem se senta no trono de ferro controla os sete reinos. Game of Thrones segue a luta das famílias nobres que cobiçam esse poder. Nove famílias nobres lutam pelo controle sobre as terras míticas de Westeros, enquanto um antigo inimigo retorna depois de estar adormecido por milhares de anos.
+                    `
+                },
+
+                season: [
+                    {
+                        name: "Harry Potter",
+                        thumb_season: "https://i.imgur.com/sWx8cad.png",
+                        have_season: false,
+                        episodes: [
+                        { title: "Harry Potter e a Pedra Filosofal",                subtitle: "", duration: "2:30:10", thumb: "https://beam-images.warnermediacdn.com/BEAM_LWM_DELIVERABLES/4b990c5d-38ab-4daf-8092-2617cbc6d062/e1b7b1e8-6659-11f0-be5e-0afff99ad1ad?host=wbd-images.prod-vod.h264.io&partner=beamcom&w=320",             url: [""], legend: [""] },
+                        { title: "Harry Potter e a amara Secreta",                  subtitle: "", duration: "2:30:10", thumb: "https://beam-images.warnermediacdn.com/BEAM_LWM_DELIVERABLES/48674b82-9076-4080-a40c-379efad5eb89/80cd8de7-a391-44dc-b03b-0035bddc770e?host=wbd-images.prod-vod.h264.io&partner=beamcom&w=320",             url: [""], legend: [""] },
+                        { title: "Harry Potter e o Prisioneiro de Azkaban",         subtitle: "", duration: "2:30:10", thumb: "https://is1-ssl.mzstatic.com/image/thumb/Video221/v4/f8/76/0d/f8760df5-55d1-c54f-c74f-593384d4a264/4aa21897-d969-4938-a0e4-d056057958ba_HP3_AZKABAN_2024_H_DD_KA_TT_3840x2160_300dpi_BR.jpg/340x191.webp",  url: [""], legend: [""] },
+                        { title: "Harry Potter e o Cálice de Fogo",                 subtitle: "", duration: "2:30:10", thumb: "https://is1-ssl.mzstatic.com/image/thumb/Video211/v4/55/bf/98/55bf9850-7421-9b54-b1d2-41dc277bcb8b/c3c9a44f-ab59-498c-a320-f8e75467abfb_HP4_GOBLET_2024_H_DD_KA_TT_3840x2160_300dpi_BR.jpg/340x191.webp",   url: [""], legend: [""] },
+                        { title: "Harry Potter e a Ordem da Fênix",                 subtitle: "", duration: "2:30:10", thumb: "https://is1-ssl.mzstatic.com/image/thumb/Video211/v4/79/12/03/79120352-f816-3c4c-700c-b9f8c2fac24b/37d7be2c-929c-4c61-8054-988f8305e6cd_HP5_PHOENIX_2024_H_DD_KA_TT_3840x2160_300dpi_BR.jpg/340x191.webp",  url: [""], legend: [""] },
+                        { title: "Harry Potter e o Enigma do Príncipe",             subtitle: "", duration: "2:30:10", thumb: "https://is1-ssl.mzstatic.com/image/thumb/Video211/v4/a4/67/06/a46706c7-fffb-918d-06ae-9d365d4379e1/5041760a-c4cf-4cdc-b63d-506e744d28ce_HP6_PRINCE_2024_H_DD_KA_TT_3840x2160_300dpi_BR.jpg/340x191.webp",   url: [""], legend: [""] },
+                        { title: "Harry Potter e as Relíquias da Morte (Parte I)",  subtitle: "", duration: "2:30:10", thumb: "https://is1-ssl.mzstatic.com/image/thumb/Video211/v4/f9/75/34/f97534aa-0f55-1910-272c-4f5f5b31690e/0db903be-4dba-4d7e-babd-17667fea2129_HP7_PART1_2024_H_DD_KA_TT_3840x2160_300dpi_BR.jpg/340x191.webp",    url: [""], legend: [""] },
+                        { title: "Harry Potter e as Relíquias da Morte (Parte II)", subtitle: "", duration: "2:30:10", thumb: "https://is1-ssl.mzstatic.com/image/thumb/Video221/v4/21/90/24/21902420-c5ca-1b58-4cc2-dfc6ac49a93f/f86c1590-9f59-4e5e-bad7-95a3c36f4dcd_HP7_PART2_2024_H_DD_KA_TT_3840x2160_300dpi_BR.jpg/340x191.webp",    url: [""], legend: [""] },
+                        ]
+                    },
                 ],
+
+                movies:{
+                    thumb_movies: "https://i.imgur.com/dRR1C5K.jpeg",
+                    move_list: [
+                    { title: "Harry Potter", subtitle: "E a Pedra Filosofal",                 duration: "2:30:10", thumb: "https://i.imgur.com/wSPSsZz.jpeg", url: [ "https://filemoon.to/e/fohv33go6fjl/2Efu4ZQADExGVxxV"], legend: [""] },
+                    { title: "Harry Potter", subtitle: "E a amara Secreta",                   duration: "2:30:10", thumb: "https://i.imgur.com/wSPSsZz.jpeg", url: [ "https://filemoon.to/e/fohv33go6fjl/2Efu4ZQADExGVxxV"], legend: [""] },
+                    { title: "Harry Potter", subtitle: "E o Prisioneiro de Azkaban",          duration: "2:30:10", thumb: "https://i.imgur.com/wSPSsZz.jpeg", url: [ "https://filemoon.to/e/fohv33go6fjl/2Efu4ZQADExGVxxV"], legend: [""] },
+                    { title: "Harry Potter", subtitle: "E o Cálice de Fogo",                  duration: "2:30:10", thumb: "https://i.imgur.com/wSPSsZz.jpeg", url: [ "https://filemoon.to/e/fohv33go6fjl/2Efu4ZQADExGVxxV"], legend: [""] },
+                    { title: "Harry Potter", subtitle: "E a Ordem da Fênix",                  duration: "2:30:10", thumb: "https://i.imgur.com/wSPSsZz.jpeg", url: [ "https://filemoon.to/e/fohv33go6fjl/2Efu4ZQADExGVxxV"], legend: [""] },
+                    { title: "Harry Potter", subtitle: "E o Enigma do Príncipe",              duration: "2:30:10", thumb: "https://i.imgur.com/wSPSsZz.jpeg", url: [ "https://filemoon.to/e/fohv33go6fjl/2Efu4ZQADExGVxxV"], legend: [""] },
+                    { title: "Harry Potter", subtitle: "E as Relíquias da Morte (Parte I)",   duration: "2:30:10", thumb: "https://i.imgur.com/wSPSsZz.jpeg", url: [ "https://filemoon.to/e/fohv33go6fjl/2Efu4ZQADExGVxxV"], legend: [""] },
+                    { title: "Harry Potter", subtitle: "E as Relíquias da Morte (Parte II)",  duration: "2:30:10", thumb: "https://i.imgur.com/wSPSsZz.jpeg", url: [ "https://filemoon.to/e/fohv33go6fjl/2Efu4ZQADExGVxxV"], legend: [""] },
+                    ]
+                },
             },
-          },
-        ],
-
-        carrousel: {
-          enabled: true,
-          homepage: true,
-          favorite: true,
-          title: "NOME TEST",
-          logo: { enabled: true, minimalist: true, url: "https://i.imgur.com/B6tMcLM.png" },
-          thumb: [
-            "https://pp-vod-img-aws.akamaized.net/0068571/playplus_thumb_1600.jpg",
-            "https://i.imgur.com/H7LkieU.png",
-          ],
-          description: `
-          Após a morte de Moisés, Josué é o novo líder dos hebreus e terá que cumprir uma difícil missão ordenada por Deus: Comandar as 12 tribos de Israel na conquista de Canaã, a Terra Prometida. Continuação da saga Os Dez Mandamentos.
-          `,
-          info: { enabled: true, text: "", season: true, episodes: true, finalized: true}
-        },
-
-        season: [
-          {
-            name: "Temporada 01",
-            thumb_season: "https://i.imgur.com/dRR1C5K.jpeg",
-            episodes: [
-              { title: "Episódio 001", subtitle: "", duration: "1:09:48", thumb: "https://i.imgur.com/wSPSsZz.jpeg", url: [ "https://filemoon.to/e/fohv33go6fjl/2Efu4ZQADExGVxxV",                   "https://mixdrop.sn/e/gjojl1pptpow89",  "https://streamtape.com/get_video?id=kpZO7OpaKbF6l2&expires=1755927970&ip=FRuOExyNRxSNFt&token=j1EN2K21sdWR&stream=1",  "https://www.secvideo1.online/get_file/12/3b370c31cd091769c32c56cc419d14d100d7961945/799000/799756/799756_720p.mp4"] },
-              { title: "Episódio 002", subtitle: "", duration: "49:05", thumb: "https://i.imgur.com/wSPSsZz.jpeg", url: [ "https://filemoon.to/e/fohv33go6fjl/2Efu4ZQADExGVxxV",                   "https://mixdrop.sn/e/gjojl1pptpow89",  "https://streamtape.com/get_video?id=kpZO7OpaKbF6l2&expires=1755927970&ip=FRuOExyNRxSNFt&token=j1EN2K21sdWR&stream=1",  "https://www.secvideo1.online/get_file/12/3b370c31cd091769c32c56cc419d14d100d7961945/799000/799756/799756_720p.mp4"] },
-              { title: "Episódio 003", subtitle: "", duration: "55:05", thumb: "https://i.imgur.com/wSPSsZz.jpeg", url: [ "https://filemoon.to/e/fohv33go6fjl/2Efu4ZQADExGVxxV",                   "https://mixdrop.sn/e/gjojl1pptpow89",  "https://streamtape.com/get_video?id=kpZO7OpaKbF6l2&expires=1755927970&ip=FRuOExyNRxSNFt&token=j1EN2K21sdWR&stream=1",  "https://www.secvideo1.online/get_file/12/3b370c31cd091769c32c56cc419d14d100d7961945/799000/799756/799756_720p.mp4"] },
-              { title: "Episódio 003", subtitle: "", duration: "55:05", thumb: "https://i.imgur.com/wSPSsZz.jpeg", url: [ "https://filemoon.to/e/fohv33go6fjl/2Efu4ZQADExGVxxV",                   "https://mixdrop.sn/e/gjojl1pptpow89",  "https://streamtape.com/get_video?id=kpZO7OpaKbF6l2&expires=1755927970&ip=FRuOExyNRxSNFt&token=j1EN2K21sdWR&stream=1",  "https://www.secvideo1.online/get_file/12/3b370c31cd091769c32c56cc419d14d100d7961945/799000/799756/799756_720p.mp4"] },
-              { title: "Episódio 003", subtitle: "", duration: "55:05", thumb: "https://i.imgur.com/wSPSsZz.jpeg", url: [ "https://filemoon.to/e/fohv33go6fjl/2Efu4ZQADExGVxxV",                   "https://mixdrop.sn/e/gjojl1pptpow89",  "https://streamtape.com/get_video?id=kpZO7OpaKbF6l2&expires=1755927970&ip=FRuOExyNRxSNFt&token=j1EN2K21sdWR&stream=1",  "https://www.secvideo1.online/get_file/12/3b370c31cd091769c32c56cc419d14d100d7961945/799000/799756/799756_720p.mp4"] },
-              { title: "Episódio 003", subtitle: "", duration: "55:05", thumb: "https://i.imgur.com/wSPSsZz.jpeg", url: [ "https://filemoon.to/e/fohv33go6fjl/2Efu4ZQADExGVxxV",                   "https://mixdrop.sn/e/gjojl1pptpow89",  "https://streamtape.com/get_video?id=kpZO7OpaKbF6l2&expires=1755927970&ip=FRuOExyNRxSNFt&token=j1EN2K21sdWR&stream=1",  "https://www.secvideo1.online/get_file/12/3b370c31cd091769c32c56cc419d14d100d7961945/799000/799756/799756_720p.mp4"] },
-              { title: "Episódio 003", subtitle: "", duration: "55:05", thumb: "https://i.imgur.com/wSPSsZz.jpeg", url: [ "https://filemoon.to/e/fohv33go6fjl/2Efu4ZQADExGVxxV",                   "https://mixdrop.sn/e/gjojl1pptpow89",  "https://streamtape.com/get_video?id=kpZO7OpaKbF6l2&expires=1755927970&ip=FRuOExyNRxSNFt&token=j1EN2K21sdWR&stream=1",  "https://www.secvideo1.online/get_file/12/3b370c31cd091769c32c56cc419d14d100d7961945/799000/799756/799756_720p.mp4"] },
-              { title: "Episódio 003", subtitle: "", duration: "55:05", thumb: "", url: [ "https://filemoon.to/e/fohv33go6fjl/2Efu4ZQADExGVxxV",                   "https://mixdrop.sn/e/gjojl1pptpow89",  "https://streamtape.com/get_video?id=kpZO7OpaKbF6l2&expires=1755927970&ip=FRuOExyNRxSNFt&token=j1EN2K21sdWR&stream=1",  "https://www.secvideo1.online/get_file/12/3b370c31cd091769c32c56cc419d14d100d7961945/799000/799756/799756_720p.mp4"] },
-              { title: "Episódio 003", subtitle: "", duration: "55:05", thumb: "", url: [ "https://filemoon.to/e/fohv33go6fjl/2Efu4ZQADExGVxxV",                   "https://mixdrop.sn/e/gjojl1pptpow89",  "https://streamtape.com/get_video?id=kpZO7OpaKbF6l2&expires=1755927970&ip=FRuOExyNRxSNFt&token=j1EN2K21sdWR&stream=1",  "https://www.secvideo1.online/get_file/12/3b370c31cd091769c32c56cc419d14d100d7961945/799000/799756/799756_720p.mp4"] },
-
-            ]
-          }
-        ],
-      },
 
     ],
   },
@@ -1273,7 +1404,7 @@ function renderHistoryPage() {
           <div class="history-log-info">
             <h4>${log.subgroupName}</h4>
             <p class="episode-details">Temporada ${seasonNum} - ${log.episodeTitle}</p>
-            <p class="log-date">${formatDateTime(log.timestamp)}</p>
+            <p class="log-date">Data: ${formatDateTime(log.timestamp)}</p>
           </div>
           <button class="remove-log-button" onclick="removeHistoryLog(${log.id})">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 69 14" class="svgIcon bin-top">

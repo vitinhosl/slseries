@@ -10,6 +10,15 @@
     --color-search_bar_icon:        rgb(58, 58, 97);
     --color-search_bar_text:        rgb(154, 154, 190);
 
+    --color-history_border:         rgb(0, 255, 115);
+    --color-history_background:     rgb(20, 20, 28);
+    --color-history_hover:          rgb(58, 58, 97);
+    --color-history_title:          rgb(0, 255, 115);
+    --color-history_text:           var(--color-text);
+    --color-trash:                  rgb(0, 255, 115);
+    --color-trash_button:           rgb(58, 58, 97);
+    --color-trash_button_hover:     rgb(255, 69, 69);
+
     --color-carrousel_back:         rgb(38, 38, 58, 0.7);
     --color-carrousel_bar:          rgb(0, 255, 115, 1.0);
 
@@ -37,18 +46,23 @@
     --color-groupcard_button_h:     rgb(29, 211, 111);
     --color-groupcard_border:       rgb(38, 38, 58);
     --color-groupcard_border_h:     rgb(0, 255, 115, 1.0); 
-    --color-groupcard_border_c:     rgb(221, 132, 72, 0.6); 
+    --color-groupcard_border_color: rgb(221, 132, 72, 0.6); 
     --color-groupcard_glow:         rgb(255, 255, 255); 
     --color-groupcard_electric:     rgb(29, 211, 111, 0.0); 
-
-    --color-episode_button:         rgb(20, 20, 28);
-    --color-episode_button_hover:   rgb(154, 154, 190);
-    --color-episode_button_watched: rgb(51, 51, 51);
-    --color-episode_button_active:  rgb(51, 51, 51);
+    --color-groupcard_watched:      rgb(62, 62, 121);
+    --color-groupcard_watched_h:    rgb(98, 98, 190);
+    --color-groupcard_active:       rgb(0, 255, 50, 0.7);
+    --color-groupcard_active_h:     rgb(0, 255, 90, 1.0);
 
     --color-favorite_text:          rgb(0, 255, 115);
     --color-favorite_button:        rgb(0, 255, 115);
     --color-favorite_button_h:      rgb(0, 255, 115);
     --color-favorite_button:        rgb(244, 168, 37);
     --color-favorite_button_h:      rgb(255, 208, 0);
+
+    --color-episode_button:         rgb(20, 20, 28);
+    --color-episode_button_hover:   rgb(154, 154, 190);
+    --color-episode_button_watched: rgb(51, 51, 51);
+    --color-episode_button_active:  rgb(51, 51, 51);
+
 }

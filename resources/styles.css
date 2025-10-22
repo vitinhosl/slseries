@@ -1009,7 +1009,7 @@ body {
 }
 
 .card-container:has(#group-series-button:hover) .glow-layer-1 {
-	border-color: var(--color-groupcard_border_c);
+	border-color: var(--color-groupcard_border_color);
 	opacity: 1;
 }
 
@@ -2230,16 +2230,25 @@ body {
 	box-shadow: 0 4px 10px rgba(14, 152, 1, 0.4), 0 8px 20px rgba(1, 152, 1, 0.1);
 	background-color: rgba(4, 102, 1, 0.8);
 	background-image: none;
+
+
+	border: 1px solid var(--color-groupcard_active);
+	box-shadow: 0 4px 10px color-mix(in srgb, var(--color-groupcard_active) 40%, transparent), 0 8px 20px color-mix(in srgb, var(--color-groupcard_active) 10%, transparent);
+	background-color: color-mix(in srgb, var(--color-groupcard_active) 50%, transparent);
 }
 
 #episode-button.watched::before {
 	border: 1px solid rgb(237, 0, 73);
-	background-color: rgba(102, 1, 39, 0.8);
 	box-shadow: 0 4px 10px rgba(152, 1, 39, 0.4), 0 8px 20px rgba(152, 1, 39, 0.1);
-
+	background-color: rgba(102, 1, 39, 0.8);
 	border: 1px solid rgb(237, 0, 73, 0.5);
 	background-color: rgba(63, 2, 25, 0.8);
 	background-image: none;
+
+	border: 1px solid var(--color-groupcard_watched);
+	box-shadow: 0 4px 10px color-mix(in srgb, var(--color-groupcard_watched) 40%, transparent), 0 8px 20px color-mix(in srgb, var(--color-groupcard_watched) 10%, transparent);
+	background-color: color-mix(in srgb, var(--color-groupcard_watched) 50%, transparent);
+
 }
 
 #episode-button.watched::before,
@@ -2285,8 +2294,12 @@ body {
 	box-shadow: 0 2px 5px rgba(23, 255, 2, 0.7), 0 6px 15px rgba(23, 255, 2, 0.3);
 	background-color: rgba(32, 255, 2, 0.4);
 	background-image: none;
-}
 
+
+	border: 1px solid var(--color-groupcard_active_h);
+	box-shadow: 0 4px 10px color-mix(in srgb, var(--color-groupcard_active_h) 40%, transparent), 0 8px 20px color-mix(in srgb, var(--color-groupcard_active_h) 10%, transparent);
+	background-color: color-mix(in srgb, var(--color-groupcard_active_h) 50%, transparent);
+}
 
 /* Hover do Card no estado WATCHED - Foco Rosa/Brilhante */
 .episodes-container-card:hover #episode-button.watched::before,
@@ -2295,6 +2308,11 @@ body {
 	box-shadow: 0 2px 5px rgba(255, 2, 102, 0.7), 0 6px 15px rgba(255, 2, 102, 0.3);
 	background-color: rgba(255, 2, 102, 0.4);
 	background-image: none;
+
+
+	border: 1px solid var(--color-groupcard_watched_h);
+	box-shadow: 0 4px 10px color-mix(in srgb, var(--color-groupcard_watched_h) 70%, transparent), 0 8px 20px color-mix(in srgb, var(--color-groupcard_watched_h) 30%, transparent);
+	background-color: color-mix(in srgb, var(--color-groupcard_watched_h) 40%, transparent);
 }
 
 /* Efeitos de texto em classes active/watched */
@@ -2448,9 +2466,9 @@ body {
 
 .log-date {
   margin: 0;
-  color: color-mix(in srgb, var(--color-history_text) 40%, transparent);
+  color: color-mix(in srgb, var(--color-history_text) 20%, transparent);
   font-size: 0.85em;
-  font-style: italic;
+  /* font-style: italic; */
 }
 
 /* REMOVE LOG BUTTON */
@@ -2458,7 +2476,7 @@ body {
   width: 50px;
   height: 50px;
   border-radius: 50%;
-  background-color: rgb(20, 20, 20);
+  background-color: var(--color-trash_button);
   border: none;
   font-weight: 600;
   display: flex;
@@ -2486,7 +2504,7 @@ body {
   width: 140px;
   border-radius: 50px;
   transition-duration: 0.3s;
-  background-color: rgb(255, 69, 69);
+  background-color: var(--color-trash_button_hover);
   align-items: center;
   gap: 0;
 }

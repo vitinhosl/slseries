@@ -10,6 +10,15 @@
     --color-search_bar_icon:        rgb(51 51 51);
     --color-search_bar_text:        rgb(151 151 151);
 
+    --color-history_border:         rgb(255, 2, 102);
+    --color-history_background:     rgb(33, 33, 33);
+    --color-history_hover:          rgb(50, 50, 50);
+    --color-history_title:          rgb(255, 2, 102);
+    --color-history_text:           var(--color-text);
+    --color-trash:                  rgb(255, 2, 102);
+    --color-trash_button:           rgb(50, 50, 50);
+    --color-trash_button_hover:     rgb(255, 69, 69);
+
     --color-carrousel_back:         rgb(255, 255, 255, 0.3);
     --color-carrousel_bar:          rgb(255, 2, 102, 1.0);
 
@@ -37,9 +46,19 @@
     --color-groupcard_button_h:     rgb(255, 2, 102);
     --color-groupcard_border:       rgb(50, 50, 50, 1.0);
     --color-groupcard_border_h:     rgb(187, 0, 73, 1.0); 
-    --color-groupcard_border_c:     rgb(221, 132, 72, 0.6); 
+    --color-groupcard_border_color: rgb(221, 132, 72, 0.6); 
     --color-groupcard_glow:         rgb(255, 255, 255, 1.0); 
     --color-groupcard_electric:     rgb(255, 2, 102, 0.0); 
+    --color-groupcard_watched:      rgb(100, 100, 100, 0.9);
+    --color-groupcard_watched_h:    rgb(160, 160, 160, 1.0);
+    --color-groupcard_active:       rgb(143, 4, 57);
+    --color-groupcard_active_h:     rgb(255, 2, 102);
+
+    --color-favorite_text:          rgb(255, 2, 102);
+    --color-favorite_button:        rgb(255, 2, 102);
+    --color-favorite_button_h:      rgb(187, 0, 73);
+    --color-favorite_button:        rgb(244, 168, 37);
+    --color-favorite_button_h:      rgb(255, 208, 0);
 
     --color-episode_button:         rgb(33, 33, 33);
     --color-episode_button_border:  rgb(126, 128, 133);
@@ -49,16 +68,4 @@
     --color-episode_text:           rgb(33, 33, 33);
     --color-episode_text_h:         rgb(33, 33, 33);
 
-    --color-history_border:         rgb(255, 2, 102);
-    --color-history_background:     rgb(33, 33, 33);
-    --color-history_hover:          rgb(50, 50, 50, 1.0);
-    --color-history_title:          rgb(255, 2, 102);
-    --color-history_text:           var(--color-text);
-    --color-trash:                  rgb(255, 2, 102);
-
-    --color-favorite_text:          rgb(255, 2, 102);
-    --color-favorite_button:        rgb(255, 2, 102);
-    --color-favorite_button_h:      rgb(187, 0, 73);
-    --color-favorite_button:        rgb(244, 168, 37);
-    --color-favorite_button_h:      rgb(255, 208, 0);
 }
