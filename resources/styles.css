@@ -2388,7 +2388,7 @@ body {
   display: flex;
   flex-direction: column;
   gap: 10px;
-  padding: 15px;
+  padding: 0 15px 15px 15px;
   border-radius: 8px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
 }
@@ -2407,7 +2407,7 @@ body {
 
 .history-log-item:hover {
   background: linear-gradient(to right, var(--color-history_hover) 0%, var(--color-background) 100%);
-  transform: translateY(-5px);
+  transform: translateY(-2px);
 }
 
 .history-log-thumb {
@@ -2672,21 +2672,82 @@ body {
   }
 }
 
+/* Estilos para o histórico hierárquico */
+.history-group-header {
+  margin-bottom: 1rem;
+}
 
+.history-group-title {
+  color: #333;
+  font-size: 1.4rem;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
 
+.history-group-icon {
+  color: #fff;
+  font-size: 1.2rem;
+}
 
+.history-group-content {
+  margin-left: 1rem;
+}
 
+.history-subgroup-section {
+  margin-bottom: 1.5rem;
+}
 
+.history-subgroup-header {
+  margin-bottom: 0.75rem;
+}
 
+.history-subgroup-title {
+  color: #555;
+  font-size: 1.2rem;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
 
+.history-subgroup-icon {
+  color: #fff;
+  font-size: 1.1rem;
+}
 
+.history-subgroup-content {
+  margin-left: 1.5rem;
+}
 
+.toggle-history-cards {
+    background: none;
+    border: none;
+    width: 16px;
+    height: 16px;
+    position: relative;
+    cursor: pointer;
+    padding: 0;
+    margin: 0;
+}
 
+.toggle-history-cards::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-top: 8px solid white;
+    transform: translate(-50%, -50%) rotate(0deg);
+    transition: transform 0.3s ease;
+}
 
-
-
-
-
-
+.toggle-history-cards:not(.expanded)::before {
+    transform: translate(-50%, -50%) rotate(-90deg);
+}
 
 
