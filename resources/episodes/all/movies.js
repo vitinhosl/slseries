@@ -7,6 +7,7 @@ export const moviesData = [
             {
                 name: "Harry Potter",
                 card_buttons: [
+                    //HARRY POTTER E A PEDRA FILOSOFAL
                     {
                         name: "Harry Potter",
                         title: "E a Pedra Filosofal",
@@ -24,6 +25,7 @@ export const moviesData = [
                         },
                     },
 
+                    //HARRY POTTER E A CÂMARA SECRETA
                     {
                         name: "Harry Potter 2",
                         title: "E a Câmara Secreta",
@@ -41,6 +43,7 @@ export const moviesData = [
                         },
                     },
 
+                    //HARRY POTTER E O PRISIONEIRO DE AZKABAN
                     {
                         name: "Harry Potter 3",
                         title: "E o Prisioneiro de Azkaban",
@@ -58,6 +61,7 @@ export const moviesData = [
                         },
                     },
 
+                    //HARRY POTTER E O CÁLICE DE FOGO
                     {
                         name: "Harry Potter 4",
                         title: "E o Cálice de Fogo",
@@ -68,13 +72,16 @@ export const moviesData = [
                         badge: "",
                         thumb_buttons: {
                             url: [
-                                "https://beam-images.warnermediacdn.com/BEAM_LWM_DELIVERABLES/d2e9ff29-e71d-4eae-9a4b-7cd0e00236ea/b46623fc-5a7f-4019-b2e5-714909ce0319?host=wbd-images.prod-vod.h264.io&partner=beamcom&w=320",
-                                "https://i.imgur.com/bqh8keV.png",
-                                "https://i.imgur.com/E4sncKt.png",
+                            "https://i.imgur.com/lsaypId.jpeg", //DOURADO
+                            "https://i.imgur.com/sD8nMUV.jpeg", //PRATA
+                            "https://beam-images.warnermediacdn.com/BEAM_LWM_DELIVERABLES/d2e9ff29-e71d-4eae-9a4b-7cd0e00236ea/b46623fc-5a7f-4019-b2e5-714909ce0319?host=wbd-images.prod-vod.h264.io&partner=beamcom&w=320",
+                            "https://i.pinimg.com/736x/f9/cd/e5/f9cde56c8400175b8a8ddb90832cc7de.jpg",
+                            "https://i.imgur.com/DjZGIYV.jpeg",
                             ],
                         },
                     },
 
+                    //HARRY POTTER E A ORDEM DA FÊNIX
                     {
                         name: "Harry Potter 5",
                         title: "E a Ordem da Fênix",
@@ -92,6 +99,7 @@ export const moviesData = [
                         },
                     },
 
+                    //HARRY POTTER E O ENIGMA DO PRÍNCIPE
                     {
                         name: "Harry Potter 6",
                         title: "E o Enigma do Príncipe",
@@ -109,6 +117,7 @@ export const moviesData = [
                         },
                     },
 
+                    //HARRY POTTER E AS RELÍQUIAS DA MORTE - PARTE 1
                     {
                         name: "Harry Potter 7)",
                         title: "E as Relíquias da Morte (PT 1)",
@@ -126,6 +135,7 @@ export const moviesData = [
                         },
                     },
 
+                    //HARRY POTTER E AS RELÍQUIAS DA MORTE - PARTE 2
                     {
                         name: "Harry Potter 7",
                         title: "E as Relíquias da Morte (PT 2)",
@@ -145,43 +155,55 @@ export const moviesData = [
                 ],
 
                 carrousel: {
-                    enabled: false,
-                    homepage: false,
+                    visible: true,
+                    homepage: true,
                     favorite: true,
-                    title: "HARRY POTTER",
-                    logo: { enabled: false, minimalist: false, url: "" },
-                    thumb: [""],
+                    logo: { title: "HARRY POTTER A SAGA", enabled: false, minimalist: false, url: "" },
+                    thumb: ["https://i.imgur.com/UPY13oJ.png"],
                     text: "",
                     description: `
-                        
+                    Harry Potter e a Pedra Filosofal: Ao completar 11 anos, Harry Potter descobre que é um bruxo e que é esperado como aluno da Escola de Magia e Bruxaria de Hogwarts.
                     `,
                     info: { enabled: false, text: "", season: false, episodes: false, finalized: false}
                 },
 
                 description: {
-                    title: "HARRY POTTER",
+                    visible: true,
+                    logo: { title: "HARRY POTTER", enabled: false, minimalist: false, url: "" },
                     thumb: [
-                        "https://i.imgur.com/UPY13oJ.png",
+                    "https://i.imgur.com/UPY13oJ.png",
+                    ],
+                    effect: [
+                    {
+                        hover: false,
+                        fade: 2,
+                        duration: 21,
+                        opacity: 1.0,
+                        mixBlend: 'screen',
+                        links: [
+                        "https://i.imgur.com/fcdnsXS.mp4" //21 sec
+                        ],
+                    },
                     ],
                     sinopse:  `
-                        Quem se senta no trono de ferro controla os sete reinos. Game of Thrones segue a luta das famílias nobres que cobiçam esse poder. Nove famílias nobres lutam pelo controle sobre as terras míticas de Westeros, enquanto um antigo inimigo retorna depois de estar adormecido por milhares de anos.
+                    Harry Potter e a Pedra Filosofal: Ao completar 11 anos, Harry Potter descobre que é um bruxo e que é esperado como aluno da Escola de Magia e Bruxaria de Hogwarts.
                     `
                 },
 
                 season: [
                     {
                         name: "Harry Potter",
-                        thumb_season: "https://i.imgur.com/sWx8cad.png",
-                        movies: true,
+                        thumb_season: "https://i.imgur.com/NtKyrG6.jpeg", //https://i.imgur.com/wNJxHZO.jpeg //https://i.imgur.com/adBo3xd.jpeg  //https://i.imgur.com/NtKyrG6.jpeg  //https://i.pinimg.com/1200x/f9/85/3f/f9853f646b1d4352eabfe1470602d2e3.jpg
+                        have_season: false,
                         episodes: [
-                        { title: "Harry Potter: E a Pedra Filosofal",                subtitle: "", duration: "2:30:10", thumb: "https://beam-images.warnermediacdn.com/BEAM_LWM_DELIVERABLES/4b990c5d-38ab-4daf-8092-2617cbc6d062/e1b7b1e8-6659-11f0-be5e-0afff99ad1ad?host=wbd-images.prod-vod.h264.io&partner=beamcom&w=320",             url: [""], legend: [""] },
-                        { title: "Harry Potter: E a amara Secreta",                  subtitle: "", duration: "2:30:10", thumb: "https://beam-images.warnermediacdn.com/BEAM_LWM_DELIVERABLES/48674b82-9076-4080-a40c-379efad5eb89/80cd8de7-a391-44dc-b03b-0035bddc770e?host=wbd-images.prod-vod.h264.io&partner=beamcom&w=320",             url: [""], legend: [""] },
-                        { title: "Harry Potter: E o Prisioneiro de Azkaban",         subtitle: "", duration: "2:30:10", thumb: "https://is1-ssl.mzstatic.com/image/thumb/Video221/v4/f8/76/0d/f8760df5-55d1-c54f-c74f-593384d4a264/4aa21897-d969-4938-a0e4-d056057958ba_HP3_AZKABAN_2024_H_DD_KA_TT_3840x2160_300dpi_BR.jpg/340x191.webp",  url: [""], legend: [""] },
-                        { title: "Harry Potter: E o Cálice de Fogo",                 subtitle: "", duration: "2:30:10", thumb: "https://is1-ssl.mzstatic.com/image/thumb/Video211/v4/55/bf/98/55bf9850-7421-9b54-b1d2-41dc277bcb8b/c3c9a44f-ab59-498c-a320-f8e75467abfb_HP4_GOBLET_2024_H_DD_KA_TT_3840x2160_300dpi_BR.jpg/340x191.webp",   url: [""], legend: [""] },
-                        { title: "Harry Potter: E a Ordem da Fênix",                 subtitle: "", duration: "2:30:10", thumb: "https://is1-ssl.mzstatic.com/image/thumb/Video211/v4/79/12/03/79120352-f816-3c4c-700c-b9f8c2fac24b/37d7be2c-929c-4c61-8054-988f8305e6cd_HP5_PHOENIX_2024_H_DD_KA_TT_3840x2160_300dpi_BR.jpg/340x191.webp",  url: [""], legend: [""] },
-                        { title: "Harry Potter: E o Enigma do Príncipe",             subtitle: "", duration: "2:30:10", thumb: "https://is1-ssl.mzstatic.com/image/thumb/Video211/v4/a4/67/06/a46706c7-fffb-918d-06ae-9d365d4379e1/5041760a-c4cf-4cdc-b63d-506e744d28ce_HP6_PRINCE_2024_H_DD_KA_TT_3840x2160_300dpi_BR.jpg/340x191.webp",   url: [""], legend: [""] },
-                        { title: "Harry Potter: E as Relíquias da Morte (Parte I)",  subtitle: "", duration: "2:30:10", thumb: "https://is1-ssl.mzstatic.com/image/thumb/Video211/v4/f9/75/34/f97534aa-0f55-1910-272c-4f5f5b31690e/0db903be-4dba-4d7e-babd-17667fea2129_HP7_PART1_2024_H_DD_KA_TT_3840x2160_300dpi_BR.jpg/340x191.webp",    url: [""], legend: [""] },
-                        { title: "Harry Potter: E as Relíquias da Morte (Parte II)", subtitle: "", duration: "2:30:10", thumb: "https://is1-ssl.mzstatic.com/image/thumb/Video221/v4/21/90/24/21902420-c5ca-1b58-4cc2-dfc6ac49a93f/f86c1590-9f59-4e5e-bad7-95a3c36f4dcd_HP7_PART2_2024_H_DD_KA_TT_3840x2160_300dpi_BR.jpg/340x191.webp",    url: [""], legend: [""] },
+                        { title: "Harry Potter e a Pedra Filosofal",                subtitle: "", duration: "2:30:10", thumb: "https://beam-images.warnermediacdn.com/BEAM_LWM_DELIVERABLES/4b990c5d-38ab-4daf-8092-2617cbc6d062/e1b7b1e8-6659-11f0-be5e-0afff99ad1ad?host=wbd-images.prod-vod.h264.io&partner=beamcom&w=320",             url: [""], legend: [""] },
+                        { title: "Harry Potter e a amara Secreta",                  subtitle: "", duration: "2:30:10", thumb: "https://beam-images.warnermediacdn.com/BEAM_LWM_DELIVERABLES/48674b82-9076-4080-a40c-379efad5eb89/80cd8de7-a391-44dc-b03b-0035bddc770e?host=wbd-images.prod-vod.h264.io&partner=beamcom&w=320",             url: [""], legend: [""] },
+                        { title: "Harry Potter e o Prisioneiro de Azkaban",         subtitle: "", duration: "2:30:10", thumb: "https://is1-ssl.mzstatic.com/image/thumb/Video221/v4/f8/76/0d/f8760df5-55d1-c54f-c74f-593384d4a264/4aa21897-d969-4938-a0e4-d056057958ba_HP3_AZKABAN_2024_H_DD_KA_TT_3840x2160_300dpi_BR.jpg/340x191.webp",  url: [""], legend: [""] },
+                        { title: "Harry Potter e o Cálice de Fogo",                 subtitle: "", duration: "2:30:10", thumb: "https://is1-ssl.mzstatic.com/image/thumb/Video211/v4/55/bf/98/55bf9850-7421-9b54-b1d2-41dc277bcb8b/c3c9a44f-ab59-498c-a320-f8e75467abfb_HP4_GOBLET_2024_H_DD_KA_TT_3840x2160_300dpi_BR.jpg/340x191.webp",   url: [""], legend: [""] },
+                        { title: "Harry Potter e a Ordem da Fênix",                 subtitle: "", duration: "2:30:10", thumb: "https://is1-ssl.mzstatic.com/image/thumb/Video211/v4/79/12/03/79120352-f816-3c4c-700c-b9f8c2fac24b/37d7be2c-929c-4c61-8054-988f8305e6cd_HP5_PHOENIX_2024_H_DD_KA_TT_3840x2160_300dpi_BR.jpg/340x191.webp",  url: [""], legend: [""] },
+                        { title: "Harry Potter e o Enigma do Príncipe",             subtitle: "", duration: "2:30:10", thumb: "https://is1-ssl.mzstatic.com/image/thumb/Video211/v4/a4/67/06/a46706c7-fffb-918d-06ae-9d365d4379e1/5041760a-c4cf-4cdc-b63d-506e744d28ce_HP6_PRINCE_2024_H_DD_KA_TT_3840x2160_300dpi_BR.jpg/340x191.webp",   url: [""], legend: [""] },
+                        { title: "Harry Potter e as Relíquias da Morte (Parte I)",  subtitle: "", duration: "2:30:10", thumb: "https://is1-ssl.mzstatic.com/image/thumb/Video211/v4/f9/75/34/f97534aa-0f55-1910-272c-4f5f5b31690e/0db903be-4dba-4d7e-babd-17667fea2129_HP7_PART1_2024_H_DD_KA_TT_3840x2160_300dpi_BR.jpg/340x191.webp",    url: [""], legend: [""] },
+                        { title: "Harry Potter e as Relíquias da Morte (Parte II)", subtitle: "", duration: "2:30:10", thumb: "https://is1-ssl.mzstatic.com/image/thumb/Video221/v4/21/90/24/21902420-c5ca-1b58-4cc2-dfc6ac49a93f/f86c1590-9f59-4e5e-bad7-95a3c36f4dcd_HP7_PART2_2024_H_DD_KA_TT_3840x2160_300dpi_BR.jpg/340x191.webp",    url: [""], legend: [""] },
                         ]
                     },
                 ],

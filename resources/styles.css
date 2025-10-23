@@ -22,6 +22,15 @@ body {
 	background-color: var(--color-background);
 	color: var(--color-text);
 	min-height: 100vh;
+	background-image: url("https://i.imgur.com/2zBw7Uq.jpeg");
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: center center;
+	background: linear-gradient(90deg,rgba(42, 123, 155, 1) 0%, rgba(87, 199, 133, 1) 50%, rgba(237, 221, 83, 1) 100%);
+}
+
+body img {
+	filter: grayscale(1);
 }
 
 .sidebar {
@@ -234,8 +243,7 @@ body {
 /* CARROSSEL */
 /* =============================================== */
 .content-carousel {
-	/* padding: 20px; */
-	margin-bottom: 20px;
+	margin: 20px 0 20px 0;
 }
 
 .carousel-logo {
@@ -2767,5 +2775,17 @@ body {
 .toggle-history-cards:not(.expanded)::before {
     transform: translate(-50%, -50%) rotate(-90deg);
 }
+
+
+
+
+
+
+
+
+
+
+
+
 
 

@@ -1,7 +1,13 @@
 
 /* MMONITOR ULTRA WIDE */
 @media (max-width: 2560px) {
+    .carousel-container {
+        height: 800px;
+    }
 
+    .carousel-slide {
+        background-position: top;
+    }
 }
 
 /* MONITOR FULL HD - 1080P */
@@ -11,6 +17,12 @@
 
 /* MONITOR MEDIANO  - 720P */
 @media (max-width: 1366px) {
+    .carousel-container {
+        height: 500px;
+    }
+    .carousel-slide {
+        background-position: center;
+    }
 
     #continue-episode-button, #episode-button {
         width: 228px;
