@@ -198,35 +198,37 @@ const seriesData = [
 
             season: [
                 {
-                    name: "Harry Potter",
-                    thumb_season: "https://i.imgur.com/NtKyrG6.jpeg", //https://i.imgur.com/wNJxHZO.jpeg //https://i.imgur.com/adBo3xd.jpeg  //https://i.imgur.com/NtKyrG6.jpeg  //https://i.pinimg.com/1200x/f9/85/3f/f9853f646b1d4352eabfe1470602d2e3.jpg
-                    have_season: false,
-                    episodes: [
-                    { title: "Harry Potter e a Pedra Filosofal",                subtitle: "", duration: "2:30:10", thumb: "https://beam-images.warnermediacdn.com/BEAM_LWM_DELIVERABLES/4b990c5d-38ab-4daf-8092-2617cbc6d062/e1b7b1e8-6659-11f0-be5e-0afff99ad1ad?host=wbd-images.prod-vod.h264.io&partner=beamcom&w=320",             url: [""], legend: [""] },
-                    { title: "Harry Potter e a amara Secreta",                  subtitle: "", duration: "2:30:10", thumb: "https://beam-images.warnermediacdn.com/BEAM_LWM_DELIVERABLES/48674b82-9076-4080-a40c-379efad5eb89/80cd8de7-a391-44dc-b03b-0035bddc770e?host=wbd-images.prod-vod.h264.io&partner=beamcom&w=320",             url: [""], legend: [""] },
-                    { title: "Harry Potter e o Prisioneiro de Azkaban",         subtitle: "", duration: "2:30:10", thumb: "https://is1-ssl.mzstatic.com/image/thumb/Video221/v4/f8/76/0d/f8760df5-55d1-c54f-c74f-593384d4a264/4aa21897-d969-4938-a0e4-d056057958ba_HP3_AZKABAN_2024_H_DD_KA_TT_3840x2160_300dpi_BR.jpg/340x191.webp",  url: [""], legend: [""] },
-                    { title: "Harry Potter e o Cálice de Fogo",                 subtitle: "", duration: "2:30:10", thumb: "https://is1-ssl.mzstatic.com/image/thumb/Video211/v4/55/bf/98/55bf9850-7421-9b54-b1d2-41dc277bcb8b/c3c9a44f-ab59-498c-a320-f8e75467abfb_HP4_GOBLET_2024_H_DD_KA_TT_3840x2160_300dpi_BR.jpg/340x191.webp",   url: [""], legend: [""] },
-                    { title: "Harry Potter e a Ordem da Fênix",                 subtitle: "", duration: "2:30:10", thumb: "https://is1-ssl.mzstatic.com/image/thumb/Video211/v4/79/12/03/79120352-f816-3c4c-700c-b9f8c2fac24b/37d7be2c-929c-4c61-8054-988f8305e6cd_HP5_PHOENIX_2024_H_DD_KA_TT_3840x2160_300dpi_BR.jpg/340x191.webp",  url: [""], legend: [""] },
-                    { title: "Harry Potter e o Enigma do Príncipe",             subtitle: "", duration: "2:30:10", thumb: "https://is1-ssl.mzstatic.com/image/thumb/Video211/v4/a4/67/06/a46706c7-fffb-918d-06ae-9d365d4379e1/5041760a-c4cf-4cdc-b63d-506e744d28ce_HP6_PRINCE_2024_H_DD_KA_TT_3840x2160_300dpi_BR.jpg/340x191.webp",   url: [""], legend: [""] },
-                    { title: "Harry Potter e as Relíquias da Morte (Parte I)",  subtitle: "", duration: "2:30:10", thumb: "https://is1-ssl.mzstatic.com/image/thumb/Video211/v4/f9/75/34/f97534aa-0f55-1910-272c-4f5f5b31690e/0db903be-4dba-4d7e-babd-17667fea2129_HP7_PART1_2024_H_DD_KA_TT_3840x2160_300dpi_BR.jpg/340x191.webp",    url: [""], legend: [""] },
-                    { title: "Harry Potter e as Relíquias da Morte (Parte II)", subtitle: "", duration: "2:30:10", thumb: "https://is1-ssl.mzstatic.com/image/thumb/Video221/v4/21/90/24/21902420-c5ca-1b58-4cc2-dfc6ac49a93f/f86c1590-9f59-4e5e-bad7-95a3c36f4dcd_HP7_PART2_2024_H_DD_KA_TT_3840x2160_300dpi_BR.jpg/340x191.webp",    url: [""], legend: [""] },
-                    ]
+                  name: "Harry Potter",
+                  thumb_season: "https://i.imgur.com/NtKyrG6.jpeg", //https://i.imgur.com/wNJxHZO.jpeg //https://i.imgur.com/adBo3xd.jpeg  //https://i.imgur.com/NtKyrG6.jpeg  //https://i.pinimg.com/1200x/f9/85/3f/f9853f646b1d4352eabfe1470602d2e3.jpg
+                  have_season: false,
+                  episodes: [
+                    { title: "Harry Potter e a Pedra Filosofal",                subtitle: "", duration: "2:30:10", thumb: "", url: [""], legend: [""] },
+                    { title: "Harry Potter e a amara Secreta",                  subtitle: "", duration: "2:30:10", thumb: "", url: [""], legend: [""] },
+                    { title: "Harry Potter e o Prisioneiro de Azkaban",         subtitle: "", duration: "2:30:10", thumb: "", url: [""], legend: [""] },
+                    { title: "Harry Potter e o Cálice de Fogo",                 subtitle: "", duration: "2:30:10", thumb: "", url: [""], legend: [""] },
+                    { title: "Harry Potter e a Ordem da Fênix",                 subtitle: "", duration: "2:30:10", thumb: "", url: [""], legend: [""] },
+                    { title: "Harry Potter e o Enigma do Príncipe",             subtitle: "", duration: "2:30:10", thumb: "", url: [""], legend: [""] },
+                    { title: "Harry Potter e as Relíquias da Morte (Parte I)",  subtitle: "", duration: "2:30:10", thumb: "", url: [""], legend: [""] },
+                    { title: "Harry Potter e as Relíquias da Morte (Parte II)", subtitle: "", duration: "2:30:10", thumb: "", url: [""], legend: [""] },
+                  ]
+                },
+
+                {
+                  name: "Harry Potter",
+                  thumb_season: "https://i.imgur.com/NtKyrG6.jpeg", //https://i.imgur.com/wNJxHZO.jpeg //https://i.imgur.com/adBo3xd.jpeg  //https://i.imgur.com/NtKyrG6.jpeg  //https://i.pinimg.com/1200x/f9/85/3f/f9853f646b1d4352eabfe1470602d2e3.jpg
+                  have_season: false,
+                  episodes: [
+                    { title: "Harry Potter e a Pedra Filosofal",                subtitle: "", duration: "2:30:10", thumb: "", url: [""], legend: [""] },
+                    { title: "Harry Potter e a amara Secreta",                  subtitle: "", duration: "2:30:10", thumb: "", url: [""], legend: [""] },
+                    { title: "Harry Potter e o Prisioneiro de Azkaban",         subtitle: "", duration: "2:30:10", thumb: "", url: [""], legend: [""] },
+                    { title: "Harry Potter e o Cálice de Fogo",                 subtitle: "", duration: "2:30:10", thumb: "", url: [""], legend: [""] },
+                    { title: "Harry Potter e a Ordem da Fênix",                 subtitle: "", duration: "2:30:10", thumb: "", url: [""], legend: [""] },
+                    { title: "Harry Potter e o Enigma do Príncipe",             subtitle: "", duration: "2:30:10", thumb: "", url: [""], legend: [""] },
+                    { title: "Harry Potter e as Relíquias da Morte (Parte I)",  subtitle: "", duration: "2:30:10", thumb: "", url: [""], legend: [""] },
+                    { title: "Harry Potter e as Relíquias da Morte (Parte II)", subtitle: "", duration: "2:30:10", thumb: "", url: [""], legend: [""] },
+                  ]
                 },
             ],
-
-            movies:{
-                thumb_movies: "https://i.imgur.com/dRR1C5K.jpeg",
-                move_list: [
-                { title: "Harry Potter", subtitle: "E a Pedra Filosofal",                 duration: "2:30:10", thumb: "https://i.imgur.com/wSPSsZz.jpeg", url: [ "https://filemoon.to/e/fohv33go6fjl/2Efu4ZQADExGVxxV"], legend: [""] },
-                { title: "Harry Potter", subtitle: "E a amara Secreta",                   duration: "2:30:10", thumb: "https://i.imgur.com/wSPSsZz.jpeg", url: [ "https://filemoon.to/e/fohv33go6fjl/2Efu4ZQADExGVxxV"], legend: [""] },
-                { title: "Harry Potter", subtitle: "E o Prisioneiro de Azkaban",          duration: "2:30:10", thumb: "https://i.imgur.com/wSPSsZz.jpeg", url: [ "https://filemoon.to/e/fohv33go6fjl/2Efu4ZQADExGVxxV"], legend: [""] },
-                { title: "Harry Potter", subtitle: "E o Cálice de Fogo",                  duration: "2:30:10", thumb: "https://i.imgur.com/wSPSsZz.jpeg", url: [ "https://filemoon.to/e/fohv33go6fjl/2Efu4ZQADExGVxxV"], legend: [""] },
-                { title: "Harry Potter", subtitle: "E a Ordem da Fênix",                  duration: "2:30:10", thumb: "https://i.imgur.com/wSPSsZz.jpeg", url: [ "https://filemoon.to/e/fohv33go6fjl/2Efu4ZQADExGVxxV"], legend: [""] },
-                { title: "Harry Potter", subtitle: "E o Enigma do Príncipe",              duration: "2:30:10", thumb: "https://i.imgur.com/wSPSsZz.jpeg", url: [ "https://filemoon.to/e/fohv33go6fjl/2Efu4ZQADExGVxxV"], legend: [""] },
-                { title: "Harry Potter", subtitle: "E as Relíquias da Morte (Parte I)",   duration: "2:30:10", thumb: "https://i.imgur.com/wSPSsZz.jpeg", url: [ "https://filemoon.to/e/fohv33go6fjl/2Efu4ZQADExGVxxV"], legend: [""] },
-                { title: "Harry Potter", subtitle: "E as Relíquias da Morte (Parte II)",  duration: "2:30:10", thumb: "https://i.imgur.com/wSPSsZz.jpeg", url: [ "https://filemoon.to/e/fohv33go6fjl/2Efu4ZQADExGVxxV"], legend: [""] },
-                ]
-            },
         },
     ],
   },
@@ -763,8 +765,18 @@ function loadPageContent(path) {
   const segments = path.split('/').filter(s => s);
   const isFavoritesPage = segments.length === 1 && segments[0] === generateSlug('Favoritos');
   const isHomePage = segments.length === 1 && segments[0] === generateSlug('Início');
+  const isHistoryPage = segments.length === 1 && segments[0] === generateSlug('Histórico');
   const filteredItems = getFilteredItems(path);
   const isSubgroupPage = filteredItems.length > 0 && filteredItems[0].type === 'subgroup';
+  const isCategoryPage = !isHomePage && !isFavoritesPage && !isHistoryPage && !isSubgroupPage && segments.length === 1;
+
+  if (isHomePage || isFavoritesPage || isHistoryPage) {
+    const navbar = document.querySelector('header.navbar');
+    const existingBackButton = navbar ? navbar.querySelector('.back-button') : null;
+    if (existingBackButton) {
+      existingBackButton.remove();
+    }
+  }
 
   if (isHomePage) {
     const globalContinueHtml = renderGlobalContinueWatching();
@@ -835,23 +847,41 @@ function loadPageContent(path) {
     const subgroup = filteredItems[0].data;
     html += renderSubgroupDescription(subgroup);
 
-    html += `
-      <section id="subgroup-header">
-        <header class="group-title-header">
-          <button class="back-button" onclick="history.back()">
-            <i class="fas fa-arrow-left"></i> Voltar
-          </button>
-          <h1 class="subgroup-title">${subgroup.name}</h1>
-        </header>
-      </section>
-    `;
+    const navbar = document.querySelector('header.navbar');
+    if (navbar && !navbar.querySelector('.back-button')) {
+      const backButton = document.createElement('button');
+      backButton.className = 'back-button';
+      backButton.innerHTML = '<i class="fas fa-arrow-left"></i> Voltar';
+      backButton.onclick = function() { history.back(); };
+
+      const searchBar = navbar.querySelector('.search-bar');
+      if (searchBar) {
+        navbar.insertBefore(backButton, searchBar);
+      } else {
+        navbar.insertBefore(backButton, navbar.firstChild);
+      }
+    }
+
+    html += `<section id="subgroup-header"></section>`;
 
     html += `
       <section id="subgroup-episodes">
-        <div class="episodes-container">
     `;
 
     subgroup.season.forEach((season, seasonIndex) => {
+      const seasonEpisodeCount = season.episodes.length;
+      const seasonHeaderText = subgroup.season.length > 1 
+        ? `T${seasonIndex + 1} - Episódios disponíveis: ${seasonEpisodeCount}` 
+        : `Episódios disponíveis: ${seasonEpisodeCount}`;
+
+      html += `
+        <div class="season-section">
+          <header class="group-title-header">
+            <h2>${seasonHeaderText}</h2>
+          </header>
+          <div class="episodes-container">
+      `;
+
       season.episodes.forEach((episode, episodeIndex) => {
         const firstUrl = episode.url && episode.url.length > 0 ? episode.url[0] : '#';
         const watchedData = getWatchedEpisode(subgroup.name, seasonIndex, episodeIndex);
@@ -894,10 +924,14 @@ function loadPageContent(path) {
           </div>
         `;
       });
+
+      html += `
+          </div>
+        </div>
+      `;
     });
 
     html += `
-        </div>
       </section>
     `;
 
@@ -905,8 +939,33 @@ function loadPageContent(path) {
       updateSubgroupContinueWatching(subgroup.name);
     }, 100);
 
-  } else if (segments.length === 1 && segments[0] === generateSlug('Histórico')) {
+  } else if (isHistoryPage) {
      html += renderHistoryPage();
+  } else if (isCategoryPage) {
+    const navbar = document.querySelector('header.navbar');
+    if (navbar && !navbar.querySelector('.back-button')) {
+      const backButton = document.createElement('button');
+      backButton.className = 'back-button';
+      backButton.innerHTML = '<i class="fas fa-arrow-left"></i> Voltar';
+      backButton.onclick = function() { 
+        window.location.hash = `#${generateSlug('Início')}`;
+      };
+
+      const searchBar = navbar.querySelector('.search-bar');
+      if (searchBar) {
+        navbar.insertBefore(backButton, searchBar);
+      } else {
+        navbar.insertBefore(backButton, navbar.firstChild);
+      }
+    }
+
+    if (filteredItems.length > 0) {
+      filteredItems.forEach(groupItem => {
+        html += renderGroupSection(groupItem, false);
+      });
+    } else {
+      html += '<p>Nenhum item encontrado.</p>';
+    }
   } else {
     if (filteredItems.length > 0) {
       filteredItems.forEach(groupItem => {
@@ -936,25 +995,25 @@ function loadPageContent(path) {
     updateSubgroupContinueWatching();
   }
 
-if (segments.length === 1 && segments[0] === generateSlug('Histórico')) {
-  const removeBtns = contentContainer.querySelectorAll('.remove-log-button');
-  removeBtns.forEach(btn => {
-    btn.addEventListener('click', function(e) {
-      e.preventDefault();
-      e.stopPropagation();
+  if (isHistoryPage) {
+    const removeBtns = contentContainer.querySelectorAll('.remove-log-button');
+    removeBtns.forEach(btn => {
+      btn.addEventListener('click', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
 
-      const historyItem = this.closest('.history-log-item');
-      const onclickAttr = this.getAttribute('onclick');
-      const match = onclickAttr ? onclickAttr.match(/removeHistoryLog\(([^)]+)\)/) : null;
-      
-      if (match) {
-        const logId = parseFloat(match[1]);
-        removeHistoryLog(logId);
-        loadPageContent(generateSlug('Histórico'));
-      }
+        const historyItem = this.closest('.history-log-item');
+        const onclickAttr = this.getAttribute('onclick');
+        const match = onclickAttr ? onclickAttr.match(/removeHistoryLog\(([^)]+)\)/) : null;
+        
+        if (match) {
+          const logId = parseFloat(match[1]);
+          removeHistoryLog(logId);
+          loadPageContent(generateSlug('Histórico'));
+        }
+      });
     });
-  });
-}
+  }
 
   if (isHomePage) {
       const globalRemoveBtns = contentContainer.querySelectorAll('#global-continue-watching .remove-button');
