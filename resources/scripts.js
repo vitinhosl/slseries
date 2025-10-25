@@ -161,7 +161,7 @@ const seriesData = [
                 visible: true,
                 homepage: true,
                 favorite: true,
-                logo: { title: "HARRY POTTER A SAGA", enabled: false, minimalist: false, url: "" },
+                logo: { title: "HARRY POTTER", enabled: true, minimalist: false, grayscale: false, url: "https://i.imgur.com/cTgUkQ2.png" },
                 thumb: ["https://i.imgur.com/UPY13oJ.png"],
                 text: "",
                 description: `
@@ -172,10 +172,11 @@ const seriesData = [
 
             description: {
                 visible: true,
-                logo: { title: "HARRY POTTER", enabled: false, minimalist: false, url: "" },
+                logo: { title: "HARRY POTTER", enabled: true, minimalist: false, grayscale: false, url: "https://i.imgur.com/cTgUkQ2.png" },
                 thumb: [
                   "https://i.imgur.com/UPY13oJ.png",
                 ],
+
                 effect: [
                   {
                     hover: false,
@@ -183,11 +184,13 @@ const seriesData = [
                     duration: 21,
                     opacity: 1.0,
                     mixBlend: 'screen',
+                    background: { description: [0.0, 0.0, 0.0, 0.0], overlay: [0.0, 0.0, 0.0, 0.4]},
                     links: [
                       "https://i.imgur.com/fcdnsXS.mp4" //21 sec
                     ],
                   },
                 ],
+
                 sinopse:  `
                   Harry Potter e a Pedra Filosofal: Ao completar 11 anos, Harry Potter descobre que é um bruxo e que é esperado como aluno da Escola de Magia e Bruxaria de Hogwarts.
                 `
@@ -830,6 +833,8 @@ function loadPageContent(path) {
 
   } else if (isSubgroupPage) {
     const subgroup = filteredItems[0].data;
+    html += renderSubgroupDescription(subgroup);
+
     html += `
       <section id="subgroup-header">
         <header class="group-title-header">
@@ -1716,7 +1721,156 @@ function loadEpisodeImages() {
 }
 
 //=======================================================================
-//CONTINUE ASSISTINDO
+// DESCRIÇÃO DO VÍDEO
+//=======================================================================
+function injectVideoFadeKeyframes(fadeTime, videoDuration, opacity) {
+  const styleId = 'video-fade-keyframes-style';
+  
+  const fadeInStopPct = (fadeTime / videoDuration) * 100;
+  const fadeOutStartPct = ((videoDuration - fadeTime) / videoDuration) * 100;
+
+  const keyframes = `
+    @keyframes video-fade-loop {
+      0% { 
+        opacity: 0; 
+      }
+      
+      ${fadeInStopPct}% {
+        opacity: ${opacity}; 
+      }
+
+      ${fadeOutStartPct}% {
+        opacity: ${opacity}; 
+      }
+      
+      100% { 
+        opacity: 0; 
+      }
+    }
+  `;
+
+  let styleTag = document.getElementById(styleId);
+  if (styleTag) {
+      styleTag.textContent = keyframes;
+  } else {
+      styleTag = document.createElement('style');
+      styleTag.id = styleId;
+      styleTag.textContent = keyframes;
+      document.head.appendChild(styleTag);
+  }
+}
+
+function renderSubgroupDescription(subgroup) {
+  const desc = subgroup.description;
+  if (!desc || !desc.visible) return '';
+
+  const thumbs = desc.thumb || [];
+  const selectedThumb = randomImagesCarrousel && thumbs.length > 1
+    ? thumbs[Math.floor(Math.random() * thumbs.length)]
+    : thumbs[0] || '';
+
+  if (!selectedThumb) return '';
+
+  let logoHtml = '';
+  if (desc.logo.enabled && desc.logo.url) {
+    let logoClasses = 'subgroup-logo';
+    if (desc.logo.grayscale) {
+      logoClasses += ' grayscale-logo';
+    }
+    if (desc.logo.minimalist) {
+      logoClasses += ' minimalist-logo';
+    }
+    logoHtml = `<img class="${logoClasses}" src="${desc.logo.url}" alt="${desc.logo.title}">`;
+  } else {
+    logoHtml = `<h1>${desc.logo.title}</h1>`;
+  }
+
+  const sinopse = desc.sinopse || '';
+
+  let effectHtml = '';
+  const effect = desc.effect && desc.effect.length > 0 ? desc.effect[0] : null;
+  let sectionClasses = 'subgroup-description';
+  let videoStyle = '';
+  let customStyles = '';
+
+  if (effect && effect.links && effect.links.length > 0) {
+    const videoUrl = effect.links[0];
+    const videoOpacity = effect.opacity || 1.0;
+    const videoMixBlend = effect.mixBlend || 'normal';
+    const isHoverEffect = effect.hover === true;
+
+    const fadeTime = effect.fade || 0;
+    const videoDuration = effect.duration || 30;
+
+    if (isHoverEffect) {
+      sectionClasses += ' hover-effect-enabled';
+      videoStyle += `mix-blend-mode: ${videoMixBlend}; --video-final-opacity: ${videoOpacity};`;
+    } else {
+      if (fadeTime > 0) {
+        injectVideoFadeKeyframes(fadeTime, videoDuration, videoOpacity);
+        videoStyle += `
+          mix-blend-mode: ${videoMixBlend};
+          animation: video-fade-loop ${videoDuration}s linear infinite;
+        `;
+      } else {
+        videoStyle += `opacity: ${videoOpacity}; mix-blend-mode: ${videoMixBlend};`;
+      }
+    }
+    
+    effectHtml = `
+      <video class="subgroup-effect-video" autoplay muted loop playsinline style="${videoStyle}">
+        <source src="${videoUrl}" type="video/mp4">
+      </video>
+    `;
+
+    if (effect.background && effect.background.description && effect.background.overlay) {
+      const formatRgba = (colorArray) => {
+        const r = Math.round(colorArray[0] * 255); 
+        const g = Math.round(colorArray[1] * 255);
+        const b = Math.round(colorArray[2] * 255);
+        const a = colorArray[3];
+        return `rgba(${r}, ${g}, ${b}, ${a})`;
+      };
+
+      const descriptionColor = formatRgba(effect.background.description);
+      const overlayColor = formatRgba(effect.background.overlay);
+
+      customStyles = `
+        --desc-bg-color: ${descriptionColor};
+        --overlay-top-color: ${overlayColor};
+      `;
+    }
+  }
+
+  const allFavorite = isAllCardsFavorite(subgroup); 
+  const subgroupDataJson = JSON.stringify(subgroup);
+  const favoriteBtnHtml = `
+    <button class="favorite-button-s2 ${allFavorite ? 'active' : ''}" data-subgroup='${subgroupDataJson}'>
+      <span class="tooltip-text black tooltip-side">${allFavorite ? 'Remover todos dos favoritos' : 'Adicionar todos aos favoritos'}</span>
+    </button>
+  `;
+
+  return `
+    <section id="subgroup-description" class="${sectionClasses}" style="background-image: url('${selectedThumb}'); ${customStyles}">
+      ${effectHtml}
+      <div class="description-overlay"></div>
+      <div class="subgroup-caption">
+        <div class="subgroup-content">
+          <div class="subgroup-info">
+            ${logoHtml}
+            ${sinopse ? `<p class="subgroup-sinopse">${sinopse}</p>` : ''}
+          </div>
+          <div class="subgroup-actions">
+            ${favoriteBtnHtml}
+          </div>
+        </div>
+      </div>
+    </section>
+  `;
+}
+
+//=======================================================================
+// CONTINUE ASSISTINDO
 //=======================================================================
 function updateSubgroupContinueWatching(subgroupName) {
   if (!document.querySelector('#subgroup-header')) return;
@@ -1949,7 +2103,7 @@ function removeContinueWatching(subgroupName, seasonIdx, epIdx) {
 }
 
 //=======================================================================
-//INÍCIO
+// INÍCIO
 //=======================================================================
 function generateSlug(name) {
   return name.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/\s+/g, '-');
@@ -2060,8 +2214,14 @@ function renderCarrousel(path) {
 
       let logoHtml = '';
       if (carrousel.logo.enabled && carrousel.logo.url) {
-        const minimalistClass = carrousel.logo.minimalist ? 'minimalist-logo' : '';
-        logoHtml = `<img class="carousel-logo ${minimalistClass}" src="${carrousel.logo.url}" alt="${carrousel.logo.title}">`;
+        let logoClasses = 'carousel-logo';
+        if (carrousel.logo.grayscale) {
+          logoClasses += ' grayscale-logo';
+        }
+        if (carrousel.logo.minimalist) {
+          logoClasses += ' minimalist-logo';
+        }
+        logoHtml = `<img class="${logoClasses}" src="${carrousel.logo.url}" alt="${carrousel.logo.title}">`;
       } else {
         logoHtml = `<h1>${carrousel.logo.title}</h1>`;
       }
@@ -2378,7 +2538,7 @@ function renderCarrousel(path) {
 }
 
 //=======================================================================
-//INICIALIZAÇÃO
+// INICIALIZAÇÃO
 //=======================================================================
 function hideLoader(startTime) {
     const loader = document.getElementById('page-loader');

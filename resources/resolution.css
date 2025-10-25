@@ -1,12 +1,18 @@
 
 /* MMONITOR ULTRA WIDE */
 @media (max-width: 2560px) {
+    #subgroup-description,
     .carousel-container {
         height: 800px;
     }
 
+    #subgroup-description,
     .carousel-slide {
         background-position: top;
+    }
+
+    .subgroup-logo {
+        max-width: 350px;
     }
 }
 
@@ -17,9 +23,12 @@
 
 /* MONITOR MEDIANO  - 720P */
 @media (max-width: 1366px) {
+    #subgroup-description,
     .carousel-container {
         height: 500px;
     }
+
+    #subgroup-description,
     .carousel-slide {
         background-position: center;
     }
