@@ -34,7 +34,15 @@
 
     <aside class="sidebar">
         <div class="logo">
-            <i class="fas fa-tv"></i> SL Séries
+            <i class="fas fa-tv"></i>
+            <p class="project">SL Séries</p>
+
+            <input type="checkbox" class="check" id="sidebar-toggle-check" hidden />
+            <label for="sidebar-toggle-check" class="menu-button close-btn" id="sidebar-toggle-btn">
+                <div class="line line1"></div>
+                <div class="line line2"></div>
+                <div class="line line3"></div>
+            </label>
         </div>
         
         <div class="section-title">FONTES</div>
@@ -51,6 +59,23 @@
             <ul id="dynamic-content-menu"></ul>
         </nav>
     </aside>
+
+    <header class="navbar">
+        <input type="checkbox" class="check" id="navbar-toggle-check" hidden />
+        <label for="navbar-toggle-check" class="menu-button open-btn" id="navbar-toggle-btn">
+            <div class="line line1"></div>
+            <div class="line line2"></div>
+            <div class="line line3"></div>
+        </label>
+        <div class="search-bar">
+            <input type="text" placeholder="Pesquisar por filmes, séries e animes">
+            <button><i class="fas fa-search"></i></button>
+        </div>
+        <div class="user-actions">
+            <button class="btn-assinatura">Assinatura</button>
+            <button class="btn-login">Fazer login</button>
+        </div>
+    </header>
 
     <svg style="position: absolute; width: 0; height: 0;" aria-hidden="true">
     <defs>
@@ -85,17 +110,6 @@
     </svg>
 
     <main class="content">
-        <header class="navbar">
-            <div class="search-bar">
-                <input type="text" placeholder="Pesquisar por filmes, séries e animes">
-                <button><i class="fas fa-search"></i></button>
-            </div>
-            <div class="user-actions">
-                <button class="btn-assinatura">Assinatura</button>
-                <button class="btn-login">Fazer login</button>
-            </div>
-        </header>
-
         <section class="content-carousel">
             <div class="carousel-container" id="carousel">
                 <div class="carousel-slides" id="slides"></div>

@@ -174,6 +174,9 @@ const seriesData = [
                 visible: true,
                 logo: { title: "HARRY POTTER", enabled: true, minimalist: false, grayscale: false, url: "https://i.imgur.com/cTgUkQ2.png" },
                 thumb: [
+                  "https://i.imgur.com/IEUwFBD.png",
+                  "https://images7.alphacoders.com/119/thumb-1920-1192080.jpg",
+                  "https://images6.alphacoders.com/130/thumb-1920-1305167.jpg",
                   "https://i.imgur.com/UPY13oJ.png",
                 ],
 
@@ -184,7 +187,7 @@ const seriesData = [
                     duration: 21,
                     opacity: 1.0,
                     mixBlend: 'screen',
-                    background: { description: [0.0, 0.0, 0.0, 0.0], overlay: [0.0, 0.0, 0.0, 0.4]},
+                    background: { description: [0.0, 0.0, 0.0, 0.0], overlay: [0.0, 0.0, 0.0, 1.4]},
                     links: [
                       "https://i.imgur.com/fcdnsXS.mp4" //21 sec
                     ],
@@ -198,7 +201,7 @@ const seriesData = [
 
             season: [
                 {
-                  name: "Harry Potter",
+                  name: "Harry Potter - Temporada 1",
                   thumb_season: "https://i.imgur.com/NtKyrG6.jpeg", //https://i.imgur.com/wNJxHZO.jpeg //https://i.imgur.com/adBo3xd.jpeg  //https://i.imgur.com/NtKyrG6.jpeg  //https://i.pinimg.com/1200x/f9/85/3f/f9853f646b1d4352eabfe1470602d2e3.jpg
                   have_season: false,
                   episodes: [
@@ -214,7 +217,7 @@ const seriesData = [
                 },
 
                 {
-                  name: "Harry Potter",
+                  name: "Harry Potter - Temporada 2",
                   thumb_season: "https://i.imgur.com/NtKyrG6.jpeg", //https://i.imgur.com/wNJxHZO.jpeg //https://i.imgur.com/adBo3xd.jpeg  //https://i.imgur.com/NtKyrG6.jpeg  //https://i.pinimg.com/1200x/f9/85/3f/f9853f646b1d4352eabfe1470602d2e3.jpg
                   have_season: false,
                   episodes: [
@@ -862,6 +865,8 @@ function loadPageContent(path) {
       }
     }
 
+    contentContainer.setAttribute('data-subgroup-json', JSON.stringify(subgroup));
+
     html += `<section id="subgroup-header"></section>`;
 
     html += `
@@ -875,7 +880,7 @@ function loadPageContent(path) {
         : `Episódios disponíveis: ${seasonEpisodeCount}`;
 
       html += `
-        <div class="season-section">
+        <div class="season-section" data-season-index="${seasonIndex}" style="display: ${subgroup.season.length === 1 ? 'block' : 'none'};">
           <header class="group-title-header">
             <h2>${seasonHeaderText}</h2>
           </header>
@@ -993,6 +998,70 @@ function loadPageContent(path) {
     loadEpisodeImages();
     updateEpisodeUI();
     updateSubgroupContinueWatching();
+
+    const subgroup = filteredItems[0].data;
+    if (subgroup.season && subgroup.season.length > 1) {
+      // const sinopseElement = contentContainer.querySelector('.subgroup-sinopse');
+      const sinopseElement = contentContainer.querySelector('.subgroup-info');
+      if (sinopseElement) {
+        const dropdownContainer = document.createElement('div');
+        dropdownContainer.className = 'season-dropdown-container';
+        dropdownContainer.innerHTML = `
+          <label for="season-select">Selecione uma opção:</label>
+          <select id="season-select" onchange="filterSeasonsBySelection(this.value)">
+            <option value="all">Ver todos os episódios</option>
+            ${subgroup.season.map((season, index) => `<option value="${index}">${season.name || `Temporada ${index + 1}`}</option>`).join('')}
+          </select>
+        `;
+        sinopseElement.parentNode.insertBefore(dropdownContainer, sinopseElement.nextSibling);
+      }
+
+      window.filterSeasonsBySelection = function(selectedValue) {
+        const contentContainer = document.getElementById('page-content');
+        const seasonSections = contentContainer.querySelectorAll('.season-section');
+        seasonSections.forEach(section => {
+          const seasonIndex = parseInt(section.getAttribute('data-season-index'));
+          if (selectedValue === 'all') {
+            section.style.display = 'block';
+          } else if (parseInt(selectedValue) === seasonIndex) {
+            section.style.display = 'block';
+          } else {
+            section.style.display = 'none';
+          }
+        });
+
+        const subgroupJson = contentContainer.getAttribute('data-subgroup-json');
+        const subgroup = JSON.parse(subgroupJson);
+        updateEpisodeCounts(selectedValue, subgroup);
+      };
+
+      window.updateEpisodeCounts = function(selectedValue, subgroup) {
+        const countsContainer = contentContainer.querySelector('#episode-counts');
+        if (!countsContainer) return;
+
+        let countsHtml = '';
+        if (selectedValue === 'all') {
+          const totalSeasons = subgroup.season.length;
+          const totalEpisodes = subgroup.season.reduce((sum, season) => sum + season.episodes.length, 0);
+          countsHtml = `Temporadas ${totalSeasons.toString().padStart(2, '0')} - Episódios ${totalEpisodes}`;
+        } else {
+          const selectedIndex = parseInt(selectedValue);
+          const selectedSeason = subgroup.season[selectedIndex];
+          const seasonEpCount = selectedSeason.episodes.length;
+          const seasonName = selectedSeason.name || `Temporada ${selectedIndex + 1}`;
+          countsHtml = `${seasonName} - Episódios ${seasonEpCount}`;
+        }
+        countsContainer.innerHTML = countsHtml;
+      };
+
+      window.filterSeasonsBySelection('all');
+    } else if (subgroup.season && subgroup.season.length === 1) {
+      const totalEpisodes = subgroup.season[0].episodes.length;
+      const countsContainer = contentContainer.querySelector('#episode-counts');
+      if (countsContainer) {
+        countsContainer.innerHTML = `Episódios ${totalEpisodes}`;
+      }
+    }
   }
 
   if (isHistoryPage) {
@@ -1909,6 +1978,8 @@ function renderSubgroupDescription(subgroup) {
     </button>
   `;
 
+  const episodeCountsHtml = '<div id="episode-counts" class="episode-counts"></div>';
+
   return `
     <section id="subgroup-description" class="${sectionClasses}" style="background-image: url('${selectedThumb}'); ${customStyles}">
       ${effectHtml}
@@ -1917,10 +1988,11 @@ function renderSubgroupDescription(subgroup) {
         <div class="subgroup-content">
           <div class="subgroup-info">
             ${logoHtml}
+            ${episodeCountsHtml}
             ${sinopse ? `<p class="subgroup-sinopse">${sinopse}</p>` : ''}
-          </div>
-          <div class="subgroup-actions">
-            ${favoriteBtnHtml}
+            <div class="subgroup-actions">
+              ${favoriteBtnHtml}
+            </div>
           </div>
         </div>
       </div>
@@ -2794,6 +2866,69 @@ function searchInput() {
   handleSearchFromURL();
 }
 
+// =======================================================================
+// SLIDE BAR
+// =======================================================================
+function sideBarToggle() {
+  const sidebarToggleButton = document.getElementById('sidebar-toggle-btn');
+  const sidebarToggleCheckbox = document.getElementById('sidebar-toggle-check');
+  const navbarToggleButton = document.getElementById('navbar-toggle-btn');
+  const navbarToggleCheckbox = document.getElementById('navbar-toggle-check');
+
+  const body = document.body;
+
+  const SIDEBAR_STATE_KEY = 'sidebar-state';
+  const SIDEBAR_CLOSED_CLASS = 'sidebar-closed';
+
+  function isSidebarClosed() {
+    return localStorage.getItem(SIDEBAR_STATE_KEY) === 'closed';
+  }
+
+  function saveSidebarState(state) {
+    localStorage.setItem(SIDEBAR_STATE_KEY, state);
+  }
+
+  function syncCheckboxState(isClosed) {
+    if (sidebarToggleCheckbox) {
+      sidebarToggleCheckbox.checked = isClosed; 
+    }
+    if (navbarToggleCheckbox) {
+      navbarToggleCheckbox.checked = isClosed;
+    }
+  }
+
+  function toggleSidebar() {
+    const isCurrentlyClosed = body.classList.contains(SIDEBAR_CLOSED_CLASS);
+    let newStateClosed;
+
+    if (isCurrentlyClosed) {
+      body.classList.remove(SIDEBAR_CLOSED_CLASS);
+      saveSidebarState('open');
+      newStateClosed = false;
+    } else {
+      body.classList.add(SIDEBAR_CLOSED_CLASS);
+      saveSidebarState('closed');
+      newStateClosed = true;
+    }
+    syncCheckboxState(newStateClosed);
+  }
+
+  const shouldClose = isSidebarClosed();
+  if (shouldClose) {
+    body.classList.add(SIDEBAR_CLOSED_CLASS);
+  }
+
+  syncCheckboxState(shouldClose); 
+
+  if (sidebarToggleButton) {
+    sidebarToggleButton.addEventListener('click', toggleSidebar);
+  }
+  
+  if (navbarToggleButton) {
+    navbarToggleButton.addEventListener('click', toggleSidebar);
+  }
+}
+
 document.addEventListener('DOMContentLoaded', () => {
   const menuContainer = document.getElementById('dynamic-content-menu');
   const mainMenuList = document.getElementById('main-menu-list');
@@ -2913,6 +3048,7 @@ document.addEventListener('DOMContentLoaded', () => {
     loadPageContent(currentPath);
     renderCarrousel(currentPath);
     searchInput();
+    sideBarToggle();
 
     const streamsLink = document.querySelector('a[data-group="' + generateSlug('Streams') + '"]');
     if (streamsLink) setupStreamIcons(streamsLink);

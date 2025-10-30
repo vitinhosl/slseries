@@ -3,7 +3,7 @@
 @media (max-width: 2560px) {
     #subgroup-description,
     .carousel-container {
-        height: 800px;
+        /* height: 800px; */
     }
 
     #subgroup-description,
