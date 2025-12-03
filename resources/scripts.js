@@ -1,5 +1,9 @@
 // import { seriesAll } from './episodes/index.js';
 // const seriesData = seriesAll;
+import { getIcon, setupStreamIcons } from './ui/icons.js';
+// Garantir referência global para inline handlers quando necessário
+// (funções são hoisted; esta linha funciona mesmo antes da declaração)
+window.playEpisode = window.playEpisode || (el => playEpisode(el));
 
 const seriesData = [
   {
@@ -205,14 +209,14 @@ const seriesData = [
                   thumb_season: "https://i.imgur.com/NtKyrG6.jpeg", //https://i.imgur.com/wNJxHZO.jpeg //https://i.imgur.com/adBo3xd.jpeg  //https://i.imgur.com/NtKyrG6.jpeg  //https://i.pinimg.com/1200x/f9/85/3f/f9853f646b1d4352eabfe1470602d2e3.jpg
                   have_season: false,
                   episodes: [
-                    { title: "Harry Potter e a Pedra Filosofal",                subtitle: "", duration: "2:30:10", thumb: "", url: [""], legend: [""] },
-                    { title: "Harry Potter e a amara Secreta",                  subtitle: "", duration: "2:30:10", thumb: "", url: [""], legend: [""] },
-                    { title: "Harry Potter e o Prisioneiro de Azkaban",         subtitle: "", duration: "2:30:10", thumb: "", url: [""], legend: [""] },
-                    { title: "Harry Potter e o Cálice de Fogo",                 subtitle: "", duration: "2:30:10", thumb: "", url: [""], legend: [""] },
-                    { title: "Harry Potter e a Ordem da Fênix",                 subtitle: "", duration: "2:30:10", thumb: "", url: [""], legend: [""] },
-                    { title: "Harry Potter e o Enigma do Príncipe",             subtitle: "", duration: "2:30:10", thumb: "", url: [""], legend: [""] },
-                    { title: "Harry Potter e as Relíquias da Morte (Parte I)",  subtitle: "", duration: "2:30:10", thumb: "", url: [""], legend: [""] },
-                    { title: "Harry Potter e as Relíquias da Morte (Parte II)", subtitle: "", duration: "2:30:10", thumb: "", url: [""], legend: [""] },
+                    { title: "Harry Potter e a Pedra Filosofal",                subtitle: "", duration: "2:30:10", thumb: "", url: ["https://secvideo1.online/embed/852574/"], legend: [""] },
+                    { title: "Harry Potter e a amara Secreta",                  subtitle: "", duration: "2:30:10", thumb: "", url: ["https://secvideo1.online/embed/852574/"], legend: [""] },
+                    { title: "Harry Potter e o Prisioneiro de Azkaban",         subtitle: "", duration: "2:30:10", thumb: "", url: ["https://secvideo1.online/embed/852574/"], legend: [""] },
+                    { title: "Harry Potter e o Cálice de Fogo",                 subtitle: "", duration: "2:30:10", thumb: "", url: ["https://secvideo1.online/embed/852574/"], legend: [""] },
+                    { title: "Harry Potter e a Ordem da Fênix",                 subtitle: "", duration: "2:30:10", thumb: "", url: ["https://secvideo1.online/embed/852574/"], legend: [""] },
+                    { title: "Harry Potter e o Enigma do Príncipe",             subtitle: "", duration: "2:30:10", thumb: "", url: ["https://secvideo1.online/embed/852574/"], legend: [""] },
+                    { title: "Harry Potter e as Relíquias da Morte (Parte I)",  subtitle: "", duration: "2:30:10", thumb: "", url: ["https://secvideo1.online/embed/852574/"], legend: [""] },
+                    { title: "Harry Potter e as Relíquias da Morte (Parte II)", subtitle: "", duration: "2:30:10", thumb: "", url: ["https://secvideo1.online/embed/852574/"], legend: [""] },
                   ]
                 },
 
@@ -221,14 +225,14 @@ const seriesData = [
                   thumb_season: "https://i.imgur.com/NtKyrG6.jpeg", //https://i.imgur.com/wNJxHZO.jpeg //https://i.imgur.com/adBo3xd.jpeg  //https://i.imgur.com/NtKyrG6.jpeg  //https://i.pinimg.com/1200x/f9/85/3f/f9853f646b1d4352eabfe1470602d2e3.jpg
                   have_season: false,
                   episodes: [
-                    { title: "Harry Potter e a Pedra Filosofal",                subtitle: "", duration: "2:30:10", thumb: "", url: [""], legend: [""] },
-                    { title: "Harry Potter e a amara Secreta",                  subtitle: "", duration: "2:30:10", thumb: "", url: [""], legend: [""] },
-                    { title: "Harry Potter e o Prisioneiro de Azkaban",         subtitle: "", duration: "2:30:10", thumb: "", url: [""], legend: [""] },
-                    { title: "Harry Potter e o Cálice de Fogo",                 subtitle: "", duration: "2:30:10", thumb: "", url: [""], legend: [""] },
-                    { title: "Harry Potter e a Ordem da Fênix",                 subtitle: "", duration: "2:30:10", thumb: "", url: [""], legend: [""] },
-                    { title: "Harry Potter e o Enigma do Príncipe",             subtitle: "", duration: "2:30:10", thumb: "", url: [""], legend: [""] },
-                    { title: "Harry Potter e as Relíquias da Morte (Parte I)",  subtitle: "", duration: "2:30:10", thumb: "", url: [""], legend: [""] },
-                    { title: "Harry Potter e as Relíquias da Morte (Parte II)", subtitle: "", duration: "2:30:10", thumb: "", url: [""], legend: [""] },
+                    { title: "Harry Potter e a Pedra Filosofal",                subtitle: "", duration: "2:30:10", thumb: "", url: [""], legend: ["https://secvideo1.online/embed/852574/"] },
+                    { title: "Harry Potter e a amara Secreta",                  subtitle: "", duration: "2:30:10", thumb: "", url: [""], legend: ["https://secvideo1.online/embed/852574/"] },
+                    { title: "Harry Potter e o Prisioneiro de Azkaban",         subtitle: "", duration: "2:30:10", thumb: "", url: [""], legend: ["https://secvideo1.online/embed/852574/"] },
+                    { title: "Harry Potter e o Cálice de Fogo",                 subtitle: "", duration: "2:30:10", thumb: "", url: [""], legend: ["https://secvideo1.online/embed/852574/"] },
+                    { title: "Harry Potter e a Ordem da Fênix",                 subtitle: "", duration: "2:30:10", thumb: "", url: [""], legend: ["https://secvideo1.online/embed/852574/"] },
+                    { title: "Harry Potter e o Enigma do Príncipe",             subtitle: "", duration: "2:30:10", thumb: "", url: [""], legend: ["https://secvideo1.online/embed/852574/"] },
+                    { title: "Harry Potter e as Relíquias da Morte (Parte I)",  subtitle: "", duration: "2:30:10", thumb: "", url: [""], legend: ["https://secvideo1.online/embed/852574/"] },
+                    { title: "Harry Potter e as Relíquias da Morte (Parte II)", subtitle: "", duration: "2:30:10", thumb: "", url: [""], legend: ["https://secvideo1.online/embed/852574/"] },
                   ]
                 },
             ],
@@ -254,62 +258,10 @@ let speedCarrouselBar       = 5;     //VELOCIDADE DAS ANIMAÇÕES DO CARROUSEL
 const iconHome        = `https://img.icons8.com/material-rounded/96/home.png`;
 const iconHistory     = `https://img.icons8.com/deco-glyph/96/time-machine.png`;
 const iconFavorite    = `https://img.icons8.com/material-rounded/96/star--v1.png`;
-const iconAnimes      = `https://img.icons8.com/fluency-systems-filled/96/tv-show.png`;
-const iconChannel     = `https://img.icons8.com/ios-filled/100/online--v1.png`;
-const iconMovies      = `https://img.icons8.com/ios-glyphs/90/cinema---v1.png`;
-const iconNovels      = `https://img.icons8.com/ios-filled/100/literature--v1.png`;
-const iconMinecraft   = `https://img.icons8.com/fluency-systems-regular/48/minecraft-grass-cube.png`; //https://img.icons8.com/external-those-icons-fill-those-icons/96/external-Minecraft-video-games-those-icons-fill-those-icons.png
-const iconSeries      = `<svg role="img" viewBox="20 20 216 216" xmlns="http://www.w3.org/2000/svg" class="custom-icon"><path d="M200,88V200a16,16,0,0,1-16,16H40a16,16,0,0,1-16-16V88A16,16,0,0,1,40,72H184A16,16,0,0,1,200,88Zm16-48H64a8,8,0,0,0,0,16H216V176a8,8,0,0,0,16,0V56A16,16,0,0,0,216,40Z" fill="#000000"></path></svg>`; //`https://img.icons8.com/ios-filled/100/bursts.png`;
-const iconBiblical    = `https://img.icons8.com/ios-filled/100/holy-bible.png`;
-const iconTwitch      = `https://img.icons8.com/ios-filled/100/twitch.png`;
-const iconYoutube     = `https://img.icons8.com/external-tal-revivo-bold-tal-revivo/96/external-youtube-is-an-american-video-sharing-and-now-googles-subsidiaries-logo-bold-tal-revivo.png`;
-const iconKick        = `<svg role="img" viewBox="-5 0 30 30" xmlns="http://www.w3.org/2000/svg" id="Kick--Streamline-Simple-Icons" class="custom-icon"><path d="M1.333 0h8v5.333H12V2.667h2.667V0h8v8H20v2.667h-2.667v2.666H20V16h2.667v8h-8v-2.667H12v-2.666H9.333V24h-8Z" fill="#000000" stroke-width="1"></path></svg>`;
-const iconContinue    = `https://img.icons8.com/fluency-systems-filled/48/pause.png`;
-const iconSearch      = `https://img.icons8.com/sf-regular/96/search.png`;
 
 const iconHomeGif      = 'https://i.imgur.com/xS20AuN.png';
 const iconHistoryGif   = 'https://i.imgur.com/MShsVT9.png'; //'https://i.imgur.com/nxaxTS3.png';
 const iconFavoriteGif  = 'https://i.imgur.com/LAcxXkU.png'; //'https://i.imgur.com/UmEAJ1G.png';
-const iconContinueGif  = `https://i.imgur.com/cJSsnd3.png`;
-const iconSearchGif    = `https://i.imgur.com/PcIRA4C.png`;
-
-function getIcon(groupName) {
-  const name = groupName.toLowerCase();
-  
-  if (name.includes('resultados') || name.includes('search') || name.includes('pesquisa')) return { type: 'img', value: iconSearch, alt: 'search' };
-  if (name.includes('animes'))    return { type: 'img', value: iconAnimes,    alt: 'animes' };
-  if (name.includes('canais'))    return { type: 'img', value: iconChannel,   alt: 'canais' };
-  if (name.includes('filmes'))    return { type: 'img', value: iconMovies,    alt: 'filmes' };
-  if (name.includes('novelas'))   return { type: 'img', value: iconNovels,    alt: 'novelas' };
-  if (name.includes('minecraft')) return { type: 'img', value: iconMinecraft, alt: 'minecraft' };
-  if (name.includes('bíblicas'))  return { type: 'img', value: iconBiblical,  alt: 'séries bíblicas' };
-  if (name.includes('séries'))    return { type: 'svg', value: iconSeries,    alt: 'séries' };
-  if (name.includes('streams'))   return { type: 'img', value: iconTwitch,    alt: 'streams' };
-
-  return { type: 'fa', value: 'fas fa-layer-group' }; 
-}
-
-function setupStreamIcons(link) {
-  const text = "Streams";
-  const icons = [
-    { type: 'img', value: iconTwitch,  alt: 'twitch'  },
-    { type: 'svg', value: iconKick,    alt: 'kick'    },
-    { type: 'img', value: iconYoutube, alt: 'youtube' },
-  ];
-  let currentIndex = 0;
-
-  function updateIcon() {
-    const iconData = icons[currentIndex];
-    let newIconHTML = '';
-    if (iconData.type === 'svg') newIconHTML = iconData.value;
-    else if (iconData.type === 'img') newIconHTML = `<img src="${iconData.value}" class="custom-icon" alt="${iconData.alt}">`;
-    link.innerHTML = `${newIconHTML} ${text}`;
-    currentIndex = (currentIndex + 1) % icons.length;
-  }
-
-  updateIcon();
-  setInterval(updateIcon, 3000);
-}
 
 //=======================================================================
 //FAVORITOS
@@ -747,6 +699,115 @@ function attachSeriesNavigationListeners(container = document) {
   });
 }
 
+function attachSeasonToggleListeners(container = document) {
+  const headers = container.querySelectorAll('.group-title-header[data-season-index]');
+  headers.forEach(header => {
+    const seasonIndex = parseInt(header.getAttribute('data-season-index'));
+    const section = container.querySelector(`.season-section[data-season-index="${seasonIndex}"]`);
+    const episodesContainer = section ? section.querySelector('.episodes-container') : null;
+    const button = header.querySelector('.toggle-button-cards');
+
+    const toggle = () => {
+      if (!episodesContainer || !button) return;
+      const isExpanded = button.classList.contains('expanded');
+      if (isExpanded) {
+        button.classList.remove('expanded');
+        episodesContainer.style.display = 'none';
+      } else {
+        button.classList.add('expanded');
+        episodesContainer.style.display = '';
+      }
+    };
+
+    header.addEventListener('click', function(e) {
+      if (e.target.closest('.toggle-button-cards')) return;
+      toggle();
+    });
+
+    if (button) {
+      button.addEventListener('click', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        toggle();
+      });
+    }
+  });
+}
+
+function attachEpisodePlayListeners(container = document) {
+  container.addEventListener('click', function(e) {
+    const card = e.target.closest('.episodes-container-card[data-subgroup-name]');
+    if (card) {
+      try { playEpisode(card); } catch (err) { /* noop */ }
+    }
+  });
+}
+
+function attachFavoritesToggleListeners(container = document) {
+  const catHeaders = container.querySelectorAll('.favorites-category-section > .group-title-header[data-category]');
+  catHeaders.forEach(header => {
+    const cat = header.getAttribute('data-category');
+    const section = header.closest('.favorites-category-section');
+    const list = section ? section.querySelector('.favorites-category-container') : null;
+    const btn = header.querySelector('.toggle-button-cards');
+    const toggle = () => {
+      if (!list || !btn) return;
+      const isExpanded = btn.classList.contains('expanded');
+      if (isExpanded) { btn.classList.remove('expanded'); list.style.display = 'none'; }
+      else { btn.classList.add('expanded'); list.style.display = ''; }
+    };
+    header.addEventListener('click', e => { if (e.target.closest('.toggle-button-cards')) return; toggle(); });
+    if (btn) btn.addEventListener('click', e => { e.preventDefault(); e.stopPropagation(); toggle(); });
+  });
+
+  const sgHeaders = container.querySelectorAll('.favorites-subgroup-section > .group-title-header[data-subgroup]');
+  sgHeaders.forEach(header => {
+    const section = header.closest('.favorites-subgroup-section');
+    const list = section ? section.querySelector('.group-cards-header') : null;
+    const btn = header.querySelector('.toggle-button-cards');
+    const toggle = () => {
+      if (!list || !btn) return;
+      const isExpanded = btn.classList.contains('expanded');
+      if (isExpanded) { btn.classList.remove('expanded'); list.style.display = 'none'; }
+      else { btn.classList.add('expanded'); list.style.display = ''; }
+    };
+    header.addEventListener('click', e => { if (e.target.closest('.toggle-button-cards')) return; toggle(); });
+    if (btn) btn.addEventListener('click', e => { e.preventDefault(); e.stopPropagation(); toggle(); });
+  });
+}
+
+function attachHistoryToggleListeners(container = document) {
+  const groupHeaders = container.querySelectorAll('.history-group-section > .group-title-header[data-history-group]');
+  groupHeaders.forEach(header => {
+    const section = header.closest('.history-group-section');
+    const list = section ? section.querySelector('.history-group-container') : null;
+    const btn = header.querySelector('.toggle-button-cards');
+    const toggle = () => {
+      if (!list || !btn) return;
+      const isExpanded = btn.classList.contains('expanded');
+      if (isExpanded) { btn.classList.remove('expanded'); list.style.display = 'none'; }
+      else { btn.classList.add('expanded'); list.style.display = ''; }
+    };
+    header.addEventListener('click', e => { if (e.target.closest('.toggle-button-cards')) return; toggle(); });
+    if (btn) btn.addEventListener('click', e => { e.preventDefault(); e.stopPropagation(); toggle(); });
+  });
+
+  const sgHeaders = container.querySelectorAll('.history-subgroup-section > .group-title-header[data-history-subgroup]');
+  sgHeaders.forEach(header => {
+    const section = header.closest('.history-subgroup-section');
+    const list = section ? section.querySelector('.history-subgroup-container') : null;
+    const btn = header.querySelector('.toggle-button-cards');
+    const toggle = () => {
+      if (!list || !btn) return;
+      const isExpanded = btn.classList.contains('expanded');
+      if (isExpanded) { btn.classList.remove('expanded'); list.style.display = 'none'; }
+      else { btn.classList.add('expanded'); list.style.display = ''; }
+    };
+    header.addEventListener('click', e => { if (e.target.closest('.toggle-button-cards')) return; toggle(); });
+    if (btn) btn.addEventListener('click', e => { e.preventDefault(); e.stopPropagation(); toggle(); });
+  });
+}
+
 function findSubgroupByName(subgroupName) {
   for (const groupItem of seriesData) {
     if (groupItem.group) {
@@ -820,7 +881,7 @@ function loadPageContent(path) {
         group: Object.values(groupedFavorites)
       };
       
-      html += renderGroupSection(favoritesGroup, true);
+      html += renderFavoritesSection(favoritesGroup);
     }
 
     const homepageGroups = seriesData
@@ -837,10 +898,9 @@ function loadPageContent(path) {
     });
 
   } else if (isFavoritesPage) {
-    
     if (filteredItems.length > 0) {
       filteredItems.forEach(groupItem => {
-        html += renderGroupSection(groupItem, false);
+        html += renderFavoritesSection(groupItem);
       });
     } else {
       html += '<p>Você ainda não adicionou nenhum item aos favoritos.</p>';
@@ -881,7 +941,8 @@ function loadPageContent(path) {
 
       html += `
         <div class="season-section" data-season-index="${seasonIndex}" style="display: ${subgroup.season.length === 1 ? 'block' : 'none'};">
-          <header class="group-title-header">
+          <header class="group-title-header" data-season-index="${seasonIndex}">
+            <button class="toggle-button-cards expanded" data-season-index="${seasonIndex}"></button>
             <h2>${seasonHeaderText}</h2>
           </header>
           <div class="episodes-container">
@@ -1082,6 +1143,7 @@ function loadPageContent(path) {
         }
       });
     });
+    attachHistoryToggleListeners(contentContainer);
   }
 
   if (isHomePage) {
@@ -1105,6 +1167,9 @@ function loadPageContent(path) {
   if (!isSubgroupPage) {
     attachSeriesNavigationListeners(contentContainer);
   }
+  attachSeasonToggleListeners(contentContainer);
+  attachEpisodePlayListeners(contentContainer);
+  attachFavoritesToggleListeners(contentContainer);
   
   attachFavoriteListeners(contentContainer);
   updateCarouselFavorites();
@@ -1377,6 +1442,139 @@ function renderGroupSection(groupItem, isHomePage, skipHeader = false) {
   return html;
 }
 
+function renderFavoritesSection(groupItem) {
+  const sortedSubgroups = [...groupItem.group];
+  const iconHTML = `<img src="${iconFavorite}" class="custom-icon" alt="Favoritos Icon">`;
+  let totalCards = 0;
+  sortedSubgroups.forEach(subgroup => {
+    if (subgroup.card_buttons) {
+      totalCards += subgroup.card_buttons.filter(card => card.visible !== false && isFavorite(card.name)).length;
+    }
+  });
+  if (totalCards === 0) {
+    return `
+      <section id="group-favoritos-header">
+        <header class="group-title-header">
+          <h2 class="favorites-header">${iconHTML} Conteúdos favoritos (0)</h2>
+        </header>
+        <div class="no-favorites-container">
+          <p>Você ainda não adicionou nenhum item aos favoritos.</p>
+        </div>
+      </section>
+    `;
+  }
+
+  const categories = {};
+  sortedSubgroups.forEach(subgroup => {
+    const cat = subgroup.original_group || 'Outros';
+    if (!categories[cat]) categories[cat] = [];
+    categories[cat].push(subgroup);
+  });
+
+  let html = '';
+  html += `<section id="group-favoritos-header">`;
+  html += `<header class="group-title-header"><h2 class="favorites-header">${iconHTML} Conteúdos favoritos (${totalCards})</h2></header>`;
+  html += `</section>`;
+
+  Object.keys(categories).forEach(catName => {
+    const subgroups = categories[catName];
+    const catCount = subgroups.reduce((sum, sg) => sum + (sg.card_buttons ? sg.card_buttons.filter(card => card.visible !== false && isFavorite(card.name)).length : 0), 0);
+    html += `
+      <div class="favorites-category-section" data-category="${catName}">
+        <header class="group-title-header" data-category="${catName}">
+          <button class="toggle-button-cards expanded" data-category="${catName}"></button>
+          <h2>${catName} (${catCount} itens)</h2>
+        </header>
+        <div class="favorites-category-container">
+    `;
+
+    subgroups.forEach(subgroup => {
+      const subgroupCount = subgroup.card_buttons ? subgroup.card_buttons.filter(card => card.visible !== false && isFavorite(card.name)).length : 0;
+      const subgroupSlug = generateSlug(subgroup.name);
+      html += `
+        <div class="favorites-subgroup-section" data-subgroup="${subgroupSlug}">
+          <header class="group-title-header" data-subgroup="${subgroupSlug}">
+            <button class="toggle-button-cards expanded" data-subgroup="${subgroupSlug}"></button>
+            <h2>${subgroup.name} (${subgroupCount})</h2>
+          </header>
+          <div class="group-cards-header category-layout">
+            <div class="group-cards-container category-layout">
+      `;
+
+      if (subgroup.card_buttons) {
+        subgroup.card_buttons.forEach(card => {
+          if (card.visible === false || !card.name) return;
+          if (!isFavorite(card.name)) return;
+          const urls = card.thumb_buttons.url;
+          const selectedThumb = randomImagesCards ? urls[Math.floor(Math.random() * urls.length)] : urls[0];
+          const currentIsFavorite = true;
+          const containerClass = card.enabled === false ? 'disabled' : '';
+          const watchButtonClass = card.enabled === false ? 'watch-button disabled' : 'watch-button';
+          const watchButtonText = card.enabled === false ? 'INDISPONÍVEL' : 'ASSISTIR';
+          const shouldShowInfo = groupSeriesButtonInfo && card.info;
+          const infoClass = shouldShowInfo ? 'info' : '';
+          const hasInfoClass = shouldShowInfo ? 'has-info' : '';
+
+          html += `
+            <div class="card-container ${containerClass} ${hasInfoClass}" data-subgroup-slug="${subgroupSlug}">
+              <div class="inner-container">
+                  <div class="border-outer"></div>
+                  <div class="main-card" style="background-image: url('${selectedThumb}')"></div>
+                  <div class="glow-layer-1"></div>
+                  <div class="glow-layer-2"></div>
+              </div>
+              <div class="overlay-1"></div>
+              <div class="overlay-2"></div>
+              <div class="background-glow"></div>
+              <div id="group-series-button" class="${infoClass}" data-subgroup-slug="${subgroupSlug}" data-group-slug="${generateSlug(subgroup.original_group || 'Favoritos')}">
+                <div class="info">
+                  <h2>${card.name}</h2>
+                  <p>TEST</p>
+                  <button class="${watchButtonClass}">${watchButtonText}</button>
+                </div>
+                <button class="favorite-button favorited" data-card='${JSON.stringify(card)}'>
+                  <svg class="rating__star" width="24" height="24" viewBox="0 0 32 32" aria-hidden="true">
+                    <g transform="translate(16,16)">
+                      <circle class="rating__star-ring" fill="none" stroke="#000" stroke-width="16" r="8" transform="scale(0)" />
+                    </g>
+                    <g stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <g transform="translate(16,16) rotate(180)">
+                        <polygon class="rating__star-stroke" points="0,15 4.41,6.07 14.27,4.64 7.13,-2.32 8.82,-12.14 0,-7.5 -8.82,-12.14 -7.13,-2.32 -14.27,4.64 -4.41,6.07" fill="none" />
+                        <polygon class="rating__star-fill" points="0,15 4.41,6.07 14.27,4.64 7.13,-2.32 8.82,-12.14 0,-7.5 -8.82,-12.14 -7.13,-2.32 -14.27,4.64 -4.41,6.07" fill="#000" />
+                      </g>
+                      <g transform="translate(16,16)" stroke-dasharray="12 12" stroke-dashoffset="12">
+                        <polyline class="rating__star-line" transform="rotate(0)" points="0 4,0 16" />
+                        <polyline class="rating__star-line" transform="rotate(72)" points="0 4,0 16" />
+                        <polyline class="rating__star-line" transform="rotate(144)" points="0 4,0 16" />
+                        <polyline class="rating__star-line" transform="rotate(216)" points="0 4,0 16" />
+                        <polyline class="rating__star-line" transform="rotate(288)" points="0 4,0 16" />
+                      </g>
+                    </g>
+                  </svg>
+                  <span class="tooltip-text black tooltip-top">Remover dos favoritos</span>
+                </button>
+              </div>
+            </div>
+          `;
+        });
+      }
+
+      html += `
+            </div>
+          </div>
+        </div>
+      `;
+    });
+
+    html += `
+        </div>
+      </div>
+    `;
+  });
+
+  return html;
+}
+
 //=======================================================================
 // HISTÓRICO
 //=======================================================================
@@ -1537,38 +1735,61 @@ function renderHistoryPage() {
   });
 
   Object.keys(groupedLogs).forEach(groupName => {
+    const groupCount = groupedLogs[groupName].length;
     html += `
-      <section id="group-${generateSlug(groupName)}-history">
-        <header class="group-title-header">
-          <h3>${groupName} (${groupedLogs[groupName].length} itens)</h3>
+      <section class="history-group-section" data-history-group="${groupName}">
+        <header class="group-title-header" data-history-group="${groupName}">
+          <button class="toggle-button-cards expanded" data-history-group="${groupName}"></button>
+          <h3>${groupName} (${groupCount} itens)</h3>
         </header>
         <div class="history-group-container">
     `;
 
+    const subgroups = {};
     groupedLogs[groupName].forEach(log => {
-      const subgroup = findSubgroupByName(log.subgroupName);
-      const seasonNum = log.seasonIndex + 1;
-      const epNum = log.episodeIndex + 1;
-      const paddedEp = epNum.toString().padStart(3, '0');
-      const thumb = log.thumb || (subgroup && subgroup.season && subgroup.season[log.seasonIndex] ? subgroup.season[log.seasonIndex].thumb_season : '');
+      const key = log.subgroupName;
+      if (!subgroups[key]) subgroups[key] = [];
+      subgroups[key].push(log);
+    });
+
+    Object.keys(subgroups).forEach(subName => {
+      const sgCount = subgroups[subName].length;
+      html += `
+        <div class="history-subgroup-section" data-history-subgroup="${generateSlug(subName)}">
+          <header class="group-title-header" data-history-subgroup="${generateSlug(subName)}">
+            <button class="toggle-button-cards expanded" data-history-subgroup="${generateSlug(subName)}"></button>
+            <h3>${subName} (${sgCount} itens)</h3>
+          </header>
+          <div class="history-subgroup-container">
+      `;
+
+      subgroups[subName].forEach(log => {
+        const subgroup = findSubgroupByName(log.subgroupName);
+        const seasonNum = log.seasonIndex + 1;
+        const epNum = log.episodeIndex + 1;
+        const thumb = log.thumb || (subgroup && subgroup.season && subgroup.season[log.seasonIndex] ? subgroup.season[log.seasonIndex].thumb_season : '');
+        html += `
+          <div class="history-log-item">
+            <div class="history-log-thumb" style="background-image: url('${thumb}');"></div>
+            <div class="history-log-info">
+              <h4>${log.subgroupName}</h4>
+              <p class="episode-details">Temporada ${seasonNum} - ${log.episodeTitle}</p>
+              <p class="log-date">Data: ${formatDateTime(log.timestamp)}</p>
+            </div>
+            <button class="remove-log-button" onclick="removeHistoryLog(${log.id})">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 69 14" class="svgIcon bin-top">
+                <g clip-path="url(#clip0_35_24)"> <path fill="black" d="M20.8232 2.62734L19.9948 4.21304C19.8224 4.54309 19.4808 4.75 19.1085 4.75H4.92857C2.20246 4.75 0 6.87266 0 9.5C0 12.1273 2.20246 14.25 4.92857 14.25H64.0714C66.7975 14.25 69 12.1273 69 9.5C69 6.87266 66.7975 4.75 64.0714 4.75H49.8915C49.5192 4.75 49.1776 4.54309 49.0052 4.21305L48.1768 2.62734C47.3451 1.00938 45.6355 0 43.7719 0H25.2281C23.3645 0 21.6549 1.00938 20.8232 2.62734ZM64.0023 20.0648C64.0397 19.4882 63.5822 19 63.0044 19H5.99556C5.4178 19 4.96025 19.4882 4.99766 20.0648L8.19375 69.3203C8.44018 73.0758 11.6746 76 15.5712 76H53.4288C57.3254 76 60.5598 73.0758 60.8062 69.3203L64.0023 20.0648Z"></path></g><defs> <clipPath id="clip0_35_24"><rect fill="white" height="14" width="69"></rect></clipPath></defs>
+              </svg>
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 69 57" class="svgIcon bin-bottom">
+                <g clip-path="url(#clip0_35_22)"> <path fill="black" d="M20.8232 -16.3727L19.9948 -14.787C19.8224 -14.4569 19.4808 -14.25 19.1085 -14.25H4.92857C2.20246 -14.25 0 -12.1273 0 -9.5C0 -6.8727 2.20246 -4.75 4.92857 -4.75H64.0714C66.7975 -4.75 69 -6.8727 69 -9.5C69 -12.1273 66.7975 -14.25 64.0714 -14.25H49.8915C49.5192 -14.25 49.1776 -14.4569 49.0052 -14.787L48.1768 -16.3727C47.3451 -17.9906 45.6355 -19 43.7719 -19H25.2281C23.3645 -19 21.6549 -17.9906 20.8232 -16.3727ZM64.0023 1.0648C64.0397 0.4882 63.5822 0 63.0044 0H5.99556C5.4178 0 4.96025 0.4882 4.99766 1.0648L8.19375 50.3203C8.44018 54.0758 11.6746 57 15.5712 57H53.4288C57.3254 57 60.5598 54.0758 60.8062 50.3203L64.0023 1.0648Z"></path></g><defs><clipPath id="clip0_35_22"><rect fill="white" height="57" width="69"></rect></clipPath></defs>
+              </svg>
+            </button>
+          </div>
+        `;
+      });
 
       html += `
-        <div class="history-log-item">
-          <div class="history-log-thumb" style="background-image: url('${thumb}');"></div>
-          <div class="history-log-info">
-            <h4>${log.subgroupName}</h4>
-            <p class="episode-details">Temporada ${seasonNum} - ${log.episodeTitle}</p>
-            <p class="log-date">Data: ${formatDateTime(log.timestamp)}</p>
           </div>
-          <button class="remove-log-button" onclick="removeHistoryLog(${log.id})">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 69 14" class="svgIcon bin-top">
-              <g clip-path="url(#clip0_35_24)"> <path fill="black" d="M20.8232 2.62734L19.9948 4.21304C19.8224 4.54309 19.4808 4.75 19.1085 4.75H4.92857C2.20246 4.75 0 6.87266 0 9.5C0 12.1273 2.20246 14.25 4.92857 14.25H64.0714C66.7975 14.25 69 12.1273 69 9.5C69 6.87266 66.7975 4.75 64.0714 4.75H49.8915C49.5192 4.75 49.1776 4.54309 49.0052 4.21305L48.1768 2.62734C47.3451 1.00938 45.6355 0 43.7719 0H25.2281C23.3645 0 21.6549 1.00938 20.8232 2.62734ZM64.0023 20.0648C64.0397 19.4882 63.5822 19 63.0044 19H5.99556C5.4178 19 4.96025 19.4882 4.99766 20.0648L8.19375 69.3203C8.44018 73.0758 11.6746 76 15.5712 76H53.4288C57.3254 76 60.5598 73.0758 60.8062 69.3203L64.0023 20.0648Z"></path></g><defs> <clipPath id="clip0_35_24"><rect fill="white" height="14" width="69"></rect></clipPath></defs>
-            </svg>
-
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 69 57" class="svgIcon bin-bottom">
-              <g clip-path="url(#clip0_35_22)"> <path fill="black" d="M20.8232 -16.3727L19.9948 -14.787C19.8224 -14.4569 19.4808 -14.25 19.1085 -14.25H4.92857C2.20246 -14.25 0 -12.1273 0 -9.5C0 -6.8727 2.20246 -4.75 4.92857 -4.75H64.0714C66.7975 -4.75 69 -6.8727 69 -9.5C69 -12.1273 66.7975 -14.25 64.0714 -14.25H49.8915C49.5192 -14.25 49.1776 -14.4569 49.0052 -14.787L48.1768 -16.3727C47.3451 -17.9906 45.6355 -19 43.7719 -19H25.2281C23.3645 -19 21.6549 -17.9906 20.8232 -16.3727ZM64.0023 1.0648C64.0397 0.4882 63.5822 0 63.0044 0H5.99556C5.4178 0 4.96025 0.4882 4.99766 1.0648L8.19375 50.3203C8.44018 54.0758 11.6746 57 15.5712 57H53.4288C57.3254 57 60.5598 54.0758 60.8062 50.3203L64.0023 1.0648Z"></path></g><defs><clipPath id="clip0_35_22"><rect fill="white" height="57" width="69"></rect></clipPath></defs>
-            </svg>
-          </button>
         </div>
       `;
     });
@@ -1766,8 +1987,8 @@ function playEpisode(containerElement) {
   const firstUrl = urls.length > 0 ? urls[0] : '#';
   const seasonIndex = parseInt(containerElement.getAttribute('data-season-index'));
   const episodeIndex = parseInt(containerElement.getAttribute('data-episode-index'));
-  const subgroupTitle = document.querySelector('.subgroup-title').textContent;
-  const episodeTitle = containerElement.querySelector('.episode-title').textContent;
+  const subgroupTitle = containerElement.getAttribute('data-subgroup-name') || (document.querySelector('.subgroup-title')?.textContent || '');
+  const episodeTitle = containerElement.querySelector('.episode-title')?.textContent || '';
   const episodeThumb = containerElement.querySelector('.episode-thumb') ? containerElement.querySelector('.episode-thumb').dataset.src : '';
 
   markEpisodeAsWatched(subgroupTitle, seasonIndex, episodeIndex);

@@ -795,6 +795,9 @@ body {
 	margin: 10px 0 10px 0;
 	position: relative;
 	height: 50px;
+	transition: transform 0.2s ease;
+	will-change: transform;
+	user-select: none;
 }
 
 .group-title-header .custom-icon {
@@ -813,6 +816,7 @@ body {
 	border-radius: 8px;
 	background: linear-gradient(to right, var(--color-groupcard_header) 0%, var(--color-background) 100%);
 	z-index: -1;
+	transition: filter 0.3s ease;
 }
 
 .group-title-header h2 {
@@ -831,6 +835,66 @@ body {
 .group-title-header h2 i {
 	vertical-align: middle;
 	margin-right: 8px;
+}
+
+/* =============================================== */
+/* Toggle de Temporada (Seta animada) */
+/* =============================================== */
+.history-group-section .group-title-header:hover,
+.history-group-section .group-title-header:hover,
+.season-section .group-title-header:hover {
+    cursor: pointer;
+    border-radius: 8px;
+    transform: translateY(-2px);
+}
+
+.history-group-section .group-title-header:hover::before,
+.season-section .group-title-header:hover::before {
+    filter: brightness(1.05) saturate(1.05);
+}
+
+.history-group-section .group-title-header,
+.season-section .group-title-header {
+    justify-content: flex-start;
+    gap: 10px;
+}
+
+.history-group-section .group-title-header h2,
+.season-section .group-title-header h2 {
+	padding: 0;
+}
+
+.toggle-button-cards {
+    background: none;
+    border: none;
+    width: 16px;
+    height: 16px;
+    position: relative;
+    cursor: pointer;
+    padding: 0;
+    margin-left: 20px
+}
+
+.toggle-button-cards::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-top: 8px solid var(--color-text);
+    transform: translate(-50%, -50%) rotate(0deg);
+    transition: transform 0.3s ease;
+}
+
+.toggle-button-cards:not(.expanded)::before {
+    transform: translate(-50%, -50%) rotate(-90deg);
+}
+
+.episodes-container {
+    transition: all 0.3s ease;
 }
 
 .explore-button {
@@ -2548,6 +2612,7 @@ body {
   padding: 0 15px 15px 15px;
   border-radius: 8px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  margin-top: -10px;
 }
 
 .history-log-item {
@@ -2560,6 +2625,8 @@ body {
   border-left: 3px solid var(--color-history_border);
   transition: all 0.3s ease;
   cursor: pointer;
+  margin-bottom: 10px;
+  margin-left: 10px;
 }
 
 .history-log-item:hover {
@@ -2850,10 +2917,6 @@ body {
 
 .history-group-content {
   margin-left: 1rem;
-}
-
-.history-subgroup-section {
-  margin-bottom: 1.5rem;
 }
 
 .history-subgroup-header {
