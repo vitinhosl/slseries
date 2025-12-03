@@ -1,11 +1,9 @@
-// import { seriesAll } from './episodes/index.js';
-// const seriesData = seriesAll;
+import { seriesAll } from './episodes/index.js';
+const seriesData = seriesAll;
 import { getIcon, setupStreamIcons } from './ui/icons.js';
-// Garantir referência global para inline handlers quando necessário
-// (funções são hoisted; esta linha funciona mesmo antes da declaração)
 window.playEpisode = window.playEpisode || (el => playEpisode(el));
 
-const seriesData = [
+const seriesData2 = [
   {
     group_name: "Filmes",
     visible: true,
@@ -707,16 +705,13 @@ function attachSeasonToggleListeners(container = document) {
     const episodesContainer = section ? section.querySelector('.episodes-container') : null;
     const button = header.querySelector('.toggle-button-cards');
 
+    if (!button) return;
+
     const toggle = () => {
-      if (!episodesContainer || !button) return;
+      if (!episodesContainer) return;
       const isExpanded = button.classList.contains('expanded');
-      if (isExpanded) {
-        button.classList.remove('expanded');
-        episodesContainer.style.display = 'none';
-      } else {
-        button.classList.add('expanded');
-        episodesContainer.style.display = '';
-      }
+      if (isExpanded) { button.classList.remove('expanded'); episodesContainer.style.display = 'none'; }
+      else { button.classList.add('expanded'); episodesContainer.style.display = ''; }
     };
 
     header.addEventListener('click', function(e) {
@@ -724,13 +719,11 @@ function attachSeasonToggleListeners(container = document) {
       toggle();
     });
 
-    if (button) {
-      button.addEventListener('click', function(e) {
-        e.preventDefault();
-        e.stopPropagation();
-        toggle();
-      });
-    }
+    button.addEventListener('click', function(e) {
+      e.preventDefault();
+      e.stopPropagation();
+      toggle();
+    });
   });
 }
 
@@ -938,11 +931,12 @@ function loadPageContent(path) {
       const seasonHeaderText = subgroup.season.length > 1 
         ? `T${seasonIndex + 1} - Episódios disponíveis: ${seasonEpisodeCount}` 
         : `Episódios disponíveis: ${seasonEpisodeCount}`;
+      const hasToggle = subgroup.season.length > 1;
 
       html += `
         <div class="season-section" data-season-index="${seasonIndex}" style="display: ${subgroup.season.length === 1 ? 'block' : 'none'};">
-          <header class="group-title-header" data-season-index="${seasonIndex}">
-            <button class="toggle-button-cards expanded" data-season-index="${seasonIndex}"></button>
+          <header class="group-title-header ${hasToggle ? '' : 'no-toggle'}" data-season-index="${seasonIndex}">
+            ${hasToggle ? `<button class="toggle-button-cards expanded" data-season-index="${seasonIndex}"></button>` : ''}
             <h2>${seasonHeaderText}</h2>
           </header>
           <div class="episodes-container">

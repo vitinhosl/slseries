@@ -266,40 +266,44 @@ body {
 }
 
 .navbar {
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	padding: 20px 20px 20px 20px;
-	position: fixed;
-	top: 0;
-	left: 300px;
-	right: 0;
-	background-color: var(--color-top_bar);
-	background-color: color-mix(in srgb, var(--color-top_bar) 70%, transparent);
-	backdrop-filter: blur(10px);
-	-webkit-backdrop-filter: blur(10px);
-	box-shadow: 0 2px 5px color-mix(in srgb, var(--color-top_bar) 70%, transparent);
-	/* box-shadow: 0 1px 1px var(--color-top_bar); */
-	z-index: 100;
-	margin-bottom: 0;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 20px 20px 20px 10px;
+    position: fixed;
+    top: 0;
+    left: 300px;
+    right: 0;
+    background-color: var(--color-top_bar);
+    background-color: color-mix(in srgb, var(--color-top_bar) 70%, transparent);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    box-shadow: 0 2px 5px color-mix(in srgb, var(--color-top_bar) 70%, transparent);
+    /* box-shadow: 0 1px 1px var(--color-top_bar); */
+    z-index: 100;
+    margin-bottom: 0;
+    
 }
 
 .navbar .back-button {
-  background: none;
-  border: none;
-  color: white;
-  font-size: 1rem;
+  background: color-mix(in srgb, var(--color-top_bar) 40%, transparent);
+  border: 1px solid color-mix(in srgb, #ffffff 15%, transparent);
+  color: var(--color-text);
+  font-size: 0.95rem;
   cursor: pointer;
   display: flex;
   align-items: center;
-  gap: 0.5rem;
-  padding: 0.5rem;
-  border-radius: 4px;
-  transition: background 0.2s;
+  gap: 8px;
+  padding: 6px 12px;
+  border-radius: 8px;
+  transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+  margin-left: 0;
 }
 
 .navbar .back-button:hover {
-  background: rgba(255, 255, 255, 0.1);
+  background: color-mix(in srgb, var(--color-top_bar) 55%, transparent);
+  box-shadow: 0 2px 6px rgba(0,0,0,0.25);
+  transform: translateY(-1px);
 }
 
 #page-content {
@@ -315,11 +319,20 @@ body {
 }
 
 .search-bar {
-	display: flex;
-	background: var(--color-search_bar);
-	border-radius: 5px;
-	overflow: hidden;
-	width: 400px;
+    display: flex;
+    background: var(--color-search_bar);
+    border-radius: 5px;
+    overflow: hidden;
+    width: 400px;
+    margin-left: 0;
+}
+
+.navbar .back-button + .search-bar {
+    margin-left: 5px;
+}
+
+.navbar .user-actions {
+    margin-left: auto;
 }
 
 .search-bar input::placeholder {
@@ -841,7 +854,6 @@ body {
 /* Toggle de Temporada (Seta animada) */
 /* =============================================== */
 .history-group-section .group-title-header:hover,
-.history-group-section .group-title-header:hover,
 .season-section .group-title-header:hover {
     cursor: pointer;
     border-radius: 8px;
@@ -853,10 +865,19 @@ body {
     filter: brightness(1.05) saturate(1.05);
 }
 
+.season-section .group-title-header.no-toggle:hover {
+    cursor: default;
+    transform: none;
+}
+
+.season-section .group-title-header.no-toggle:hover::before {
+    filter: none;
+}
+
 .history-group-section .group-title-header,
 .season-section .group-title-header {
     justify-content: flex-start;
-    gap: 10px;
+    
 }
 
 .history-group-section .group-title-header h2,
@@ -3205,22 +3226,23 @@ body {
 }
 
 .navbar {
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	padding: 20px 20px 20px 20px;
-	position: fixed;
-	top: 0;
-	left: var(--sidebar-width);
-	right: 0;
-	background-color: var(--color-top_bar);
-	background-color: color-mix(in srgb, var(--color-top_bar) 70%, transparent);
-	backdrop-filter: blur(10px);
-	-webkit-backdrop-filter: blur(10px);
-	box-shadow: 0 2px 5px color-mix(in srgb, var(--color-top_bar) 70%, transparent);
-	z-index: 100;
-	margin-bottom: 0;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 20px 20px 20px 10px;
+    position: fixed;
+    top: 0;
+    left: var(--sidebar-width);
+    right: 0;
+    background-color: var(--color-top_bar);
+    background-color: color-mix(in srgb, var(--color-top_bar) 70%, transparent);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    box-shadow: 0 2px 5px color-mix(in srgb, var(--color-top_bar) 70%, transparent);
+    z-index: 100;
+    margin-bottom: 0;
     transition: left 0.3s ease;
+    gap: 10px;
 }
 
 .content {
