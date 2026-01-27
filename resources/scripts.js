@@ -1190,41 +1190,125 @@ function initializeHomePageFeatures() {
     });
   });
 
-  const groupCardsHeaders = document.querySelectorAll('.group-cards-header.home-layout');
-  groupCardsHeaders.forEach(header => {
+  setupGroupCardCarousels();
+}
+
+function setupGroupCardCarousels() {
+  const headers = document.querySelectorAll('.group-cards-header');
+  headers.forEach(header => {
     const container = header.querySelector('.group-cards-container');
-    const prevBtn = header.querySelector('.nav-arrow.prev');
-    const nextBtn = header.querySelector('.nav-arrow.next');
-    
-    if (!container || !prevBtn || !nextBtn) return;
+    if (!container) return;
+    const cards = Array.from(container.querySelectorAll('.card-container'));
+    if (!cards.length) return;
 
-    const cardWidth = 240;
-    const scrollAmount = cardWidth * 2;
-
-    const updateArrowVisibility = () => {
-      const canScrollLeft = container.scrollLeft > 0;
-      const canScrollRight = container.scrollLeft < (container.scrollWidth - container.clientWidth);
-      
-      prevBtn.classList.toggle('hidden', !canScrollLeft);
-      nextBtn.classList.toggle('hidden', !canScrollRight);
+    const measureCard = () => {
+      const first = cards[0];
+      const cs = window.getComputedStyle(first);
+      const ml = parseFloat(cs.marginLeft) || 0;
+      const mr = parseFloat(cs.marginRight) || 0;
+      return first.offsetWidth + ml + mr;
     };
 
-    nextBtn.addEventListener('click', () => {
-      container.scrollBy({
-        left: scrollAmount,
-        behavior: 'smooth'
+    const rebuild = () => {
+      const cardW = measureCard();
+      const perView = Math.max(1, Math.floor(container.clientWidth / cardW));
+      const pages = [];
+      for (let i = 0; i < cards.length; i += perView) {
+        pages.push(cards.slice(i, i + perView));
+      }
+      container.innerHTML = '';
+      const slides = document.createElement('div');
+      slides.className = 'group-cards-slides';
+      pages.forEach(pageCards => {
+        const slide = document.createElement('div');
+        slide.className = 'group-card-slide';
+        const row = document.createElement('div');
+        row.className = 'group-cards-container row-inner';
+        // calcular gap dinâmico para eliminar espaço nas bordas
+        const totalCardWidth = perView * cardW;
+        const available = container.clientWidth - totalCardWidth;
+        const gap = perView > 1 ? Math.max(0, Math.floor(available / (perView - 1))) : 0;
+        row.style.gap = `${gap}px`;
+        row.style.justifyContent = 'flex-start';
+        pageCards.forEach(c => row.appendChild(c));
+        slide.appendChild(row);
+        slides.appendChild(slide);
       });
-    });
+      const firstClone = slides.firstElementChild ? slides.firstElementChild.cloneNode(true) : null;
+      const lastClone = slides.lastElementChild ? slides.lastElementChild.cloneNode(true) : null;
+      if (lastClone) slides.insertBefore(lastClone, slides.firstChild);
+      if (firstClone) slides.appendChild(firstClone);
+      container.appendChild(slides);
 
-    prevBtn.addEventListener('click', () => {
-      container.scrollBy({
-        left: -scrollAmount,
-        behavior: 'smooth'
+      let current = 1;
+      const total = pages.length;
+      const apply = (transition = true) => {
+        slides.style.transition = transition ? 'transform 0.5s ease-in-out' : 'none';
+        slides.style.transform = `translateX(-${current * 100}%)`;
+      };
+      apply(false);
+
+      let prevBtn = header.querySelector('.nav-arrow.prev');
+      let nextBtn = header.querySelector('.nav-arrow.next');
+      if (!prevBtn) {
+        prevBtn = document.createElement('button');
+        prevBtn.className = 'nav-arrow prev';
+        prevBtn.innerHTML = '<i class="fas fa-chevron-left"></i>';
+        header.insertBefore(prevBtn, container);
+      }
+      if (!nextBtn) {
+        nextBtn = document.createElement('button');
+        nextBtn.className = 'nav-arrow next';
+        nextBtn.innerHTML = '<i class="fas fa-chevron-right"></i>';
+        header.appendChild(nextBtn);
+      }
+      const overflow = total > 1;
+      prevBtn.classList.toggle('hidden', !overflow);
+      nextBtn.classList.toggle('hidden', !overflow);
+
+      const goNext = () => {
+        if (!overflow) return;
+        current += 1;
+        apply(true);
+      };
+      const goPrev = () => {
+        if (!overflow) return;
+        current -= 1;
+        apply(true);
+      };
+      nextBtn.onclick = goNext;
+      prevBtn.onclick = goPrev;
+
+      slides.addEventListener('transitionend', () => {
+        if (current === 0) { current = total; apply(false); }
+        else {
+          const maxIndex = total + 1;
+          if (current === maxIndex) { current = 1; apply(false); }
+        }
       });
-    });
 
-    container.addEventListener('scroll', updateArrowVisibility);
-    setTimeout(updateArrowVisibility, 100);
+      let dragging = false;
+      let startX = 0;
+      let moved = 0;
+      const onDown = x => { dragging = true; startX = x; moved = 0; slides.style.transition = 'none'; };
+      const onMove = x => { if (!dragging) return; moved = x - startX; const base = -current * container.offsetWidth; slides.style.transform = `translateX(${base + moved}px)`; };
+      const onUp = () => {
+        if (!dragging) return;
+        dragging = false;
+        const threshold = container.offsetWidth * 0.25;
+        if (moved > threshold) goPrev(); else if (moved < -threshold) goNext(); else apply(true);
+      };
+      slides.addEventListener('mousedown', e => onDown(e.pageX));
+      window.addEventListener('mousemove', e => { if (dragging) onMove(e.pageX); });
+      window.addEventListener('mouseup', onUp);
+      slides.addEventListener('touchstart', e => onDown(e.touches[0].pageX), { passive: true });
+      slides.addEventListener('touchmove', e => onMove(e.touches[0].pageX), { passive: true });
+      slides.addEventListener('touchend', onUp);
+
+      window.addEventListener('resize', () => { rebuild(); }, { once: true });
+    };
+
+    rebuild();
   });
 }
 
