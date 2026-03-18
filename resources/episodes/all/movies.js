@@ -155,8 +155,8 @@ export const moviesData = [
                 ],
 
                 carrousel: {
-                    visible: true,
-                    homepage: true,
+                    visible: false,
+                    homepage: false,
                     favorite: true,
                     logo: { title: "HARRY POTTER A SAGA", enabled: false, minimalist: false, url: "" },
                     thumb: ["https://i.imgur.com/UPY13oJ.png"],
@@ -190,35 +190,36 @@ export const moviesData = [
                     `
                 },
 
-                season: [
-                    {
-                        name: "Harry Potter",
-                        thumb_season: "https://i.imgur.com/NtKyrG6.jpeg", //https://i.imgur.com/wNJxHZO.jpeg //https://i.imgur.com/adBo3xd.jpeg  //https://i.imgur.com/NtKyrG6.jpeg  //https://i.pinimg.com/1200x/f9/85/3f/f9853f646b1d4352eabfe1470602d2e3.jpg
-                        have_season: false,
-                        episodes: [
-                        { title: "Harry Potter e a Pedra Filosofal",                subtitle: "", duration: "2:30:10", thumb: "https://beam-images.warnermediacdn.com/BEAM_LWM_DELIVERABLES/4b990c5d-38ab-4daf-8092-2617cbc6d062/e1b7b1e8-6659-11f0-be5e-0afff99ad1ad?host=wbd-images.prod-vod.h264.io&partner=beamcom&w=320",             url: [""], legend: [""] },
-                        { title: "Harry Potter e a amara Secreta",                  subtitle: "", duration: "2:30:10", thumb: "https://beam-images.warnermediacdn.com/BEAM_LWM_DELIVERABLES/48674b82-9076-4080-a40c-379efad5eb89/80cd8de7-a391-44dc-b03b-0035bddc770e?host=wbd-images.prod-vod.h264.io&partner=beamcom&w=320",             url: [""], legend: [""] },
-                        { title: "Harry Potter e o Prisioneiro de Azkaban",         subtitle: "", duration: "2:30:10", thumb: "https://is1-ssl.mzstatic.com/image/thumb/Video221/v4/f8/76/0d/f8760df5-55d1-c54f-c74f-593384d4a264/4aa21897-d969-4938-a0e4-d056057958ba_HP3_AZKABAN_2024_H_DD_KA_TT_3840x2160_300dpi_BR.jpg/340x191.webp",  url: [""], legend: [""] },
-                        { title: "Harry Potter e o Cálice de Fogo",                 subtitle: "", duration: "2:30:10", thumb: "https://is1-ssl.mzstatic.com/image/thumb/Video211/v4/55/bf/98/55bf9850-7421-9b54-b1d2-41dc277bcb8b/c3c9a44f-ab59-498c-a320-f8e75467abfb_HP4_GOBLET_2024_H_DD_KA_TT_3840x2160_300dpi_BR.jpg/340x191.webp",   url: [""], legend: [""] },
-                        { title: "Harry Potter e a Ordem da Fênix",                 subtitle: "", duration: "2:30:10", thumb: "https://is1-ssl.mzstatic.com/image/thumb/Video211/v4/79/12/03/79120352-f816-3c4c-700c-b9f8c2fac24b/37d7be2c-929c-4c61-8054-988f8305e6cd_HP5_PHOENIX_2024_H_DD_KA_TT_3840x2160_300dpi_BR.jpg/340x191.webp",  url: [""], legend: [""] },
-                        { title: "Harry Potter e o Enigma do Príncipe",             subtitle: "", duration: "2:30:10", thumb: "https://is1-ssl.mzstatic.com/image/thumb/Video211/v4/a4/67/06/a46706c7-fffb-918d-06ae-9d365d4379e1/5041760a-c4cf-4cdc-b63d-506e744d28ce_HP6_PRINCE_2024_H_DD_KA_TT_3840x2160_300dpi_BR.jpg/340x191.webp",   url: [""], legend: [""] },
-                        { title: "Harry Potter e as Relíquias da Morte (Parte I)",  subtitle: "", duration: "2:30:10", thumb: "https://is1-ssl.mzstatic.com/image/thumb/Video211/v4/f9/75/34/f97534aa-0f55-1910-272c-4f5f5b31690e/0db903be-4dba-4d7e-babd-17667fea2129_HP7_PART1_2024_H_DD_KA_TT_3840x2160_300dpi_BR.jpg/340x191.webp",    url: [""], legend: [""] },
-                        { title: "Harry Potter e as Relíquias da Morte (Parte II)", subtitle: "", duration: "2:30:10", thumb: "https://is1-ssl.mzstatic.com/image/thumb/Video221/v4/21/90/24/21902420-c5ca-1b58-4cc2-dfc6ac49a93f/f86c1590-9f59-4e5e-bad7-95a3c36f4dcd_HP7_PART2_2024_H_DD_KA_TT_3840x2160_300dpi_BR.jpg/340x191.webp",    url: [""], legend: [""] },
-                        ]
-                    },
-                ],
+                // season: [
+                //     {
+                //         name: "Harry Potter",
+                //         thumb_season: "https://i.imgur.com/NtKyrG6.jpeg", //https://i.imgur.com/wNJxHZO.jpeg //https://i.imgur.com/adBo3xd.jpeg  //https://i.imgur.com/NtKyrG6.jpeg  //https://i.pinimg.com/1200x/f9/85/3f/f9853f646b1d4352eabfe1470602d2e3.jpg
+                //         have_season: false,
+                //         episodes: [
+                //             { title: "Harry Potter e a Pedra Filosofal",                subtitle: "", duration: "2:30:10", thumb: "https://beam-images.warnermediacdn.com/BEAM_LWM_DELIVERABLES/4b990c5d-38ab-4daf-8092-2617cbc6d062/e1b7b1e8-6659-11f0-be5e-0afff99ad1ad?host=wbd-images.prod-vod.h264.io&partner=beamcom&w=320",             url: [""], legend: [""] },
+                //             { title: "Harry Potter e a amara Secreta",                  subtitle: "", duration: "2:30:10", thumb: "https://beam-images.warnermediacdn.com/BEAM_LWM_DELIVERABLES/48674b82-9076-4080-a40c-379efad5eb89/80cd8de7-a391-44dc-b03b-0035bddc770e?host=wbd-images.prod-vod.h264.io&partner=beamcom&w=320",             url: [""], legend: [""] },
+                //             { title: "Harry Potter e o Prisioneiro de Azkaban",         subtitle: "", duration: "2:30:10", thumb: "https://is1-ssl.mzstatic.com/image/thumb/Video221/v4/f8/76/0d/f8760df5-55d1-c54f-c74f-593384d4a264/4aa21897-d969-4938-a0e4-d056057958ba_HP3_AZKABAN_2024_H_DD_KA_TT_3840x2160_300dpi_BR.jpg/340x191.webp",  url: [""], legend: [""] },
+                //             { title: "Harry Potter e o Cálice de Fogo",                 subtitle: "", duration: "2:30:10", thumb: "https://is1-ssl.mzstatic.com/image/thumb/Video211/v4/55/bf/98/55bf9850-7421-9b54-b1d2-41dc277bcb8b/c3c9a44f-ab59-498c-a320-f8e75467abfb_HP4_GOBLET_2024_H_DD_KA_TT_3840x2160_300dpi_BR.jpg/340x191.webp",   url: [""], legend: [""] },
+                //             { title: "Harry Potter e a Ordem da Fênix",                 subtitle: "", duration: "2:30:10", thumb: "https://is1-ssl.mzstatic.com/image/thumb/Video211/v4/79/12/03/79120352-f816-3c4c-700c-b9f8c2fac24b/37d7be2c-929c-4c61-8054-988f8305e6cd_HP5_PHOENIX_2024_H_DD_KA_TT_3840x2160_300dpi_BR.jpg/340x191.webp",  url: [""], legend: [""] },
+                //             { title: "Harry Potter e o Enigma do Príncipe",             subtitle: "", duration: "2:30:10", thumb: "https://is1-ssl.mzstatic.com/image/thumb/Video211/v4/a4/67/06/a46706c7-fffb-918d-06ae-9d365d4379e1/5041760a-c4cf-4cdc-b63d-506e744d28ce_HP6_PRINCE_2024_H_DD_KA_TT_3840x2160_300dpi_BR.jpg/340x191.webp",   url: [""], legend: [""] },
+                //             { title: "Harry Potter e as Relíquias da Morte (Parte I)",  subtitle: "", duration: "2:30:10", thumb: "https://is1-ssl.mzstatic.com/image/thumb/Video211/v4/f9/75/34/f97534aa-0f55-1910-272c-4f5f5b31690e/0db903be-4dba-4d7e-babd-17667fea2129_HP7_PART1_2024_H_DD_KA_TT_3840x2160_300dpi_BR.jpg/340x191.webp",    url: [""], legend: [""] },
+                //             { title: "Harry Potter e as Relíquias da Morte (Parte II)", subtitle: "", duration: "2:30:10", thumb: "https://is1-ssl.mzstatic.com/image/thumb/Video221/v4/21/90/24/21902420-c5ca-1b58-4cc2-dfc6ac49a93f/f86c1590-9f59-4e5e-bad7-95a3c36f4dcd_HP7_PART2_2024_H_DD_KA_TT_3840x2160_300dpi_BR.jpg/340x191.webp",    url: [""], legend: [""] },
+                //         ]
+                //     },
+                // ],
 
                 movies:{
+                    name: "Harry Potter",
                     thumb_movies: "https://i.imgur.com/dRR1C5K.jpeg",
-                    move_list: [
-                    { title: "Harry Potter", subtitle: "E a Pedra Filosofal",                 duration: "2:30:10", thumb: "https://i.imgur.com/wSPSsZz.jpeg", url: [ "https://filemoon.to/e/fohv33go6fjl/2Efu4ZQADExGVxxV"], legend: [""] },
-                    { title: "Harry Potter", subtitle: "E a amara Secreta",                   duration: "2:30:10", thumb: "https://i.imgur.com/wSPSsZz.jpeg", url: [ "https://filemoon.to/e/fohv33go6fjl/2Efu4ZQADExGVxxV"], legend: [""] },
-                    { title: "Harry Potter", subtitle: "E o Prisioneiro de Azkaban",          duration: "2:30:10", thumb: "https://i.imgur.com/wSPSsZz.jpeg", url: [ "https://filemoon.to/e/fohv33go6fjl/2Efu4ZQADExGVxxV"], legend: [""] },
-                    { title: "Harry Potter", subtitle: "E o Cálice de Fogo",                  duration: "2:30:10", thumb: "https://i.imgur.com/wSPSsZz.jpeg", url: [ "https://filemoon.to/e/fohv33go6fjl/2Efu4ZQADExGVxxV"], legend: [""] },
-                    { title: "Harry Potter", subtitle: "E a Ordem da Fênix",                  duration: "2:30:10", thumb: "https://i.imgur.com/wSPSsZz.jpeg", url: [ "https://filemoon.to/e/fohv33go6fjl/2Efu4ZQADExGVxxV"], legend: [""] },
-                    { title: "Harry Potter", subtitle: "E o Enigma do Príncipe",              duration: "2:30:10", thumb: "https://i.imgur.com/wSPSsZz.jpeg", url: [ "https://filemoon.to/e/fohv33go6fjl/2Efu4ZQADExGVxxV"], legend: [""] },
-                    { title: "Harry Potter", subtitle: "E as Relíquias da Morte (Parte I)",   duration: "2:30:10", thumb: "https://i.imgur.com/wSPSsZz.jpeg", url: [ "https://filemoon.to/e/fohv33go6fjl/2Efu4ZQADExGVxxV"], legend: [""] },
-                    { title: "Harry Potter", subtitle: "E as Relíquias da Morte (Parte II)",  duration: "2:30:10", thumb: "https://i.imgur.com/wSPSsZz.jpeg", url: [ "https://filemoon.to/e/fohv33go6fjl/2Efu4ZQADExGVxxV"], legend: [""] },
+                    episodes: [
+                        { title: "Harry Potter", subtitle: "E a Pedra Filosofal",                 duration: "2:30:10", thumb: "https://beam-images.warnermediacdn.com/BEAM_LWM_DELIVERABLES/4b990c5d-38ab-4daf-8092-2617cbc6d062/e1b7b1e8-6659-11f0-be5e-0afff99ad1ad?host=wbd-images.prod-vod.h264.io&partner=beamcom&w=320",             url: [ "https://filemoon.to/e/fohv33go6fjl/2Efu4ZQADExGVxxV"], legend: [""] },
+                        { title: "Harry Potter", subtitle: "E a amara Secreta",                   duration: "2:30:10", thumb: "https://beam-images.warnermediacdn.com/BEAM_LWM_DELIVERABLES/48674b82-9076-4080-a40c-379efad5eb89/80cd8de7-a391-44dc-b03b-0035bddc770e?host=wbd-images.prod-vod.h264.io&partner=beamcom&w=320",             url: [ "https://filemoon.to/e/fohv33go6fjl/2Efu4ZQADExGVxxV"], legend: [""] },
+                        { title: "Harry Potter", subtitle: "E o Prisioneiro de Azkaban",          duration: "2:30:10", thumb: "https://is1-ssl.mzstatic.com/image/thumb/Video221/v4/f8/76/0d/f8760df5-55d1-c54f-c74f-593384d4a264/4aa21897-d969-4938-a0e4-d056057958ba_HP3_AZKABAN_2024_H_DD_KA_TT_3840x2160_300dpi_BR.jpg/340x191.webp",  url: [ "https://filemoon.to/e/fohv33go6fjl/2Efu4ZQADExGVxxV"], legend: [""] },
+                        { title: "Harry Potter", subtitle: "E o Cálice de Fogo",                  duration: "2:30:10", thumb: "https://is1-ssl.mzstatic.com/image/thumb/Video211/v4/55/bf/98/55bf9850-7421-9b54-b1d2-41dc277bcb8b/c3c9a44f-ab59-498c-a320-f8e75467abfb_HP4_GOBLET_2024_H_DD_KA_TT_3840x2160_300dpi_BR.jpg/340x191.webp",   url: [ "https://filemoon.to/e/fohv33go6fjl/2Efu4ZQADExGVxxV"], legend: [""] },
+                        { title: "Harry Potter", subtitle: "E a Ordem da Fênix",                  duration: "2:30:10", thumb: "https://is1-ssl.mzstatic.com/image/thumb/Video211/v4/79/12/03/79120352-f816-3c4c-700c-b9f8c2fac24b/37d7be2c-929c-4c61-8054-988f8305e6cd_HP5_PHOENIX_2024_H_DD_KA_TT_3840x2160_300dpi_BR.jpg/340x191.webp",  url: [ "https://filemoon.to/e/fohv33go6fjl/2Efu4ZQADExGVxxV"], legend: [""] },
+                        { title: "Harry Potter", subtitle: "E o Enigma do Príncipe",              duration: "2:30:10", thumb: "https://is1-ssl.mzstatic.com/image/thumb/Video211/v4/a4/67/06/a46706c7-fffb-918d-06ae-9d365d4379e1/5041760a-c4cf-4cdc-b63d-506e744d28ce_HP6_PRINCE_2024_H_DD_KA_TT_3840x2160_300dpi_BR.jpg/340x191.webp",   url: [ "https://filemoon.to/e/fohv33go6fjl/2Efu4ZQADExGVxxV"], legend: [""] },
+                        { title: "Harry Potter", subtitle: "E as Relíquias da Morte (Parte I)",   duration: "2:30:10", thumb: "https://is1-ssl.mzstatic.com/image/thumb/Video211/v4/f9/75/34/f97534aa-0f55-1910-272c-4f5f5b31690e/0db903be-4dba-4d7e-babd-17667fea2129_HP7_PART1_2024_H_DD_KA_TT_3840x2160_300dpi_BR.jpg/340x191.webp",    url: [ "https://filemoon.to/e/fohv33go6fjl/2Efu4ZQADExGVxxV"], legend: [""] },
+                        { title: "Harry Potter", subtitle: "E as Relíquias da Morte (Parte II)",  duration: "2:30:10", thumb: "https://is1-ssl.mzstatic.com/image/thumb/Video221/v4/21/90/24/21902420-c5ca-1b58-4cc2-dfc6ac49a93f/f86c1590-9f59-4e5e-bad7-95a3c36f4dcd_HP7_PART2_2024_H_DD_KA_TT_3840x2160_300dpi_BR.jpg/340x191.webp",    url: [ "https://filemoon.to/e/fohv33go6fjl/2Efu4ZQADExGVxxV"], legend: [""] },
                     ]
                 },
             },
@@ -310,14 +311,24 @@ export const moviesData = [
                     {
                         name: "Filmes",
                         thumb_season: "https://i.imgur.com/sWx8cad.png",
-                        movies: false,
+                        have_season: false,
                         episodes: [
-                        { title: "Episódio 001", subtitle: "", duration: "", thumb: "https://is1-ssl.mzstatic.com/image/thumb/Video221/v4/3e/8b/6c/3e8b6c91-8646-adb8-31e2-1768e85a5d04/a149d996-07e0-4cf2-b855-5342f2258b11_FANTASTIC_BEASTS_AWTFT_2024_H_DD_KA_TT_3840x2160_300dpi_BR.jpg/290x163.webp"           , url: [""] },
-                        { title: "Episódio 002", subtitle: "", duration: "", thumb: "https://is1-ssl.mzstatic.com/image/thumb/Video221/v4/56/42/20/56422092-b548-cc1a-b598-92d03717217a/a915cc2b-bf67-47f5-9a12-863395a298c7_FB_CRIMES_OF_GRINDELWALD_2024_H_DD_KA_TT_3840x2160_300dpi_BR.jpg/290x163.webp"         , url: [""] },
-                        { title: "Episódio 003", subtitle: "", duration: "", thumb: "https://is1-ssl.mzstatic.com/image/thumb/Video211/v4/7c/ce/a8/7ccea8a2-9b01-5576-0fb0-2c94a8823269/39aae040-4990-44bf-b1c8-dc7fddc22189_FantasticBeasts_SecretsDumbledore_2024_H_DD_KA_TT_3840x2160_300dpi_BR.jpg/290x163.webp", url: [""] },
+                        { title: "Animais Fantasticos E Onde Habitam"           , subtitle: "", duration: "2:30:10", thumb: "https://is1-ssl.mzstatic.com/image/thumb/Video221/v4/3e/8b/6c/3e8b6c91-8646-adb8-31e2-1768e85a5d04/a149d996-07e0-4cf2-b855-5342f2258b11_FANTASTIC_BEASTS_AWTFT_2024_H_DD_KA_TT_3840x2160_300dpi_BR.jpg/290x163.webp"           , url: [""] },
+                        { title: "Animais Fantasticos Os Crimes de Grindelwald" , subtitle: "", duration: "2:30:10", thumb: "https://is1-ssl.mzstatic.com/image/thumb/Video221/v4/56/42/20/56422092-b548-cc1a-b598-92d03717217a/a915cc2b-bf67-47f5-9a12-863395a298c7_FB_CRIMES_OF_GRINDELWALD_2024_H_DD_KA_TT_3840x2160_300dpi_BR.jpg/290x163.webp"         , url: [""] },
+                        { title: "Animais Fantasticos Os Segredos de Dumbledore", subtitle: "", duration: "2:30:10", thumb: "https://is1-ssl.mzstatic.com/image/thumb/Video211/v4/7c/ce/a8/7ccea8a2-9b01-5576-0fb0-2c94a8823269/39aae040-4990-44bf-b1c8-dc7fddc22189_FantasticBeasts_SecretsDumbledore_2024_H_DD_KA_TT_3840x2160_300dpi_BR.jpg/290x163.webp", url: [""] },
                         ]
                     },
-                ]
+                ],
+
+                movies:{
+                    name: "Filmes",
+                    thumb_movies: "https://i.imgur.com/sWx8cad.png",
+                    move_list: [
+                        { title: "Animais Fantasticos", subtitle: "E Onde Habitam"           , duration: "2:30:10", thumb: "https://i.imgur.com/wSPSsZz.jpeg", url: [ "https://filemoon.to/e/fohv33go6fjl/2Efu4ZQADExGVxxV"], legend: [""] },
+                        { title: "Animais Fantasticos", subtitle: "Os Crimes de Grindelwald" , duration: "2:30:10", thumb: "https://i.imgur.com/wSPSsZz.jpeg", url: [ "https://filemoon.to/e/fohv33go6fjl/2Efu4ZQADExGVxxV"], legend: [""] },
+                        { title: "Animais Fantasticos", subtitle: "Os Segredos de Dumbledore", duration: "2:30:10", thumb: "https://i.imgur.com/wSPSsZz.jpeg", url: [ "https://filemoon.to/e/fohv33go6fjl/2Efu4ZQADExGVxxV"], legend: [""] },
+                    ]
+                },
             },
 
             //VELOZES E FURIOSOS

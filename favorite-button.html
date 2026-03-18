@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Favorite Button</title>
+    <style>
+        :root {
+            --color-favorite_button: rgb(255, 193, 7);
+            --color-favorite_button_h: rgb(255, 208, 0);
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #0d0d0f;
+            font-family: "Poppins", sans-serif;
+        }
+
+        .favorite-button {
+            position: relative;
+            background-color: rgba(0, 0, 0, 0.2);
+            border: none;
+            border-radius: 50%;
+            width: 48px;
+            height: 48px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 12;
+            opacity: 1;
+            pointer-events: auto;
+            --yellow-t: rgba(244, 168, 37, 0);
+            --bezier: cubic-bezier(0.42, 0, 0.58, 1);
+            --trans-dur: 0.3s;
+            transition: transform 0.3s ease, opacity 0.3s ease, background-color 0.3s ease, filter 0.3s ease;
+        }
+
+        .favorite-button .rating__star:active,
+        .favorite-button:active {
+            transform: scale(0.95);
+        }
+
+        .favorite-button .rating__star {
+            width: 24px;
+            height: 24px;
+            display: block;
+            overflow: visible;
+            pointer-events: none;
+            transition: filter 0.3s ease;
+        }
+
+        .favorite-button .rating__star-ring,
+        .favorite-button .rating__star-fill,
+        .favorite-button .rating__star-line,
+        .favorite-button .rating__star-stroke {
+            animation-duration: 1s;
+            animation-timing-function: ease-in-out;
+            animation-fill-mode: forwards;
+        }
+
+        .favorite-button .rating__star-ring,
+        .favorite-button .rating__star-fill,
+        .favorite-button .rating__star-line {
+            stroke: var(--color-favorite_button);
+        }
+
+        .favorite-button .rating__star-fill {
+            fill: var(--color-favorite_button);
+            transform: scale(0);
+            transition: fill var(--trans-dur) var(--bezier), transform var(--trans-dur) var(--bezier);
+        }
+
+        .favorite-button .rating__star-line {
+            stroke-dasharray: 12 13;
+            stroke-dashoffset: -13;
+        }
+
+        .favorite-button .rating__star-stroke {
+            stroke: #c7cad1;
+            transition: stroke var(--trans-dur);
+        }
+
+        .favorite-button:hover .rating__star-stroke,
+        .favorite-button.favorited .rating__star-stroke {
+            stroke: var(--color-favorite_button);
+        }
+
+        .favorite-button.favorited .rating__star-fill {
+            animation-name: starFill;
+        }
+
+        .favorite-button.favorited .rating__star-stroke {
+            animation-name: starStroke;
+        }
+
+        .favorite-button.favorited .rating__star-line {
+            animation-name: starLine;
+        }
+
+        .favorite-button.favorited .rating__star-ring {
+            animation-name: starRing;
+        }
+
+        .favorite-button.animate-in .rating__star-ring,
+        .favorite-button.animate-in .rating__star-fill,
+        .favorite-button.animate-in .rating__star-line,
+        .favorite-button.animate-in .rating__star-stroke {
+            animation-delay: 0.05s;
+        }
+
+        .favorite-button.active,
+        .favorite-button.favorited {
+            background-color: rgba(0, 0, 0, 0.3);
+            opacity: 1;
+            transform: scale(1);
+            filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.7));
+            pointer-events: auto;
+        }
+
+        .favorite-button.favorited .rating__star,
+        .favorite-button:hover .rating__star {
+            filter: drop-shadow(0 0 3px var(--color-favorite_button));
+        }
+
+        .favorite-button:hover {
+            background-color: rgba(0, 0, 0, 0.5);
+            opacity: 1;
+            transform: scale(1);
+            filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.7));
+            pointer-events: auto;
+        }
+
+        .favorite-button:hover .tooltip-text {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        @keyframes starPulse {
+            0% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.1);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        .favorite-button.pulse {
+            animation: starPulse 0.6s ease-in-out;
+        }
+
+        .favorite-button.pulse .tooltip-text {
+            animation: tooltipCounterPulse 0.6s ease-in-out;
+        }
+
+        @keyframes tooltipCounterPulse {
+            0% {
+                transform: translate(-50%) scale(1);
+            }
+
+            50% {
+                transform: translate(-50%) scale(0.9);
+            }
+
+            100% {
+                transform: translate(-50%) scale(1);
+            }
+        }
+
+        @keyframes starRing {
+            from,
+            20% {
+                animation-timing-function: ease-in;
+                opacity: 1;
+                r: 8px;
+                stroke-width: 16px;
+                transform: scale(0);
+            }
+
+            35% {
+                animation-timing-function: ease-out;
+                opacity: 0.5;
+                r: 8px;
+                stroke-width: 16px;
+                transform: scale(1);
+            }
+
+            50%,
+            to {
+                opacity: 0;
+                r: 16px;
+                stroke-width: 0;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes starFill {
+            from,
+            40% {
+                animation-timing-function: ease-out;
+                transform: scale(0);
+            }
+
+            60% {
+                animation-timing-function: ease-in-out;
+                transform: scale(1.2);
+            }
+
+            80% {
+                transform: scale(0.9);
+            }
+
+            to {
+                transform: scale(1);
+            }
+        }
+
+        @keyframes starStroke {
+            from {
+                transform: scale(1);
+            }
+
+            20%,
+            to {
+                transform: scale(0);
+            }
+        }
+
+        @keyframes starLine {
+            from,
+            40% {
+                animation-timing-function: ease-out;
+                stroke-dasharray: 1 23;
+                stroke-dashoffset: 1;
+            }
+
+            60%,
+            to {
+                stroke-dasharray: 12 13;
+                stroke-dashoffset: -13;
+            }
+        }
+
+        .tooltip-text {
+            visibility: hidden;
+            background-color: rgba(255, 255, 255, 0.5);
+            color: #fff;
+            text-align: center;
+            border-radius: 5px;
+            padding: 7px;
+            position: absolute;
+            z-index: 10001;
+            opacity: 0;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+            font-size: 14px;
+            background: rgb(129, 134, 141, 0.5);
+            transform: translateX(-50%);
+            white-space: nowrap;
+            transform-origin: center;
+            left: 50%;
+        }
+
+        .tooltip-text.black {
+            background-color: rgba(47, 49, 54, 0.8);
+        }
+
+        .tooltip-top {
+            bottom: 130%;
+            line-height: 1.5;
+        }
+
+        .tooltip-top::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 100%;
+            transform: translateX(-50%);
+            border-width: 5px;
+            border-style: solid;
+            border-color: rgba(129, 134, 141, 0.5) transparent transparent transparent;
+        }
+
+        .tooltip-top.black::after {
+            border-top-color: rgba(47, 49, 54, 0.8);
+        }
+    </style>
+</head>
+<body>
+    <button class="favorite-button" data-card='{"name":"Exemplo Favorito"}' aria-label="Favoritar">
+        <svg class="rating__star" width="24" height="24" viewBox="0 0 32 32" aria-hidden="true">
+            <g transform="translate(16,16)">
+                <circle class="rating__star-ring" fill="none" stroke="#000" stroke-width="16" r="8" transform="scale(0)" />
+            </g>
+            <g stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <g transform="translate(16,16) rotate(180)">
+                    <polygon class="rating__star-stroke" points="0,15 4.41,6.07 14.27,4.64 7.13,-2.32 8.82,-12.14 0,-7.5 -8.82,-12.14 -7.13,-2.32 -14.27,4.64 -4.41,6.07" fill="none" />
+                    <polygon class="rating__star-fill" points="0,15 4.41,6.07 14.27,4.64 7.13,-2.32 8.82,-12.14 0,-7.5 -8.82,-12.14 -7.13,-2.32 -14.27,4.64 -4.41,6.07" fill="#000" />
+                </g>
+                <g transform="translate(16,16)" stroke-dasharray="12 12" stroke-dashoffset="12">
+                    <polyline class="rating__star-line" transform="rotate(0)" points="0 4,0 16" />
+                    <polyline class="rating__star-line" transform="rotate(72)" points="0 4,0 16" />
+                    <polyline class="rating__star-line" transform="rotate(144)" points="0 4,0 16" />
+                    <polyline class="rating__star-line" transform="rotate(216)" points="0 4,0 16" />
+                    <polyline class="rating__star-line" transform="rotate(288)" points="0 4,0 16" />
+                </g>
+            </g>
+        </svg>
+        <span class="tooltip-text black tooltip-top">Adicionar aos favoritos</span>
+    </button>
+
+    <script>
+        function getFavorites() {
+            const favorites = localStorage.getItem('favorites');
+            return favorites ? JSON.parse(favorites) : [];
+        }
+
+        function saveFavorites(favorites) {
+            localStorage.setItem('favorites', JSON.stringify(favorites));
+        }
+
+        function isFavorite(cardName) {
+            const favorites = getFavorites();
+            return favorites.some(fav => fav.card_name === cardName);
+        }
+
+        function toggleFavoriteIndividual(cardData) {
+            const favorites = getFavorites();
+            const index = favorites.findIndex(fav => fav.card_name === cardData.name);
+
+            if (index > -1) {
+                favorites.splice(index, 1);
+            } else {
+                favorites.push({ ...cardData, card_name: cardData.name });
+            }
+
+            saveFavorites(favorites);
+            return index === -1;
+        }
+
+        function updateFavoriteButtonState(button, nowFavorite) {
+            button.classList.toggle('favorited', nowFavorite);
+
+            const star = button.querySelector('.rating__star');
+            if (star) {
+                const ring = star.querySelector('.rating__star-ring');
+                const stroke = star.querySelector('.rating__star-stroke');
+                const fill = star.querySelector('.rating__star-fill');
+                const lines = star.querySelectorAll('.rating__star-line');
+
+                [ring, stroke, fill, ...lines].forEach(el => {
+                    if (el) el.style.animation = 'none';
+                });
+                button.offsetHeight;
+
+                if (nowFavorite) {
+                    if (ring) ring.style.animation = 'starRing 1s ease-in-out forwards';
+                    if (stroke) stroke.style.animation = 'starStroke 1s ease-in-out forwards';
+                    if (fill) fill.style.animation = 'starFill 1s ease-in-out forwards';
+                    lines.forEach(line => line.style.animation = 'starLine 1s ease-in-out forwards');
+                } else {
+                    if (ring) ring.style.animation = 'starRing 1s ease-in-out reverse forwards';
+                    if (stroke) stroke.style.animation = 'starStroke 1s ease-in-out reverse forwards';
+                    if (fill) fill.style.animation = 'starFill 1s ease-in-out reverse forwards';
+                    lines.forEach(line => line.style.animation = 'starLine 1s ease-in-out reverse forwards');
+                }
+            }
+
+            const tooltip = button.querySelector('.tooltip-text');
+            if (tooltip) {
+                tooltip.textContent = nowFavorite ? 'Remover dos favoritos' : 'Adicionar aos favoritos';
+            }
+        }
+
+        const favoriteButton = document.querySelector('.favorite-button');
+        if (favoriteButton) {
+            const cardData = JSON.parse(favoriteButton.getAttribute('data-card'));
+            const initialState = isFavorite(cardData.name);
+            updateFavoriteButtonState(favoriteButton, initialState);
+
+            favoriteButton.addEventListener('click', event => {
+                event.preventDefault();
+                event.stopPropagation();
+
+                const nowFavorite = toggleFavoriteIndividual(cardData);
+                updateFavoriteButtonState(favoriteButton, nowFavorite);
+
+                favoriteButton.classList.add('pulse');
+                setTimeout(() => {
+                    favoriteButton.classList.remove('pulse');
+                }, 600);
+            });
+        }
+    </script>
+</body>
+</html>

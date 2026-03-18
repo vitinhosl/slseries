@@ -1,7 +1,7 @@
-// import { seriesAll } from './episodes/index.js';
-// const seriesData = seriesAll;
+import { seriesAll } from './episodes/index.js';
+const seriesData = seriesAll;
 
-const seriesData = [
+const seriesData2 = [
   {
     group_name: "Filmes",
     visible: true,
@@ -245,6 +245,7 @@ let iconsAnimated           = false; //ATIVA AS ANIMAÇÕES DOS ICONES
 let randomImagesCards       = false; //AS IMAGENS ALEATÓRIAS DOS BOTÕES
 let randomImagesCarrousel   = false; //AS IMAGENS ALEATÓRIAS DO CARROUSEL
 let speedCarrouselBar       = 5;     //VELOCIDADE DAS ANIMAÇÕES DO CARROUSEL
+let searchBarSuggestions    = 20;    //QUANTIDADE DE ITENS NAS SUGESTÕES DA BARRA DE PESQUISA
 
 // localStorage.clear();
 
@@ -747,6 +748,103 @@ function attachSeriesNavigationListeners(container = document) {
   });
 }
 
+function attachSeasonToggleListeners(container = document) {
+  const headers = container.querySelectorAll('.season-section > .group-title-header[data-collapsible="1"]');
+  headers.forEach(header => {
+    if (header.getAttribute('data-toggle-init') === '1') return;
+    header.setAttribute('data-toggle-init', '1');
+
+    const section = header.closest('.season-section');
+    const list = section ? section.querySelector('.episodes-container') : null;
+    const btn = header.querySelector('.toggle-season-cards');
+
+    const toggle = () => {
+      if (!list || !btn) return;
+      const isExpanded = btn.classList.contains('expanded');
+      if (isExpanded) {
+        btn.classList.remove('expanded');
+        list.style.display = 'none';
+      } else {
+        btn.classList.add('expanded');
+        list.style.display = '';
+      }
+    };
+
+    header.addEventListener('click', e => {
+      if (e.target.closest('.toggle-season-cards')) return;
+      toggle();
+    });
+
+    if (btn) {
+      btn.addEventListener('click', e => {
+        e.preventDefault();
+        e.stopPropagation();
+        toggle();
+      });
+    }
+  });
+}
+
+function attachHistoryToggleListeners(container = document) {
+  const groupHeaders = container.querySelectorAll('.history-group-section > .group-title-header[data-history-group]');
+  groupHeaders.forEach(header => {
+    const section = header.closest('.history-group-section');
+    const list = section ? section.querySelector('.history-group-container') : null;
+    const btn = header.querySelector('.toggle-history-cards');
+    const toggle = () => {
+      if (!list || !btn) return;
+      const isExpanded = btn.classList.contains('expanded');
+      if (isExpanded) {
+        btn.classList.remove('expanded');
+        list.style.display = 'none';
+      } else {
+        btn.classList.add('expanded');
+        list.style.display = '';
+      }
+    };
+    header.addEventListener('click', e => {
+      if (e.target.closest('.toggle-history-cards')) return;
+      toggle();
+    });
+    if (btn) {
+      btn.addEventListener('click', e => {
+        e.preventDefault();
+        e.stopPropagation();
+        toggle();
+      });
+    }
+  });
+
+  const sgHeaders = container.querySelectorAll('.history-subgroup-section > .group-title-header[data-history-subgroup]');
+  sgHeaders.forEach(header => {
+    const section = header.closest('.history-subgroup-section');
+    const list = section ? section.querySelector('.history-subgroup-container') : null;
+    const btn = header.querySelector('.toggle-history-cards');
+    const toggle = () => {
+      if (!list || !btn) return;
+      const isExpanded = btn.classList.contains('expanded');
+      if (isExpanded) {
+        btn.classList.remove('expanded');
+        list.style.display = 'none';
+      } else {
+        btn.classList.add('expanded');
+        list.style.display = '';
+      }
+    };
+    header.addEventListener('click', e => {
+      if (e.target.closest('.toggle-history-cards')) return;
+      toggle();
+    });
+    if (btn) {
+      btn.addEventListener('click', e => {
+        e.preventDefault();
+        e.stopPropagation();
+        toggle();
+      });
+    }
+  });
+}
+
 function findSubgroupByName(subgroupName) {
   for (const groupItem of seriesData) {
     if (groupItem.group) {
@@ -757,6 +855,32 @@ function findSubgroupByName(subgroupName) {
     }
   }
   return null;
+}
+
+function getMoviesEpisodes(subgroup) {
+  if (!subgroup || !subgroup.movies) return [];
+
+  if (Array.isArray(subgroup.movies.episodes)) return subgroup.movies.episodes;
+
+  if (Array.isArray(subgroup.movies.move_list)) {
+    return subgroup.movies.move_list.map(m => ({
+      title: `${m?.title || ''} ${m?.subtitle || ''}`.trim(),
+      subtitle: '',
+      duration: m?.duration || '',
+      thumb: m?.thumb || '',
+      url: Array.isArray(m?.url) ? m.url : (m?.url ? [m.url] : []),
+      legend: Array.isArray(m?.legend) ? m.legend : (m?.legend ? [m.legend] : [])
+    }));
+  }
+
+  return [];
+}
+
+function getMoviesThumb(subgroup) {
+  if (!subgroup || !subgroup.movies) return '';
+  if (subgroup.movies.thumb_movies) return subgroup.movies.thumb_movies;
+  const eps = getMoviesEpisodes(subgroup);
+  return eps[0]?.thumb || '';
 }
 
 //=======================================================================
@@ -873,16 +997,23 @@ function loadPageContent(path) {
       <section id="subgroup-episodes">
     `;
 
-    subgroup.season.forEach((season, seasonIndex) => {
-      const seasonEpisodeCount = season.episodes.length;
-      const seasonHeaderText = subgroup.season.length > 1 
-        ? `T${seasonIndex + 1} - Episódios disponíveis: ${seasonEpisodeCount}` 
+    const seasons = Array.isArray(subgroup.season) ? subgroup.season : [];
+    const moviesEpisodes = getMoviesEpisodes(subgroup);
+    const hasMovies = moviesEpisodes.length > 0;
+    const showDropdown = seasons.length > 1 || (seasons.length === 1 && hasMovies);
+    const defaultDisplay = showDropdown ? 'none' : 'block';
+
+    seasons.forEach((season, seasonIndex) => {
+      const seasonEpisodeCount = (season.episodes || []).length;
+      const seasonHeaderText = seasons.length > 1
+        ? `T${seasonIndex + 1} - Episódios disponíveis: ${seasonEpisodeCount}`
         : `Episódios disponíveis: ${seasonEpisodeCount}`;
 
       html += `
-        <div class="season-section" data-season-index="${seasonIndex}" style="display: ${subgroup.season.length === 1 ? 'block' : 'none'};">
-          <header class="group-title-header">
-            <h2>${seasonHeaderText}</h2>
+        <div class="season-section" data-season-index="${seasonIndex}" style="display: ${defaultDisplay};">
+          <header class="group-title-header" data-collapsible="1">
+            <button class="toggle-season-cards expanded" type="button" aria-label="Expandir/ocultar"></button>
+            <h3>${seasonHeaderText}</h3>
           </header>
           <div class="episodes-container">
       `;
@@ -935,6 +1066,67 @@ function loadPageContent(path) {
         </div>
       `;
     });
+
+    if (hasMovies) {
+      const moviesHeaderText = `Filmes disponíveis: ${moviesEpisodes.length}`;
+      const moviesThumb = getMoviesThumb(subgroup);
+
+      html += `
+        <div class="season-section" data-season-index="-1" style="display: ${defaultDisplay};">
+          <header class="group-title-header" data-collapsible="1">
+            <button class="toggle-season-cards expanded" type="button" aria-label="Expandir/ocultar"></button>
+            <h3>${moviesHeaderText}</h3>
+          </header>
+          <div class="episodes-container">
+      `;
+
+      moviesEpisodes.forEach((episode, episodeIndex) => {
+        const watchedData = getWatchedEpisode(subgroup.name, -1, episodeIndex);
+        const isWatched = watchedData && watchedData.watched;
+        const isActive = watchedData && watchedData.active;
+
+        let buttonClasses = '';
+        if (isActive) buttonClasses += 'active ';
+        if (isWatched) buttonClasses += 'watched ';
+        buttonClasses = buttonClasses.trim();
+
+        const episodeThumb = episode.thumb || '';
+        const hasEpisodeThumb = !!episodeThumb;
+
+        html += `
+          <div class="episodes-container-card slide-in-right" style="opacity: 1;"
+              data-subgroup-name="${subgroup.name}"
+              data-urls='${JSON.stringify(episode.url || [])}'
+              data-season-index="-1"
+              data-episode-index="${episodeIndex}"
+              onclick="playEpisode(this)">
+            <div id="episode-button" 
+                class="${buttonClasses}" 
+                style="background-image: url('${moviesThumb}');">
+              ${hasEpisodeThumb ? `
+              <img class="episode-thumb" 
+                  data-src="${episodeThumb}" 
+                  data-fallback="${moviesThumb}" 
+                  alt="${episode.title}" 
+                  loading="lazy"
+                  src=""
+                  style="opacity: 0; transition: opacity 0.3s ease-in;">
+              ` : ''}
+              <span class="icon-btn"></span>
+              ${isWatched ? '<span class="badge-watched">▶ ASSISTIDO</span>' : ''}
+              <span class="badge-duration">${episode.duration || ''}</span>
+            </div>
+            <p class="episode-title">${episode.title || ''}</p>
+            <p class="episode-subtitle">${episode.subtitle || ''}</p>
+          </div>
+        `;
+      });
+
+      html += `
+          </div>
+        </div>
+      `;
+    }
 
     html += `
       </section>
@@ -998,19 +1190,26 @@ function loadPageContent(path) {
     loadEpisodeImages();
     updateEpisodeUI();
     updateSubgroupContinueWatching();
+    attachSeasonToggleListeners(contentContainer);
 
     const subgroup = filteredItems[0].data;
-    if (subgroup.season && subgroup.season.length > 1) {
+    const seasons = Array.isArray(subgroup.season) ? subgroup.season : [];
+    const moviesCount = getMoviesEpisodes(subgroup).length;
+    const showDropdown = seasons.length > 1 || (seasons.length === 1 && moviesCount > 0);
+
+    if (showDropdown) {
       // const sinopseElement = contentContainer.querySelector('.subgroup-sinopse');
       const sinopseElement = contentContainer.querySelector('.subgroup-info');
       if (sinopseElement) {
+        const allLabel = moviesCount > 0 ? 'Ver tudo' : 'Ver todos os episódios';
         const dropdownContainer = document.createElement('div');
         dropdownContainer.className = 'season-dropdown-container';
         dropdownContainer.innerHTML = `
           <label for="season-select">Selecione uma opção:</label>
           <select id="season-select" onchange="filterSeasonsBySelection(this.value)">
-            <option value="all">Ver todos os episódios</option>
-            ${subgroup.season.map((season, index) => `<option value="${index}">${season.name || `Temporada ${index + 1}`}</option>`).join('')}
+            <option value="all">${allLabel}</option>
+            ${seasons.map((season, index) => `<option value="${index}">${season.name || `Temporada ${index + 1}`}</option>`).join('')}
+            ${moviesCount > 0 ? `<option value="-1">Filmes disponíveis</option>` : ''}
           </select>
         `;
         sinopseElement.parentNode.insertBefore(dropdownContainer, sinopseElement.nextSibling);
@@ -1041,25 +1240,45 @@ function loadPageContent(path) {
 
         let countsHtml = '';
         if (selectedValue === 'all') {
-          const totalSeasons = subgroup.season.length;
-          const totalEpisodes = subgroup.season.reduce((sum, season) => sum + season.episodes.length, 0);
-          countsHtml = `Temporadas ${totalSeasons.toString().padStart(2, '0')} - Episódios ${totalEpisodes}`;
+          const seasons = Array.isArray(subgroup.season) ? subgroup.season : [];
+          const totalSeasons = seasons.length;
+          const totalEpisodes = seasons.reduce((sum, s) => sum + ((s?.episodes || []).length), 0);
+          const totalMovies = getMoviesEpisodes(subgroup).length;
+
+          if (totalSeasons > 0 && totalMovies > 0) {
+            countsHtml = `Temporadas ${totalSeasons.toString().padStart(2, '0')} - Episódios ${totalEpisodes} - Filmes ${totalMovies}`;
+          } else if (totalMovies > 0) {
+            countsHtml = `Filmes ${totalMovies}`;
+          } else {
+            countsHtml = `Temporadas ${totalSeasons.toString().padStart(2, '0')} - Episódios ${totalEpisodes}`;
+          }
         } else {
           const selectedIndex = parseInt(selectedValue);
-          const selectedSeason = subgroup.season[selectedIndex];
-          const seasonEpCount = selectedSeason.episodes.length;
-          const seasonName = selectedSeason.name || `Temporada ${selectedIndex + 1}`;
-          countsHtml = `${seasonName} - Episódios ${seasonEpCount}`;
+          if (selectedIndex === -1) {
+            const totalMovies = getMoviesEpisodes(subgroup).length;
+            countsHtml = `Filmes ${totalMovies}`;
+          } else {
+            const seasons = Array.isArray(subgroup.season) ? subgroup.season : [];
+            const selectedSeason = seasons[selectedIndex];
+            const seasonEpCount = (selectedSeason?.episodes || []).length;
+            const seasonName = selectedSeason?.name || `Temporada ${selectedIndex + 1}`;
+            countsHtml = `${seasonName} - Episódios ${seasonEpCount}`;
+          }
         }
         countsContainer.innerHTML = countsHtml;
       };
 
       window.filterSeasonsBySelection('all');
-    } else if (subgroup.season && subgroup.season.length === 1) {
-      const totalEpisodes = subgroup.season[0].episodes.length;
+    } else if (seasons.length === 1) {
+      const totalEpisodes = (seasons[0].episodes || []).length;
       const countsContainer = contentContainer.querySelector('#episode-counts');
       if (countsContainer) {
         countsContainer.innerHTML = `Episódios ${totalEpisodes}`;
+      }
+    } else if (moviesCount > 0) {
+      const countsContainer = contentContainer.querySelector('#episode-counts');
+      if (countsContainer) {
+        countsContainer.innerHTML = `Filmes ${moviesCount}`;
       }
     }
   }
@@ -1082,6 +1301,7 @@ function loadPageContent(path) {
         }
       });
     });
+    attachHistoryToggleListeners(contentContainer);
   }
 
   if (isHomePage) {
@@ -1537,38 +1757,62 @@ function renderHistoryPage() {
   });
 
   Object.keys(groupedLogs).forEach(groupName => {
+    const groupCount = groupedLogs[groupName].length;
     html += `
-      <section id="group-${generateSlug(groupName)}-history">
-        <header class="group-title-header">
-          <h3>${groupName} (${groupedLogs[groupName].length} itens)</h3>
+      <section class="history-group-section" data-history-group="${groupName}">
+        <header class="group-title-header" data-history-group="${groupName}">
+          <button class="toggle-history-cards expanded" data-history-group="${groupName}"></button>
+          <h3>${groupName} (${groupCount} itens)</h3>
         </header>
         <div class="history-group-container">
     `;
 
+    const subgroups = {};
     groupedLogs[groupName].forEach(log => {
-      const subgroup = findSubgroupByName(log.subgroupName);
-      const seasonNum = log.seasonIndex + 1;
-      const epNum = log.episodeIndex + 1;
-      const paddedEp = epNum.toString().padStart(3, '0');
-      const thumb = log.thumb || (subgroup && subgroup.season && subgroup.season[log.seasonIndex] ? subgroup.season[log.seasonIndex].thumb_season : '');
+      const key = log.subgroupName;
+      if (!subgroups[key]) subgroups[key] = [];
+      subgroups[key].push(log);
+    });
+
+    Object.keys(subgroups).forEach(subName => {
+      const sgCount = subgroups[subName].length;
+      const subSlug = generateSlug(subName);
+      html += `
+        <div class="history-subgroup-section" data-history-subgroup="${subSlug}">
+          <header class="group-title-header" data-history-subgroup="${subSlug}">
+            <button class="toggle-history-cards expanded" data-history-subgroup="${subSlug}"></button>
+            <h3>${subName} (${sgCount} itens)</h3>
+          </header>
+          <div class="history-subgroup-container">
+      `;
+
+      subgroups[subName].forEach(log => {
+        const subgroup = findSubgroupByName(log.subgroupName);
+        const seasonNum = log.seasonIndex + 1;
+        const thumb = log.thumb || (subgroup && subgroup.season && subgroup.season[log.seasonIndex] ? subgroup.season[log.seasonIndex].thumb_season : '');
+        html += `
+          <div class="history-log-item">
+            <div class="history-log-thumb" style="background-image: url('${thumb}');"></div>
+            <div class="history-log-info">
+              <h4>${log.subgroupName}</h4>
+              <p class="episode-details">Temporada ${seasonNum} - ${log.episodeTitle}</p>
+              <p class="log-date">Data: ${formatDateTime(log.timestamp)}</p>
+            </div>
+            <button class="remove-log-button" onclick="removeHistoryLog(${log.id})">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 69 14" class="svgIcon bin-top">
+                <g clip-path="url(#clip0_35_24)"> <path fill="black" d="M20.8232 2.62734L19.9948 4.21304C19.8224 4.54309 19.4808 4.75 19.1085 4.75H4.92857C2.20246 4.75 0 6.87266 0 9.5C0 12.1273 2.20246 14.25 4.92857 14.25H64.0714C66.7975 14.25 69 12.1273 69 9.5C69 6.87266 66.7975 4.75 64.0714 4.75H49.8915C49.5192 4.75 49.1776 4.54309 49.0052 4.21305L48.1768 2.62734C47.3451 1.00938 45.6355 0 43.7719 0H25.2281C23.3645 0 21.6549 1.00938 20.8232 2.62734ZM64.0023 20.0648C64.0397 19.4882 63.5822 19 63.0044 19H5.99556C5.4178 19 4.96025 19.4882 4.99766 20.0648L8.19375 69.3203C8.44018 73.0758 11.6746 76 15.5712 76H53.4288C57.3254 76 60.5598 73.0758 60.8062 69.3203L64.0023 20.0648Z"></path></g><defs> <clipPath id="clip0_35_24"><rect fill="white" height="14" width="69"></rect></clipPath></defs>
+              </svg>
+
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 69 57" class="svgIcon bin-bottom">
+                <g clip-path="url(#clip0_35_22)"> <path fill="black" d="M20.8232 -16.3727L19.9948 -14.787C19.8224 -14.4569 19.4808 -14.25 19.1085 -14.25H4.92857C2.20246 -14.25 0 -12.1273 0 -9.5C0 -6.8727 2.20246 -4.75 4.92857 -4.75H64.0714C66.7975 -4.75 69 -6.8727 69 -9.5C69 -12.1273 66.7975 -14.25 64.0714 -14.25H49.8915C49.5192 -14.25 49.1776 -14.4569 49.0052 -14.787L48.1768 -16.3727C47.3451 -17.9906 45.6355 -19 43.7719 -19H25.2281C23.3645 -19 21.6549 -17.9906 20.8232 -16.3727ZM64.0023 1.0648C64.0397 0.4882 63.5822 0 63.0044 0H5.99556C5.4178 0 4.96025 0.4882 4.99766 1.0648L8.19375 50.3203C8.44018 54.0758 11.6746 57 15.5712 57H53.4288C57.3254 57 60.5598 54.0758 60.8062 50.3203L64.0023 1.0648Z"></path></g><defs><clipPath id="clip0_35_22"><rect fill="white" height="57" width="69"></rect></clipPath></defs>
+              </svg>
+            </button>
+          </div>
+        `;
+      });
 
       html += `
-        <div class="history-log-item">
-          <div class="history-log-thumb" style="background-image: url('${thumb}');"></div>
-          <div class="history-log-info">
-            <h4>${log.subgroupName}</h4>
-            <p class="episode-details">Temporada ${seasonNum} - ${log.episodeTitle}</p>
-            <p class="log-date">Data: ${formatDateTime(log.timestamp)}</p>
           </div>
-          <button class="remove-log-button" onclick="removeHistoryLog(${log.id})">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 69 14" class="svgIcon bin-top">
-              <g clip-path="url(#clip0_35_24)"> <path fill="black" d="M20.8232 2.62734L19.9948 4.21304C19.8224 4.54309 19.4808 4.75 19.1085 4.75H4.92857C2.20246 4.75 0 6.87266 0 9.5C0 12.1273 2.20246 14.25 4.92857 14.25H64.0714C66.7975 14.25 69 12.1273 69 9.5C69 6.87266 66.7975 4.75 64.0714 4.75H49.8915C49.5192 4.75 49.1776 4.54309 49.0052 4.21305L48.1768 2.62734C47.3451 1.00938 45.6355 0 43.7719 0H25.2281C23.3645 0 21.6549 1.00938 20.8232 2.62734ZM64.0023 20.0648C64.0397 19.4882 63.5822 19 63.0044 19H5.99556C5.4178 19 4.96025 19.4882 4.99766 20.0648L8.19375 69.3203C8.44018 73.0758 11.6746 76 15.5712 76H53.4288C57.3254 76 60.5598 73.0758 60.8062 69.3203L64.0023 20.0648Z"></path></g><defs> <clipPath id="clip0_35_24"><rect fill="white" height="14" width="69"></rect></clipPath></defs>
-            </svg>
-
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 69 57" class="svgIcon bin-bottom">
-              <g clip-path="url(#clip0_35_22)"> <path fill="black" d="M20.8232 -16.3727L19.9948 -14.787C19.8224 -14.4569 19.4808 -14.25 19.1085 -14.25H4.92857C2.20246 -14.25 0 -12.1273 0 -9.5C0 -6.8727 2.20246 -4.75 4.92857 -4.75H64.0714C66.7975 -4.75 69 -6.8727 69 -9.5C69 -12.1273 66.7975 -14.25 64.0714 -14.25H49.8915C49.5192 -14.25 49.1776 -14.4569 49.0052 -14.787L48.1768 -16.3727C47.3451 -17.9906 45.6355 -19 43.7719 -19H25.2281C23.3645 -19 21.6549 -17.9906 20.8232 -16.3727ZM64.0023 1.0648C64.0397 0.4882 63.5822 0 63.0044 0H5.99556C5.4178 0 4.96025 0.4882 4.99766 1.0648L8.19375 50.3203C8.44018 54.0758 11.6746 57 15.5712 57H53.4288C57.3254 57 60.5598 54.0758 60.8062 50.3203L64.0023 1.0648Z"></path></g><defs><clipPath id="clip0_35_22"><rect fill="white" height="57" width="69"></rect></clipPath></defs>
-            </svg>
-          </button>
         </div>
       `;
     });
@@ -1647,6 +1891,28 @@ function saveWatchedEpisodes(watched) {
   localStorage.setItem('watchedEpisodes', JSON.stringify(watched));
 }
 
+function parseWatchedKey(key) {
+  const parts = (key || '').split('-');
+  if (parts.length < 3) return null;
+
+  const episodeStr = parts.pop();
+  const seasonStr = parts.pop();
+
+  let isNegativeSeason = false;
+  if (parts.length > 0 && parts[parts.length - 1] === '') {
+    isNegativeSeason = true;
+    parts.pop();
+  }
+
+  const subgroupName = parts.join('-');
+  const episodeIndex = parseInt(episodeStr);
+  const seasonIndexAbs = parseInt(seasonStr);
+  const seasonIndex = isNegativeSeason ? -seasonIndexAbs : seasonIndexAbs;
+
+  if (!subgroupName || Number.isNaN(episodeIndex) || Number.isNaN(seasonIndex)) return null;
+  return { subgroupName, seasonIndex, episodeIndex };
+}
+
 function getWatchedEpisode(subgroupName, seasonIndex, episodeIndex) {
   const watched = getWatchedEpisodes();
   const key = `${subgroupName}-${seasonIndex}-${episodeIndex}`;
@@ -1657,15 +1923,18 @@ function markEpisodeAsWatched(subgroupName, seasonIndex, episodeIndex) {
   const watched = getWatchedEpisodes();
   const currentKey = `${subgroupName}-${seasonIndex}-${episodeIndex}`;
 
-  Object.keys(watched).forEach(key => {
-    const [sName, sIndex, eIndex] = key.split('-');
-    if (sName === subgroupName && parseInt(sIndex) === seasonIndex && key !== currentKey) {
-      if (watched[key]) {
-        watched[key].active = false;
-        console.log(`Desativado active em: ${key}`);
+  if (seasonIndex !== -1) {
+    Object.keys(watched).forEach(key => {
+      const parsed = parseWatchedKey(key);
+      if (!parsed) return;
+      if (parsed.subgroupName === subgroupName && parsed.seasonIndex === seasonIndex && key !== currentKey) {
+        if (watched[key]) {
+          watched[key].active = false;
+          console.log(`Desativado active em: ${key}`);
+        }
       }
-    }
-  });
+    });
+  }
 
   watched[currentKey] = {
     watched: true,
@@ -1688,31 +1957,65 @@ function getActiveEpisodesBySubgroup() {
   Object.keys(watched).forEach(key => {
     const data = watched[key];
     if (data && data.active) {
-      const [subgroupName, seasonIndex, episodeIndex] = key.split('-');
+      const parsed = parseWatchedKey(key);
+      if (!parsed) return;
+      const { subgroupName, seasonIndex, episodeIndex } = parsed;
+      const seasonIdx = seasonIndex;
       
       if (!activeBySubgroup[subgroupName]) {
         activeBySubgroup[subgroupName] = [];
       }
       
-      const existingSeasonIndex = activeBySubgroup[subgroupName].findIndex(
-        item => item.seasonIndex === parseInt(seasonIndex)
-      );
-      
-      if (existingSeasonIndex === -1) {
+      const existingSeasonIndex = seasonIdx === -1
+        ? -1
+        : activeBySubgroup[subgroupName].findIndex(item => item.seasonIndex === seasonIdx);
+
+      if (seasonIdx === -1) {
         activeBySubgroup[subgroupName].push({
-          seasonIndex: parseInt(seasonIndex),
-          episodeIndex: parseInt(episodeIndex),
+          seasonIndex: seasonIdx,
+          episodeIndex,
           data: data
         });
+        return;
+      }
+
+      if (existingSeasonIndex === -1) {
+        activeBySubgroup[subgroupName].push({
+          seasonIndex: seasonIdx,
+          episodeIndex,
+          data: data
+        });
+        return;
+      }
+
+      const existing = activeBySubgroup[subgroupName][existingSeasonIndex];
+      const existingTs = existing && existing.data ? (existing.data.timestamp || 0) : 0;
+      const currentTs = data.timestamp || 0;
+      if (currentTs >= existingTs) {
+        activeBySubgroup[subgroupName][existingSeasonIndex] = {
+          seasonIndex: seasonIdx,
+          episodeIndex,
+          data: data
+        };
       }
     }
   });
   
+  Object.keys(activeBySubgroup).forEach(subgroupName => {
+    activeBySubgroup[subgroupName].sort((a, b) => {
+      const aTs = a && a.data ? (a.data.timestamp || 0) : 0;
+      const bTs = b && b.data ? (b.data.timestamp || 0) : 0;
+      return bTs - aTs;
+    });
+  });
+
   return activeBySubgroup;
 }
 
 function updateEpisodeUI() {
-  const subgroupTitle = document.querySelector('.subgroup-title')?.textContent || '';
+  const contentContainer = document.getElementById('page-content');
+  const subgroupJson = contentContainer ? contentContainer.getAttribute('data-subgroup-json') : null;
+  const subgroupTitle = subgroupJson ? (JSON.parse(subgroupJson)?.name || '') : '';
   if (!subgroupTitle) return;
 
   const watched = getWatchedEpisodes();
@@ -1760,15 +2063,447 @@ function updateEpisodeUI() {
   });
 }
 
+function normalizePlayableUrl(url) {
+  const str = (url || '').toString().trim();
+  if (!str || str === '#') return '';
+  if (str.startsWith('//')) return `https:${str}`;
+  return str;
+}
+
+function getSubgroupNameFromElementOrPage(containerElement) {
+  const fromElement = containerElement ? containerElement.getAttribute('data-subgroup-name') : '';
+  if (fromElement) return fromElement;
+
+  const contentContainer = document.getElementById('page-content');
+  const subgroupJson = contentContainer ? contentContainer.getAttribute('data-subgroup-json') : null;
+  if (subgroupJson) {
+    const parsed = JSON.parse(subgroupJson);
+    if (parsed && parsed.name) return parsed.name;
+  }
+
+  const fromLegacy = document.querySelector('.subgroup-title')?.textContent || '';
+  return fromLegacy;
+}
+
+function getThumbFromEpisodeCard(containerElement) {
+  const img = containerElement ? containerElement.querySelector('.episode-thumb') : null;
+  if (img && img.dataset && img.dataset.src) return img.dataset.src;
+
+  const button = containerElement ? containerElement.querySelector('#episode-button') : null;
+  const bg = button ? button.style.backgroundImage : '';
+  const match = bg ? bg.match(/url\((['"]?)(.*?)\1\)/) : null;
+  return match ? match[2] : '';
+}
+
+function resolvePlayableUrls(subgroupName, seasonIndex, episodeIndex, urls) {
+  const cleaned = (urls || []).map(normalizePlayableUrl).filter(Boolean);
+  if (cleaned.length > 0) return cleaned;
+
+  const subgroup = findSubgroupByName(subgroupName);
+  if (subgroup && seasonIndex === -1) {
+    const movies = getMoviesEpisodes(subgroup);
+    const entry = movies[episodeIndex];
+    const candidate = entry ? (entry.url && entry.url.length > 0 ? entry.url : entry.legend) || [] : [];
+    const fromMovies = (candidate || []).map(normalizePlayableUrl).filter(Boolean);
+    if (fromMovies.length > 0) return fromMovies;
+  }
+
+  const episodeFromData =
+    subgroup &&
+    subgroup.season &&
+    subgroup.season[seasonIndex] &&
+    subgroup.season[seasonIndex].episodes &&
+    subgroup.season[seasonIndex].episodes[episodeIndex]
+      ? subgroup.season[seasonIndex].episodes[episodeIndex]
+      : null;
+
+  const fallback = episodeFromData ? (episodeFromData.url || episodeFromData.legend || []) : [];
+  return (fallback || []).map(normalizePlayableUrl).filter(Boolean);
+}
+
+//=======================================================================
+// VIDEO OVERLAY PLAY
+//=======================================================================
+let videoOverlayState = null;
+let videoOverlayKeyListenerAttached = false;
+
+function ensureVideoOverlay() {
+  if (document.getElementById('video-overlay')) return;
+
+  const overlay = document.createElement('div');
+  overlay.id = 'video-overlay';
+
+  const container = document.createElement('div');
+  container.id = 'video-container';
+
+  const header = document.createElement('div');
+  header.id = 'video-overlay-header';
+
+  const toggleButtonsContainer = document.createElement('div');
+  toggleButtonsContainer.id = 'toggle-buttons-container';
+
+  const rightControls = document.createElement('div');
+  rightControls.id = 'video-overlay-dropdown';
+
+  const seasonDropdown = document.createElement('select');
+  seasonDropdown.id = 'overlay-season-dropdown';
+
+  const episodeDropdown = document.createElement('select');
+  episodeDropdown.id = 'overlay-episodes-dropdown';
+
+  const closeButton = document.createElement('button');
+  closeButton.id = 'close-overlay-button';
+  closeButton.innerHTML = '<span>✕</span>';
+
+  rightControls.appendChild(seasonDropdown);
+  rightControls.appendChild(episodeDropdown);
+  rightControls.appendChild(closeButton);
+
+  header.appendChild(toggleButtonsContainer);
+  header.appendChild(rightControls);
+
+  const iframe = document.createElement('iframe');
+  iframe.id = 'video-iframe';
+  iframe.setAttribute('frameborder', '0');
+  iframe.setAttribute('allowfullscreen', '');
+  iframe.setAttribute('allow', 'autoplay; fullscreen; picture-in-picture');
+
+  const video = document.createElement('video');
+  video.id = 'video-video';
+  video.setAttribute('controls', '');
+  video.setAttribute('playsinline', '');
+
+  const prevButton = document.createElement('button');
+  prevButton.id = 'prev-video-button';
+  prevButton.textContent = '❮';
+
+  const nextButton = document.createElement('button');
+  nextButton.id = 'next-video-button';
+  nextButton.textContent = '❯';
+
+  container.appendChild(header);
+  container.appendChild(iframe);
+  container.appendChild(video);
+  container.appendChild(prevButton);
+  container.appendChild(nextButton);
+
+  overlay.appendChild(container);
+  document.body.appendChild(overlay);
+
+  closeButton.addEventListener('click', hideVideoOverlay);
+  overlay.addEventListener('click', (e) => {
+    if (e.target === overlay) hideVideoOverlay();
+  });
+
+  toggleButtonsContainer.addEventListener('click', (e) => {
+    const btn = e.target.closest('.toggle-button');
+    if (!btn || !videoOverlayState) return;
+    const url = btn.getAttribute('data-url') || '';
+    setOverlayUrl(url, { activateButton: true });
+  });
+
+  seasonDropdown.addEventListener('change', () => {
+    if (!videoOverlayState) return;
+    const seasonIndex = parseInt(seasonDropdown.value);
+    const episodeIndex = 0;
+    setOverlayEpisode(seasonIndex, episodeIndex, { recordHistory: true });
+  });
+
+  episodeDropdown.addEventListener('change', () => {
+    if (!videoOverlayState) return;
+    const seasonIndex = videoOverlayState.seasonIndex;
+    const episodeIndex = parseInt(episodeDropdown.value);
+    setOverlayEpisode(seasonIndex, episodeIndex, { recordHistory: true });
+  });
+
+  prevButton.addEventListener('click', (e) => {
+    e.preventDefault();
+    navigateOverlayEpisode(-1);
+  });
+
+  nextButton.addEventListener('click', (e) => {
+    e.preventDefault();
+    navigateOverlayEpisode(1);
+  });
+
+  if (!videoOverlayKeyListenerAttached) {
+    videoOverlayKeyListenerAttached = true;
+    document.addEventListener('keydown', (e) => {
+      if (!document.getElementById('video-overlay')?.classList.contains('show')) return;
+      if (e.key === 'Escape') hideVideoOverlay();
+      if (e.key === 'ArrowLeft') navigateOverlayEpisode(-1);
+      if (e.key === 'ArrowRight') navigateOverlayEpisode(1);
+    });
+  }
+}
+
+function hideVideoOverlay() {
+  const overlay = document.getElementById('video-overlay');
+  if (!overlay) return;
+
+  overlay.classList.remove('show');
+  document.body.classList.remove('video-overlay-open');
+
+  const iframe = document.getElementById('video-iframe');
+  if (iframe) iframe.src = '';
+
+  const video = document.getElementById('video-video');
+  if (video) {
+    video.pause();
+    video.removeAttribute('src');
+    video.load();
+  }
+}
+
+function isDirectVideoUrl(url) {
+  const str = (url || '').toString().toLowerCase();
+  return str.includes('.mp4') || str.includes('.m3u8') || str.includes('.webm') || str.includes('.ogg');
+}
+
+function setOverlayUrl(url, { activateButton }) {
+  const clean = normalizePlayableUrl(url);
+  if (!clean) return;
+
+  const iframe = document.getElementById('video-iframe');
+  const video = document.getElementById('video-video');
+  if (!iframe || !video) return;
+
+  if (isDirectVideoUrl(clean)) {
+    iframe.style.display = 'none';
+    iframe.src = '';
+    video.style.display = 'block';
+    video.src = clean;
+    video.currentTime = 0;
+    video.play().catch(() => {});
+  } else {
+    video.pause();
+    video.style.display = 'none';
+    video.removeAttribute('src');
+    video.load();
+    iframe.style.display = 'block';
+    iframe.src = clean;
+  }
+
+  if (activateButton) {
+    document.querySelectorAll('#toggle-buttons-container .toggle-button').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('#toggle-buttons-container .toggle-button').forEach(b => {
+      if ((b.getAttribute('data-url') || '') === clean) b.classList.add('active');
+    });
+  }
+}
+
+function getOverlaySeasonEntries(subgroup) {
+  const seasons = Array.isArray(subgroup?.season) ? subgroup.season : [];
+  const entries = seasons.map((s, idx) => ({
+    key: idx,
+    label: s?.name || `Temporada ${String(idx + 1).padStart(2, '0')}`,
+    isMovies: false,
+    season: {
+      ...s,
+      episodes: Array.isArray(s?.episodes) ? s.episodes : []
+    }
+  }));
+
+  const moviesEpisodes = getMoviesEpisodes(subgroup);
+  if (moviesEpisodes.length > 0) {
+    entries.push({
+      key: -1,
+      label: 'Filmes disponíveis',
+      isMovies: true,
+      season: {
+        name: 'Filmes disponíveis',
+        thumb_season: getMoviesThumb(subgroup),
+        have_season: false,
+        episodes: moviesEpisodes
+      }
+    });
+  }
+
+  return entries;
+}
+
+function getOverlayEpisodeData(subgroupName, seasonIndex, episodeIndex) {
+  const subgroup = findSubgroupByName(subgroupName);
+  if (!subgroup) return null;
+
+  const entries = getOverlaySeasonEntries(subgroup);
+  if (entries.length === 0) return null;
+  const selectedEntry = entries.find(e => e.key === seasonIndex) || entries[0];
+  const season = selectedEntry.season;
+  const episode = season.episodes && season.episodes[episodeIndex] ? season.episodes[episodeIndex] : null;
+  if (!episode) return null;
+
+  const urls = resolvePlayableUrls(subgroupName, selectedEntry.key, episodeIndex, episode.url || []);
+  const thumb = episode.thumb || season.thumb_season || '';
+  const title = episode.title || '';
+
+  return { subgroup, season, episode, urls, thumb, title, seasonKey: selectedEntry.key, isMovies: selectedEntry.isMovies };
+}
+
+function renderVideoOverlay() {
+  if (!videoOverlayState) return;
+
+  const overlay = document.getElementById('video-overlay');
+  const toggleButtonsContainer = document.getElementById('toggle-buttons-container');
+  const seasonDropdown = document.getElementById('overlay-season-dropdown');
+  const episodeDropdown = document.getElementById('overlay-episodes-dropdown');
+  const prevButton = document.getElementById('prev-video-button');
+  const nextButton = document.getElementById('next-video-button');
+
+  if (!overlay || !toggleButtonsContainer || !seasonDropdown || !episodeDropdown || !prevButton || !nextButton) return;
+
+  const { subgroupName, seasonIndex, episodeIndex } = videoOverlayState;
+  const episodeData = getOverlayEpisodeData(subgroupName, seasonIndex, episodeIndex);
+  if (!episodeData) return;
+
+  const { subgroup, season, urls } = episodeData;
+  const seasonKey = typeof episodeData.seasonKey === 'number' ? episodeData.seasonKey : seasonIndex;
+
+  toggleButtonsContainer.innerHTML = '';
+  const showOptions = urls.length > 1;
+  toggleButtonsContainer.style.display = showOptions ? 'flex' : 'none';
+
+  if (showOptions) {
+    urls.forEach((u, idx) => {
+      const btn = document.createElement('button');
+      btn.className = `toggle-button${idx === 0 ? ' active' : ''}`;
+      btn.setAttribute('data-url', u);
+      btn.textContent = idx === 0 ? 'PRINCIPAL' : `OPÇÃO ${idx + 1}`;
+      toggleButtonsContainer.appendChild(btn);
+    });
+  }
+
+  seasonDropdown.innerHTML = '';
+  const entries = getOverlaySeasonEntries(subgroup);
+  const showSeasonDropdown = entries.length > 1;
+  seasonDropdown.style.display = showSeasonDropdown ? 'block' : 'none';
+  if (showSeasonDropdown) {
+    entries.forEach(e => {
+      const opt = document.createElement('option');
+      opt.value = String(e.key);
+      opt.textContent = e.label;
+      seasonDropdown.appendChild(opt);
+    });
+    seasonDropdown.value = String(seasonKey);
+  }
+
+  episodeDropdown.innerHTML = '';
+  const epCount = (season.episodes || []).length;
+  const showEpisodeDropdown = epCount > 1;
+  episodeDropdown.style.display = showEpisodeDropdown ? 'block' : 'none';
+  if (showEpisodeDropdown) {
+    const labelPrefix = seasonKey === -1 ? 'Filme' : 'Episódio';
+    for (let i = 0; i < epCount; i++) {
+      const opt = document.createElement('option');
+      opt.value = String(i);
+      opt.textContent = `${labelPrefix} ${String(i + 1).padStart(3, '0')}`;
+      episodeDropdown.appendChild(opt);
+    }
+    episodeDropdown.value = String(episodeIndex);
+  }
+
+  const prevPos = findAdjacentEpisode(subgroup, seasonKey, episodeIndex, -1);
+  const nextPos = findAdjacentEpisode(subgroup, seasonKey, episodeIndex, 1);
+  prevButton.style.display = prevPos ? 'block' : 'none';
+  nextButton.style.display = nextPos ? 'block' : 'none';
+
+  const firstUrl = urls.length > 0 ? urls[0] : '';
+  if (firstUrl) setOverlayUrl(firstUrl, { activateButton: true });
+}
+
+function findAdjacentEpisode(subgroup, seasonIndex, episodeIndex, direction) {
+  if (!subgroup) return null;
+  const entries = getOverlaySeasonEntries(subgroup);
+  if (entries.length === 0) return null;
+
+  const currentEntryIdx = entries.findIndex(e => e.key === seasonIndex);
+  const idx = currentEntryIdx >= 0 ? currentEntryIdx : 0;
+  const current = entries[idx];
+  const eps = current?.season?.episodes || [];
+
+  if (direction < 0) {
+    if (episodeIndex > 0) return { seasonIndex: current.key, episodeIndex: episodeIndex - 1 };
+    for (let i = idx - 1; i >= 0; i--) {
+      const eps2 = entries[i]?.season?.episodes || [];
+      if (eps2.length > 0) return { seasonIndex: entries[i].key, episodeIndex: eps2.length - 1 };
+    }
+    return null;
+  }
+
+  if (episodeIndex + 1 < eps.length) return { seasonIndex: current.key, episodeIndex: episodeIndex + 1 };
+  for (let i = idx + 1; i < entries.length; i++) {
+    const eps2 = entries[i]?.season?.episodes || [];
+    if (eps2.length > 0) return { seasonIndex: entries[i].key, episodeIndex: 0 };
+  }
+  return null;
+}
+
+function setOverlayEpisode(seasonIndex, episodeIndex, { recordHistory }) {
+  if (!videoOverlayState) return;
+
+  const subgroupName = videoOverlayState.subgroupName;
+  const episodeData = getOverlayEpisodeData(subgroupName, seasonIndex, episodeIndex);
+  if (!episodeData) return;
+
+  videoOverlayState.seasonIndex = typeof episodeData.seasonKey === 'number' ? episodeData.seasonKey : seasonIndex;
+  videoOverlayState.episodeIndex = episodeIndex;
+
+  if (recordHistory) {
+    const stableSeasonIndex = videoOverlayState.seasonIndex;
+    markEpisodeAsWatched(subgroupName, stableSeasonIndex, episodeIndex);
+    addHistoryLog(subgroupName, stableSeasonIndex, episodeIndex, episodeData.title, episodeData.thumb);
+
+    const currentPath = getCurrentPath();
+    if (currentPath === generateSlug('Início')) {
+      loadPageContent(currentPath);
+    } else {
+      updateSubgroupContinueWatching(subgroupName);
+    }
+  }
+
+  renderVideoOverlay();
+}
+
+function navigateOverlayEpisode(direction) {
+  if (!videoOverlayState) return;
+  const subgroup = findSubgroupByName(videoOverlayState.subgroupName);
+  if (!subgroup) return;
+
+  const next = findAdjacentEpisode(subgroup, videoOverlayState.seasonIndex, videoOverlayState.episodeIndex, direction);
+  if (!next) return;
+
+  setOverlayEpisode(next.seasonIndex, next.episodeIndex, { recordHistory: true });
+}
+
+function showVideoOverlayForEpisode(subgroupName, seasonIndex, episodeIndex, urls) {
+  ensureVideoOverlay();
+
+  videoOverlayState = { subgroupName, seasonIndex, episodeIndex, urls: urls || [] };
+
+  const overlay = document.getElementById('video-overlay');
+  if (!overlay) return;
+
+  overlay.classList.add('show');
+  document.body.classList.add('video-overlay-open');
+
+  setOverlayEpisode(seasonIndex, episodeIndex, { recordHistory: false });
+}
+
 function playEpisode(containerElement) {
   const urlsStr = containerElement.getAttribute('data-urls') || '[]';
   const urls = JSON.parse(urlsStr);
-  const firstUrl = urls.length > 0 ? urls[0] : '#';
   const seasonIndex = parseInt(containerElement.getAttribute('data-season-index'));
   const episodeIndex = parseInt(containerElement.getAttribute('data-episode-index'));
-  const subgroupTitle = document.querySelector('.subgroup-title').textContent;
-  const episodeTitle = containerElement.querySelector('.episode-title').textContent;
-  const episodeThumb = containerElement.querySelector('.episode-thumb') ? containerElement.querySelector('.episode-thumb').dataset.src : '';
+  const subgroupTitle = getSubgroupNameFromElementOrPage(containerElement);
+  const episodeTitle = containerElement.querySelector('.episode-title')?.textContent || '';
+  let episodeThumb = getThumbFromEpisodeCard(containerElement);
+  if (!episodeThumb) {
+    const subgroup = findSubgroupByName(subgroupTitle);
+    if (subgroup && seasonIndex === -1) {
+      const entry = getMoviesEpisodes(subgroup)[episodeIndex];
+      episodeThumb = entry && entry.thumb ? entry.thumb : '';
+    }
+  }
 
   markEpisodeAsWatched(subgroupTitle, seasonIndex, episodeIndex);
   addHistoryLog(subgroupTitle, seasonIndex, episodeIndex, episodeTitle, episodeThumb);
@@ -1792,9 +2527,8 @@ function playEpisode(containerElement) {
 
   updateSubgroupContinueWatching(subgroupTitle);
 
-  if (firstUrl && firstUrl !== '#') {
-    window.open(firstUrl, '_blank');
-  }
+  const playableUrls = resolvePlayableUrls(subgroupTitle, seasonIndex, episodeIndex, urls);
+  showVideoOverlayForEpisode(subgroupTitle, seasonIndex, episodeIndex, playableUrls);
 }
 
 const thumbnailCache = {};
@@ -2010,11 +2744,19 @@ function updateSubgroupContinueWatching(subgroupName) {
   let activeInThisSubgroup = [];
 
   Object.keys(watched).forEach(key => {
-    const [storedSubgroupName, seasonIdx, epIdx] = key.split('-');
-    if (storedSubgroupName === subgroupName && watched[key] && watched[key].active) {
-      activeInThisSubgroup.push({ seasonIdx: parseInt(seasonIdx), epIdx: parseInt(epIdx) });
+    if (!watched[key] || !watched[key].active) return;
+    const parsed = parseWatchedKey(key);
+    if (!parsed) return;
+    if (parsed.subgroupName === subgroupName) {
+      activeInThisSubgroup.push({
+        seasonIdx: parsed.seasonIndex,
+        epIdx: parsed.episodeIndex,
+        timestamp: watched[key].timestamp || 0
+      });
     }
   });
+
+  activeInThisSubgroup.sort((a, b) => (b.timestamp || 0) - (a.timestamp || 0));
 
   let continueSection = document.getElementById('continue-watching');
   const subgroupHeader = document.getElementById('subgroup-header');
@@ -2022,27 +2764,39 @@ function updateSubgroupContinueWatching(subgroupName) {
 
   let html = '';
   if (activeInThisSubgroup.length > 0) {
-    html += `
-      <section id="continue-watching">
-        <header class="group-title-header">
-          <h2>Continue Assistindo</h2>
-        </header>
-        <div class="continue-episodes-container">
-    `;
-
+    const cardsHtml = [];
     activeInThisSubgroup.forEach((seasonActive) => {
       const subgroup = findSubgroupByName(subgroupName);
-      if (!subgroup || !subgroup.season[seasonActive.seasonIdx]) return;
+      if (!subgroup) return;
 
-      const season = subgroup.season[seasonActive.seasonIdx];
-      const episode = season.episodes[seasonActive.epIdx];
-      const thumb = episode.thumb || season.thumb_season;
-      const urls = episode.url || [];
-      const seasonNum = seasonActive.seasonIdx + 1;
       const epNum = seasonActive.epIdx + 1;
       const paddedEp = epNum.toString().padStart(3, '0');
 
-      html += `
+      let episode = null;
+      let thumb = '';
+      let urls = [];
+      let infoText = '';
+
+      if (seasonActive.seasonIdx === -1) {
+        const movies = getMoviesEpisodes(subgroup);
+        episode = movies[seasonActive.epIdx];
+        if (!episode) return;
+        thumb = episode.thumb || getMoviesThumb(subgroup);
+        urls = resolvePlayableUrls(subgroupName, -1, seasonActive.epIdx, episode.url || []);
+        infoText = `FILME ${paddedEp}`;
+      } else {
+        const seasons = Array.isArray(subgroup.season) ? subgroup.season : [];
+        const season = seasons[seasonActive.seasonIdx];
+        if (!season || !Array.isArray(season.episodes)) return;
+        episode = season.episodes[seasonActive.epIdx];
+        if (!episode) return;
+        thumb = episode.thumb || season.thumb_season;
+        urls = resolvePlayableUrls(subgroupName, seasonActive.seasonIdx, seasonActive.epIdx, episode.url || []);
+        const seasonNum = seasonActive.seasonIdx + 1;
+        infoText = `T${seasonNum} - EP ${paddedEp}`;
+      }
+
+      cardsHtml.push(`
         <div class="continue-episode-container">
           <div id="continue-episode-button" 
               style="background-image: url('${thumb}');" 
@@ -2058,18 +2812,29 @@ function updateSubgroupContinueWatching(subgroupName) {
               <span class="trash-bar bar2"></span>
               <span class="trash-bar bar3"></span>
             </span>
-            <span class="badge-duration">${episode.duration}</span>
-            <p>T${seasonNum} - EP ${paddedEp}</p>
+            <span class="badge-duration">${episode.duration || ''}</span>
+            <p>${infoText}</p>
             <div class="remove-button" 
                 data-subgroup-name="${subgroupName}" 
                 data-season-index="${seasonActive.seasonIdx}" 
                 data-episode-index="${seasonActive.epIdx}">✕</div>
           </div>
         </div>
-      `;
+      `);
     });
 
-    html += `
+    if (cardsHtml.length === 0) {
+      if (continueSection) continueSection.remove();
+      return;
+    }
+
+    html = `
+      <section id="continue-watching">
+        <header class="group-title-header">
+          <h2>Continue Assistindo</h2>
+        </header>
+        <div class="continue-episodes-container">
+          ${cardsHtml.join('')}
         </div>
       </section>
     `;
@@ -2123,11 +2888,20 @@ function renderGlobalContinueWatching() {
   let html = '';
   let totalEpisodes = 0;
 
+  const flatActive = [];
   Object.keys(activeBySubgroup).forEach(subgroupName => {
-    totalEpisodes += activeBySubgroup[subgroupName].length;
+    const list = activeBySubgroup[subgroupName] || [];
+    totalEpisodes += list.length;
+    list.forEach(item => flatActive.push({ subgroupName, ...item }));
   });
 
   if (totalEpisodes === 0) return '';
+
+  flatActive.sort((a, b) => {
+    const aTs = a && a.data ? (a.data.timestamp || 0) : 0;
+    const bTs = b && b.data ? (b.data.timestamp || 0) : 0;
+    return bTs - aTs;
+  });
 
   html += `
     <section id="global-continue-watching">
@@ -2137,20 +2911,37 @@ function renderGlobalContinueWatching() {
       <div class="global-continue-container">
   `;
 
-  Object.keys(activeBySubgroup).forEach(subgroupName => {
+  flatActive.forEach(active => {
+    const subgroupName = active.subgroupName;
     const subgroupData = findSubgroupByName(subgroupName);
     if (!subgroupData) return;
 
-    const activeEpisodes = activeBySubgroup[subgroupName];
-    
-    activeEpisodes.forEach(active => {
-      const season = subgroupData.season[active.seasonIndex];
-      const episode = season.episodes[active.episodeIndex];
-      const thumb = episode.thumb || season.thumb_season;
-      const urls = episode.url || [];
-      const seasonNum = active.seasonIndex + 1;
-      const epNum = active.episodeIndex + 1;
+    const epNum = active.episodeIndex + 1;
       const paddedEp = epNum.toString().padStart(3, '0');
+
+      let episode = null;
+      let thumb = '';
+      let urls = [];
+      let infoText = '';
+
+      if (active.seasonIndex === -1) {
+        const movies = getMoviesEpisodes(subgroupData);
+        episode = movies[active.episodeIndex];
+        if (!episode) return;
+        thumb = episode.thumb || getMoviesThumb(subgroupData);
+        urls = resolvePlayableUrls(subgroupName, -1, active.episodeIndex, episode.url || []);
+        infoText = `FILME ${paddedEp}`;
+      } else {
+        const seasons = Array.isArray(subgroupData.season) ? subgroupData.season : [];
+        const season = seasons[active.seasonIndex];
+        if (!season || !Array.isArray(season.episodes)) return;
+        episode = season.episodes[active.episodeIndex];
+        if (!episode) return;
+        thumb = episode.thumb || season.thumb_season;
+        urls = resolvePlayableUrls(subgroupName, active.seasonIndex, active.episodeIndex, episode.url || []);
+        const seasonNum = active.seasonIndex + 1;
+        infoText = `T${seasonNum} - EP ${paddedEp}`;
+      }
 
       html += `
         <div class="continue-episode-card">
@@ -2168,9 +2959,9 @@ function renderGlobalContinueWatching() {
               <span class="trash-bar bar2"></span>
               <span class="trash-bar bar3"></span>
             </span>
-            <span class="badge-duration">${episode.duration}</span>
+            <span class="badge-duration">${episode.duration || ''}</span>
             <h1 class="series-name">${subgroupName}</h1>
-            <h3 class="episode-info">T${seasonNum} - EP ${paddedEp}</h3>
+            <h3 class="episode-info">${infoText}</h3>
             <div class="remove-button" 
                 data-subgroup-name="${subgroupName}" 
                 data-season-index="${active.seasonIndex}" 
@@ -2178,7 +2969,6 @@ function renderGlobalContinueWatching() {
           </div>
         </div>
       `;
-    });
   });
 
   html += `
@@ -2192,26 +2982,21 @@ function renderGlobalContinueWatching() {
 function playContinueEpisode(element) {
   const urlsStr = element.getAttribute('data-urls');
   const urls = urlsStr ? JSON.parse(urlsStr) : [];
-  const firstUrl = urls.length > 0 ? urls[0] : '#';
   const subgroupName = element.getAttribute('data-subgroup-name');
   const seasonIdx = parseInt(element.getAttribute('data-season-index'));
   const epIdx = parseInt(element.getAttribute('data-episode-index'));
 
   markEpisodeAsWatched(subgroupName, seasonIdx, epIdx);
 
-  const subgroupTitleElement = document.querySelector('.subgroup-title');
-  if (subgroupTitleElement && subgroupTitleElement.textContent.trim() === subgroupName) {
-    updateSubgroupContinueWatching(subgroupName);
+  const currentPath = getCurrentPath();
+  if (currentPath === generateSlug('Início')) {
+    loadPageContent(currentPath);
   } else {
-    const currentPath = getCurrentPath();
-    if (currentPath === generateSlug('Início')) {
-      loadPageContent(currentPath);
-    }
+    updateSubgroupContinueWatching(subgroupName);
   }
 
-  if (firstUrl && firstUrl !== '#') {
-    window.open(firstUrl, '_blank');
-  }
+  const playableUrls = resolvePlayableUrls(subgroupName, seasonIdx, epIdx, urls);
+  showVideoOverlayForEpisode(subgroupName, seasonIdx, epIdx, playableUrls);
 }
 
 function removeContinueWatching(subgroupName, seasonIdx, epIdx) {
@@ -2691,6 +3476,335 @@ function searchInput() {
   const searchInputEl = document.querySelector('.search-bar input');
   const searchButton = document.querySelector('.search-bar button');
   const searchMenuItemLi = document.getElementById('search-menu-item');
+  const searchBarEl = document.querySelector('.search-bar');
+
+  let suggestionsEl = null;
+  let hideSuggestionsTimer = null;
+  const expandedSuggestionKeys = new Set();
+  const manualCollapseKeys = new Set();
+  let lastSuggestionsQuery = '';
+
+  function escapeHtml(value) {
+    return String(value)
+      .replaceAll('&', '&amp;')
+      .replaceAll('<', '&lt;')
+      .replaceAll('>', '&gt;')
+      .replaceAll('"', '&quot;')
+      .replaceAll("'", '&#039;');
+  }
+
+  function ensureSuggestionsContainer() {
+    if (!searchBarEl) return null;
+    if (suggestionsEl && document.body.contains(suggestionsEl)) return suggestionsEl;
+
+    suggestionsEl = document.createElement('div');
+    suggestionsEl.className = 'search-suggestions';
+    suggestionsEl.style.display = 'none';
+    searchBarEl.appendChild(suggestionsEl);
+
+    suggestionsEl.addEventListener('mousedown', (e) => {
+      if (hideSuggestionsTimer) {
+        clearTimeout(hideSuggestionsTimer);
+        hideSuggestionsTimer = null;
+      }
+      if (
+        e.target.closest('.search-suggestion-toggle') ||
+        e.target.closest('.search-suggestion-child') ||
+        e.target.closest('.search-suggestion-item') ||
+        e.target.closest('.search-suggestion-footer')
+      ) {
+        e.preventDefault();
+      }
+    });
+
+    suggestionsEl.addEventListener('click', (e) => {
+      const toggle = e.target.closest('.search-suggestion-toggle[data-key]');
+      if (toggle) {
+        e.preventDefault();
+        e.stopPropagation();
+        const key = toggle.getAttribute('data-key') || '';
+        if (key) {
+          if (expandedSuggestionKeys.has(key)) {
+            expandedSuggestionKeys.delete(key);
+            manualCollapseKeys.add(key);
+          } else {
+            expandedSuggestionKeys.add(key);
+            manualCollapseKeys.delete(key);
+          }
+        }
+        if (searchInputEl) renderSuggestions(searchInputEl.value);
+        if (searchInputEl) searchInputEl.focus({ preventScroll: true });
+        return;
+      }
+
+      const child = e.target.closest('.search-suggestion-child[data-group-slug][data-subgroup-slug]');
+      if (child) {
+        e.preventDefault();
+        e.stopPropagation();
+        const groupSlug = child.getAttribute('data-group-slug');
+        const subgroupSlug = child.getAttribute('data-subgroup-slug');
+        window.location.hash = `#${groupSlug}/${subgroupSlug}`;
+        hideSuggestions();
+        return;
+      }
+
+      const item = e.target.closest('.search-suggestion-item[data-group-slug][data-subgroup-slug]');
+      const footer = e.target.closest('.search-suggestion-footer[data-search-query]');
+      if (footer) {
+        e.preventDefault();
+        e.stopPropagation();
+        const q = footer.getAttribute('data-search-query') || '';
+        if (q.trim()) {
+          performSearch(q);
+        }
+        hideSuggestions();
+        return;
+      }
+      if (!item) return;
+      e.preventDefault();
+      e.stopPropagation();
+      const groupSlug = item.getAttribute('data-group-slug');
+      const subgroupSlug = item.getAttribute('data-subgroup-slug');
+      window.location.hash = `#${groupSlug}/${subgroupSlug}`;
+      hideSuggestions();
+    });
+
+    return suggestionsEl;
+  }
+
+  function hideSuggestions() {
+    if (!suggestionsEl) return;
+    suggestionsEl.style.display = 'none';
+    suggestionsEl.innerHTML = '';
+  }
+
+  function scheduleHideSuggestions() {
+    if (hideSuggestionsTimer) clearTimeout(hideSuggestionsTimer);
+    hideSuggestionsTimer = setTimeout(() => hideSuggestions(), 120);
+  }
+
+  function getActiveIndexForSubgroup(subgroupName) {
+    const watched = getWatchedEpisodes();
+    let active = null;
+    Object.keys(watched).forEach(key => {
+      const data = watched[key];
+      if (!data || !data.active) return;
+      const [storedSubgroupName, seasonIdx, epIdx] = key.split('-');
+      if (storedSubgroupName === subgroupName) {
+        active = { seasonIndex: parseInt(seasonIdx), episodeIndex: parseInt(epIdx) };
+      }
+    });
+    return active;
+  }
+
+  function getThumbFromCardButton(card) {
+    if (!card || !card.thumb_buttons) return '';
+    const urls = card.thumb_buttons.url;
+    if (Array.isArray(urls) && urls.length > 0) return urls[0];
+    if (typeof urls === 'string') return urls;
+    return '';
+  }
+
+  function getThumbFromSubgroupCardButtons(subgroup, preferredCard) {
+    const preferredThumb = getThumbFromCardButton(preferredCard);
+    if (preferredThumb) return preferredThumb;
+
+    const cards = Array.isArray(subgroup.card_buttons) ? subgroup.card_buttons : [];
+    const enabled = cards.find(c => c && c.visible !== false && c.enabled !== false && getThumbFromCardButton(c));
+    if (enabled) return getThumbFromCardButton(enabled);
+
+    const visible = cards.find(c => c && c.visible !== false && getThumbFromCardButton(c));
+    if (visible) return getThumbFromCardButton(visible);
+
+    return '';
+  }
+
+  function getVisibleEnabledCards(subgroup) {
+    const cards = Array.isArray(subgroup.card_buttons) ? subgroup.card_buttons : [];
+    return cards.filter(card => card && card.visible !== false && card.enabled !== false && card.name);
+  }
+
+  function isExpandableAcumulativeSubgroup(subgroup) {
+    const cards = getVisibleEnabledCards(subgroup);
+    if (cards.length <= 1) return false;
+    return cards.every(card => card.acumulative === true);
+  }
+
+  function getMovieNamesSummary(subgroup) {
+    const cards = getVisibleEnabledCards(subgroup);
+    if (cards.length === 0) return '';
+    const names = cards.map(c => (c.title || c.name || '').toString().trim()).filter(Boolean);
+    if (names.length === 0) return '';
+    const shown = names.slice(0, 3);
+    const rest = names.length - shown.length;
+    const suffix = rest > 0 ? ` +${rest}` : '';
+    return `${shown.join(', ')}${suffix}`;
+  }
+
+  function buildSuggestionForSubgroup(groupName, subgroup, matchedCard) {
+    const groupSlug = generateSlug(groupName);
+    const subgroupSlug = generateSlug(subgroup.name);
+
+    const seasonsCount = Array.isArray(subgroup.season) ? subgroup.season.length : 0;
+    const episodesTotal = Array.isArray(subgroup.season)
+      ? subgroup.season.reduce((acc, s) => acc + ((s.episodes || []).length), 0)
+      : 0;
+
+    const moviesEpisodes = getMoviesEpisodes(subgroup);
+    const hasMovies = moviesEpisodes.length > 0;
+    const moviesCount = moviesEpisodes.length;
+
+    const active = getActiveIndexForSubgroup(subgroup.name);
+    const activeEpisodeIndex = active ? active.episodeIndex : 0;
+
+    let durationText = '';
+    if (!hasMovies && Array.isArray(subgroup.season) && subgroup.season[0] && subgroup.season[0].episodes) {
+      const currentEp = (subgroup.season[active?.seasonIndex || 0]?.episodes || [])[activeEpisodeIndex] || subgroup.season[0].episodes[0];
+      durationText = currentEp && currentEp.duration ? currentEp.duration : '';
+    }
+
+    const thumbFromCardButtons = getThumbFromSubgroupCardButtons(subgroup, matchedCard);
+    const thumb =
+      thumbFromCardButtons ||
+      (subgroup.carrousel && Array.isArray(subgroup.carrousel.thumb) && subgroup.carrousel.thumb[0]) ||
+      (Array.isArray(subgroup.season) && subgroup.season[0] && subgroup.season[0].thumb_season) ||
+      (hasMovies && getMoviesThumb(subgroup)) ||
+      '';
+
+    const line1 = subgroup.name;
+    const line2 = hasMovies ? `Saga: ${moviesCount} filmes` : `Temporadas: ${Math.max(1, seasonsCount)}`;
+    const line3 = hasMovies
+      ? `Filmes: ${getMovieNamesSummary(subgroup) || '-'}`
+      : `Episódios: ${episodesTotal}`;
+
+    return { groupSlug, subgroupSlug, thumb, line1, line2, line3 };
+  }
+
+  function renderChildCards(groupSlug, subgroupSlug, subgroup) {
+    const cards = getVisibleEnabledCards(subgroup);
+    if (cards.length === 0) return '';
+
+    const moviesEpisodes = getMoviesEpisodes(subgroup);
+    return cards
+      .map((card, index) => {
+        const thumb = getThumbFromCardButton(card);
+        const title = (card.title || '').toString().trim();
+        const duration = moviesEpisodes[index]?.duration || card.duration || '';
+
+        return `
+          <div class="search-suggestion-child" data-group-slug="${groupSlug}" data-subgroup-slug="${subgroupSlug}">
+            ${thumb ? `<img class="search-suggestion-child-thumb" src="${thumb}" alt="">` : `<span class="search-suggestion-child-thumb search-suggestion-thumb-fallback"></span>`}
+            <div class="search-suggestion-text">
+              <div class="search-suggestion-title">${escapeHtml(card.name)}</div>
+              ${title ? `<div class="search-suggestion-meta">${escapeHtml(title)}</div>` : ''}
+              ${duration ? `<div class="search-suggestion-meta">Duração: ${escapeHtml(duration)}</div>` : ''}
+            </div>
+          </div>
+        `;
+      })
+      .join('');
+  }
+
+  function renderSuggestions(query) {
+    const container = ensureSuggestionsContainer();
+    if (!container) return;
+
+    const q = (query || '').toLowerCase().trim();
+    if (!q) {
+      expandedSuggestionKeys.clear();
+      manualCollapseKeys.clear();
+      lastSuggestionsQuery = '';
+      hideSuggestions();
+      return;
+    }
+
+    const rawQuery = (query || '').trim();
+    if (rawQuery !== lastSuggestionsQuery) {
+      expandedSuggestionKeys.clear();
+      manualCollapseKeys.clear();
+      lastSuggestionsQuery = rawQuery;
+    }
+    const matches = [];
+    seriesData.forEach(groupItem => {
+      if (!groupItem.visible || !groupItem.group) return;
+      groupItem.group.forEach(subgroup => {
+        if (!subgroup || !subgroup.name) return;
+
+        const subgroupMatch = subgroup.name.toLowerCase().includes(q);
+        let matchedCard = null;
+        if (!subgroupMatch && Array.isArray(subgroup.card_buttons)) {
+          const lowered = q;
+          matchedCard = subgroup.card_buttons.find(card => {
+            if (!card || card.visible === false || card.enabled === false) return false;
+            const name = (card.name || '').toLowerCase();
+            const title = (card.title || '').toLowerCase();
+            return name.includes(lowered) || title.includes(lowered);
+          }) || null;
+        }
+
+        if (subgroupMatch || matchedCard) {
+          matches.push({ groupName: groupItem.group_name, subgroup, matchedCard });
+        }
+      });
+    });
+
+    const seen = new Set();
+    const unique = [];
+    matches.forEach(m => {
+      const key = `${m.groupName}::${m.subgroup.name}`;
+      if (seen.has(key)) return;
+      seen.add(key);
+      unique.push(m);
+    });
+
+    unique.sort((a, b) => {
+      const aName = (a.subgroup?.name || '').toString();
+      const bName = (b.subgroup?.name || '').toString();
+      const byName = aName.localeCompare(bName, 'pt-BR', { sensitivity: 'base' });
+      if (byName !== 0) return byName;
+      return (a.groupName || '').toString().localeCompare((b.groupName || '').toString(), 'pt-BR', { sensitivity: 'base' });
+    });
+
+    const top = unique.slice(0, searchBarSuggestions);
+    if (top.length === 1) {
+      const only = top[0];
+      const suggestion = buildSuggestionForSubgroup(only.groupName, only.subgroup, only.matchedCard);
+      const key = `${suggestion.groupSlug}::${suggestion.subgroupSlug}`;
+      if (isExpandableAcumulativeSubgroup(only.subgroup) && !manualCollapseKeys.has(key)) {
+        expandedSuggestionKeys.add(key);
+      }
+    }
+    container.innerHTML = top
+      .map(m => {
+        const suggestion = buildSuggestionForSubgroup(m.groupName, m.subgroup, m.matchedCard);
+        const key = `${suggestion.groupSlug}::${suggestion.subgroupSlug}`;
+        const expandable = isExpandableAcumulativeSubgroup(m.subgroup);
+        const expanded = expandable && expandedSuggestionKeys.has(key);
+        const toggleIcon = expanded ? 'fa-chevron-up' : 'fa-chevron-down';
+
+        return `
+          <div class="search-suggestion-item" data-key="${key}" data-expandable="${expandable ? '1' : '0'}" data-group-slug="${suggestion.groupSlug}" data-subgroup-slug="${suggestion.subgroupSlug}">
+            ${suggestion.thumb ? `<img class="search-suggestion-thumb" src="${suggestion.thumb}" alt="">` : `<span class="search-suggestion-thumb search-suggestion-thumb-fallback"></span>`}
+            <div class="search-suggestion-text">
+              <div class="search-suggestion-title">${escapeHtml(suggestion.line1)}</div>
+              <div class="search-suggestion-meta">${escapeHtml(suggestion.line2)}</div>
+              <div class="search-suggestion-meta">${escapeHtml(suggestion.line3)}</div>
+            </div>
+            ${expandable ? `<button type="button" class="search-suggestion-toggle" data-key="${key}" aria-label="Expandir"><i class="fas ${toggleIcon}"></i></button>` : ''}
+          </div>
+          ${expanded ? renderChildCards(suggestion.groupSlug, suggestion.subgroupSlug, m.subgroup) : ''}
+        `;
+      })
+      .join('');
+
+    container.innerHTML += `
+      <div class="search-suggestion-footer" data-search-query="${escapeHtml(rawQuery)}">
+        Ver resultados para "<span class="search-suggestion-footer-query">${escapeHtml(rawQuery)}</span>"
+      </div>
+    `;
+
+    container.style.display = 'block';
+  }
 
   function deactivateSidebar() {
     document.querySelectorAll('.sidebar nav ul li').forEach(li => {
@@ -2710,6 +3824,7 @@ function searchInput() {
     window.hideClearAllModal = hideClearAllModal;
     window.confirmClearAll = confirmClearAll;
 
+    hideSuggestions();
     if (!query || query.trim() === '') return;
 
     const lowerQuery = query.toLowerCase().trim();
@@ -2830,6 +3945,20 @@ function searchInput() {
         performSearch(query);
       }
     });
+
+    searchInputEl.addEventListener('input', function() {
+      renderSuggestions(this.value);
+    });
+
+    searchInputEl.addEventListener('focus', function() {
+      if (this.value && this.value.trim()) {
+        renderSuggestions(this.value);
+      }
+    });
+
+    searchInputEl.addEventListener('blur', function() {
+      scheduleHideSuggestions();
+    });
   }
 
   if (searchButton) {
@@ -2838,6 +3967,12 @@ function searchInput() {
       performSearch(query);
     });
   }
+
+  document.addEventListener('click', (e) => {
+    if (!suggestionsEl || suggestionsEl.style.display === 'none') return;
+    if (searchBarEl && searchBarEl.contains(e.target)) return;
+    hideSuggestions();
+  });
 
   function handleSearchFromURL() {
     const hash = window.location.hash;
@@ -3065,3 +4200,10 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     }, 100);
 });
+
+window.playEpisode = playEpisode;
+window.playContinueEpisode = playContinueEpisode;
+window.removeHistoryLog = removeHistoryLog;
+window.showClearAllModal = showClearAllModal;
+window.hideClearAllModal = hideClearAllModal;
+window.confirmClearAll = confirmClearAll;

@@ -28,39 +28,42 @@ export const biblicalData = [
             ],
 
             carrousel: {
-                enabled: true,
+                visible: true,
                 homepage: true,
-                title: "A TERRA PROMETIDA",
-                logo: { enabled: false, minimalist: false, url: "https://i.imgur.com/NkdpdxD.png" },
+                favorite: true,
+                logo: { title: "A TERRA PROMETIDA", enabled: false, minimalist: false, grayscale: false, url: "https://i.imgur.com/NkdpdxD.png" },
                 thumb: [
                     "https://pp-vod-img-aws.akamaized.net/0068571/playplus_thumb_1600.jpg",
                     "https://i.imgur.com/H7LkieU.png",
                 ],
-                text: "Destaque",
                 description: `
                     Após a morte de Moisés, Josué é o novo líder dos hebreus e terá que cumprir uma difícil missão ordenada por Deus: Comandar as 12 tribos de Israel na conquista de Canaã, a Terra Prometida. Continuação da saga Os Dez Mandamentos.
-                `
+                `,
+                info: { enabled: true, text: "", new: false, season: false, episodes: true, finalized: true }
             },
 
             description: {
-                enabled: true,
-                title: "A TERRA PROMETIDA",
+                visible: true,
+                logo: { title: "A TERRA PROMETIDA", enabled: false, minimalist: false, grayscale: false, url: "https://i.imgur.com/NkdpdxD.png" },
                 thumb: [
                     "https://pp-vod-img-aws.akamaized.net/0068571/playplus_thumb_1600.jpg",
                     "https://i.imgur.com/OPZeZFm.jpeg", //MESMA DE CIMA IMGUR
                 ],
+
                 effect: [
-                {
-                    hover: false,
-                    fade: 2,
-                    subtitle: "", duration: 60,
-                    opacity: 0.5,
-                    mixBlend: 'soft-light',
-                    links: [
-                    "https://i.imgur.com/xBEiKDA.mp4" //60sec
-                    ],
-                },
+                    {
+                        hover: false,
+                        fade: 2,
+                        subtitle: "", duration: 60,
+                        opacity: 0.5,
+                        mixBlend: 'soft-light',
+                        background: { description: [0.0, 0.0, 0.0, 0.0], overlay: [0.0, 0.0, 0.0, 1.4]},
+                        links: [
+                            "https://i.imgur.com/xBEiKDA.mp4" //60sec
+                        ],
+                    },
                 ],
+
                 sinopse:  `
                     Após a morte de Moisés, Josué é o novo líder dos hebreus 
                     e terá que cumprir uma difícil missão ordenada por Deus: 
@@ -285,23 +288,23 @@ export const biblicalData = [
             ],
 
             carrousel: {
-                enabled: true,
+                visible: true,
                 homepage: true,
-                title: "OS DEZ MANDAMENTOS",
-                logo: { enabled: false, minimalist: false, url: "https://i.imgur.com/jpGZXos.png" }, //https://i.imgur.com/nQfnOXD.png
+                favorite: true,
+                logo: { title: "OS DEZ MANDAMENTOS",enabled: false, minimalist: false, url: "https://i.imgur.com/jpGZXos.png" }, //https://i.imgur.com/nQfnOXD.png
                 thumb: [
-                "https://pp-vod-img-aws.akamaized.net/0090405/playplus_thumb_1600.jpg",
-                "https://i.imgur.com/v0uF3s6.png",
+                    "https://pp-vod-img-aws.akamaized.net/0090405/playplus_thumb_1600.jpg",
+                    "https://i.imgur.com/v0uF3s6.png",
                 ],
-                text: "",
                 description: `
                     Grande sucesso da televisão brasileira, este épico bíblico narra a saga de Moisés, o hebreu que escapou da morte ainda bebê, virou príncipe do Egito e acabou se transformando no líder escolhido por Deus para libertar seu povo da escravidão.
-                `
+                `,
+                info: { enabled: true, text: "", new: false, season: true, episodes: true, finalized: true }
             },
 
             description: {
-                enabled: true,
-                title: "OS DEZ MANDAMENTOS",
+                visible: true,
+                logo: { title: "OS DEZ MANDAMENTOS", enabled: true, minimalist: false, grayscale: false, url: "https://i.imgur.com/cTgUkQ2.png" },
                 thumb: [
                   "https://pp-vod-img-aws.akamaized.net/0090405/playplus_thumb_1600.jpg",
                   "https://i.imgur.com/9yZZlBr.jpeg", //MESMA DE CIMA IMGUR
@@ -311,16 +314,17 @@ export const biblicalData = [
                   "https://drive.google.com/file/d/1SCtkaPtgTUqH25KvTfNGrd8rKaFUQUS9/preview?autoplay=1",
                 ],
                 effect: [
-                {
-                    hover: false,
-                    fade: 2,
-                    subtitle: "", duration: 60,
-                    opacity: 0.5,
-                    mixBlend: 'screen',
-                    links: [
-                    "https://i.imgur.com/MXpg3bT.mp4" //60sec
-                    ],
-                },
+                    {
+                        hover: false,
+                        fade: 2,
+                        subtitle: "", duration: 60,
+                        opacity: 0.5,
+                        mixBlend: 'screen',
+                        background: { description: [0.0, 0.0, 0.0, 0.0], overlay: [0.0, 0.0, 0.0, 1.4]},
+                        links: [
+                        "https://i.imgur.com/MXpg3bT.mp4" //60sec
+                        ],
+                    },
                 ],
                 sinopse:  `
                     Grande sucesso da televisão brasileira, este épico bíblico 
@@ -616,6 +620,16 @@ export const biblicalData = [
                     ]
                 },
             ],
+
+            movies:{
+                name: "Filmes",
+                thumb_movies: "https://i.imgur.com/sWx8cad.png",
+                move_list: [
+                    { title: "Animais Fantasticos", subtitle: "E Onde Habitam"           , duration: "2:30:10", thumb: "https://i.imgur.com/wSPSsZz.jpeg", url: [ "https://filemoon.to/e/fohv33go6fjl/2Efu4ZQADExGVxxV"], legend: [""] },
+                    { title: "Animais Fantasticos", subtitle: "Os Crimes de Grindelwald" , duration: "2:30:10", thumb: "https://i.imgur.com/wSPSsZz.jpeg", url: [ "https://filemoon.to/e/fohv33go6fjl/2Efu4ZQADExGVxxV"], legend: [""] },
+                    { title: "Animais Fantasticos", subtitle: "Os Segredos de Dumbledore", duration: "2:30:10", thumb: "https://i.imgur.com/wSPSsZz.jpeg", url: [ "https://filemoon.to/e/fohv33go6fjl/2Efu4ZQADExGVxxV"], legend: [""] },
+                ]
+            },
           },
 
           //JEZABEL
@@ -643,38 +657,38 @@ export const biblicalData = [
             ],
 
             carrousel: {
-                enabled: true,
+                visible: true,
                 homepage: false,
-                title: "JEZABEL",
-                logo: {
-                enabled: false, minimalist: false, url: "" },
+                favorite: true,
+                logo: { title: "JEZABEL", enabled: false, minimalist: false, url: "" },
                 thumb: [
                     "https://i.imgur.com/3NP8B3D.png"
                 ],
-                text: "Destaque",
                 description: `
                     A trama contará a história da princesa fenícia Jezabel, uma princesa idólatra que se casa com o rei Acabe e usa sua beleza e maldade para tentar impor ao povo israelita aceitar a adoração ao seus deuses pagãos. 
-                `
+                `,
+                info: { enabled: true, text: "", new: false, season: false, episodes: true, finalized: true }
             },
 
             description: {
-                enabled: true,
-                title: "JEZABEL",
+                visible: true,
+                logo: { title: "JEZABEL", enabled: false, minimalist: false, url: "" },
                 thumb: [
                     "https://pp-vod-img-aws.akamaized.net/0069716/playplus_thumb_1600.jpg",
                     "https://i.imgur.com/crr06xk.jpeg", //MESMA DE CIMA IMGUR
                 ],
                 effect: [
-                {
-                    hover: false,
-                    fade: 2,
-                    subtitle: "", duration: 60,
-                    opacity: 1.0,
-                    mixBlend: 'screen',
-                    links: [
-                    "https://i.imgur.com/YMO7M06.mp4" //60sec
-                    ],
-                },
+                    {
+                        hover: false,
+                        fade: 2,
+                        subtitle: "", duration: 60,
+                        opacity: 1.0,
+                        mixBlend: 'screen',
+                        background: { description: [0.0, 0.0, 0.0, 0.0], overlay: [0.0, 0.0, 0.0, 1.4]},
+                        links: [
+                        "https://i.imgur.com/YMO7M06.mp4" //60sec
+                        ],
+                    },
                 ],
                 sinopse:  `
                     A trama contará a história da princesa fenícia Jezabel, 
@@ -800,37 +814,38 @@ export const biblicalData = [
             ],
 
             carrousel: {
-                enabled: true,
+                visible: true,
                 homepage: false,
-                title: "REI DAVI",
-                logo: { enabled: false, minimalist: false, url: "https://i.imgur.com/wp5Zlyg.png" },
+                favorite: true,
+                logo: { title: "REI DAVI", enabled: false, minimalist: false, url: "https://i.imgur.com/wp5Zlyg.png" },
                 thumb: [
                     "https://i.imgur.com/vNpBaWD.png"
                 ],
-                text: "Destaque",
                 description: `
                     Rei Davi é uma mini série bíblica brasileira que conta a história de Davi, o pastor de ovelhas quederrotou o gigante Golias e que foi escolhido por Deus para governar seu povo.
-                `
+                `,
+                info: { enabled: true, text: "", new: false, season: false, episodes: true, finalized: true }
             },
 
             description: {
-                enabled: true,
-                title: "REI DAVI",
+                visible: true,
+                logo: { title: "REI DAVI", enabled: false, minimalist: false, url: "https://i.imgur.com/wp5Zlyg.png" },
                 thumb: [
                     "https://pp-vod-img-aws.akamaized.net/0088301/playplus_thumb_1600.jpg",
                     "https://i.imgur.com/h1QdG2R.jpeg", //MESMA DE CIMA IMGUR
                 ],
                 effect: [
-                {
-                    hover: false,
-                    fade: 2,
-                    subtitle: "", duration: 15,
-                    opacity: 1.0,
-                    mixBlend: 'screen',
-                    links: [
-                    "https://i.imgur.com/Lorqmap.mp4" //15sec
-                    ],
-                },
+                    {
+                        hover: false,
+                        fade: 2,
+                        subtitle: "", duration: 15,
+                        opacity: 1.0,
+                        mixBlend: 'screen',
+                        background: { description: [0.0, 0.0, 0.0, 0.0], overlay: [0.0, 0.0, 0.0, 1.4]},
+                        links: [
+                        "https://i.imgur.com/Lorqmap.mp4" //15sec
+                        ],
+                    },
 
                 
                 ],
@@ -928,37 +943,38 @@ export const biblicalData = [
             ],
 
             carrousel: {
-                enabled: true,
+                visible: true,
                 homepage: false,
-                title: "JOSÉ DO EGITO",
-                logo: { enabled: false, minimalist: false, url: "https://i.imgur.com/grhZxPH.png" },
+                favorite: true,
+                logo: { title: "JOSÉ DO EGITO", enabled: false, minimalist: false, url: "https://i.imgur.com/grhZxPH.png" },
                 thumb: [
                     "https://i.imgur.com/V2ikT7R.png"
                 ],
-                text: "Destaque",
                 description: `
                     Após ser vendido como escravo pelos irmãos e levado para o Egito, José é injustiçado, caluniado, preso e humilhado. A vida de José é um exemplo de pureza e perdão.
-                `
+                `,
+                info: { enabled: true, text: "", new: false, season: false, episodes: true, finalized: true }
             },
 
             description: {
-                enabled: true,
-                title: "JOSÉ DO EGITO",
+                visible: true,
+                logo: { title: "JOSÉ DO EGITO", enabled: false, minimalist: false, url: "https://i.imgur.com/grhZxPH.png" },
                 thumb: [
                     "https://pp-vod-img-aws.akamaized.net/0068517/playplus_thumb_1600.jpg",
                     "https://i.imgur.com/6XcWRVQ.jpeg", //MESMA DE CIMA IMGUR
                 ],
                 effect: [
-                {
-                    hover: false,
-                    fade: 2,
-                    subtitle: "", duration: 10,
-                    opacity: 0.5,
-                    mixBlend: 'screen',
-                    links: [
-                    "https://i.imgur.com/yVKu5kh.mp4" //10sec
-                    ],
-                },
+                    {
+                        hover: false,
+                        fade: 2,
+                        subtitle: "", duration: 10,
+                        opacity: 0.5,
+                        mixBlend: 'screen',
+                        background: { description: [0.0, 0.0, 0.0, 0.0], overlay: [0.0, 0.0, 0.0, 1.4]},
+                        links: [
+                        "https://i.imgur.com/yVKu5kh.mp4" //10sec
+                        ],
+                    },
                 ],
                 sinopse:  `
                     Após ser vendido como escravo pelos irmãos e 
@@ -1052,37 +1068,38 @@ export const biblicalData = [
             ],
 
             carrousel: {
-                enabled: true,
-                homepage: false,
-                title: "JESUS",
-                logo: { enabled: false, minimalist: false, url: "https://i.imgur.com/XZygqfc.png" },
+                visible: true,
+                homepage: true,
+                favorite: true,
+                logo: { title: "JESUS", enabled: false, minimalist: false, url: "https://i.imgur.com/XZygqfc.png" },
                 thumb: [
                     "https://i.imgur.com/gnZ9oJ0.png"
                 ],
-                text: "Destaque",
                 description: `
                     Quando a história dos homens estava perto de cair em desgraça, a história do mundo muda para sempre após a chegada do Salvador. Jesus, a novela, conta pela primeira vez na íntegra a trajetória do homem que revolucionou a humanidade com sua palavra e suas ações e dividiu a história em dois: antes e depois de Cristo.
-                `
+                `,
+                info: { enabled: true, text: "", new: false, season: false, episodes: true, finalized: true }
             },
 
             description: {
-                enabled: true,
-                title: "JESUS",
+                visible: true,
+                logo: { title: "JESUS", enabled: false, minimalist: false, url: "https://i.imgur.com/XZygqfc.png" },
                 thumb: [
                     "https://pp-vod-img-aws.akamaized.net/0347485/playplus_thumb_1600.jpg",
                     "https://i.imgur.com/cgeN3Jy.jpeg", //MESMA DE CIMA IMGUR
                 ],
                 effect: [
-                {
-                    hover: false,
-                    fade: 2,
-                    subtitle: "", duration: 18,
-                    opacity: 1.0,
-                    mixBlend: 'soft-light',
-                    links: [
-                    "https://i.imgur.com/1MsWbz7.mp4" //18sec
-                    ],
-                },
+                    {
+                        hover: false,
+                        fade: 2,
+                        subtitle: "", duration: 18,
+                        opacity: 1.0,
+                        mixBlend: 'soft-light',
+                        background: { description: [0.0, 0.0, 0.0, 0.0], overlay: [0.0, 0.0, 0.0, 1.4]},
+                        links: [
+                        "https://i.imgur.com/1MsWbz7.mp4" //18sec
+                        ],
+                    },
                 ],
                 sinopse:  `
                     Quando a história dos homens estava perto de cair em desgraça, 
@@ -1323,38 +1340,39 @@ export const biblicalData = [
             ],
 
             carrousel: {
-                enabled: true,
+                visible: true,
                 homepage: false,
-                title: "GÊNESIS",
-                logo: { enabled: false, minimalist: false, url: "" },
+                favorite: true,
+                logo: { title: "GÊNESIS", enabled: false, minimalist: false, url: "" },
                 thumb: [
                     "https://i.imgur.com/qHQejKs.png"
                 ],
-                text: "Destaque",
                 description: `
                     Gênesis vai lhe ajudar a entender aquilo que você sempre quis, mas nunca teve coragem de questionar. Sim, ela é cheia de histórias fascinantes, com muita emoção, talentosos profissionais, ela conta a nossa história.
-                `
+                `,
+                info: { enabled: true, text: "", new: false, season: false, episodes: true, finalized: true }
             },
 
             description: {
-                enabled: true,
-                title: "GÊNESIS",
+                visible: true,
+                logo: { title: "GÊNESIS", enabled: false, minimalist: false, url: "" },
                 thumb: [
                     "https://pp-vod-img-aws.akamaized.net/0191984/playplus_thumb_1600.jpg",
                     // "https://i.imgur.com/lLC6g7q.jpeg", //MESMA DE CIMA IMGUR
                     "https://i.imgur.com/BADXefl.jpeg",
                 ],
                 effect: [
-                {
-                    hover: false,
-                    fade: 2,
-                    subtitle: "", duration: 60,
-                    opacity: 1.0,
-                    mixBlend: 'darken',
-                    links: [
-                    "https://i.imgur.com/V4TwcLL.mp4" //60sec
-                    ],
-                },
+                    {
+                        hover: false,
+                        fade: 2,
+                        subtitle: "", duration: 60,
+                        opacity: 1.0,
+                        mixBlend: 'darken',
+                        background: { description: [0.0, 0.0, 0.0, 0.0], overlay: [0.0, 0.0, 0.0, 1.4]},
+                        links: [
+                        "https://i.imgur.com/V4TwcLL.mp4" //60sec
+                        ],
+                    },
                 ],
                 sinopse:  `
                     A superprodução bíblica Gênesis vai lhe ajudar a entender aquilo 
@@ -1621,37 +1639,38 @@ export const biblicalData = [
             ],
 
             carrousel: {
-                enabled: true,
+                visible: true,
                 homepage: false,
-                title: "O RICO E LÁZARO",
-                logo: { enabled: false, minimalist: false, url: "https://i.imgur.com/5itbTP4.png" },
+                favorite: true,
+                logo: { title: "O RICO E LÁZARO", enabled: false, minimalist: false, url: "https://i.imgur.com/5itbTP4.png" },
                 thumb: [
                     "https://i.imgur.com/sz0LCJC.png"
                 ],
-                text: "Destaque",
                 description: `
                     Após o governo de vários reis que se afastaram de Deus, Jerusalém encontra-se mergulhada na idolatria. A grande amizade de Zac e Asher é abalada pelo amor que ambos sentem pela companheira de infância, Joana. Ao contrário deles, ela acredita nas profecias de Jeremias e empenha-se para que o povo hebreu se volte novamente para Deus.
-                `
+                `,
+                info: { enabled: true, text: "", new: false, season: false, episodes: true, finalized: true }
             },
 
             description: {
-                enabled: true,
-                title: "O RICO E LÁZARO",
+                visible: true,
+                logo: { title: "O RICO E LÁZARO", enabled: false, minimalist: false, url: "https://i.imgur.com/5itbTP4.png" },
                 thumb: [
                     "https://pp-vod-img-aws.akamaized.net/0068614/playplus_thumb_1600.jpg",
                     "https://i.imgur.com/X0fkwzu.jpeg", //MESMA DE CIMA IMGUR
                 ],
                 effect: [
-                {
-                    hover: false,
-                    fade: 2,
-                    subtitle: "", duration: 60,
-                    opacity: 0.5,
-                    mixBlend: 'screen',
-                    links: [
-                    "https://i.imgur.com/fVP2xP4.mp4" //60sec
-                    ],
-                },
+                    {
+                        hover: false,
+                        fade: 2,
+                        subtitle: "", duration: 60,
+                        opacity: 0.5,
+                        mixBlend: 'screen',
+                        background: { description: [0.0, 0.0, 0.0, 0.0], overlay: [0.0, 0.0, 0.0, 1.4]},
+                        links: [
+                        "https://i.imgur.com/fVP2xP4.mp4" //60sec
+                        ],
+                    },
                 ],
                 sinopse:  `
                     Após o governo de vários reis que se afastaram de Deus, Jerusalém 
@@ -1878,37 +1897,38 @@ export const biblicalData = [
             ],
 
             carrousel: {
-                enabled: true,
+                visible: true,
                 homepage: false,
-                title: "A RAINHA DA PÉRSIA",
-                logo: { enabled: false, minimalist: false, url: "https://i.imgur.com/RpLhiMU.png" },
+                favorite: true,
+                logo: { title: "A RAINHA DA PÉRSIA", enabled: false, minimalist: false, url: "https://i.imgur.com/RpLhiMU.png" },
                 thumb: [
                     "https://i.imgur.com/5x7Rmg9.png"
                 ],
-                text: "Destaque",
                 description: `
                     A Rainha da Pérsia é uma série que nos transporta para os tempos antigos da Bíblia, onde a vida de uma jovem judia, Hadassah, também conhecida como Ester, se entrelaça com o futuro de uma nação inteira. 
-                `
+                `,
+                info: { enabled: true, text: "", new: false, season: false, episodes: true, finalized: true }
             },
 
             description: {
-                enabled: true,
-                title: "A RAINHA DA PÉRSIA",
+                visible: true,
+                logo: { title: "A RAINHA DA PÉRSIA", enabled: false, minimalist: false, url: "https://i.imgur.com/RpLhiMU.png" },
                 thumb: [
                     "https://pp-vod-img-aws.akamaized.net/0433417/playplus_thumb_1600.jpg",
                     "https://i.imgur.com/k1Q9CXR.jpeg", //MESMA DE CIMA IMGUR
                 ],
                 effect: [
-                {
-                    hover: false,
-                    fade: 2,
-                    subtitle: "", duration: 60,
-                    opacity: 0.5,
-                    mixBlend: 'screen',
-                    links: [
-                    "https://i.imgur.com/OMPGSGt.mp4" //60sec
-                    ],
-                },
+                    {
+                        hover: false,
+                        fade: 2,
+                        subtitle: "", duration: 60,
+                        opacity: 0.5,
+                        mixBlend: 'screen',
+                        background: { description: [0.0, 0.0, 0.0, 0.0], overlay: [0.0, 0.0, 0.0, 1.4]},
+                        links: [
+                        "https://i.imgur.com/OMPGSGt.mp4" //60sec
+                        ],
+                    },
                 ],
                 sinopse:  `
                     A Rainha da Pérsia é uma série que nos transporta para 
@@ -1986,35 +2006,36 @@ export const biblicalData = [
             ],
 
             carrousel: {
-                enabled: false,
+                visible: true,
                 homepage: false,
-                title: "A HISTÓRIA DE ESTER",
-                logo: { enabled: false, minimalist: false, url: "" },
+                favorite: true,
+                logo: { title: "A HISTÓRIA DE ESTER", enabled: false, minimalist: false, url: "" },
                 thumb: [""],
-                text: "",
                 description: `
                     
-                `
+                `,
+                info: { enabled: true, text: "", new: false, season: false, episodes: true, finalized: true }
             },
 
             description: {
-                enabled: true,
-                title: "A HISTÓRIA DE ESTER",
+                visible: true,
+                logo: { title: "A HISTÓRIA DE ESTER", enabled: false, minimalist: false, url: "" },
                 thumb: [
                     "https://pp-vod-img-aws.akamaized.net/0068508/playplus_thumb_852.jpg", //1600 OFF
                     "https://i.imgur.com/HNMg6YB.jpeg", //MESMA DE CIMA IMGUR
                 ],
                 effect: [
-                {
-                    hover: false,
-                    fade: 2,
-                    subtitle: "", duration: 10,
-                    opacity: 1.0,
-                    mixBlend: 'screen',
-                    links: [
-                    "https://i.imgur.com/PfC5JRU.mp4" //10sec
-                    ],
-                },
+                    {
+                        hover: false,
+                        fade: 2,
+                        subtitle: "", duration: 10,
+                        opacity: 1.0,
+                        mixBlend: 'screen',
+                        background: { description: [0.0, 0.0, 0.0, 0.0], overlay: [0.0, 0.0, 0.0, 1.4]},
+                        links: [
+                        "https://i.imgur.com/PfC5JRU.mp4" //10sec
+                        ],
+                    },
                 ],
                 sinopse:  `
                     A minissérie A História de Ester se passa por volta 
@@ -2069,35 +2090,36 @@ export const biblicalData = [
             ],
 
             carrousel: {
-                enabled: false,
+                visible: true,
                 homepage: false,
-                title: "APOCALIPSE",
-                logo: { enabled: false,  minimalist: false, url: "https://i.imgur.com/A4tMqV5.png" }, //https://i.imgur.com/uXANclN.png  
+                favorite: true,
+                logo: { title: "APOCALIPSE", enabled: false,  minimalist: false, url: "https://i.imgur.com/A4tMqV5.png" }, //https://i.imgur.com/uXANclN.png  
                 thumb: [""],
-                text: "",
                 description: `
                     
-                `
+                `,
+                info: { enabled: true, text: "", new: false, season: false, episodes: true, finalized: true }
             },
 
             description: {
-                enabled: true,
-                title: "APOCALIPSE",
+                visible: true,
+                logo: { title: "APOCALIPSE", enabled: false, minimalist: false, url: "" },
                 thumb: [
                     "https://pp-vod-img-aws.akamaized.net/0070604/playplus_thumb_1600.jpg",
                     "https://i.imgur.com/NRPhGRI.jpeg", //MESMA DE CIMA IMGUR
                 ],
                 effect: [
-                {
-                    hover: false,
-                    fade: 2,
-                    subtitle: "", duration: 21,
-                    opacity: 1.0,
-                    mixBlend: 'screen',
-                    links: [
-                    "https://i.imgur.com/fcdnsXS.mp4" //21 sec
-                    ],
-                },
+                    {
+                        hover: false,
+                        fade: 2,
+                        subtitle: "", duration: 21,
+                        opacity: 1.0,
+                        mixBlend: 'screen',
+                        background: { description: [0.0, 0.0, 0.0, 0.0], overlay: [0.0, 0.0, 0.0, 1.4]},
+                        links: [
+                        "https://i.imgur.com/fcdnsXS.mp4" //21 sec
+                        ],
+                    },
                 ],
                 sinopse:  `
                     Baseada nas interpretações de um dos capítulos da bíblia, 
@@ -2320,35 +2342,36 @@ export const biblicalData = [
             ],
 
             carrousel: {
-                enabled: false,
+                visible: false,
                 homepage: false,
-                title: "REIS",
-                logo: { enabled: true, minimalist: false, url: "https://i.imgur.com/NicAbr0.png" },
+                favorite: true,
+                logo: { title: "REIS", enabled: true, minimalist: false, url: "https://i.imgur.com/NicAbr0.png" },
                 thumb: [""],
-                text: "",
                 description: `
                     
-                `
+                `,
+                info: { enabled: true, text: "", new: false, season: false, episodes: true, finalized: true }
             },
 
             description: {
-                enabled: true,
-                title: "REIS",
+                visible: true,
+                logo: { title: "REIS", enabled: false, minimalist: false, url: "" },
                 thumb: [
                     "https://i.imgur.com/yfMLDL9.jpeg",
                     "https://i.imgur.com/deMH9PD.jpeg",
                 ],
                 effect: [
-                {
-                    hover: false,
-                    fade: 2,
-                    subtitle: "", duration: 10,
-                    opacity: 1.0,
-                    mixBlend: 'screen',
-                    links: [
-                    "https://i.imgur.com/YMJ0kHc.mp4" //10sec
-                    ],
-                },
+                    {
+                        hover: false,
+                        fade: 2,
+                        subtitle: "", duration: 10,
+                        opacity: 1.0,
+                        mixBlend: 'screen',
+                        background: { description: [0.0, 0.0, 0.0, 0.0], overlay: [0.0, 0.0, 0.0, 1.4]},
+                        links: [
+                        "https://i.imgur.com/YMJ0kHc.mp4" //10sec
+                        ],
+                    },
                 ],
                 sinopse:  `
                     Nas terras de Canaã, um povo que caminhou décadas pelo deserto 
@@ -3064,35 +3087,36 @@ export const biblicalData = [
             ],
 
             carrousel: {
-                enabled: false,
+                visible: true,
                 homepage: false,
-                title: "SANSÃO E DALÍLA",
-                logo: { enabled: false,  minimalist: false, url: "" },
+                favorite: true,
+                logo: { title: "SANSÃO E DALÍLA", enabled: false,  minimalist: false, url: "" },
                 thumb: [""],
-                text: "",
                 description: `
                     
-                `
+                `,
+                info: { enabled: true, text: "", new: false, season: false, episodes: true, finalized: true }
             },
 
             description: {
-                enabled: true,
-                title: "SANSÃO E DALILA",
+                visible: true,
+                logo: { title: "SANSÃO E DALILA", enabled: false, minimalist: false, url: "" },
                 thumb: [
                     "https://pp-vod-img-aws.akamaized.net/0069029/playplus_thumb_1600.jpg",
                     "https://i.imgur.com/QZb9etq.jpeg", //MESMA DE CIMA IMGUR
                 ],
                 effect: [
-                {
-                    hover: false,
-                    fade: 2,
-                    subtitle: "", duration: 9,
-                    opacity: 1.0,
-                    mixBlend: 'soft-light',
-                    links: [
-                    "https://i.imgur.com/3EEuTdX.mp4" //9sec
-                    ],
-                },
+                    {
+                        hover: false,
+                        fade: 2,
+                        subtitle: "", duration: 9,
+                        opacity: 1.0,
+                        mixBlend: 'soft-light',
+                        background: { description: [0.0, 0.0, 0.0, 0.0], overlay: [0.0, 0.0, 0.0, 1.4]},
+                        links: [
+                        "https://i.imgur.com/3EEuTdX.mp4" //9sec
+                        ],
+                    },
                 ],
                 sinopse:  `
                     A obra Sansão e Dalila retrata uma época em que hebreus fortemente
@@ -3161,35 +3185,36 @@ export const biblicalData = [
             ],
 
             carrousel: {
-                enabled: false,
+                visible: true,
                 homepage: false,
-                title: "LIA",
-                logo: { enabled: false, minimalist: false, url: "https://i.imgur.com/yxg0lmv.png" },
+                favorite: true,
+                logo: { title: "LIA", enabled: false, minimalist: false, url: "https://i.imgur.com/yxg0lmv.png" },
                 thumb: [""],
-                text: "",
                 description: `
                     
-                `
+                `,
+                info: { enabled: true, text: "", new: false, season: false, episodes: true, finalized: true }
             },
 
             description: {
-                enabled: true,
-                title: "LIA",
+                visible: true,
+                logo: { title: "LIA", enabled: false, minimalist: false, url: "https://i.imgur.com/yxg0lmv.png" },
                 thumb: [
                     "https://pp-vod-img-aws.akamaized.net/0072028/playplus_thumb_1600.jpg",
                     "https://i.imgur.com/laxl1rV.jpeg", //MESMA DE CIMA IMGUR
                 ],
                 effect: [
-                {
-                    hover: false,
-                    fade: 2,
-                    subtitle: "", duration: 60,
-                    opacity: 0.7,
-                    mixBlend: 'screen',
-                    links: [
-                    "https://i.imgur.com/XQE1ueX.mp4" //60sec
-                    ],
-                },
+                    {
+                        hover: false,
+                        fade: 2,
+                        subtitle: "", duration: 60,
+                        opacity: 0.7,
+                        mixBlend: 'screen',
+                        background: { description: [0.0, 0.0, 0.0, 0.0], overlay: [0.0, 0.0, 0.0, 1.4]},
+                        links: [
+                        "https://i.imgur.com/XQE1ueX.mp4" //60sec
+                        ],
+                    },
                 ],
                 sinopse:  `
                     A minissérie é baseada na história de Lia, uma das esposas de Jacó, 
@@ -3241,34 +3266,35 @@ export const biblicalData = [
             ],
 
             carrousel: {
-                enabled: false,
+                visible: true,
                 homepage: false,
-                title: "NEEMIAS",
-                logo: { enabled: false, minimalist: false, url: "" },
+                favorite: true,
+                logo: { title: "NEEMIAS", enabled: false, minimalist: false, url: "" },
                 thumb: [""],
-                text: "",
                 description: `
                     
-                `
+                `,
+                info: { enabled: true, text: "", new: false, season: false, episodes: true, finalized: true }
             },
 
             description: {
-                enabled: true,
-                title: "NEEMIAS",
+                visible: true,
+                logo: { title: "NEEMIAS", enabled: false, minimalist: false, url: "" },
                 thumb: [
                     "https://i.imgur.com/6xJGpt0.jpeg"
                 ],
                 effect: [
-                {
-                    hover: false,
-                    fade: 2,
-                    subtitle: "", duration: 30,
-                    opacity: 1.0,
-                    mixBlend: 'screen',
-                    links: [
-                    "https://i.imgur.com/t0OUFwi.mp4" //30sec
-                    ],
-                },
+                    {
+                        hover: false,
+                        fade: 2,
+                        subtitle: "", duration: 30,
+                        opacity: 1.0,
+                        mixBlend: 'screen',
+                        background: { description: [0.0, 0.0, 0.0, 0.0], overlay: [0.0, 0.0, 0.0, 1.4]},
+                        links: [
+                        "https://i.imgur.com/t0OUFwi.mp4" //30sec
+                        ],
+                    },
                 ],
                 sinopse:  `
                     A minissérie Neemias, que narra a história da reconstrução dos muros de
@@ -3318,36 +3344,37 @@ export const biblicalData = [
             ],
 
             carrousel: {
-                enabled: false,
+                visible: true,
                 homepage: false,
-                title: "A BÍBLIA",
-                logo: { enabled: false, minimalist: false, url: "https://i.imgur.com/UfEu54B.png" },
+                favorite: true,
+                logo: { title: "A BÍBLIA", enabled: false, minimalist: false, url: "https://i.imgur.com/UfEu54B.png" },
                 thumb: [""],
-                text: "",
                 description: `
                     
-                `
+                `,
+                info: { enabled: true, text: "", new: false, season: false, episodes: true, finalized: true }
             },
 
             description: {
-                enabled: true,
-                title: "A BÍBLIA",
+                visible: true,
+                logo: { title: "A BÍBLIA", enabled: false, minimalist: false, url: "" },
                 thumb: [
                     "https://pp-vod-img-aws.akamaized.net/0238038/playplus_thumb_1600.jpg",
                     "https://i.imgur.com/VnccUVt.png",
                     // "https://i.imgur.com/DeKWycs.jpeg", //MESMA DE CIMA IMGUR
                 ],
                 effect: [
-                {
-                    hover: false,
-                    fade: 2,
-                    subtitle: "", duration: 8,
-                    opacity: 1.0,
-                    mixBlend: 'soft-light',
-                    links: [
-                    "https://i.imgur.com/z42PB4N.mp4" //8sec
-                    ],
-                },
+                    {
+                        hover: false,
+                        fade: 2,
+                        subtitle: "", duration: 8,
+                        opacity: 1.0,
+                        mixBlend: 'soft-light',
+                        background: { description: [0.0, 0.0, 0.0, 0.0], overlay: [0.0, 0.0, 0.0, 1.4]},
+                        links: [
+                        "https://i.imgur.com/z42PB4N.mp4" //8sec
+                        ],
+                    },
                 ],
                 sinopse:  `
                     A Bíblia traz um compilado de episódios épicos, exibidos em ordem 
@@ -3482,25 +3509,38 @@ export const biblicalData = [
             ],
 
             carrousel: {
-                enabled: false,
+                visible: true,
                 homepage: false,
-                title: "MILAGRES DE JESUS",
-                logo: { enabled: false, minimalist: false, url: "" },
+                favorite: true,
+                logo: { title: "MILAGRES DE JESUS", enabled: false, minimalist: false, url: "" },
                 thumb: [
                 ],
-                text: "",
                 description: `
 
-                `
+                `,
+                info: { enabled: true, text: "", new: false, season: false, episodes: true, finalized: true }
             },
 
             description: {
-                enabled: true,
-                title: "MILAGRES DE JESUS",
+                visible: true,
+                logo: { title: "MILAGRES DE JESUS", enabled: false, minimalist: false, url: "" },
                 thumb: [
-                "https://pp-vod-img-aws.akamaized.net/0073274/playplus_thumb_1600.jpg",
-                "https://i.imgur.com/HgstPZp.jpeg",
-                // "https://i.imgur.com/FOLEvh3.jpeg", //MESMA DE CIMA IMGUR
+                    "https://pp-vod-img-aws.akamaized.net/0073274/playplus_thumb_1600.jpg",
+                    "https://i.imgur.com/HgstPZp.jpeg",
+                    // "https://i.imgur.com/FOLEvh3.jpeg", //MESMA DE CIMA IMGUR
+                ],
+                effect: [
+                    {
+                        hover: false,
+                        fade: 2,
+                        subtitle: "", duration: 16,
+                        opacity: 0.5,
+                        mixBlend: 'screen',
+                        background: { description: [0.0, 0.0, 0.0, 0.0], overlay: [0.0, 0.0, 0.0, 1.4]},
+                        links: [
+                            "https://i.imgur.com/pGx6LNd.mp4" //16sec
+                        ],
+                    },
                 ],
                 sinopse:  `
                     A história gira em torno de Jesus Cristo e de diversos personagens 
@@ -3587,40 +3627,41 @@ export const biblicalData = [
             ],
 
             carrousel: {
-                enabled: false,
+                visible: true,
                 homepage: false,
-                title: "PAULO O APÓSTOLO",
-                logo: { enabled: true, minimalist: false, url: "https://i.imgur.com/nZDzVqu.png" },
+                favorite: true,
+                logo: { title: "PAULO O APÓSTOLO", enabled: true, minimalist: false, url: "https://i.imgur.com/nZDzVqu.png" },
                 thumb: [
                     "https://i.imgur.com/6K7vZYB.png"
                     // "https://i.imgur.com/G7Q8SZ7.jpeg",
                     // "https://i.imgur.com/G7Q8SZ7.jpeg",
                     // "https://i.imgur.com/beK4a7A.jpeg"
                 ],
-                text: "",
                 description: `
                     
-                `
+                `,
+                info: { enabled: true, text: "", new: false, season: false, episodes: true, finalized: true }
             },
 
             description: {
-                enabled: true,
-                title: "PAULO O APÓSTOLO",
+                visible: true,
+                logo: { title: "PAULO O APÓSTOLO", enabled: false, minimalist: false, grayscale: false, url: "" },
                 thumb: [
                     "https://pp-vod-img-aws.akamaized.net/0503079/playplus_thumb_1600.jpg",
                     // "https://i.imgur.com/BDXUWVd.jpeg", //MESMA DE CIMA IMGUR
                 ],
                 effect: [
-                {
-                    hover: false,
-                    fade: 2,
-                    subtitle: "", duration: 16,
-                    opacity: 0.5,
-                    mixBlend: 'screen',
-                    links: [
-                    "https://i.imgur.com/pGx6LNd.mp4" //16sec
-                    ],
-                },
+                    {
+                        hover: false,
+                        fade: 2,
+                        subtitle: "", duration: 16,
+                        opacity: 0.5,
+                        mixBlend: 'screen',
+                        background: { description: [0.0, 0.0, 0.0, 0.0], overlay: [0.0, 0.0, 0.0, 1.4]},
+                        links: [
+                            "https://i.imgur.com/pGx6LNd.mp4" //16sec
+                        ],
+                    },
                 ],
                 sinopse:  `
                     Paulo, O Apóstolo narra a fascinante e profunda jornada 
@@ -3715,23 +3756,36 @@ export const biblicalData = [
             ],
 
             carrousel: {
-                enabled: false,
+                visible: true,
                 homepage: false,
-                title: "A VIDA DE JÓ",
-                logo: { enabled: false, minimalist: false, url: "https://i.imgur.com/JzaYvyH.png" }, //https://i.imgur.com/W0IavDC.png
+                favorite: true,
+                logo: { title: "A VIDA DE JÓ", enabled: false, minimalist: false, url: "https://i.imgur.com/JzaYvyH.png" }, //https://i.imgur.com/W0IavDC.png
                 thumb: [""],
-                text: "",
                 description: `
                     
-                `
+                `,
+                info: { enabled: true, text: "", new: false, season: false, episodes: true, finalized: true }
             },
 
             description: {
-                enabled: true,
-                title: "A VIDA DE JÓ",
+                visible: true,
+                logo: { title: "A VIDA DE JÓ", enabled: false, minimalist: false, grayscale: false, url: "" },
                 thumb: [
                     "https://pp-vod-img-aws.akamaized.net/0520084/playplus_thumb_1600.jpg",
                     // "https://imgur.com/a/fSiOZJD", //MESMA DE CIMA IMGUR
+                ],
+                effect: [
+                    {
+                        hover: false,
+                        fade: 2,
+                        subtitle: "", duration: 16,
+                        opacity: 0.5,
+                        mixBlend: 'plus-lighter',
+                        background: { description: [0.0, 0.0, 0.0, 0.0], overlay: [0.0, 0.0, 0.0, 1.4]},
+                        links: [
+                            "https://i.imgur.com/pGx6LNd.mp4" //16sec
+                        ],
+                    },
                 ],
                 sinopse:  `
                     A minissérie A Vida de Jó narra a história de um homem íntegro e profundamente temente a Deus, cuja existência é marcada por fé, provações e um intenso conflito espiritual que colocará em contraste os mais diversos dilemas humanos.
@@ -3791,24 +3845,37 @@ export const biblicalData = [
             ],
 
             carrousel: {
-                enabled: false,
+                visible: true,
                 homepage: false,
-                title: "O SENHOR E A SERVA",
-                logo: { enabled: false, minimalist: false, url: "" },
+                favorite: true,
+                logo: { title: "O SENHOR E A SERVA", enabled: false, minimalist: false, url: "" },
                 thumb: ["https://i.imgur.com/gkAjNGX.png"],
-                text: "",
                 description: `
                     
-                `
+                `,
+                info: { enabled: true, text: "", season: false, episodes: true, finalized: true }
             },
 
             description: {
-                enabled: true,
-                title: "O SENHOR E A SERVA",
+                visible: true,
+                logo: { title: "O SENHOR E A SERVA", enabled: false, minimalist: false, grayscale: false, url: "" },
                 thumb: [
                     "https://i.imgur.com/9Qq92fG.png",
                     "https://pp-vod-img-aws.akamaized.net/0527835/playplus_thumb_1600.jpg",
                     // "https://i.imgur.com/hTnOPQS.jpeg", //MESMA DE CIMA IMGUR
+                ],
+                effect: [
+                    {
+                        hover: false,
+                        fade: 2,
+                        subtitle: "", duration: 16,
+                        opacity: 0.5,
+                        mixBlend: 'color-dodge',
+                        background: { description: [0.0, 0.0, 0.0, 0.0], overlay: [0.0, 0.0, 0.0, 1.4]},
+                        links: [
+                            "https://i.imgur.com/pGx6LNd.mp4" //16sec
+                        ],
+                    },
                 ],
                 // O Senhor e a Serva é uma pequena continuação de Paulo, o Apóstolo, que terá seu início alguns anos depois do final da série. Nela conheceremos Elisa já adulta e, pouco a pouco, descobriremos o que se passou não só com ela, mas principalmente na imperial e mais decadente do que nunca, Roma.
                 sinopse:  `
