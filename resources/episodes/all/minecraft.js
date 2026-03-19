@@ -25,24 +25,26 @@ export const minecraftData = [
                 ],
 
                 carrousel: {
-                    enabled: false,
+                    visible: true,
                     homepage: false,
                     favorite: true,
-                    title: "EM BUSCA DA CASA AUTOMÁTICA",
-                    logo: { enabled: false, minimalist: false, url: "" },
+                    logo: { title: "EM BUSCA DA CASA AUTOMÁTICA", enabled: true, minimalist: false, url: "..\\..\\..\\thumb logos\\minecraft\\casa automatica.png" },
                     thumb: [
-                        "",
+                        "https://i.imgur.com/0IA12V0.png",
                     ],
                     text: "",
                     description: `
-
+                    O Mundo Automático é o mundo em que se passa a série Em Busca da Casa 
+                    Automática. Sua principal construção é a Casa Automática. Um lugar bem 
+                    conhecido do Mundo Automático é o Mar do Sul, onde ficam construções 
+                    importantes como a Farm de Guardian e a Mega Mob Trap.
                     `,
                     info: { enabled: false, text: "", season: true, episodes: true, finalized: false }
                 },
 
                 description: {
-                    enabled: true,
-                    title: "EM BUSCA DA CASA AUTOMÁTICA",
+                    visible: true,
+                    logo: { title: "EM BUSCA DA CASA AUTOMÁTICA", enabled: true, minimalist: false, url: "..\\..\\..\\thumb logos\\minecraft\\casa automatica.png" },
                     thumb: [
                         "https://i.imgur.com/0IA12V0.png",
                     ],
@@ -53,6 +55,7 @@ export const minecraftData = [
                             duration: 60,
                             opacity: 0.5,
                             mixBlend: 'soft-light',
+                            background: { description: [0.0, 0.0, 0.0, 0.0], overlay: [0.0, 0.0, 0.0, 1.4]},
                             links: [
                                 ""
                             ],
@@ -476,7 +479,7 @@ export const minecraftData = [
                 card_buttons: [
                     {
                         name: "Craft Games",
-                        enabled: false,
+                        enabled: true,
                         visible: true,
                         acumulative: false,
                         info: true,
@@ -492,24 +495,23 @@ export const minecraftData = [
                 ],
 
                 carrousel: {
-                    enabled: false,
+                    visible: true,
                     homepage: false,
                     favorite: true,
-                    title: "CRAFT GAMES",
-                    logo: { enabled: false, minimalist: false, url: "" },
+                    logo: { title: "CRAFT GAMES", enabled: true, minimalist: false, url: "..\\..\\..\\thumb logos\\minecraft\\casa automatica.png" },
                     thumb: [
-                        "",
+                        "https://i.imgur.com/xVGHwi9.jpeg",
                     ],
                     text: "",
                     description: `
-
+                     Série do DaviGamerHD no YouTube com o objetivo de criar mini-games no Minecraft modo sobrevivência
                     `,
                     info: { enabled: false, text: "", season: true, episodes: true, finalized: false }
                 },
 
                 description: {
-                    enabled: true,
-                    title: "CRAFT GAMES",
+                    visible: true,
+                    logo: { title: "CRAFT GAMES", enabled: true, minimalist: false, grayscale: false, url: "..\\..\\..\\thumb logos\\minecraft\\craft games.png" },
                     thumb: [
                         "https://i.imgur.com/xVGHwi9.jpeg",
                     ],
@@ -520,6 +522,7 @@ export const minecraftData = [
                             duration: 60,
                             opacity: 0.5,
                             mixBlend: 'soft-light',
+                            background: { description: [0.0, 0.0, 0.0, 0.0], overlay: [0.0, 0.0, 0.0, 1.4]},
                             links: [
                                 ""
                             ],

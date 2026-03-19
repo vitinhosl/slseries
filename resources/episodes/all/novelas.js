@@ -524,8 +524,8 @@ export const novelsData= [
                 },
 
                 description: {
-                    enabled: true,
-                    title: "REBELDE - RBD",
+                    visible: true,
+                    logo: { title: "REBELDE - MEXICANO", enabled: false, minimalist: false, url: "" },
                     thumb: [
                         "https://t.ctcdn.com.br/dqfZvWitHmOYJINf4NGgYUh9r3w=/768x432/smart/i821197.jpeg",
                         "https://i.imgur.com/9rHpaOs.png",
@@ -1054,8 +1054,8 @@ export const novelsData= [
                 },
 
                 description: {
-                    enabled: true,
-                    title: "REBELDE - BRASILEIRO",
+                    visible: true,
+                    logo: { title: "REBELDE - BRASILEIRO", enabled: false, minimalist: false, url: "" },
                     thumb: [
                         "https://pp-vod-img-aws.akamaized.net/0069081/playplus_thumb_1600.jpg",
                     ],
@@ -1130,8 +1130,8 @@ export const novelsData= [
                 },
 
                 description: {
-                    enabled: true,
-                    title: "A USURPADORA",
+                    visible: true,
+                    logo: { title: "A USURPADORA", enabled: false, minimalist: false, url: "" },
                     thumb: [
                         "https://i.imgur.com/smoGCiU.png",
                     ],

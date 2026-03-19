@@ -43,11 +43,25 @@ export const seriesData = [
             },
 
             description: {
-                title: "ALQUIMIA DAS ALMAS",
+                visible: true,
+                logo: { title: "ALQUIMIA DAS ALMAS", enabled: false, minimalist: false, grayscale: false, url: "..\\..\\..\\thumb logos\\series\\alquimia das almas.png" },
                 thumb: [
                   "https://i.imgur.com/uYpFik7.jpeg",
                   "https://image.tmdb.org/t/p/original/b7Dp3hCL9gpEMGHYPXNiErwXLov.jpg",
                   "https://i.imgur.com/ClxRkpD.jpeg",
+                ],
+                effect: [
+                    {
+                        hover: false,
+                        fade: 2,
+                        subtitle: "", duration: 60,
+                        opacity: 0.5,
+                        mixBlend: 'soft-light',
+                        background: { description: [0.0, 0.0, 0.0, 0.0], overlay: [0.0, 0.0, 0.0, 1.4]},
+                        links: [
+                            "https://i.imgur.com/xBEiKDA.mp4" //60sec
+                        ],
+                    },
                 ],
                 sinopse:  `
                 Em Alquimia das Almas, conhecemos o mundo ficcional e fantástico de Daeho e seus personagens. Jang Wook é o herdeiro da nobre família Jang e possui a fama de maior encrenqueiro do reino. Por todo o país existem boatos sobre a verdadeira origem de Wook, um segredo que o rapaz terá de encarar em breve. O destino o leva até Deok Yi, uma guerreira de elite que está com a alma presa dentro de um corpo fisicamente fraco. Eventualmente, Deok Yi começa a trabalhar para Jang Wook enquanto, em segredo, ensina o herdeiro a lutar. Por outro lado, conhecemos a família Seo e o jovem Seo Yool. De boa aparência, inteligência e com exímia habilidade em artes marciais, Seo Yook é considerado perfeito. Go Won é o príncipe coroado de Daeho, um garoto cheio de esperança de se tornar um rei generoso para o país. 
@@ -143,13 +157,27 @@ export const seriesData = [
           },
 
           description: {
-              title: "GAME OF THRONES",
-              thumb: [
-                "https://i.imgur.com/XhVA7qP.jpeg",
-              ],
-              sinopse:  `
-                Quem se senta no trono de ferro controla os sete reinos. Game of Thrones segue a luta das famílias nobres que cobiçam esse poder. Nove famílias nobres lutam pelo controle sobre as terras míticas de Westeros, enquanto um antigo inimigo retorna depois de estar adormecido por milhares de anos.
-              `
+            visible: true,
+            logo: { title: "GAME OF THRONES", enabled: true, minimalist: false, grayscale: false, url: "..\\..\\..\\thumb logos\\series\\game of thrones reto.png" },
+            thumb: [
+              "https://i.imgur.com/XhVA7qP.jpeg",
+            ],
+            effect: [
+                {
+                    hover: false,
+                    fade: 2,
+                    subtitle: "", duration: 60,
+                    opacity: 0.5,
+                    mixBlend: 'soft-light',
+                    background: { description: [0.0, 0.0, 0.0, 0.0], overlay: [0.0, 0.0, 0.0, 1.4]},
+                    links: [
+                        "https://i.imgur.com/xBEiKDA.mp4" //60sec
+                    ],
+                },
+            ],
+            sinopse:  `
+              Quem se senta no trono de ferro controla os sete reinos. Game of Thrones segue a luta das famílias nobres que cobiçam esse poder. Nove famílias nobres lutam pelo controle sobre as terras míticas de Westeros, enquanto um antigo inimigo retorna depois de estar adormecido por milhares de anos.
+            `
           },
 
           season: [
@@ -211,9 +239,23 @@ export const seriesData = [
             },
 
             description: {
-                title: "A RODA DO TEMPO",
+                visible: true,
+                logo: { title: "A RODA DO TEMPO", enabled: true, minimalist: false, grayscale: false, url: "..\\..\\..\\thumb logos\\series\\a roda do tempo.png" },
                 thumb: [
                   "https://i.imgur.com/cOeTU5J.jpeg",
+                ],
+                effect: [
+                    {
+                        hover: false,
+                        fade: 2,
+                        subtitle: "", duration: 60,
+                        opacity: 0.5,
+                        mixBlend: 'soft-light',
+                        background: { description: [0.0, 0.0, 0.0, 0.0], overlay: [0.0, 0.0, 0.0, 1.4]},
+                        links: [
+                            "https://i.imgur.com/xBEiKDA.mp4" //60sec
+                        ],
+                    },
                 ],
                 video: [
                   "https://www.youtube-nocookie.com/embed/8PbhGt8XxSM?autoplay=1",
@@ -275,10 +317,24 @@ export const seriesData = [
           },
 
           description: {
-              title: "SOMBRA E OSSOS",
+              visible: true,
+              logo: { title: "SOMBRA E OSSOS", enabled: true, minimalist: false, grayscale: false, url: "..\\..\\..\\thumb logos\\series\\sombra e ossos.png" },
               thumb: [
                 "https://i.imgur.com/ViRwaK6.jpeg",
                 // "https://i.imgur.com/FpKcbQv.jpeg",
+              ],
+              effect: [
+                  {
+                      hover: false,
+                      fade: 2,
+                      subtitle: "", duration: 60,
+                      opacity: 0.5,
+                      mixBlend: 'soft-light',
+                      background: { description: [0.0, 0.0, 0.0, 0.0], overlay: [0.0, 0.0, 0.0, 1.4]},
+                      links: [
+                          "https://i.imgur.com/xBEiKDA.mp4" //60sec
+                      ],
+                  },
               ],
               video: [
               ],
@@ -340,9 +396,23 @@ export const seriesData = [
           },
 
           description: {
-              title: "SENHOR DOS ANÉIS: OS ANÉIS DE PODER",
+              visible: true,
+              logo: { title: "SENHOR DOS ANÉIS: OS ANÉIS DE PODER", enabled: true, minimalist: false, grayscale: false, url: "..\\..\\..\\thumb logos\\series\\o senhor dos aneis preateado.png" },
               thumb: [
                 "https://i.imgur.com/hkM1IZa.jpeg",
+              ],
+              effect: [
+                  {
+                      hover: false,
+                      fade: 2,
+                      subtitle: "", duration: 60,
+                      opacity: 0.5,
+                      mixBlend: 'soft-light',
+                      background: { description: [0.0, 0.0, 0.0, 0.0], overlay: [0.0, 0.0, 0.0, 1.4]},
+                      links: [
+                          "https://i.imgur.com/xBEiKDA.mp4" //60sec
+                      ],
+                  },
               ],
               video: [
               ],
@@ -426,11 +496,25 @@ export const seriesData = [
           },
 
           description: {
-              title: "GREY'S ANATOMY",
+              visible: true,
+              logo: { title: "GREY'S ANATOMY", enabled: true, minimalist: false, grayscale: false, url: "..\\..\\..\\thumb logos\\series\\greys anatomy.png" },
               thumb: [
                 "https://i.imgur.com/6LzUpm9.jpeg",
                 "https://i.imgur.com/FxA9zwL.jpeg",
                 "https://i.imgur.com/ggt3VaZ.jpeg",
+              ],
+              effect: [
+                  {
+                      hover: false,
+                      fade: 2,
+                      subtitle: "", duration: 60,
+                      opacity: 0.5,
+                      mixBlend: 'soft-light',
+                      background: { description: [0.0, 0.0, 0.0, 0.0], overlay: [0.0, 0.0, 0.0, 1.4]},
+                      links: [
+                          "https://i.imgur.com/xBEiKDA.mp4" //60sec
+                      ],
+                  },
               ],
               video: [
               ],
@@ -490,10 +574,24 @@ export const seriesData = [
           },
 
           description: {
-              title: "A CASA DO DRAGÃO",
+              visible: true,
+              logo: { title: "A CASA DO DRAGÃO", enabled: true, minimalist: false, grayscale: false, url: "..\\..\\..\\thumb logos\\series\\a casa do dragão reto.png" },
               thumb: [
                 "https://i.imgur.com/oLvUdri.png",
                 "https://i.imgur.com/r0bfoEv.png",
+              ],
+              effect: [
+                  {
+                      hover: false,
+                      fade: 2,
+                      subtitle: "", duration: 60,
+                      opacity: 0.5,
+                      mixBlend: 'soft-light',
+                      background: { description: [0.0, 0.0, 0.0, 0.0], overlay: [0.0, 0.0, 0.0, 1.4]},
+                      links: [
+                          "https://i.imgur.com/xBEiKDA.mp4" //60sec
+                      ],
+                  },
               ],
               video: [
               ],

@@ -8,7 +8,7 @@
 
     #subgroup-description,
     .carousel-slide {
-        background-position: top;
+        /* background-position: top; */
     }
 
     .subgroup-logo {
@@ -34,7 +34,7 @@
     }
 
     #continue-episode-button, #episode-button {
-        width: 228px;
+        width: 214px;
     };
 }
 

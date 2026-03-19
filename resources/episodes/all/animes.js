@@ -48,11 +48,10 @@ export const animesData = [
                 ],
 
                 carrousel: {
-                    enabled: false,
+                    enabled: true,
                     homepage: false,
                     favorite: true,
-                    title: "SOLO LEVELING",
-                    logo: { enabled: false, minimalist: false, url: "" },
+                    logo: { title: "SOLO LEVELING", enabled: false, minimalist: false, url: "" },
                     thumb: [
                         "",
                     ],
@@ -64,21 +63,25 @@ export const animesData = [
                 },
 
                 description: {
-                    enabled: false,
-                    title: "SOLO LEVELING",
+                    visible: true,
+                    logo: { title: "SOLO LEVELING", enabled: false, minimalist: false, grayscale: false, url: "" },
                     thumb: [
-                        "",
+                        "https://i.imgur.com/VTpsChj.jpeg"
+                        // "https://i.imgur.com/IpK5Igh.jpeg"
+                        // "https://i.imgur.com/QE2acKk.png"
+                        // "https://i.imgur.com/7xGbilo.jpeg",
                     ],
                     effect: [
                         {
-                        hover: true,
-                        fade: 2,
-                        duration: 60,
-                        opacity: 0.5,
-                        mixBlend: 'soft-light',
-                        links: [
-                            ""
-                        ],
+                            hover: true,
+                            fade: 2,
+                            duration: 60,
+                            opacity: 0.5,
+                            mixBlend: 'soft-light',
+                            background: { description: [0.0, 0.0, 0.0, 0.0], overlay: [0.0, 0.0, 0.0, 1.4]},
+                            links: [
+                                ""
+                            ],
                         },
                     ],
                     sinopse:  `
@@ -172,13 +175,27 @@ export const animesData = [
                 },
 
                 description: {
-                    title: "GACHIAKUTA",
+                    visible: true,
+                    logo: { title: "GACHIAKUTA", enabled: false, minimalist: false, grayscale: false, url: "" },
                     thumb: [
                     "https://i.imgur.com/zGt3n1a.jpeg",
                     // "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=1200,height=675/catalog/crunchyroll/21f44d6dc9e72efa86dc75f0860376c5.jpg",
                     ],
                     video: [
                     // "https://i.imgur.com/Tfae1ar.mp4",
+                    ],
+                    effect: [
+                        {
+                            hover: true,
+                            fade: 2,
+                            duration: 60,
+                            opacity: 0.5,
+                            mixBlend: 'soft-light',
+                            background: { description: [0.0, 0.0, 0.0, 0.0], overlay: [0.0, 0.0, 0.0, 1.4]},
+                            links: [
+                                ""
+                            ],
+                        },
                     ],
                     sinopse:  `
                         Em uma cidade flutuante onde os ricos descartam seu lixo (e pessoas), Rudo é acusado falsamente de homicídio e jogado no Abismo, um lugar infernal onde vivem monstros de lixo mutantes. Para sobreviver, ele precisa conquistar um novo poder e se unir aos errantes Zeladores. Rudo não quer apenas lutar com os monstros, mas também contra os corruptos que o jogaram no Inferno.
@@ -245,21 +262,22 @@ export const animesData = [
                 },
 
                 description: {
-                    enabled: true,
-                    title: "Kaiju N.º 8",
+                    visible: true,
+                    logo: { title: "KAIJU N.º 8", enabled: false, minimalist: false, grayscale: false, url: "" },
                     thumb: [
                         "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=cover,format=auto,quality=85,width=960/keyart/GG5H5XQ7D-backdrop_wide",
                     ],
                     effect: [
                         {
-                        hover: true,
-                        fade: 2,
-                        duration: 60,
-                        opacity: 0.5,
-                        mixBlend: 'soft-light',
-                        links: [
-                            ""
-                        ],
+                            hover: true,
+                            fade: 2,
+                            duration: 60,
+                            opacity: 0.5,
+                            mixBlend: 'soft-light',
+                            background: { description: [0.0, 0.0, 0.0, 0.0], overlay: [0.0, 0.0, 0.0, 1.4]},
+                            links: [
+                                ""
+                            ],
                         },
                     ],
                     sinopse:  `
@@ -348,21 +366,22 @@ export const animesData = [
                 },
 
                 description: {
-                    enabled: false,
-                    title: "HAIKYU",
+                    visible: true,
+                    logo: { title: "HAIKYU", enabled: false, minimalist: false, grayscale: false, url: "" },
                     thumb: [
                         "",
                     ],
                     effect: [
                         {
-                        hover: true,
-                        fade: 2,
-                        duration: 60,
-                        opacity: 0.5,
-                        mixBlend: 'soft-light',
-                        links: [
-                            ""
-                        ],
+                            hover: true,
+                            fade: 2,
+                            duration: 60,
+                            opacity: 0.5,
+                            mixBlend: 'soft-light',
+                            background: { description: [0.0, 0.0, 0.0, 0.0], overlay: [0.0, 0.0, 0.0, 1.4]},
+                            links: [
+                                ""
+                            ],
                         },
                     ],
                     sinopse:  `
@@ -419,21 +438,22 @@ export const animesData = [
                 },
 
                 description: {
-                    enabled: false,
-                    title: "SOLO LEVELING",
+                    visible: true,
+                    logo: { title: "JUJUTSU KAISEN", enabled: false, minimalist: false, grayscale: false, url: "" },
                     thumb: [
                         "",
                     ],
                     effect: [
                         {
-                        hover: true,
-                        fade: 2,
-                        duration: 60,
-                        opacity: 0.5,
-                        mixBlend: 'soft-light',
-                        links: [
-                            ""
-                        ],
+                            hover: true,
+                            fade: 2,
+                            duration: 60,
+                            opacity: 0.5,
+                            mixBlend: 'soft-light',
+                            background: { description: [0.0, 0.0, 0.0, 0.0], overlay: [0.0, 0.0, 0.0, 1.4]},
+                            links: [
+                                ""
+                            ],
                         },
                     ],
                     sinopse:  `
@@ -489,21 +509,22 @@ export const animesData = [
                 },
 
                 description: {
-                    enabled: false,
-                    title: "TOKYO REVENGERS",
+                    visible: true,
+                    logo: { title: "TOKYO REVENGERS", enabled: false, minimalist: false, grayscale: false, url: "" },
                     thumb: [
                         "",
                     ],
                     effect: [
                         {
-                        hover: true,
-                        fade: 2,
-                        duration: 60,
-                        opacity: 0.5,
-                        mixBlend: 'soft-light',
-                        links: [
-                            ""
-                        ],
+                            hover: true,
+                            fade: 2,
+                            duration: 60,
+                            opacity: 0.5,
+                            mixBlend: 'soft-light',
+                            background: { description: [0.0, 0.0, 0.0, 0.0], overlay: [0.0, 0.0, 0.0, 1.4]},
+                            links: [
+                                ""
+                            ],
                         },
                     ],
                     sinopse:  `
@@ -577,21 +598,22 @@ export const animesData = [
                 },
 
                 description: {
-                    enabled: false,
-                    title: "NARUTO",
+                    visible: true,
+                    logo: { title: "NARUTO", enabled: false, minimalist: false, grayscale: false, url: "" },
                     thumb: [
                         "",
                     ],
                     effect: [
                         {
-                        hover: true,
-                        fade: 2,
-                        duration: 60,
-                        opacity: 0.5,
-                        mixBlend: 'soft-light',
-                        links: [
-                            ""
-                        ],
+                            hover: true,
+                            fade: 2,
+                            duration: 60,
+                            opacity: 0.5,
+                            mixBlend: 'soft-light',
+                            background: { description: [0.0, 0.0, 0.0, 0.0], overlay: [0.0, 0.0, 0.0, 1.4]},
+                            links: [
+                                ""
+                            ],
                         },
                     ],
                     sinopse:  `

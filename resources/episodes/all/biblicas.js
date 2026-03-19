@@ -44,7 +44,7 @@ export const biblicalData = [
 
             description: {
                 visible: true,
-                logo: { title: "A TERRA PROMETIDA", enabled: false, minimalist: false, grayscale: false, url: "https://i.imgur.com/NkdpdxD.png" },
+                logo: { title: "A TERRA PROMETIDA", enabled: true, minimalist: false, grayscale: false, url: "..\\..\\..\\thumb logos\\biblical\\a terra prometida.png" },
                 thumb: [
                     "https://pp-vod-img-aws.akamaized.net/0068571/playplus_thumb_1600.jpg",
                     "https://i.imgur.com/OPZeZFm.jpeg", //MESMA DE CIMA IMGUR
@@ -291,10 +291,11 @@ export const biblicalData = [
                 visible: true,
                 homepage: true,
                 favorite: true,
-                logo: { title: "OS DEZ MANDAMENTOS",enabled: false, minimalist: false, url: "https://i.imgur.com/jpGZXos.png" }, //https://i.imgur.com/nQfnOXD.png
+                logo: { title: "OS DEZ MANDAMENTOS", enabled: true, size: 1.0, minimalist: false, grayscale: false, url: "..\\..\\..\\thumb logos\\biblical\\os dez mandamentos.png" },
                 thumb: [
-                    "https://pp-vod-img-aws.akamaized.net/0090405/playplus_thumb_1600.jpg",
-                    "https://i.imgur.com/v0uF3s6.png",
+                    "https://i.imgur.com/bTlxyOL.jpeg" //MESMO DE BAIXO SO QUE SEM LOGO
+                    // "https://pp-vod-img-aws.akamaized.net/0090405/playplus_thumb_1600.jpg",
+                    // "https://i.imgur.com/v0uF3s6.png",
                 ],
                 description: `
                     Grande sucesso da televisão brasileira, este épico bíblico narra a saga de Moisés, o hebreu que escapou da morte ainda bebê, virou príncipe do Egito e acabou se transformando no líder escolhido por Deus para libertar seu povo da escravidão.
@@ -304,10 +305,11 @@ export const biblicalData = [
 
             description: {
                 visible: true,
-                logo: { title: "OS DEZ MANDAMENTOS", enabled: true, minimalist: false, grayscale: false, url: "https://i.imgur.com/cTgUkQ2.png" },
+                logo: { title: "OS DEZ MANDAMENTOS", enabled: true, minimalist: false, grayscale: false, url: "..\\..\\..\\thumb logos\\biblical\\os dez mandamentos.png" },
                 thumb: [
-                  "https://pp-vod-img-aws.akamaized.net/0090405/playplus_thumb_1600.jpg",
-                  "https://i.imgur.com/9yZZlBr.jpeg", //MESMA DE CIMA IMGUR
+                    "https://i.imgur.com/bTlxyOL.jpeg" //MESMO DE BAIXO SO QUE SEM LOGO
+                    //"https://pp-vod-img-aws.akamaized.net/0090405/playplus_thumb_1600.jpg",
+                    //"https://i.imgur.com/9yZZlBr.jpeg", //MESMA DE CIMA IMGUR
                 ],
                 video: [
                   "https://i.imgur.com/Tfae1ar.mp4",

@@ -978,7 +978,7 @@ function loadPageContent(path) {
     if (navbar && !navbar.querySelector('.back-button')) {
       const backButton = document.createElement('button');
       backButton.className = 'back-button';
-      backButton.innerHTML = '<i class="fas fa-arrow-left"></i> Voltar';
+      backButton.innerHTML = '<i class="fas fa-arrow-left"></i>';
       backButton.onclick = function() { history.back(); };
 
       const searchBar = navbar.querySelector('.search-bar');
@@ -1198,23 +1198,6 @@ function loadPageContent(path) {
     const showDropdown = seasons.length > 1 || (seasons.length === 1 && moviesCount > 0);
 
     if (showDropdown) {
-      // const sinopseElement = contentContainer.querySelector('.subgroup-sinopse');
-      const sinopseElement = contentContainer.querySelector('.subgroup-info');
-      if (sinopseElement) {
-        const allLabel = moviesCount > 0 ? 'Ver tudo' : 'Ver todos os episódios';
-        const dropdownContainer = document.createElement('div');
-        dropdownContainer.className = 'season-dropdown-container';
-        dropdownContainer.innerHTML = `
-          <label for="season-select">Selecione uma opção:</label>
-          <select id="season-select" onchange="filterSeasonsBySelection(this.value)">
-            <option value="all">${allLabel}</option>
-            ${seasons.map((season, index) => `<option value="${index}">${season.name || `Temporada ${index + 1}`}</option>`).join('')}
-            ${moviesCount > 0 ? `<option value="-1">Filmes disponíveis</option>` : ''}
-          </select>
-        `;
-        sinopseElement.parentNode.insertBefore(dropdownContainer, sinopseElement.nextSibling);
-      }
-
       window.filterSeasonsBySelection = function(selectedValue) {
         const contentContainer = document.getElementById('page-content');
         const seasonSections = contentContainer.querySelectorAll('.season-section');
@@ -2712,6 +2695,23 @@ function renderSubgroupDescription(subgroup) {
     </button>
   `;
 
+  const seasons = Array.isArray(subgroup.season) ? subgroup.season : [];
+  const moviesCount = getMoviesEpisodes(subgroup).length;
+  const showDropdown = seasons.length > 1 || (seasons.length === 1 && moviesCount > 0);
+  const allLabel = moviesCount > 0 ? 'Ver tudo' : 'Ver todos os episódios';
+  const dropdownHtml = showDropdown
+    ? `
+      <div class="season-dropdown-container">
+        <label for="season-select">Selecione uma opção:</label>
+        <select id="season-select" onchange="filterSeasonsBySelection(this.value)">
+          <option value="all">${allLabel}</option>
+          ${seasons.map((season, index) => `<option value="${index}">${season.name || `Temporada ${index + 1}`}</option>`).join('')}
+          ${moviesCount > 0 ? `<option value="-1">Filmes disponíveis</option>` : ''}
+        </select>
+      </div>
+    `
+    : '';
+
   const episodeCountsHtml = '<div id="episode-counts" class="episode-counts"></div>';
 
   return `
@@ -2724,8 +2724,11 @@ function renderSubgroupDescription(subgroup) {
             ${logoHtml}
             ${episodeCountsHtml}
             ${sinopse ? `<p class="subgroup-sinopse">${sinopse}</p>` : ''}
-            <div class="subgroup-actions">
-              ${favoriteBtnHtml}
+            <div class="subgroup-controls">
+              ${dropdownHtml}
+              <div class="subgroup-actions">
+                ${favoriteBtnHtml}
+              </div>
             </div>
           </div>
         </div>
@@ -3078,10 +3081,19 @@ function getCarouselData(path) {
   return data;
 }
 
+let activeCarrouselCleanup = null;
+
 function renderCarrousel(path) {
+  if (typeof activeCarrouselCleanup === 'function') {
+    activeCarrouselCleanup();
+    activeCarrouselCleanup = null;
+  }
+
   let currentSlide = 0;
   let totalSlides = 0;
   let isTransitioning = false;
+  let transitionLockUntil = 0;
+  let isHovering = false;
 
   const slideDuration = speedCarrouselBar * 1000;
   const transitionDuration = 500;
@@ -3095,18 +3107,43 @@ function renderCarrousel(path) {
 
   if (!carousel) return;
 
+  const controller = new AbortController();
+  const { signal } = controller;
+
   let autoPlayTimer = null;
+  const cleanupTimeouts = new Set();
+  const scheduleTimeout = (fn, ms) => {
+    const id = setTimeout(() => {
+      cleanupTimeouts.delete(id);
+      fn();
+    }, ms);
+    cleanupTimeouts.add(id);
+    return id;
+  };
   let isDragging = false;
   let startX = 0;
   let movedBy = 0;
 
   const handleTransitionEnd = () => {
-    if (isTransitioning) {
+    if (isTransitioning && Date.now() >= transitionLockUntil) {
       isTransitioning = false;
     }
   };
 
-  slidesContainer.addEventListener('transitionend', handleTransitionEnd);
+  const lockTransition = (ms) => {
+    isTransitioning = true;
+    const until = Date.now() + ms;
+    if (until > transitionLockUntil) transitionLockUntil = until;
+    scheduleTimeout(() => {
+      if (Date.now() >= transitionLockUntil) isTransitioning = false;
+    }, ms + 20);
+  };
+
+  const canMove = () => totalSlides > 1 && !isDragging && !isTransitioning;
+
+  slidesContainer.addEventListener('transitionend', handleTransitionEnd, { signal });
+
+  isHovering = carousel.matches(':hover');
 
   function createSlides() {
     const data = getCarouselData(path);
@@ -3214,8 +3251,13 @@ function renderCarrousel(path) {
       carousel.style.display = 'block';
       slidesContainer.style.transform = `translateX(-${currentSlide * 100}%)`;
       if (totalSlides > 1) {
+        if (prevBtn) prevBtn.style.display = '';
+        if (nextBtn) nextBtn.style.display = '';
+        if (progress) progress.style.display = '';
+        const dotsContainer = document.getElementById('dots');
+        if (dotsContainer) dotsContainer.style.display = '';
         createDots();
-        startAutoPlay();
+        maybeStartAutoPlay();
       } else {
         if (prevBtn) prevBtn.style.display = 'none';
         if (nextBtn) nextBtn.style.display = 'none';
@@ -3260,69 +3302,67 @@ function renderCarrousel(path) {
 
   function updateDots() {
     const logicalIndex = getLogicalIndex();
-    document.querySelectorAll('.dot').forEach((dot, index) => {
-        dot.classList.toggle('active', index === logicalIndex);
+    const dotsContainer = document.getElementById('dots');
+    if (!dotsContainer) return;
+    dotsContainer.querySelectorAll('.dot').forEach((dot, index) => {
+      dot.classList.toggle('active', index === logicalIndex);
     });
   }
 
   function goToSlide(logicalIndex) {
-    if (totalSlides <= 1 || isTransitioning) return;
-    isTransitioning = true;
+    if (!canMove()) return;
+    lockTransition(transitionDuration);
     const targetPhysical = 1 + logicalIndex;
     slidesContainer.style.transition = 'transform 0.5s ease-in-out';
     slidesContainer.style.transform = `translateX(-${targetPhysical * 100}%)`;
     currentSlide = targetPhysical;
     updateDots();
-    startAutoPlay();
+    maybeStartAutoPlay();
   }
 
   function nextSlide() {
-    if (totalSlides <= 1 || isTransitioning) return;
-    isTransitioning = true;
+    if (!canMove()) return;
+    lockTransition(transitionDuration);
     slidesContainer.style.transition = 'transform 0.5s ease-in-out';
     currentSlide++;
     slidesContainer.style.transform = `translateX(-${currentSlide * 100}%)`;
 
     let logicalIndex = getLogicalIndex();
     if (currentSlide === totalSlides + 1) {
-        setTimeout(() => {
+        scheduleTimeout(() => {
             slidesContainer.style.transition = 'none';
             currentSlide = 1;
             slidesContainer.style.transform = `translateX(-100%)`;
-            setTimeout(() => slidesContainer.style.transition = 'transform 0.5s ease-in-out', 20);
+            scheduleTimeout(() => {
+              slidesContainer.style.transition = 'transform 0.5s ease-in-out';
+            }, 20);
         }, transitionDuration);
         logicalIndex = 0;
     }
     updateDots();
-    startAutoPlay();
-    pauseAutoPlay();
+    maybeStartAutoPlay();
   }
 
   function prevSlide() {
-    if (totalSlides <= 1 || isTransitioning) return;
-    isTransitioning = true;
+    if (!canMove()) return;
+    lockTransition(transitionDuration);
     slidesContainer.style.transition = 'transform 0.5s ease-in-out';
     currentSlide--;
     slidesContainer.style.transform = `translateX(-${currentSlide * 100}%)`;
 
     if (currentSlide === 0) {
-      setTimeout(() => {
+      scheduleTimeout(() => {
         slidesContainer.style.transition = 'none';
         currentSlide = totalSlides;
         slidesContainer.style.transform = `translateX(-${totalSlides * 100}%)`;
-        setTimeout(() => {
+        scheduleTimeout(() => {
           slidesContainer.style.transition = 'transform 0.5s ease-in-out';
-          isTransitioning = false;
         }, 50);
-      }, transitionDuration);
-    } else {
-      setTimeout(() => {
-        isTransitioning = false;
       }, transitionDuration);
     }
     
     updateDots();
-    pauseAutoPlay();
+    maybeStartAutoPlay();
   }
 
   function startAutoPlay() {
@@ -3342,10 +3382,19 @@ function renderCarrousel(path) {
     }, transitionTime);
   }
 
+  function maybeStartAutoPlay() {
+    if (isHovering) {
+      pauseAutoPlay();
+      return;
+    }
+    startAutoPlay();
+  }
+
   function pauseAutoPlay() {
     if (totalSlides <= 1) return;
     
     clearTimeout(autoPlayTimer);
+    autoPlayTimer = null;
     
     if (progress) {
       progress.style.animationPlayState = 'paused';
@@ -3354,6 +3403,7 @@ function renderCarrousel(path) {
 
   function resumeAutoPlay() {
     if (totalSlides <= 1) return;
+    if (isHovering) return;
     
     if (progress) {
       const computedStyle = getComputedStyle(progress);
@@ -3379,12 +3429,12 @@ function renderCarrousel(path) {
     }
   }
 
-  slidesContainer.addEventListener('mousedown', dragStart);
-  slidesContainer.addEventListener('touchstart', dragStart);
-  document.addEventListener('mousemove', dragMove);
-  document.addEventListener('touchmove', dragMove, { passive: false });
-  document.addEventListener('mouseup', dragEnd);
-  document.addEventListener('touchend', dragEnd);
+  slidesContainer.addEventListener('mousedown', dragStart, { signal });
+  slidesContainer.addEventListener('touchstart', dragStart, { signal });
+  document.addEventListener('mousemove', dragMove, { signal });
+  document.addEventListener('touchmove', dragMove, { signal, passive: false });
+  document.addEventListener('mouseup', dragEnd, { signal });
+  document.addEventListener('touchend', dragEnd, { signal });
 
   function dragStart(e) {
     if (totalSlides <= 1) return;
@@ -3393,7 +3443,7 @@ function renderCarrousel(path) {
     startX = getPositionX(e);
     slidesContainer.style.transition = 'none';
     e.preventDefault();
-    pauseAutoPlay()
+    pauseAutoPlay();
   }
 
   function dragMove(e) {
@@ -3418,10 +3468,10 @@ function renderCarrousel(path) {
       prevSlide();
     } else {
       slidesContainer.style.transform = `translateX(-${currentSlide * 100}%)`;
+      maybeStartAutoPlay();
     }
 
     movedBy = 0;
-    pauseAutoPlay();
   }
 
   function getPositionX(e) {
@@ -3431,26 +3481,36 @@ function renderCarrousel(path) {
   if (prevBtn) {
     prevBtn.addEventListener('click', (e) => {
       e.preventDefault();
-      if (!isTransitioning) {
-        prevSlide();
-      }
-    });
+      prevSlide();
+    }, { signal });
   }
 
   if (nextBtn) {
     nextBtn.addEventListener('click', (e) => {
       e.preventDefault();
-      if (!isTransitioning) {
-        nextSlide();
-      }
-    });
+      nextSlide();
+    }, { signal });
   }
 
-  carousel.addEventListener('mouseenter', pauseAutoPlay);
-  carousel.addEventListener('mouseleave', resumeAutoPlay);
+  carousel.addEventListener('mouseenter', () => {
+    isHovering = true;
+    pauseAutoPlay();
+  }, { signal });
+  carousel.addEventListener('mouseleave', () => {
+    isHovering = false;
+    resumeAutoPlay();
+  }, { signal });
   slidesContainer.innerHTML = '';
 
   createSlides();
+
+  activeCarrouselCleanup = () => {
+    clearTimeout(autoPlayTimer);
+    autoPlayTimer = null;
+    cleanupTimeouts.forEach(id => clearTimeout(id));
+    cleanupTimeouts.clear();
+    controller.abort();
+  };
 }
 
 //=======================================================================
@@ -4138,6 +4198,27 @@ document.addEventListener('DOMContentLoaded', () => {
 
   if (menuContainer) menuContainer.innerHTML = seriesHtml;
 
+  const runRoute = async (path) => {
+    activateByPath(path);
+    await loadPageContent(path);
+    renderCarrousel(path);
+    attachFavoriteListeners();
+    updateCarouselFavorites();
+
+    const contentContainer = document.getElementById('page-content');
+    const filteredItems = getFilteredItems(path);
+    const isSubgroupPage = filteredItems.length > 0 && filteredItems[0].type === 'subgroup';
+    if (isSubgroupPage) {
+      const subgroup = filteredItems[0].data;
+      setTimeout(() => {
+        updateSubgroupContinueWatching(subgroup.name);
+      }, 0);
+    }
+    if (!isSubgroupPage) {
+      attachSeriesNavigationListeners(contentContainer);
+    }
+  };
+
   const allMenuLinks = document.querySelectorAll('.sidebar nav ul li a');
     allMenuLinks.forEach(link => {
         link.addEventListener('click', async function (e) {
@@ -4147,41 +4228,21 @@ document.addEventListener('DOMContentLoaded', () => {
 
             const newHash = `#${path}`;
 
-            window.location.hash = newHash;
-            activateByPath(path);
-            await loadPageContent(path);
-            renderCarrousel(path);
-            attachFavoriteListeners();
-            updateCarouselFavorites();
+            if (window.location.hash !== newHash) {
+              window.location.hash = newHash;
+              return;
+            }
+            await runRoute(path);
         });
     });
 
-    window.addEventListener('hashchange', () => {
+    window.addEventListener('hashchange', async () => {
       const path = getCurrentPath();
-      activateByPath(path);
-      loadPageContent(path);
-      renderCarrousel(path);
-      attachFavoriteListeners();
-      updateCarouselFavorites();
-
-      const contentContainer = document.getElementById('page-content');
-      const filteredItems = getFilteredItems(path);
-      const isSubgroupPage = filteredItems.length > 0 && filteredItems[0].type === 'subgroup';
-      if (isSubgroupPage) {
-        const subgroup = filteredItems[0].data;
-        setTimeout(() => {
-          updateSubgroupContinueWatching(subgroup.name);
-        }, 0);
-      }
-      if (!isSubgroupPage) {
-        attachSeriesNavigationListeners(contentContainer);
-      }
+      await runRoute(path);
     });
 
     const currentPath = getCurrentPath();
-    activateByPath(currentPath);
-    loadPageContent(currentPath);
-    renderCarrousel(currentPath);
+    runRoute(currentPath);
     searchInput();
     sideBarToggle();
 
