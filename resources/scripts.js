@@ -1334,41 +1334,357 @@ function initializeHomePageFeatures() {
     });
   });
 
-  const groupCardsHeaders = document.querySelectorAll('.group-cards-header.home-layout');
-  groupCardsHeaders.forEach(header => {
-    const container = header.querySelector('.group-cards-container');
+  const initLoopingCardsScroller = (header) => {
+    const container = header.querySelector('.group-cards-header.home-layout');
+    // const container = header.querySelector('.group-cards-container');
     const prevBtn = header.querySelector('.nav-arrow.prev');
     const nextBtn = header.querySelector('.nav-arrow.next');
-    
+
     if (!container || !prevBtn || !nextBtn) return;
 
-    const cardWidth = 240;
-    const scrollAmount = cardWidth * 2;
+    if (header._loopingScrollerCleanup) {
+      header._loopingScrollerCleanup();
+      header._loopingScrollerCleanup = null;
+    }
 
-    const updateArrowVisibility = () => {
-      const canScrollLeft = container.scrollLeft > 0;
-      const canScrollRight = container.scrollLeft < (container.scrollWidth - container.clientWidth);
-      
-      prevBtn.classList.toggle('hidden', !canScrollLeft);
-      nextBtn.classList.toggle('hidden', !canScrollRight);
+    container.classList.add('loop-viewport');
+
+    let track = container.querySelector(':scope > .group-cards-track');
+    if (!track) {
+      track = document.createElement('div');
+      track.className = 'group-cards-track';
+      while (container.firstChild) {
+        track.appendChild(container.firstChild);
+      }
+      container.appendChild(track);
+    }
+
+    let isAnimating = false;
+    const transitionMs = 200;
+    let cachedShiftPx = 0;
+    let cachedCanScroll = false;
+    let pendingDir = 0;
+    let moveToken = 0;
+    let isPointerDown = false;
+    let isDragging = false;
+    let dragStartX = 0;
+    let dragCurrentX = 0;
+    let dragRawStartX = 0;
+    let dragPrevPrepends = 0;
+    const controller = new AbortController();
+    const { signal } = controller;
+
+    const setArrowsVisible = (visible) => {
+      prevBtn.classList.toggle('hidden', !visible);
+      nextBtn.classList.toggle('hidden', !visible);
     };
 
-    nextBtn.addEventListener('click', () => {
-      container.scrollBy({
-        left: scrollAmount,
-        behavior: 'smooth'
-      });
-    });
+    const measureStep = () => {
+      const items = Array.from(track.children).filter(el => el.nodeType === 1);
+      if (items.length === 0) return { stepCount: 0, shiftPx: 0, canScroll: false };
 
-    prevBtn.addEventListener('click', () => {
-      container.scrollBy({
-        left: -scrollAmount,
-        behavior: 'smooth'
-      });
-    });
+      let shiftPx = 0;
+      const firstEl = items[0];
+      const secondEl = items[1] || null;
+      if (secondEl) {
+        const delta = secondEl.offsetLeft - firstEl.offsetLeft;
+        shiftPx = delta > 0 ? delta : 0;
+      }
+      if (!shiftPx) {
+        const cs = getComputedStyle(firstEl);
+        const mr = parseFloat(cs.marginRight) || 0;
+        shiftPx = (firstEl.getBoundingClientRect().width || firstEl.offsetWidth || 0) + mr;
+      }
 
-    container.addEventListener('scroll', updateArrowVisibility);
-    setTimeout(updateArrowVisibility, 100);
+      const stepCount = 1;
+      const canScroll = track.scrollWidth > container.clientWidth + 1;
+      return { stepCount, shiftPx, canScroll };
+    };
+
+    const moveBySteps = (dir, steps) => {
+      if (isAnimating) return;
+      if (!cachedCanScroll || cachedShiftPx <= 0) return;
+      if (!steps || steps <= 0) return;
+
+      isAnimating = true;
+      const thisMove = ++moveToken;
+      const shift = cachedShiftPx * steps;
+      const duration = Math.min(450, Math.max(140, transitionMs + (steps - 1) * 20));
+
+      let done = false;
+      let fallbackId = null;
+
+      const finalize = () => {
+        if (done || thisMove !== moveToken) return;
+        done = true;
+        if (fallbackId) clearTimeout(fallbackId);
+
+        track.style.transition = 'none';
+        track.style.transform = 'translateX(0px)';
+
+        isAnimating = false;
+        update();
+
+        if (pendingDir !== 0) {
+          const queued = pendingDir;
+          pendingDir = 0;
+          requestAnimationFrame(() => {
+            moveBySteps(queued, 1);
+          });
+        }
+      };
+
+      const onEnd = (e) => {
+        if (e && e.target !== track) return;
+        if (e && e.propertyName && e.propertyName !== 'transform') return;
+        finalize();
+      };
+
+      if (dir > 0) {
+        track.style.transition = `transform ${duration}ms ease-out`;
+        track.style.transform = `translateX(-${shift}px)`;
+        track.addEventListener('transitionend', () => {
+          if (thisMove !== moveToken) return;
+          track.style.transition = 'none';
+          for (let i = 0; i < steps; i++) {
+            const first = track.firstElementChild;
+            if (first) track.appendChild(first);
+          }
+          track.style.transform = 'translateX(0px)';
+          finalize();
+        }, { once: true, signal });
+      } else {
+        track.style.transition = 'none';
+        for (let i = 0; i < steps; i++) {
+          const last = track.lastElementChild;
+          if (last) track.insertBefore(last, track.firstElementChild);
+        }
+        track.style.transform = `translateX(-${shift}px)`;
+        requestAnimationFrame(() => {
+          requestAnimationFrame(() => {
+            if (thisMove !== moveToken) return;
+            track.style.transition = `transform ${duration}ms ease-out`;
+            track.style.transform = 'translateX(0px)';
+          });
+        });
+        track.addEventListener('transitionend', onEnd, { once: true, signal });
+      }
+
+      fallbackId = setTimeout(() => {
+        finalize();
+      }, duration + 160);
+    };
+
+    const goNext = () => moveBySteps(1, 1);
+    const goPrev = () => moveBySteps(-1, 1);
+
+    const update = () => {
+      const { canScroll, shiftPx } = measureStep();
+      cachedCanScroll = canScroll;
+      cachedShiftPx = shiftPx;
+      setArrowsVisible(cachedCanScroll);
+      if (!cachedCanScroll) {
+        track.style.transition = 'none';
+        track.style.transform = 'translateX(0px)';
+        isAnimating = false;
+      }
+    };
+
+    prevBtn.addEventListener('click', e => {
+      e.preventDefault();
+      if (isAnimating) {
+        pendingDir = -1;
+        return;
+      }
+      goPrev();
+    }, { signal });
+
+    nextBtn.addEventListener('click', e => {
+      e.preventDefault();
+      if (isAnimating) {
+        pendingDir = 1;
+        return;
+      }
+      goNext();
+    }, { signal });
+
+    const getPointerX = (e) => (typeof e.clientX === 'number' ? e.clientX : 0);
+
+    const onPointerDown = (e) => {
+      if (e.button != null && e.button !== 0) return;
+      if (e.target && (e.target.closest('.nav-arrow') || e.target.closest('.favorite-button') || e.target.closest('.watch-button'))) {
+        return;
+      }
+      if (isAnimating) return;
+      update();
+      if (!cachedCanScroll || cachedShiftPx <= 0) return;
+
+      isPointerDown = true;
+      isDragging = false;
+      dragRawStartX = getPointerX(e);
+      dragStartX = dragRawStartX;
+      dragCurrentX = dragRawStartX;
+      dragPrevPrepends = 0;
+      try { container.setPointerCapture(e.pointerId); } catch {}
+      track.style.transition = 'none';
+    };
+
+    const onPointerMove = (e) => {
+      if (!isPointerDown) return;
+      const x = getPointerX(e);
+      dragCurrentX = x;
+      let dx = x - dragStartX;
+      if (!isDragging) {
+        if (Math.abs(x - dragRawStartX) < 6) return;
+        isDragging = true;
+      }
+      e.preventDefault();
+
+      let guard = 0;
+      while (dx > 0 && guard < 20) {
+        const last = track.lastElementChild;
+        if (!last) break;
+        track.insertBefore(last, track.firstElementChild);
+        dragPrevPrepends += 1;
+        dragStartX += cachedShiftPx;
+        dx = x - dragStartX;
+        guard += 1;
+      }
+
+      guard = 0;
+      while (dx < -cachedShiftPx && guard < 20) {
+        const first = track.firstElementChild;
+        if (!first) break;
+        track.appendChild(first);
+        dragStartX -= cachedShiftPx;
+        dx = x - dragStartX;
+        guard += 1;
+      }
+
+      track.style.transform = `translateX(${dx}px)`;
+    };
+
+    const onPointerUp = (e) => {
+      if (!isPointerDown) return;
+      isPointerDown = false;
+      try { container.releasePointerCapture(e.pointerId); } catch {}
+
+      const rawDx = dragCurrentX - dragRawStartX;
+      let dx = dragCurrentX - dragStartX;
+
+      let guard = 0;
+      while (dx > 0 && guard < 20) {
+        const last = track.lastElementChild;
+        if (!last) break;
+        track.insertBefore(last, track.firstElementChild);
+        dragPrevPrepends += 1;
+        dragStartX += cachedShiftPx;
+        dx = dragCurrentX - dragStartX;
+        guard += 1;
+      }
+
+      guard = 0;
+      while (dx < -cachedShiftPx && guard < 20) {
+        const first = track.firstElementChild;
+        if (!first) break;
+        track.appendChild(first);
+        dragStartX -= cachedShiftPx;
+        dx = dragCurrentX - dragStartX;
+        guard += 1;
+      }
+
+      if (!isDragging) {
+        track.style.transition = 'none';
+        track.style.transform = 'translateX(0px)';
+        return;
+      }
+
+      isDragging = false;
+      const threshold = cachedShiftPx * 0.25;
+      const onDone = () => {
+        update();
+      };
+
+      const snapTo = (targetX, durationMs, after) => {
+        track.style.transition = `transform ${durationMs}ms ease-out`;
+        track.style.transform = `translateX(${targetX}px)`;
+        let done = false;
+        const finalize = () => {
+          if (done) return;
+          done = true;
+          track.style.transition = 'none';
+          if (after) after();
+          onDone();
+        };
+        track.addEventListener('transitionend', (ev) => {
+          if (ev && ev.target !== track) return;
+          if (ev && ev.propertyName && ev.propertyName !== 'transform') return;
+          finalize();
+        }, { once: true, signal });
+        setTimeout(finalize, durationMs + 160);
+      };
+
+      if (rawDx > 0) {
+        const prevProgress = cachedShiftPx + dx;
+        const commitPrev = prevProgress >= threshold;
+        if (commitPrev) {
+          snapTo(0, transitionMs, () => {
+            track.style.transform = 'translateX(0px)';
+          });
+        } else {
+          snapTo(-cachedShiftPx, transitionMs, () => {
+            for (let i = 0; i < dragPrevPrepends; i++) {
+              const first = track.firstElementChild;
+              if (first) track.appendChild(first);
+            }
+            dragPrevPrepends = 0;
+            track.style.transform = 'translateX(0px)';
+          });
+        }
+      } else {
+        const nextProgress = -dx;
+        const commitNext = nextProgress >= threshold;
+        if (commitNext) {
+          snapTo(-cachedShiftPx, transitionMs, () => {
+            const first = track.firstElementChild;
+            if (first) track.appendChild(first);
+            track.style.transform = 'translateX(0px)';
+          });
+        } else {
+          snapTo(0, 140, () => {
+            if (dragPrevPrepends > 0) {
+              for (let i = 0; i < dragPrevPrepends; i++) {
+                const first = track.firstElementChild;
+                if (first) track.appendChild(first);
+              }
+              dragPrevPrepends = 0;
+            }
+            track.style.transform = 'translateX(0px)';
+          });
+        }
+      }
+    };
+
+    container.addEventListener('pointerdown', onPointerDown, { signal });
+    container.addEventListener('pointermove', onPointerMove, { signal });
+    container.addEventListener('pointerup', onPointerUp, { signal });
+    container.addEventListener('pointercancel', onPointerUp, { signal });
+
+    window.addEventListener('resize', () => {
+      update();
+    }, { signal });
+
+    update();
+
+    header._loopingScrollerCleanup = () => {
+      controller.abort();
+      isAnimating = false;
+    };
+  };
+
+  const groupCardsHeaders = document.querySelectorAll('.group-cards-header.home-layout');
+  groupCardsHeaders.forEach(header => {
+    initLoopingCardsScroller(header);
   });
 }
 
@@ -4265,6 +4581,10 @@ document.addEventListener('DOMContentLoaded', () => {
 window.playEpisode = playEpisode;
 window.playContinueEpisode = playContinueEpisode;
 window.removeHistoryLog = removeHistoryLog;
+window.showClearAllModal = showClearAllModal;
+window.hideClearAllModal = hideClearAllModal;
+window.confirmClearAll = confirmClearAll;
+removeHistoryLog;
 window.showClearAllModal = showClearAllModal;
 window.hideClearAllModal = hideClearAllModal;
 window.confirmClearAll = confirmClearAll;
