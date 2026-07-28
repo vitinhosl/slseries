@@ -1,0 +1,518 @@
+/* =====================================================================
+   cards.css — Series/group cards: container, glow + overlay layers,
+   group-series-button hover interactions, info badges, group title
+   header, horizontal scrollers around groups of cards, and the
+   shared empty-state container for "no items" messages.
+   ===================================================================== */
+
+/* ---------- Info badges (used on cards and carousel slides) ---------- */
+.carousel-info-badges {
+	display: flex;
+	gap: 8px;
+	margin: 8px 0;
+	flex-wrap: wrap;
+}
+
+.info-badge-text,
+.info-badge {
+	background: linear-gradient(to bottom, var(--color-badge_background) 0%, var(--color-background) 100%);
+	color: var(--color-badge_text);
+	padding: 4px 8px;
+	border-radius: 12px;
+	font-size: 0.8em;
+}
+
+.info-badge-text {
+	background: linear-gradient(to bottom, var(--color-badge_color) 0%, var(--color-background) 100%);
+}
+
+/* ---------- Empty-state containers (history / search / favorites) ---------- */
+.no-history-container,
+.no-results-container,
+.no-favorites-container {
+	color: var(--color-explore_button_text);
+	margin-left: 10px;
+	font-size: 1.2em;
+}
+
+/* ---------- Group title header (per-category section heading) ---------- */
+.group-title-header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 0 0 0 10px;
+	margin: 10px 0;
+	position: relative;
+	height: 50px;
+	user-select: none;
+
+	.custom-icon {
+		margin-top: -4px;
+		height: 25px;
+		width: 28px;
+	}
+
+	&::before {
+		content: '';
+		position: absolute;
+		left: 10px;
+		right: 50%;
+		top: 0;
+		bottom: 0;
+		border-radius: 8px;
+		background: linear-gradient(to right, var(--color-groupcard_header) 0%, var(--color-background) 100%);
+		z-index: -1;
+	}
+
+	h2 {
+		position: relative;
+		display: block;
+		font-size: 1.11rem;
+		font-weight: 500;
+		text-transform: uppercase;
+		border-radius: 8px;
+		padding: 8px 20px;
+		margin: 0;
+		background: transparent;
+
+		.custom-icon,
+		i {
+			vertical-align: middle;
+			margin-right: 8px;
+		}
+	}
+
+	h3 {
+		position: relative;
+		display: block;
+		font-size: 1.05rem;
+		font-weight: 500;
+		text-transform: uppercase;
+		border-radius: 8px;
+		margin: 0;
+		background: transparent;
+	}
+}
+
+/* ---------- Card container and inner layers ---------- */
+.group-container {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	height: 100vh;
+}
+
+.svg-container {
+	position: absolute;
+	opacity: 0;
+	transition: opacity 0.3s ease;
+}
+
+.card-container {
+	position: relative;
+	width: var(--sl-card-w);
+	height: var(--sl-card-h);
+	margin: 9px;
+	padding: 2px;
+	border-radius: 8px;
+	background: linear-gradient(to bottom, var(--color-groupcard_header), var(--color-groupcard_header));
+	transition: all 0.3s ease, background-size 0.3s ease;
+
+	&.has-info { position: relative; }
+	&.img-will-fade .card-media { opacity: 0; }
+	&.img-fade-in .card-media { opacity: 1; }
+
+	&.disabled {
+		.card-media { filter: grayscale(1); }
+		.main-card { filter: grayscale(1) brightness(0.7); }
+
+		&:has(#group-series-button:hover) .main-card {
+			filter: grayscale(0) brightness(0.8);
+		}
+	}
+
+	/* Hide info layers unless the card opts in */
+	&:not(.has-info) .inner-container .main-card::after {
+		display: none;
+	}
+
+	/* Single source of truth for the entire hover-cascade across all card layers */
+	&:has(#group-series-button:hover) {
+		.main-card::after { opacity: 1; }
+
+		.main-card,
+		.card-media {
+			background-size: 110% 110%;
+			filter: none;
+		}
+
+		.card-media::after { opacity: 1; }
+
+		.border-outer {
+			border-color: var(--color-groupcard_electric);
+			filter: url(#turbulent-displace);
+		}
+
+		.glow-layer-1 {
+			border-color: var(--color-groupcard_border_color);
+			opacity: 1;
+		}
+
+		.glow-layer-2 {
+			border-color: oklch(from var(--color-groupcard_border_h) l c h);
+			opacity: 1;
+		}
+
+		.overlay-1 { opacity: 1; }
+		.overlay-2 { opacity: 0.5; }
+		.background-glow { opacity: 0.3; }
+
+		.favorite-button {
+			opacity: 1;
+			transform: scale(1);
+			pointer-events: auto;
+		}
+
+		#group-series-button .info {
+			opacity: 1;
+			transform: translateY(0);
+		}
+	}
+
+	&:has(#group-series-button:hover) ~ .svg-container {
+		opacity: 1;
+	}
+}
+
+.inner-container {
+	width: var(--sl-card-w);
+	height: var(--sl-card-h);
+
+	.main-card {
+		position: absolute;
+		inset: 0;
+		border-radius: 8px;
+		overflow: hidden;
+		z-index: 0;
+		background-position: center;
+		background-repeat: no-repeat;
+		background-size: 100% 100%;
+		will-change: opacity, background-size, filter;
+		transform: scale(1);
+		transition: opacity 1.5s ease, background-size 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94), filter 0.4s ease, transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+
+		&::after {
+			content: "";
+			position: absolute;
+			inset: 0;
+			z-index: 1;
+			border-radius: 8px;
+			transition: opacity 0.5s ease;
+			opacity: 0;
+			background: linear-gradient(to bottom, transparent 0%, rgba(10, 10, 10, 0.9) 70%);
+			pointer-events: none;
+		}
+	}
+}
+
+.border-outer {
+	border: 2px solid transparent;
+	border-radius: 8px;
+	width: var(--sl-card-w);
+	height: var(--sl-card-h);
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 2;
+	padding: 0;
+	margin: 0;
+	transition: all 0.3s ease;
+}
+
+.main-card {
+	width: var(--sl-card-w);
+	height: var(--sl-card-h);
+	border-radius: 8px;
+	background-size: cover;
+	background-position: center;
+	position: relative;
+	z-index: 1;
+	border: 2px solid var(--color-groupcard_border);
+}
+
+.glow-layer-1,
+.glow-layer-2 {
+	border: 2px solid transparent;
+	border-radius: 8px;
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	inset: 0;
+	filter: blur(1px);
+	z-index: 3;
+	opacity: 0;
+	transition: all 0.3s ease;
+}
+
+.glow-layer-2 { filter: blur(4px); }
+
+.overlay-1,
+.overlay-2 {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	inset: 0;
+	border-radius: 8px;
+	mix-blend-mode: overlay;
+	transform: scale(1.1);
+	filter: blur(16px);
+	background: linear-gradient(-30deg, var(--color-groupcard_glow), transparent 30%, transparent 70%, var(--color-groupcard_glow));
+	z-index: 4;
+	opacity: 0;
+	transition: opacity 0.3s ease;
+}
+
+.background-glow {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	inset: 0;
+	border-radius: 8px;
+	filter: blur(32px);
+	transform: scale(1.1);
+	z-index: 0;
+	background: linear-gradient(-30deg, oklch(from var(--color-groupcard_border_h) l c h), transparent, var(--color-groupcard_border_h));
+	opacity: 0;
+	transition: opacity 0.3s ease;
+}
+
+/* ---------- Group series button (the clickable card surface) ---------- */
+#group-series-button {
+	position: absolute;
+	inset: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 5;
+	cursor: pointer;
+
+	&:hover { border: none; }
+
+	&.img-will-fade .card-media { opacity: 0; }
+	&.img-fade-in .card-media { opacity: 1; }
+
+	&.info .info { display: block; }
+	&:not(.info) .info { display: none; }
+
+	&:hover .favorite-button {
+		opacity: 1;
+		transform: scale(1);
+		pointer-events: auto;
+	}
+
+	.info {
+		position: absolute;
+		bottom: 20px;
+		left: 20px;
+		right: 20px;
+		z-index: 6;
+		opacity: 0;
+		transform: translateY(30px);
+		transition: opacity 0.5s ease, transform 0.5s ease;
+		color: var(--sl-text-on-card);
+		text-align: left;
+
+		h2 {
+			font-size: 15px;
+			color: var(--sl-text-on-card);
+			margin-top: 8px;
+		}
+
+		p {
+			font-size: 13px;
+			color: var(--sl-text-on-card-warm);
+			line-height: 1.4;
+		}
+
+		button {
+			margin-top: 8px;
+			padding: 0.6rem 1.2rem;
+			outline: none;
+			border: none;
+			border-radius: 3px;
+			background: var(--color-groupcard_button);
+			color: var(--sl-text-on-card);
+			font-weight: bold;
+			cursor: pointer;
+			transition: background 0.4s ease, color 0.4s ease, transform 0.3s ease;
+			font-size: 12px;
+
+			&:hover {
+				background: var(--color-groupcard_button_h);
+				color: var(--sl-text-on-card-warm);
+			}
+
+			&:active { transform: scale(0.95); }
+		}
+	}
+
+	.favorite-button {
+		position: absolute;
+		top: 15px;
+		right: 15px;
+		z-index: 6;
+		width: 30px;
+		height: 30px;
+	}
+}
+
+/* ---------- Horizontal card carousel (per-category strips) ---------- */
+.group-cards-header {
+	position: relative;
+	display: flex;
+	align-items: center;
+
+	&:hover .nav-arrow { opacity: 1; }
+}
+
+.group-cards-container {
+	position: relative;
+	width: 100%;
+	display: flex;
+	transition: transform 0.5s ease-in-out;
+	user-select: none;
+	cursor: grab;
+	scroll-behavior: smooth;
+	scrollbar-width: none;
+	-ms-overflow-style: none;
+
+	&:active { cursor: grabbing; }
+
+	&::-webkit-scrollbar { display: none; }
+
+	&.home-layout::-webkit-scrollbar { display: none; }
+
+	&.category-layout {
+		flex-wrap: wrap;
+		justify-content: flex-start;
+
+		.card-container { flex-shrink: 0; }
+	}
+
+	&.loop-viewport {
+		overflow: hidden;
+		display: block;
+		cursor: grab;
+		touch-action: pan-y;
+	}
+
+	&.scroll-mode {
+		overflow-x: auto;
+		cursor: default;
+
+		.group-cards-slides { flex-wrap: nowrap; }
+
+		&::-webkit-scrollbar { display: none; }
+	}
+}
+
+.group-cards-track {
+	display: flex;
+	width: max-content;
+	transform: translateX(0px);
+	will-change: transform;
+
+	> .card-container { flex: 0 0 auto; }
+}
+
+.group-cards-slides {
+	display: flex;
+	width: 100%;
+	height: var(--sl-card-h);
+}
+
+.group-card-slide {
+	flex: 0 0 auto;
+	width: var(--sl-card-w);
+	height: 100%;
+	margin-right: 10px;
+}
+
+.nav-arrow {
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+	background: var(--sl-overlay-light);
+	border: none;
+	color: white;
+	padding: 10px;
+	cursor: pointer;
+	border-radius: 50%;
+	width: 40px;
+	height: 40px;
+	font-size: 1.2em;
+	z-index: 10;
+	opacity: 0;
+	transition: opacity 0.3s ease;
+	display: none;
+
+	&.hidden { display: none; }
+	&:not(.hidden) { display: block; }
+	&:hover { background: var(--sl-overlay-light-strong); }
+	&.prev { left: 10px; }
+	&.next { right: 10px; }
+}
+
+/* ---------- Sub-carousel inside card hover info panel ---------- */
+.group-series-button .group-button-carousel {
+	position: relative;
+	overflow: hidden;
+	height: 100px;
+}
+
+.group-button-slides {
+	display: flex;
+	transition: transform 0.5s ease-in-out;
+	height: 100%;
+}
+
+.group-button-slide {
+	min-width: 100%;
+	flex-shrink: 0;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 10px;
+}
+
+.group-button-dots {
+	display: flex;
+	justify-content: center;
+	gap: 5px;
+	margin-top: 10px;
+}
+
+.group-button-dot {
+	width: 8px;
+	height: 8px;
+	border-radius: 50%;
+	background: var(--sl-overlay-light-strong);
+	cursor: pointer;
+
+	&.active { background: #fff; }
+}
+
+.group-button-nav {
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+	background: var(--sl-overlay-dark);
+	border: none;
+	color: white;
+	font-size: 20px;
+	cursor: pointer;
+	padding: 5px;
+}
+
+.group-button-prev { left: 5px; }
+.group-button-next { right: 5px; }

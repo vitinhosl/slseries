@@ -1,0 +1,184 @@
+/* =====================================================================
+   description.css — Subgroup description hero (#subgroup-description):
+   full-bleed background, logo, synopsis, season dropdown, hover video.
+   ===================================================================== */
+
+#subgroup-description {
+	position: relative;
+	height: 600px;
+	overflow: hidden;
+	border-radius: 10px;
+	box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+	display: flex;
+	align-items: flex-end;
+	justify-content: flex-start;
+	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
+	margin: 0 0 20px 10px;
+	padding-right: 120px;
+	cursor: pointer;
+	user-select: none;
+}
+
+#subgroup-description::before {
+	content: '';
+	position: absolute;
+	inset: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 1;
+	background: var(--desc-bg-color);
+}
+
+.description-overlay {
+	position: absolute;
+	inset: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 1;
+	background: linear-gradient(to right, var(--overlay-top-color), rgba(0, 0, 0, 0));
+}
+
+.subgroup-caption {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	padding: clamp(24px, 4vw, 60px);
+	color: white;
+	z-index: 20;
+	background: linear-gradient(to right, var(--desc-bg-color), rgba(0, 0, 0, 0));
+	align-content: center;
+	top: 0;
+}
+
+.subgroup-content {
+	display: flex;
+	gap: 3rem;
+	flex-direction: column;
+	justify-content: space-between;
+	align-items: flex-start;
+	width: 100%;
+}
+
+.subgroup-logo {
+	max-width: 100%;
+	height: auto;
+}
+
+.subgroup-logo.grayscale {
+	filter: grayscale(1);
+}
+
+.subgroup-logo img {
+	max-height: clamp(72px, 8vw, 140px);
+	width: auto;
+	filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.5));
+}
+
+.subgroup-sinopse {
+	font-size: clamp(0.95rem, 0.85rem + 0.4vw, 1.25rem);
+	max-width: 60%;
+	opacity: 0.8;
+	text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
+	line-height: 1.5;
+}
+
+.subgroup-actions {
+	display: flex;
+	gap: 15px;
+	margin: 0;
+}
+
+.subgroup-controls {
+	display: flex;
+	align-items: flex-end;
+	gap: 14px;
+	flex-wrap: wrap;
+	justify-content: flex-start;
+	width: 100%;
+}
+
+.subgroup-info {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	gap: 1rem;
+	max-width: 80%;
+}
+
+.subgroup-effect-video {
+	position: absolute;
+	inset: 0;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	z-index: 0;
+	transition: opacity 0.5s ease;
+}
+
+/* ---------- Hover-triggered effect video ----------
+   In hover mode JS no longer sets `animation` inline (see scripts.js
+   renderSubgroupDescription), so we don't need !important to kill it. */
+#subgroup-description.hover-effect-enabled {
+	.subgroup-effect-video {
+		animation: none;
+		opacity: 0;
+	}
+
+	&:hover .subgroup-effect-video {
+		opacity: var(--video-final-opacity, 1.0);
+	}
+}
+
+.episode-counts {
+	margin: 0.5rem 0 1rem 0;
+	font-size: 1.3rem;
+	color: rgba(255, 255, 255, 0.8);
+	line-height: 1.4;
+	text-align: left;
+}
+
+.season-dropdown-container {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	gap: 0.5rem;
+	padding: 0.5rem;
+	background: rgba(77, 79, 84, 0.3);
+	border-radius: 8px;
+	border: 1px solid rgba(77, 79, 84, 0.7);
+}
+
+.season-dropdown-container label {
+	font-size: 0.9rem;
+	color: #fff;
+	font-weight: 500;
+	text-transform: uppercase;
+	letter-spacing: 0.5px;
+}
+
+.season-dropdown-container select {
+	background: rgba(77, 79, 84, 0.7);
+	border: 1px solid rgba(77, 79, 84, 0.7);
+	border-radius: 4px;
+	color: #fff;
+	padding: 0.75rem 1rem;
+	font-size: 1rem;
+	cursor: pointer;
+	min-width: 200px;
+	transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.season-dropdown-container select:focus {
+	outline: none;
+	border-color: rgba(77, 79, 84, 1.0);
+	box-shadow: 0 0 0 2px rgba(77, 79, 84, 1.0);
+}
+
+.season-dropdown-container select option {
+	background: var(--sl-bg);
+	color: var(--sl-text);
+	padding: 0.5rem;
+}

@@ -4588,3 +4588,70 @@ removeHistoryLog;
 window.showClearAllModal = showClearAllModal;
 window.hideClearAllModal = hideClearAllModal;
 window.confirmClearAll = confirmClearAll;
+
+/* ---------- Theme switcher (navbar dropdown) ----------
+   The initial theme is set by inline JS in index.html (before
+   stylesheets paint, to avoid flash). This block wires up the dropdown
+   in the navbar: opens on click, closes on outside click / Escape /
+   option click, persists choice in localStorage, and reflects the
+   current theme in the toggle's label and icon. */
+(function initThemeSwitcher() {
+  const VALID_THEMES = ['default', 'light', 'ruined'];
+  const THEME_LABELS = { default: 'Padrão', light: 'Claro', ruined: 'Ruína' };
+  const THEME_ICONS  = { default: 'fa-moon', light: 'fa-sun', ruined: 'fa-skull' };
+  const ICON_CLASSES = Object.values(THEME_ICONS);
+
+  const root = document.documentElement;
+  const dropdown = document.querySelector('.theme-dropdown');
+  if (!dropdown) return;
+
+  const toggleBtn = dropdown.querySelector('.theme-dropdown-toggle');
+  const labelEl   = dropdown.querySelector('[data-theme-label]');
+  const iconEl    = dropdown.querySelector('[data-theme-icon]');
+  const options   = dropdown.querySelectorAll('.theme-option');
+
+  const setOpen = (open) => {
+    dropdown.classList.toggle('open', open);
+    toggleBtn.setAttribute('aria-expanded', String(open));
+  };
+
+  const markActive = (theme) => {
+    options.forEach((b) => b.classList.toggle('active', b.dataset.themeSet === theme));
+    if (labelEl) labelEl.textContent = THEME_LABELS[theme] || THEME_LABELS.default;
+    if (iconEl) {
+      iconEl.classList.remove(...ICON_CLASSES);
+      iconEl.classList.add(THEME_ICONS[theme] || THEME_ICONS.default);
+    }
+  };
+
+  const applyTheme = (theme) => {
+    if (!VALID_THEMES.includes(theme)) theme = 'default';
+    root.classList.add('theme-transitioning');
+    root.dataset.theme = theme;
+    try { localStorage.setItem('theme', theme); } catch (e) {}
+    markActive(theme);
+    setTimeout(() => root.classList.remove('theme-transitioning'), 250);
+  };
+
+  toggleBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    setOpen(!dropdown.classList.contains('open'));
+  });
+
+  options.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      applyTheme(btn.dataset.themeSet);
+      setOpen(false);
+    });
+  });
+
+  document.addEventListener('click', (e) => {
+    if (!dropdown.contains(e.target)) setOpen(false);
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') setOpen(false);
+  });
+
+  markActive(root.dataset.theme || 'default');
+})();

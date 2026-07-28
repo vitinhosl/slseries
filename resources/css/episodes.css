@@ -1,0 +1,440 @@
+/* =====================================================================
+   episodes.css — Episode buttons (#episode-button), continue-watching
+   tiles, play/trash icon button, watched/active state borders, badges.
+   ===================================================================== */
+
+.global-continue-container {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 20px;
+}
+
+.continue-episodes-container,
+.episodes-container {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 20px;
+	border-radius: 8px;
+	margin: 10px;
+}
+
+.episodes-container { margin: 20px 0 20px 10px; }
+
+.continue-episode-container { margin-left: -10px; }
+.episode-container { margin-left: 10px; }
+
+/* ---------- Card wrapper (groups the tile + remove button) ---------- */
+.continue-episodes-container-card,
+.episodes-container-card {
+	border-radius: 8px;
+	gap: 5px;
+	background: color-mix(in srgb, var(--color-groupcard_header) 50%, transparent);
+	cursor: pointer;
+	transition: transform 0.3s ease;
+
+	&:hover {
+		background: color-mix(in srgb, var(--color-groupcard_border) 75%, transparent);
+		transform: translateY(-5px);
+	}
+}
+
+/* ---------- Episode tile (the actual button) ---------- */
+#continue-episode-button,
+#episode-button {
+	position: relative;
+	width: var(--sl-episode-w);
+	height: var(--sl-episode-h);
+	background-color: var(--color-episode_button);
+	border-radius: 10px;
+	text-align: center;
+	color: white;
+	cursor: pointer;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	margin: 10px;
+	transition: background-image 0.3s ease-in-out, transform 0.3s ease, all 0.3s ease-out;
+	user-select: none;
+}
+
+#continue-episode-button:hover { transform: translateY(-5px); }
+
+.episode-thumb {
+	position: absolute;
+	inset: 0;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	opacity: 0;
+	transition: opacity 0.3s ease-in;
+	user-select: none;
+}
+
+/* ---------- Title gradient text (default) ---------- */
+#continue-episode-button h1 {
+	font-size: 13px;
+	text-align: center;
+	left: 50%;
+	font-weight: bold;
+	background: linear-gradient(to bottom, rgb(250, 247, 228), rgb(226, 179, 127));
+	text-shadow: 2px 2px 5px rgba(145, 87, 33, 0.7);
+	-webkit-background-clip: text;
+	color: transparent;
+	position: relative;
+	top: 5%;
+}
+
+#continue-episode-button h3,
+#continue-episode-button p,
+#episode-button p {
+	font-size: 13px;
+	text-align: center;
+	left: 50%;
+	font-weight: bold;
+	background: linear-gradient(to bottom, rgb(250, 247, 228), rgb(226, 179, 127));
+	text-shadow: 2px 2px 5px rgba(145, 87, 33, 0.7);
+	-webkit-background-clip: text;
+	color: transparent;
+	position: relative;
+	top: 80%;
+}
+
+#continue-episode-button h3 { top: 65%; }
+
+/* ---------- Title gradient text (hover, active, watched share style) ---------- */
+.continue-episodes-container-card:hover #continue-episode-button h3,
+.continue-episodes-container-card:hover #continue-episode-button h1,
+.continue-episodes-container-card:hover #continue-episode-button p,
+.episodes-container-card:hover #episode-button p,
+#continue-episode-button:hover h3,
+#continue-episode-button:hover h1,
+#continue-episode-button:hover p,
+#episode-button:hover p,
+#episode-button.watched p,
+#continue-episode-button.active p,
+#episode-button.active p {
+	background: linear-gradient(to bottom, rgb(200, 209, 214), rgb(255, 255, 255));
+	text-shadow: 2px 2px 5px rgba(255, 255, 255, 0.7);
+	-webkit-background-clip: text;
+	color: transparent;
+}
+
+/* ---------- Hover decoration (lit overlay circle) ---------- */
+.continue-episodes-container-card:hover #continue-episode-button::after,
+.episodes-container-card:hover #episode-button::after,
+#continue-episode-button:hover::after,
+#episode-button:hover::after {
+	content: "";
+	position: absolute;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	background-size: cover;
+	background-position: center;
+	opacity: 0.6;
+	pointer-events: none;
+	top: 45%;
+	width: 80px;
+	height: 80px;
+	transition: background-image 0.3s ease-in-out, transform 0.3s ease, all 0.3s ease-out;
+}
+
+/* ---------- Floating play/trash icon button ---------- */
+.icon-btn {
+	position: absolute;
+	top: 45%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	width: 70px;
+	height: 70px;
+	background: rgb(255, 255, 255);
+	border: none;
+	border-radius: 50%;
+	cursor: pointer;
+	outline: none;
+	transition: transform 0.2s ease, opacity 0.3s ease;
+	opacity: 0;
+	pointer-events: none;
+
+	&:active { transform: translate(-50%, -50%) scale(0.95); }
+
+	/* Play triangle */
+	&::before {
+		content: "";
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		width: 0;
+		height: 0;
+		border-top: 15px solid transparent;
+		border-bottom: 15px solid transparent;
+		border-left: 25px solid rgb(35, 35, 35);
+		transform: translate(-40%, -50%) scale(1);
+		transition: transform 0.3s ease, opacity 0.3s ease;
+		opacity: 1;
+	}
+
+	/* Trash body */
+	&::after {
+		content: "";
+		position: absolute;
+		bottom: 20px;
+		left: 50%;
+		width: 15px;
+		height: 18px;
+		border: 3px solid rgb(35, 35, 35);
+		border-top: none;
+		border-radius: 0 0 3px 3px;
+		transform: translate(-50%, 20%) scaleY(0);
+		transform-origin: bottom center;
+		transition: transform 0.3s ease, opacity 0.3s ease;
+		opacity: 0;
+	}
+
+	.trash-lid {
+		position: absolute;
+		top: 22px;
+		left: 50%;
+		width: 26px;
+		height: 4px;
+		background: rgb(35, 35, 35);
+		border-radius: 3px;
+		transform: translateX(-50%) scaleX(0);
+		transform-origin: center center;
+		transition: transform 0.3s ease, opacity 0.3s ease;
+		opacity: 0;
+	}
+
+	.trash-handle {
+		position: absolute;
+		top: 19px;
+		left: 50%;
+		width: 10px;
+		height: 5px;
+		background: rgb(35, 35, 35);
+		border-radius: 2px;
+		transform: translateX(-50%) scaleX(0);
+		transform-origin: center center;
+		transition: transform 0.3s ease 0.05s, opacity 0.3s ease 0.05s;
+		opacity: 0;
+	}
+
+	.trash-bar {
+		position: absolute;
+		bottom: 27px;
+		width: 2px;
+		height: 12px;
+		background: rgb(35, 35, 35);
+		transform: scaleY(0);
+		transform-origin: bottom center;
+		transition: transform 0.3s ease 0.1s, opacity 0.3s ease 0.1s;
+		opacity: 0;
+
+		&.bar1 { left: calc(49% - 4px); }
+		&.bar2 { left: 49%; height: 14px; bottom: 26px; }
+		&.bar3 { left: calc(49% + 4px); }
+	}
+}
+
+/* ---------- Reveal icon-btn on tile hover ---------- */
+.continue-episodes-container-card:hover #continue-episode-button .icon-btn,
+.episodes-container-card:hover #episode-button .icon-btn,
+#continue-episode-button:hover .icon-btn,
+#episode-button:hover .icon-btn,
+#continue-episode-button:has(.remove-button:hover) .icon-btn,
+#episode-button:has(.remove-button:hover) .icon-btn {
+	opacity: 0.6;
+	pointer-events: auto;
+	transform: translate(-50%, -50%) scale(1);
+}
+
+/* ---------- Trash morph when remove-button is hovered ---------- */
+#continue-episode-button:has(.remove-button:hover),
+#episode-button:has(.remove-button:hover) {
+	.icon-btn {
+		&::before { transform: translate(-40%, -50%) scale(0); opacity: 0; }
+		&::after  { transform: translate(-50%, 0) scaleY(1); opacity: 1; }
+
+		.trash-lid    { transform: translateX(-50%) scaleX(1); opacity: 1; }
+		.trash-handle { transform: translateX(-50%) scaleX(1); opacity: 1; }
+		.trash-bar    { transform: scaleY(1); opacity: 1; }
+	}
+}
+
+#continue-episode-button::after,
+#episode-button::after {
+	content: "";
+	position: absolute;
+	left: 50%;
+	transform: translate(-50%, -50%) scale(0.5);
+	background-size: cover;
+	background-position: center;
+	opacity: 0;
+	pointer-events: none;
+	top: 45%;
+	width: 80px;
+	height: 80px;
+	transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+/* ---------- Hover border/shadow ring ---------- */
+.continue-episodes-container-card:hover #continue-episode-button::before,
+.episodes-container-card:hover #episode-button::before,
+#continue-episode-button:hover::before,
+#episode-button:hover::before {
+	content: "";
+	position: absolute;
+	inset: 0;
+	border-radius: 8px;
+	pointer-events: none;
+	border: 1px solid color-mix(in srgb, var(--color-episode_button_hover) 80%, transparent);
+	box-shadow: 0 0 20px rgba(15, 15, 15, 0.4), 0 0 20px rgba(15, 15, 15, 0.1);
+	background: color-mix(in srgb, var(--color-background) 50%, transparent);
+}
+
+#continue-episode-button:has(.remove-button:hover)::before,
+#episode-button:has(.remove-button:hover)::before {
+	border: 1px solid rgb(255, 0, 0);
+	box-shadow: 0 4px 10px rgba(255, 0, 0, 0.4), 0 8px 20px rgba(253, 0, 0, 0.1);
+	background-color: rgba(94, 0, 0, 0.8);
+	background-image: none;
+	transition: background-image 0.3s ease-in-out, transform 0.3s ease, all 0.3s ease-out;
+}
+
+/* ---------- Active state (cyan/green) ---------- */
+#episode-button.active.watched::before,
+#continue-episode-button.active::before,
+#episode-button.active::before {
+	border: 1px solid var(--color-groupcard_active);
+	box-shadow: 0 4px 10px color-mix(in srgb, var(--color-groupcard_active) 40%, transparent),
+	            0 8px 20px color-mix(in srgb, var(--color-groupcard_active) 10%, transparent);
+	background-color: color-mix(in srgb, var(--color-groupcard_active) 50%, transparent);
+	background-image: none;
+}
+
+/* ---------- Watched state (pink/red) ---------- */
+#episode-button.watched::before {
+	border: 1px solid var(--color-groupcard_watched);
+	box-shadow: 0 4px 10px color-mix(in srgb, var(--color-groupcard_watched) 40%, transparent),
+	            0 8px 20px color-mix(in srgb, var(--color-groupcard_watched) 10%, transparent);
+	background-color: color-mix(in srgb, var(--color-groupcard_watched) 50%, transparent);
+	background-image: none;
+}
+
+#episode-button.watched::before,
+#continue-series-episodes #episode-button.active::before,
+#episode-button.active::before {
+	content: "";
+	position: absolute;
+	inset: 0;
+	border-radius: 8px;
+	pointer-events: none;
+}
+
+#episode-button.watched::after,
+#continue-series-episodes #episode-button.active::after,
+#episode-button.active::after {
+	content: "";
+	position: absolute;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	background-size: cover;
+	background-position: center;
+	opacity: 0.6;
+	pointer-events: none;
+	top: 45%;
+	width: 80px;
+	height: 80px;
+}
+
+/* ---------- Hover variants of active/watched ---------- */
+.episodes-container-card:hover #episode-button.active.watched::before,
+.episodes-container-card:hover #episode-button.active::before,
+.continue-episodes-container-card:hover #continue-episode-button.active::before,
+#continue-series-episodes #episode-button.active.watched:hover::before,
+#continue-series-episodes #episode-button.active:hover::before,
+#episode-button.active.watched:hover::before,
+#episode-button.active:hover::before {
+	border: 1px solid var(--color-groupcard_active_h);
+	box-shadow: 0 4px 10px color-mix(in srgb, var(--color-groupcard_active_h) 40%, transparent),
+	            0 8px 20px color-mix(in srgb, var(--color-groupcard_active_h) 10%, transparent);
+	background-color: color-mix(in srgb, var(--color-groupcard_active_h) 50%, transparent);
+	background-image: none;
+}
+
+.episodes-container-card:hover #episode-button.watched::before,
+#episode-button.watched:hover::before {
+	border: 1px solid var(--color-groupcard_watched_h);
+	box-shadow: 0 4px 10px color-mix(in srgb, var(--color-groupcard_watched_h) 70%, transparent),
+	            0 8px 20px color-mix(in srgb, var(--color-groupcard_watched_h) 30%, transparent);
+	background-color: color-mix(in srgb, var(--color-groupcard_watched_h) 40%, transparent);
+	background-image: none;
+}
+
+/* ---------- Episode metadata text ---------- */
+.episode-subtitle,
+.episode-title {
+	font-size: 13px;
+	color: var(--sl-text-on-card);
+	width: 220px;
+	text-align: left;
+	word-break: break-word;
+	padding: 5px 5px 5px 10px;
+}
+
+.remove-button {
+	position: absolute;
+	top: 5px;
+	right: 5px;
+	cursor: pointer;
+	font-size: 18px;
+	background: var(--sl-overlay-light);
+	padding: 2px;
+	border-radius: 50%;
+	width: 30px;
+	height: 30px;
+	transition: all 0.3s ease;
+
+	&:hover { background: var(--sl-overlay-light-strong); }
+}
+
+.episode-item {
+	margin-bottom: 5px;
+
+	ul {
+		list-style: none;
+		padding: 0;
+		margin: 0;
+	}
+
+	li { margin-bottom: 5px; }
+}
+
+/* ---------- Badges ---------- */
+.badge-watched {
+	position: absolute;
+	top: 10px;
+	right: 10px;
+	background: rgba(25, 25, 25, 0.7);
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+	color: #fff;
+	padding: 5px 10px;
+	font-size: 10px;
+	font-weight: bold;
+	text-transform: uppercase;
+	border-radius: 15px;
+	z-index: 10;
+	transition: background-color 0.3s ease, transform 0.3s ease, opacity 0.3s ease, background 1.3s ease;
+}
+
+.badge-duration {
+	position: absolute;
+	bottom: 10px;
+	right: 10px;
+	background-color: rgba(25, 25, 25, 0.7);
+	color: white;
+	padding: 0 8px;
+	font-size: 12px;
+	border-radius: 12px;
+	line-height: 24px;
+	height: 24px;
+}

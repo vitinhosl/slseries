@@ -1,0 +1,40 @@
+/* =====================================================================
+   responsive.css — Viewport-aware overrides.
+   Mobile (<=768px) and 1080p (<=1920px) are currently no-op placeholders;
+   real rules live in the 1366px and 2560px breakpoints.
+   ===================================================================== */
+
+/* Ultra-wide monitor (>=2K) */
+@media (max-width: 2560px) {
+	.subgroup-logo {
+		max-width: 350px;
+	}
+}
+
+/* Full HD - 1080p */
+@media (max-width: 1920px) {
+	/* reserved for future overrides */
+}
+
+/* Medium monitor / 720p-ish */
+@media (max-width: 1366px) {
+	#subgroup-description,
+	.carousel-container {
+		height: 500px;
+	}
+
+	#subgroup-description,
+	.carousel-slide {
+		background-position: center;
+	}
+
+	#continue-episode-button,
+	#episode-button {
+		width: 214px;
+	}
+}
+
+/* Mobile placeholder (sidebar still 300px — not yet adapted) */
+@media (max-width: 768px) {
+	/* reserved for future mobile pass */
+}

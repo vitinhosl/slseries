@@ -1,0 +1,114 @@
+/* =====================================================================
+   base.css — Reset, root typography, anchor and focus defaults.
+   ===================================================================== */
+
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&display=swap");
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+/* `overflow-x: hidden` is intentionally scoped to <html> only.
+   Putting it on <body> too forces the spec's overflow promotion rule
+   (overflow-y: visible -> auto), which turns body into its own scroll
+   container. That breaks `position: sticky` on the sidebar (sticky
+   resolves against body instead of the viewport) and causes a second
+   vertical scrollbar next to the window scrollbar. */
+html {
+	overflow-x: hidden;
+}
+
+html,
+body {
+	width: 100%;
+	font-family: 'Poppins', 'Roboto', sans-serif;
+	line-height: 1.5;
+	-webkit-font-smoothing: antialiased;
+	text-rendering: optimizeLegibility;
+}
+
+body {
+	background-color: var(--sl-bg);
+	color: var(--sl-text);
+	min-height: 100vh;
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: center center;
+}
+
+:where(a, button, input, select, textarea):focus-visible {
+	outline: 2px solid var(--sl-focus);
+	outline-offset: 2px;
+}
+
+a {
+	color: inherit;
+	text-decoration-color: color-mix(in srgb, currentColor 35%, transparent);
+	text-underline-offset: 3px;
+}
+
+a:hover {
+	text-decoration-color: currentColor;
+}
+
+/* ---------------------------------------------------------------------
+   Accessibility additions
+   - Cards, episode buttons and the favorite button are reachable by
+     mouse but were missing keyboard-visible focus styles. The favorite
+     button is hidden until the card is hovered; we also reveal it on
+     keyboard focus-within so it's not a keyboard trap.
+   --------------------------------------------------------------------- */
+.explore-button:focus-visible,
+#group-series-button:focus-visible,
+#episode-button:focus-visible,
+#continue-episode-button:focus-visible {
+	outline: 2px solid var(--sl-focus);
+	outline-offset: 2px;
+}
+
+.favorite-button:focus-visible {
+	outline: 2px solid var(--sl-focus);
+	outline-offset: 2px;
+}
+
+.card-container:focus-within .favorite-button {
+	opacity: 1;
+	pointer-events: auto;
+}
+
+/* ---------------------------------------------------------------------
+   Page scrollbar
+   - Matches the subtle treatment used on .sidebar-scroll and
+     .search-suggestions. Without this, Windows/Chrome paint the default
+     light-gray scrollbar in the gutter, which is jarring against the
+     dark navbar and makes it look like the bar "doesn't reach" the
+     right edge.
+   --------------------------------------------------------------------- */
+html {
+	scrollbar-color: color-mix(in srgb, var(--sl-text) 25%, transparent) transparent;
+	scrollbar-width: thin;
+}
+
+html::-webkit-scrollbar {
+	width: 12px;
+}
+
+html::-webkit-scrollbar-track {
+	background: transparent;
+}
+
+html::-webkit-scrollbar-thumb {
+	background: color-mix(in srgb, var(--sl-text) 22%, transparent);
+	border-radius: 999px;
+	border: 3px solid transparent;
+	background-clip: padding-box;
+}
+
+html::-webkit-scrollbar-thumb:hover {
+	background: color-mix(in srgb, var(--sl-text) 45%, transparent);
+	background-clip: padding-box;
+}

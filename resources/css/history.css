@@ -1,0 +1,258 @@
+/* =====================================================================
+   history.css — History page: collapsible group/subgroup sections,
+   per-log items, animated trash "delete" button, hierarchical headers.
+   ===================================================================== */
+
+.history-group-container {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+	padding: 0 15px;
+	border-radius: 8px;
+	box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+/* ---------- Collapsible group/subgroup headers ---------- */
+.history-group-section > .group-title-header[data-history-group],
+.history-subgroup-section > .group-title-header[data-history-subgroup] {
+	justify-content: flex-start;
+	gap: 10px;
+	padding-left: 35px;
+	cursor: pointer;
+	transition: filter 0.3s ease;
+
+	&::before {
+		transition: background 0.25s ease;
+		left: 20px;
+	}
+
+	&:hover::before {
+		background: linear-gradient(to right, var(--color-history_hover) 0%, var(--color-background) 100%);
+	}
+
+	h3 { font-size: 1.11rem; }
+}
+
+.history-subgroup-container {
+	display: flex;
+	flex-direction: column;
+	gap: 5px;
+	padding: 0 0 0 20px;
+}
+
+/* ---------- Individual history log item ---------- */
+.history-log-item {
+	display: flex;
+	align-items: center;
+	gap: 15px;
+	padding: 15px;
+	background: linear-gradient(to right, var(--color-history_background) 0%, var(--color-background) 100%);
+	border-radius: 8px;
+	border-left: 3px solid var(--color-history_border);
+	transition: all 0.3s ease;
+	cursor: pointer;
+	margin: 0 0 5px 0;
+
+	&:hover {
+		background: linear-gradient(to right, var(--color-history_hover) 0%, var(--color-background) 100%);
+		transform: translateY(-2px);
+
+		.history-log-thumb { background-color: var(--color-history_background); }
+	}
+}
+
+.history-log-thumb {
+	width: var(--sl-history-thumb-w);
+	height: var(--sl-history-thumb-h);
+	background-color: var(--color-history_hover);
+	background-size: cover;
+	background-position: center;
+	border-radius: 6px;
+	flex-shrink: 0;
+	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.history-log-info {
+	flex: 1;
+	min-width: 0;
+
+	h4 {
+		margin: 0 0 5px 0;
+		font-size: 1.1em;
+		color: var(--color-history_title);
+		text-shadow: 0 2px 5px color-mix(in srgb, var(--color-history_title) 70%, transparent);
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+	}
+}
+
+.episode-details {
+	margin: 0 0 5px 0;
+	color: color-mix(in srgb, var(--color-history_text) 50%, transparent);
+	font-size: 0.95em;
+}
+
+.log-date {
+	margin: 0;
+	color: color-mix(in srgb, var(--color-history_text) 20%, transparent);
+	font-size: 0.85em;
+}
+
+/* ---------- Animated trash "remove log" button ---------- */
+.remove-log-button {
+	width: 50px;
+	height: 50px;
+	border-radius: 50%;
+	background-color: var(--color-trash_button);
+	border: none;
+	font-weight: 600;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	box-shadow: 0 0 20px rgba(0, 0, 0, 0.164);
+	cursor: pointer;
+	transition-duration: 0.3s;
+	overflow: hidden;
+	position: relative;
+	gap: 1px;
+
+	&::before {
+		position: absolute;
+		top: -20px;
+		content: "Deletar";
+		color: white;
+		transition-duration: 0.3s;
+		font-size: 2px;
+	}
+
+	&:hover {
+		width: 140px;
+		border-radius: 50px;
+		transition-duration: 0.3s;
+		background-color: var(--color-trash_button_hover);
+		align-items: center;
+		gap: 0;
+
+		&::before {
+			font-size: 13px;
+			opacity: 1;
+			transform: translateY(35px);
+			transition-duration: 0.3s;
+		}
+
+		.bin-bottom {
+			width: 50px;
+			transition-duration: 0.3s;
+			transform: translateY(60%);
+		}
+
+		.bin-top {
+			width: 50px;
+			transition-duration: 0.3s;
+			transform: translateY(60%) rotate(160deg);
+		}
+	}
+}
+
+.svgIcon {
+	width: 12px;
+	transition-duration: 0.3s;
+
+	path { fill: white; }
+}
+
+.bin-top { transform-origin: bottom right; }
+
+/* ---------- Hierarchical group/subgroup headers (alt layout) ---------- */
+.history-group-header { margin-bottom: 1rem; }
+
+.history-group-title {
+	color: var(--sl-text);
+	font-size: 1.4rem;
+	margin: 0;
+	display: flex;
+	align-items: center;
+	gap: 0.5rem;
+}
+
+.history-group-icon {
+	color: #fff;
+	font-size: 1.2rem;
+}
+
+.history-group-content { margin-left: 1rem; }
+
+.history-subgroup-section {
+	margin-bottom: 1.5rem;
+	margin-top: -10px;
+}
+
+.history-subgroup-header { margin-bottom: 0.75rem; }
+
+.history-subgroup-title {
+	color: color-mix(in srgb, var(--sl-text) 78%, transparent);
+	font-size: 1.2rem;
+	margin: 0;
+	display: flex;
+	align-items: center;
+	gap: 0.5rem;
+}
+
+.history-subgroup-icon {
+	color: #fff;
+	font-size: 1.1rem;
+}
+
+.history-subgroup-content { margin-left: 1.5rem; }
+
+/* ---------- Collapse toggles for history/season cards ---------- */
+.toggle-history-cards,
+.toggle-season-cards {
+	background: none;
+	border: none;
+	height: 16px;
+	position: relative;
+	cursor: pointer;
+	padding: 0;
+
+	&::before {
+		content: '';
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		width: 0;
+		height: 0;
+		border-left: 6px solid transparent;
+		border-right: 6px solid transparent;
+		border-top: 8px solid var(--sl-text);
+		transform: translate(-50%, -50%) rotate(0deg);
+		transition: transform 0.3s ease;
+	}
+
+	&:not(.expanded)::before {
+		transform: translate(-50%, -50%) rotate(-90deg);
+	}
+}
+
+.toggle-history-cards {
+	width: 16px;
+	margin: 0;
+}
+
+.toggle-season-cards {
+	margin-right: 5px;
+}
+
+.season-section > .group-title-header[data-collapsible="1"] {
+	justify-content: flex-start;
+	gap: 10px;
+	padding-left: 35px;
+	cursor: pointer;
+	transition: filter 0.3s ease;
+
+	&:hover::before {
+		background: linear-gradient(to right, color-mix(in srgb, var(--color-groupcard_border) 75%, transparent) 0%, var(--color-background) 100%);
+	}
+}

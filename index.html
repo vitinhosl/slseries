@@ -4,12 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SL SÉRIES</title>
+    <script>
+        /* Resolve theme before stylesheets paint to avoid flash. */
+        (function () {
+            var t = 'default';
+            try { t = localStorage.getItem('theme') || 'default'; } catch (e) {}
+            document.documentElement.dataset.theme = t;
+        })();
+    </script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="resources/styles.css">
-    <link rel="stylesheet" href="resources/loading.css">
-    <link rel="stylesheet" href="resources/theme/ruined.css">
-    <link rel="stylesheet" href="resources/theme/default.css">
-    <link rel="stylesheet" href="resources/resolution.css">
+    <link rel="stylesheet" href="resources/theme/themes.css">
 </head>
 <body>
 
@@ -74,6 +79,24 @@
             <button><i class="fas fa-search"></i></button>
         </div>
         <div class="user-actions">
+            <div class="theme-dropdown" aria-label="Tema visual">
+                <button type="button" class="theme-dropdown-toggle" aria-expanded="false" aria-haspopup="menu">
+                    <i class="fas fa-moon" data-theme-icon aria-hidden="true"></i>
+                    <span data-theme-label>Padrão</span>
+                    <i class="fas fa-chevron-down theme-dropdown-caret" aria-hidden="true"></i>
+                </button>
+                <div class="theme-dropdown-menu" role="menu">
+                    <button type="button" class="theme-option" data-theme-set="default" role="menuitemradio">
+                        <i class="fas fa-moon" aria-hidden="true"></i><span>Padrão</span>
+                    </button>
+                    <button type="button" class="theme-option" data-theme-set="light" role="menuitemradio">
+                        <i class="fas fa-sun" aria-hidden="true"></i><span>Claro</span>
+                    </button>
+                    <button type="button" class="theme-option" data-theme-set="ruined" role="menuitemradio">
+                        <i class="fas fa-skull" aria-hidden="true"></i><span>Ruína</span>
+                    </button>
+                </div>
+            </div>
             <button class="btn-assinatura">Assinatura</button>
             <button class="btn-login">Fazer login</button>
         </div>

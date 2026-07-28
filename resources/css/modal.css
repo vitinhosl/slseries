@@ -1,0 +1,275 @@
+/* =====================================================================
+   modal.css — Confirmation modal and the persistent video overlay
+   player (#video-overlay) used to play episodes inline.
+   ===================================================================== */
+
+/* ---------- Modal overlay (confirmation dialogs) ---------- */
+.modal-overlay {
+	position: fixed;
+	inset: 0;
+	width: 100%;
+	height: 100%;
+	background-color: var(--sl-overlay-dark);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	z-index: var(--sl-z-modal-overlay);
+}
+
+.modal-content-custom {
+	user-select: none;
+	width: 400px;
+	height: 400px;
+	display: flex;
+	flex-direction: column;
+	padding: 1rem;
+	position: relative;
+	align-items: center;
+	justify-content: center;
+	background-color: var(--sl-surface);
+	border: 1px solid var(--sl-border);
+	border-radius: 1rem;
+	box-shadow: var(--sl-shadow-md);
+}
+
+.modal-icon-container {
+	text-align: center;
+	padding: 1.75rem;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+}
+
+.modal-icon {
+	width: 6rem;
+	height: 6rem;
+	margin: 0 auto;
+	fill: var(--color-trash);
+	animation: bounce 2s ease-in-out infinite;
+}
+
+.modal-title {
+	font-size: 1.25rem;
+	font-weight: bold;
+	padding: 1rem 0;
+	color: var(--sl-text);
+	margin: 0;
+}
+
+.modal-description {
+	font-weight: bold;
+	font-size: 18px;
+	color: var(--sl-muted);
+	padding: 0 0.5rem;
+	margin: 0;
+	line-height: 1.4;
+}
+
+.modal-close-btn {
+	position: absolute;
+	top: 1rem;
+	right: 1rem;
+	background: none;
+	border: none;
+	cursor: pointer;
+	color: var(--sl-muted);
+	padding: 4px;
+	border-radius: 4px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	transition: all 0.2s ease;
+	z-index: 10;
+}
+
+.modal-close-btn:hover {
+	background-color: var(--sl-surface-2);
+	color: var(--sl-text);
+}
+
+.modal-buttons-custom {
+	padding: 0.5rem;
+	margin-top: 0.5rem;
+	text-align: center;
+	display: flex;
+	gap: 1rem;
+	justify-content: center;
+	align-items: center;
+}
+
+.modal-btn {
+	padding: 0.5rem 1.25rem;
+	font-size: 0.875rem;
+	font-weight: 500;
+	border: 2px solid;
+	border-radius: var(--sl-radius-pill);
+	cursor: pointer;
+	transition: all 0.3s ease-in-out;
+	font-family: inherit;
+}
+
+.modal-btn-cancel {
+	background-color: var(--sl-surface-2);
+	border-color: var(--sl-border);
+	color: var(--sl-text);
+}
+
+.modal-btn-cancel:hover {
+	border-color: color-mix(in srgb, var(--sl-text) 30%, var(--sl-border));
+	background-color: var(--sl-surface);
+	box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+}
+
+.modal-btn-confirm {
+	background-color: var(--color-history_border);
+	border-color: var(--color-history_border);
+	color: white;
+}
+
+.modal-btn-confirm:hover {
+	background-color: transparent;
+	border-color: var(--color-history_border);
+	color: var(--color-history_border);
+	box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+}
+
+@keyframes bounce {
+	0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+	40% { transform: translateY(-10px); }
+	60% { transform: translateY(-5px); }
+}
+
+/* ---------- Video overlay player ---------- */
+body.video-overlay-open {
+	overflow: hidden;
+}
+
+#video-overlay {
+	position: fixed;
+	inset: 0;
+	display: none;
+	align-items: stretch;
+	justify-content: stretch;
+	background: rgba(0, 0, 0, 0.75);
+	z-index: var(--sl-z-video-overlay);
+}
+
+#video-overlay.show {
+	display: flex;
+}
+
+#video-container {
+	position: relative;
+	width: 100%;
+	height: 100%;
+	background: #000;
+}
+
+#video-overlay-header {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	z-index: 3;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 12px;
+	padding: 12px;
+	background: linear-gradient(to bottom, rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0));
+}
+
+#toggle-buttons-container {
+	display: flex;
+	gap: 8px;
+	align-items: center;
+}
+
+.toggle-button {
+	border: 1px solid color-mix(in srgb, var(--sl-text) 18%, transparent);
+	background: color-mix(in srgb, var(--sl-bg) 65%, transparent);
+	color: var(--sl-text);
+	padding: 8px 12px;
+	border-radius: 10px;
+	font-weight: 700;
+	font-size: 12px;
+	cursor: pointer;
+	user-select: none;
+}
+
+.toggle-button.active {
+	border-color: color-mix(in srgb, var(--sl-text) 45%, transparent);
+	background: color-mix(in srgb, var(--sl-text) 12%, transparent);
+}
+
+#video-overlay-dropdown {
+	display: flex;
+	gap: 10px;
+	align-items: center;
+}
+
+#overlay-season-dropdown,
+#overlay-episodes-dropdown {
+	border: 1px solid color-mix(in srgb, var(--sl-text) 18%, transparent);
+	background: color-mix(in srgb, var(--sl-bg) 65%, transparent);
+	color: var(--sl-text);
+	padding: 8px 10px;
+	border-radius: 10px;
+	font-weight: 700;
+	font-size: 12px;
+	outline: none;
+	cursor: pointer;
+}
+
+#close-overlay-button {
+	border: 1px solid color-mix(in srgb, var(--sl-text) 18%, transparent);
+	background: color-mix(in srgb, var(--sl-bg) 65%, transparent);
+	color: var(--sl-text);
+	width: 40px;
+	height: 40px;
+	border-radius: 12px;
+	cursor: pointer;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	user-select: none;
+}
+
+#video-iframe,
+#video-video {
+	position: absolute;
+	inset: 0;
+	width: 100%;
+	height: 100%;
+	border: 0;
+}
+
+#video-video {
+	display: none;
+	background: var(--sl-bg);
+}
+
+#prev-video-button,
+#next-video-button {
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+	z-index: 4;
+	border: 1px solid color-mix(in srgb, var(--sl-text) 18%, transparent);
+	background: color-mix(in srgb, var(--sl-bg) 65%, transparent);
+	color: var(--sl-text);
+	width: 48px;
+	height: 48px;
+	border-radius: var(--sl-radius-pill);
+	cursor: pointer;
+	user-select: none;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-size: 18px;
+	font-weight: 900;
+}
+
+#prev-video-button { left: 16px; }
+#next-video-button { right: 16px; }

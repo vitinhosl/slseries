@@ -1,0 +1,21 @@
+/* =====================================================================
+   overrides.css — Rules that must win regardless of specificity.
+
+   Imported into @layer overrides by styles.css, so anything declared
+   here beats every rule in @layer components without needing !important.
+   Use sparingly: only when a less-specific selector legitimately needs
+   to override a more specific one.
+   ===================================================================== */
+
+/* `.watch-button.disabled` is rendered inside `#group-series-button .info`,
+   whose generic `button` rule (in cards.css) is more specific. The override
+   layer lets us define disabled state at its natural specificity. */
+.watch-button.disabled,
+.watch-button.disabled:hover {
+	background: color-mix(in srgb, var(--sl-text) 25%, var(--sl-bg));
+	cursor: not-allowed;
+}
+
+.watch-button.disabled:hover {
+	transform: none;
+}

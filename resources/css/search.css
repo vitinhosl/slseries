@@ -1,0 +1,201 @@
+/* =====================================================================
+   search.css — Navbar search bar and live suggestion dropdown.
+   ===================================================================== */
+
+.search-bar {
+	display: flex;
+	align-items: center;
+	position: relative;
+	background: color-mix(in srgb, var(--color-search_bar) 70%, transparent);
+	border: 1px solid color-mix(in srgb, var(--color-search_bar_text) 18%, transparent);
+	border-radius: var(--sl-radius-pill);
+	overflow: visible;
+	width: min(460px, 46vw);
+	height: 40px;
+
+	input {
+		flex-grow: 1;
+		border: none;
+		padding: 10px 14px;
+		background: transparent;
+		color: var(--sl-text);
+		outline: none;
+
+		&::placeholder {
+			color: var(--color-search_bar_text);
+		}
+	}
+
+	button {
+		background: transparent;
+		border: none;
+		padding: 12px;
+		cursor: pointer;
+		color: var(--sl-text);
+		width: 50px;
+
+		&:hover {
+			background: color-mix(in srgb, var(--color-search_bar_icon) 70%, transparent);
+		}
+	}
+
+	&:focus-within {
+		border-color: color-mix(in srgb, var(--color-search_bar_text) 35%, transparent);
+		box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-search_bar_text) 15%, transparent);
+	}
+}
+
+.search-suggestions {
+	position: absolute;
+	top: calc(100% + 10px);
+	left: 0;
+	right: 0;
+	background: color-mix(in srgb, var(--color-top_bar) 85%, var(--sl-bg));
+	border: 1px solid color-mix(in srgb, var(--color-search_bar_text) 18%, transparent);
+	border-radius: var(--sl-radius-md);
+	overflow: hidden;
+	box-shadow: var(--sl-shadow-md);
+	z-index: 120;
+	max-height: min(420px, 55vh);
+	overflow-y: auto;
+}
+
+.search-suggestion-item {
+	padding: 10px;
+	cursor: pointer;
+	display: flex;
+	flex-direction: row;
+	gap: 12px;
+	transition: background 0.2s ease, transform 0.2s ease;
+
+	&:hover {
+		background: color-mix(in srgb, var(--color-search_bar_icon) 45%, transparent);
+		transform: translateY(-1px);
+	}
+}
+
+.search-suggestion-line {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	min-width: 0;
+}
+
+.search-suggestion-thumb {
+	width: 60px;
+	height: 90px;
+	border-radius: 8px;
+	object-fit: cover;
+	flex-shrink: 0;
+	background: rgba(255, 255, 255, 0.06);
+}
+
+.search-suggestion-text {
+	display: flex;
+	flex-direction: column;
+	gap: 4px;
+	min-width: 0;
+	justify-content: center;
+	flex: 1;
+}
+
+.search-suggestion-title {
+	color: var(--sl-text);
+	font-size: 14px;
+	font-weight: 800;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+.search-suggestion-meta {
+	color: color-mix(in srgb, var(--sl-text) 80%, transparent);
+	font-size: 12px;
+	font-weight: 700;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+.search-suggestion-footer {
+	position: sticky;
+	bottom: 0;
+	padding: 12px 14px;
+	background: color-mix(in srgb, var(--color-top_bar) 92%, var(--sl-bg));
+	border-top: 1px solid color-mix(in srgb, var(--color-search_bar_text) 18%, transparent);
+	color: color-mix(in srgb, var(--sl-text) 86%, transparent);
+	font-size: 13px;
+	font-weight: 800;
+	cursor: pointer;
+
+	&:hover {
+		background: color-mix(in srgb, var(--color-search_bar_icon) 45%, transparent);
+	}
+}
+
+.search-suggestion-footer-query {
+	color: var(--sl-text);
+}
+
+.search-suggestion-toggle {
+	background: transparent;
+	border: none;
+	color: color-mix(in srgb, var(--sl-text) 85%, transparent);
+	width: 38px;
+	height: 38px;
+	border-radius: 12px;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	cursor: pointer;
+	flex-shrink: 0;
+
+	&:hover {
+		background: color-mix(in srgb, var(--color-search_bar_icon) 45%, transparent);
+	}
+}
+
+.search-suggestion-child {
+	padding: 10px 10px 10px 28px;
+	cursor: pointer;
+	display: flex;
+	flex-direction: row;
+	gap: 12px;
+	border-top: 1px solid color-mix(in srgb, var(--color-search_bar_text) 10%, transparent);
+	background: color-mix(in srgb, var(--color-top_bar) 80%, var(--sl-bg));
+
+	&:hover {
+		background: color-mix(in srgb, var(--color-search_bar_icon) 35%, transparent);
+	}
+}
+
+.search-suggestion-child-thumb {
+	width: 46px;
+	height: 70px;
+	border-radius: 8px;
+	object-fit: cover;
+	flex-shrink: 0;
+	background: rgba(255, 255, 255, 0.06);
+}
+
+.search-suggestion-line-thumb {
+	width: 28px;
+	height: 28px;
+	border-radius: 8px;
+	object-fit: cover;
+	flex-shrink: 0;
+	background: rgba(255, 255, 255, 0.06);
+}
+
+.search-suggestion-thumb-fallback {
+	display: inline-block;
+}
+
+.search-suggestion-line-text {
+	color: var(--sl-text);
+	font-size: 13px;
+	font-weight: 700;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}

@@ -1,0 +1,73 @@
+/* =====================================================================
+   tokens.css — Design tokens (CSS custom properties)
+
+   Loaded first by styles.css. Theme files (theme/default.css and
+   theme/ruined.css) are linked separately and override --color-* tokens
+   that the modules below reference via var().
+
+   Conventions:
+     --sl-*     Core design tokens defined here.
+     --color-*  Theme-driven (defined in theme/*.css).
+   ===================================================================== */
+
+:root {
+	/* Layout dimensions */
+	--sidebar-width:            300px;
+	--collapsed-sidebar-width:  0px;
+	--content-gap:              0px;
+
+	/* Card and tile dimensions */
+	--sl-card-w:                220px;
+	--sl-card-h:                320px;
+	--sl-episode-w:             266px;
+	--sl-episode-h:             150px;
+	--sl-history-thumb-w:       180px;
+	--sl-history-thumb-h:       100px;
+
+	/* Surface aliases derived from the active theme */
+	--sl-bg:                    var(--color-background, rgb(20, 20, 20));
+	--sl-text:                  var(--color-text, rgb(239, 239, 239));
+	--sl-muted:                 color-mix(in srgb, var(--sl-text) 68%, transparent);
+	--sl-surface:               color-mix(in srgb, var(--sl-bg) 86%, #fff);
+	--sl-surface-2:             color-mix(in srgb, var(--sl-bg) 78%, #fff);
+	--sl-border:                color-mix(in srgb, var(--sl-text) 14%, transparent);
+	--sl-accent:                var(--color-logo_text, rgb(255, 2, 102));
+	--sl-accent-strong:         var(--color-groupcard_button_h, var(--sl-accent));
+	--sl-on-accent:             #0b0b0b;
+
+	/* Reusable overlays (recurring rgba values across the codebase) */
+	--sl-overlay-light:         rgba(255, 255, 255, 0.2);
+	--sl-overlay-light-strong:  rgba(255, 255, 255, 0.5);
+	--sl-overlay-dark:          rgba(0, 0, 0, 0.5);
+	--sl-overlay-dark-strong:   rgba(0, 0, 0, 0.7);
+
+	/* Text variants used on cards and dark overlays */
+	--sl-text-on-card:          rgb(233, 244, 251);
+	--sl-text-on-card-warm:     rgb(250, 244, 237);
+
+	/* Radii */
+	--sl-radius-sm:             10px;
+	--sl-radius-md:             14px;
+	--sl-radius-lg:             18px;
+	--sl-radius-pill:           9999px;
+
+	/* Shadows */
+	--sl-shadow-sm:             0 6px 20px rgba(0, 0, 0, 0.22);
+	--sl-shadow-md:             0 10px 30px rgba(0, 0, 0, 0.35);
+
+	/* Focus ring */
+	--sl-focus:                 color-mix(in srgb, var(--sl-accent) 30%, transparent);
+
+	/* Z-index scale */
+	--sl-z-navbar:              100;
+	--sl-z-sidebar:             200;
+	--sl-z-modal-overlay:       1000;
+	--sl-z-video-overlay:       1100;
+	--sl-z-tooltip:             10001;
+	--sl-z-loader:              99999;
+
+	/* Motion */
+	--sl-transition-fast:       0.2s ease;
+	--sl-transition:            0.3s ease;
+	--sl-transition-slow:       0.5s ease;
+}
