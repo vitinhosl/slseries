@@ -287,6 +287,38 @@
 	transition: opacity 0.3s ease;
 }
 
+/* ---------- Card badges (canto superior esquerdo, oposto ao favorito) ---------- */
+.card-badges {
+	position: absolute;
+	top: 15px;
+	left: 15px;
+	z-index: 6;
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	gap: 5px;
+	pointer-events: none;
+	max-width: calc(100% - 60px);
+}
+
+.card-badge {
+	padding: 4px 9px;
+	border-radius: 999px;
+	background: var(--color-groupcard_button);
+	background: var(--color-groupcard_button_h);
+	color: #fff;
+	font-size: 10px;
+	font-weight: 700;
+	letter-spacing: 0.08em;
+	text-transform: uppercase;
+	line-height: 1.2;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	max-width: 100%;
+	box-shadow: 0 2px 10px rgba(0, 0, 0, 0.45);
+}
+
 /* ---------- Group series button (the clickable card surface) ---------- */
 #group-series-button {
 	position: absolute;
@@ -404,13 +436,6 @@
 		display: block;
 		cursor: grab;
 		touch-action: pan-y;
-
-		/* O recorte é obrigatório (o track é muito mais largo que a fileira),
-		   mas não precisa ser rente aos cards: essa folga — anulada pelas
-		   margens negativas, então o layout não muda — deixa o glow do hover
-		   respirar em vez de morrer numa reta na borda.
-		   Vertical limitado a 10px: é a distância até o header da seção, e o
-		   fundo do track pintaria por cima dele (cortava o título). */
 		padding: 10px 20px;
 		margin: -10px -20px;
 		width: calc(100% + 40px);
@@ -431,13 +456,6 @@
 	width: max-content;
 	transform: translateX(0px);
 	will-change: transform;
-
-	/* O transform cria um stacking context: sem esse fundo, o
-	   `mix-blend-mode: overlay` do glow dos cards blendaria contra um
-	   backdrop transparente e viraria um retângulo esbranquiçado.
-	   O box-shadow estende esse mesmo fundo para além da caixa do track
-	   (sem afetar layout), senão o último card — cujo glow passa da borda
-	   do track — continuaria lavando de branco. */
 	background: var(--color-background);
 	box-shadow: 0 0 0 200px var(--color-background);
 

@@ -108,6 +108,33 @@
 	border-bottom: 5px solid rgba(129, 134, 141, 0.5);
 }
 
+/* Dentro da fileira da home o card vive num container com overflow hidden
+   (necessário para o loop), então qualquer tooltip que saia do card seria
+   cortado. O balão do card é então clonado em position:fixed no body — mesma
+   posição de sempre (acima da estrela), só que fora do recorte.
+   O <span> original continua no DOM: é dele que sai o texto (o resto do
+   código atualiza esse texto ao favoritar/desfavoritar). */
+.card-container .favorite-button .tooltip-text {
+	display: none;
+}
+
+.tooltip-text.floating-tooltip {
+	display: block;
+	position: fixed;
+	bottom: auto;
+	left: 0;
+	top: 0;
+	transform: translate(-50%, -100%);
+	visibility: hidden;
+	opacity: 0;
+	pointer-events: none;
+
+	&.is-visible {
+		visibility: visible;
+		opacity: 1;
+	}
+}
+
 .tooltip-side {
 	position: absolute;
 	right: -80px;

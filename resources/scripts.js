@@ -1855,15 +1855,72 @@ function calculateTotalCards(groupItem) {
   return totalCards;
 }
 
+// Badges do card ("NOVIDADE", etc). Aceita string ou lista; vazios são
+// ignorados e a lista sai sempre em ordem alfabética.
+function getCardBadges(card) {
+  if (!card || !card.badge) return [];
+  const list = Array.isArray(card.badge) ? card.badge : [card.badge];
+  return list
+    .map(badge => (typeof badge === 'string' ? badge.trim() : ''))
+    .filter(Boolean)
+    .sort((a, b) => a.localeCompare(b));
+}
+
+// Chave de ordenação: cards com badge vêm primeiro (entre eles, pelo badge em
+// ordem alfabética); sem badge fica depois de todos.
+function getBadgeSortKey(card) {
+  return getCardBadges(card)[0] || '';
+}
+
+function getSubgroupBadgeSortKey(subgroup) {
+  if (!subgroup || !Array.isArray(subgroup.card_buttons)) return '';
+  const keys = subgroup.card_buttons
+    .filter(card => card.visible !== false)
+    .map(getBadgeSortKey)
+    .filter(Boolean)
+    .sort((a, b) => a.localeCompare(b));
+  return keys[0] || '';
+}
+
+// Compara duas chaves de badge: quem tem badge vem antes; empate resolve fora.
+function compareBadgeKeys(aKey, bKey) {
+  if (!!aKey !== !!bKey) return aKey ? -1 : 1;
+  if (aKey && bKey && aKey !== bKey) return aKey.localeCompare(bKey);
+  return 0;
+}
+
+// Resumo do conteúdo mostrado no hover do card: temporadas (se > 1),
+// episódios de série (se > 1) e filmes (se > 0), cada um em uma linha.
+function buildCardMetaLines(subgroup) {
+  if (!subgroup) return '';
+
+  const seasons = Array.isArray(subgroup.season) ? subgroup.season : [];
+  const seasonCount = seasons.length;
+  const episodeCount = seasons.reduce(
+    (total, season) => total + (Array.isArray(season.episodes) ? season.episodes.length : 0), 0);
+  const movieCount = getMoviesEpisodes(subgroup).length;
+
+  const lines = [];
+  if (seasonCount > 1) lines.push(`${seasonCount} Temporadas`);
+  if (episodeCount > 1) lines.push(`${episodeCount} Episódios disponíveis`);
+  if (movieCount > 0) lines.push(`${movieCount} ${movieCount === 1 ? 'Filme' : 'Filmes'}`);
+
+  return lines.join('<br>');
+}
+
 function renderGroupSection(groupItem, isHomePage, skipHeader = false) {
   const sortedSubgroups = [...groupItem.group].sort((a, b) => {
     const aHasEnabled = a.card_buttons && a.card_buttons.some(card => card.enabled !== false);
     const bHasEnabled = b.card_buttons && b.card_buttons.some(card => card.enabled !== false);
-    
+
     if (aHasEnabled !== bHasEnabled) {
       return aHasEnabled ? -1 : 1;
     }
-    
+
+    // quem tem badge encabeça a lista
+    const badgeOrder = compareBadgeKeys(getSubgroupBadgeSortKey(a), getSubgroupBadgeSortKey(b));
+    if (badgeOrder !== 0) return badgeOrder;
+
     return a.name.localeCompare(b.name);
   });
 
@@ -1871,12 +1928,12 @@ function renderGroupSection(groupItem, isHomePage, skipHeader = false) {
     if (subgroup.card_buttons) {
       subgroup.card_buttons.sort((a, b) => {
         const enabledOrder = (a.enabled === false ? 1 : 0) - (b.enabled === false ? 1 : 0);
-        
-        if (enabledOrder === 0) {
-          return a.name.localeCompare(b.name);
-        }
-        
-        return enabledOrder;
+        if (enabledOrder !== 0) return enabledOrder;
+
+        const badgeOrder = compareBadgeKeys(getBadgeSortKey(a), getBadgeSortKey(b));
+        if (badgeOrder !== 0) return badgeOrder;
+
+        return a.name.localeCompare(b.name);
       });
     }
   });
@@ -1982,6 +2039,11 @@ function renderGroupSection(groupItem, isHomePage, skipHeader = false) {
         const shouldShowInfo = groupSeriesButtonInfo && card.info;
         const infoClass = shouldShowInfo ? 'info' : '';
         const hasInfoClass = shouldShowInfo ? 'has-info' : '';
+        const cardMeta = buildCardMetaLines(subgroup);
+        const badges = getCardBadges(card);
+        const badgesHtml = badges.length
+          ? `<div class="card-badges">${badges.map(badge => `<span class="card-badge">${badge}</span>`).join('')}</div>`
+          : '';
 
         html += `
           <div class="card-container ${containerClass} ${hasInfoClass}" data-subgroup-slug="${subgroupSlug}">
@@ -1995,11 +2057,12 @@ function renderGroupSection(groupItem, isHomePage, skipHeader = false) {
             <div class="overlay-1"></div>
             <div class="overlay-2"></div>
             <div class="background-glow"></div>
+            ${badgesHtml}
 
             <div id="group-series-button" class="${infoClass}" data-subgroup-slug="${subgroupSlug}" data-group-slug="${actualGroupSlug}">
               <div class="info">
                 <h2>${card.name}</h2>
-                <p>TEST</p>
+                ${cardMeta ? `<p class="card-meta">${cardMeta}</p>` : ''}
                 <button class="${watchButtonClass}">${watchButtonText}</button>
               </div>
               <button class="favorite-button ${currentIsFavorite ? 'favorited' : ''}" data-card='${JSON.stringify(card)}'>
@@ -4736,6 +4799,95 @@ removeHistoryLog;
 window.showClearAllModal = showClearAllModal;
 window.hideClearAllModal = hideClearAllModal;
 window.confirmClearAll = confirmClearAll;
+
+/* ---------- Tooltip flutuante dos cards ----------
+   O card mora dentro da fileira com overflow hidden (necessário para o loop
+   infinito), então o balão preso ao botão seria cortado. Aqui ele é espelhado
+   num elemento fixed no body, na mesma posição de sempre: acima da estrela.
+   O texto sai do <span> original, que continua sendo atualizado pelo resto
+   do código ao favoritar/desfavoritar. */
+(function initFloatingCardTooltip() {
+  const MARGIN = 8;
+  let tip = null;
+  let currentButton = null;
+
+  const ensureTip = () => {
+    if (!tip) {
+      tip = document.createElement('span');
+      tip.className = 'tooltip-text black tooltip-top floating-tooltip';
+      document.body.appendChild(tip);
+    }
+    return tip;
+  };
+
+  const place = (button) => {
+    const source = button.querySelector('.tooltip-text');
+    if (!source) return;
+
+    const el = ensureTip();
+    el.textContent = source.textContent;
+
+    const r = button.getBoundingClientRect();
+    el.style.top = `${Math.round(r.top - 10)}px`;
+    el.style.left = `${Math.round(r.left + r.width / 2)}px`;
+    el.classList.add('is-visible');
+
+    // não deixa escapar da janela
+    const t = el.getBoundingClientRect();
+    if (t.left < MARGIN) el.style.left = `${Math.round(r.left + r.width / 2 + (MARGIN - t.left))}px`;
+    else if (t.right > window.innerWidth - MARGIN) {
+      el.style.left = `${Math.round(r.left + r.width / 2 - (t.right - window.innerWidth + MARGIN))}px`;
+    }
+  };
+
+  const hide = () => {
+    currentButton = null;
+    if (tip) tip.classList.remove('is-visible');
+  };
+
+  const closestFavorite = (node) =>
+    (node && node.closest) ? node.closest('.card-container .favorite-button') : null;
+
+  document.addEventListener('pointerover', (e) => {
+    const button = closestFavorite(e.target);
+    if (!button) {
+      if (currentButton) hide();
+      return;
+    }
+    currentButton = button;
+    place(button);
+  });
+
+  document.addEventListener('pointerout', (e) => {
+    const from = closestFavorite(e.target);
+    if (!from) return;
+    // segue visível só enquanto o ponteiro continuar dentro do mesmo botão
+    if (closestFavorite(e.relatedTarget) === from) return;
+    hide();
+  });
+
+  // O texto muda ao favoritar e o card costuma ser re-renderizado logo depois,
+  // então a referência antiga morre: reencontra o botão pela posição do cursor.
+  document.addEventListener('click', (e) => {
+    if (!closestFavorite(e.target)) return;
+    const { clientX, clientY } = e;
+    setTimeout(() => {
+      const live = closestFavorite(document.elementFromPoint(clientX, clientY));
+      if (live) {
+        currentButton = live;
+        place(live);
+      } else {
+        hide();
+      }
+    }, 0);
+  });
+
+  document.addEventListener('pointerdown', (e) => {
+    if (!(e.target.closest && e.target.closest('.card-container .favorite-button'))) hide();
+  });
+  window.addEventListener('scroll', hide, { passive: true });
+  window.addEventListener('resize', hide);
+})();
 
 /* ---------- Theme switcher (navbar dropdown) ----------
    The initial theme is set by inline JS in index.html (before
