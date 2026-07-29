@@ -404,6 +404,16 @@
 		display: block;
 		cursor: grab;
 		touch-action: pan-y;
+
+		/* O recorte é obrigatório (o track é muito mais largo que a fileira),
+		   mas não precisa ser rente aos cards: essa folga — anulada pelas
+		   margens negativas, então o layout não muda — deixa o glow do hover
+		   respirar em vez de morrer numa reta na borda.
+		   Vertical limitado a 10px: é a distância até o header da seção, e o
+		   fundo do track pintaria por cima dele (cortava o título). */
+		padding: 10px 20px;
+		margin: -10px -20px;
+		width: calc(100% + 40px);
 	}
 
 	&.scroll-mode {
@@ -421,6 +431,15 @@
 	width: max-content;
 	transform: translateX(0px);
 	will-change: transform;
+
+	/* O transform cria um stacking context: sem esse fundo, o
+	   `mix-blend-mode: overlay` do glow dos cards blendaria contra um
+	   backdrop transparente e viraria um retângulo esbranquiçado.
+	   O box-shadow estende esse mesmo fundo para além da caixa do track
+	   (sem afetar layout), senão o último card — cujo glow passa da borda
+	   do track — continuaria lavando de branco. */
+	background: var(--color-background);
+	box-shadow: 0 0 0 200px var(--color-background);
 
 	> .card-container { flex: 0 0 auto; }
 }
@@ -461,6 +480,56 @@
 	&:hover { background: var(--sl-overlay-light-strong); }
 	&.prev { left: 10px; }
 	&.next { right: 10px; }
+}
+
+/* ---------- Page indicator ("roladas" do carrossel da home) ---------- */
+.group-header-actions {
+	display: flex;
+	align-items: center;
+	gap: 24px;
+	flex-shrink: 0;
+}
+
+.group-pagination {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+
+	&[hidden] { display: none; }
+}
+
+/* Mesmas medidas das barrinhas do carrossel do topo (.dot) */
+.group-page-dot {
+	position: relative;
+	width: 30px;
+	height: 6px;
+	padding: 0;
+	border: none;
+	border-radius: 3px;
+	background: var(--sl-overlay-light-strong);
+	opacity: 0.55;
+	cursor: pointer;
+	transition: width 0.3s ease, opacity 0.3s ease, background 0.3s ease;
+
+	/* Área de clique bem maior que o traço visível */
+	&::before {
+		content: "";
+		position: absolute;
+		top: -14px;
+		bottom: -14px;
+		left: -4px;
+		right: -4px;
+		background: transparent;
+		cursor: pointer;
+	}
+
+	&:hover { opacity: 0.9; }
+
+	&.active {
+		width: 40px;
+		opacity: 1;
+		background: var(--sl-accent);
+	}
 }
 
 /* ---------- Sub-carousel inside card hover info panel ---------- */

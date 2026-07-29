@@ -1335,10 +1335,11 @@ function initializeHomePageFeatures() {
   });
 
   const initLoopingCardsScroller = (header) => {
-    const container = header.querySelector('.group-cards-header.home-layout');
-    // const container = header.querySelector('.group-cards-container');
+    const container = header.querySelector('.group-cards-container');
     const prevBtn = header.querySelector('.nav-arrow.prev');
     const nextBtn = header.querySelector('.nav-arrow.next');
+    const section = header.closest('section');
+    const pagination = section ? section.querySelector('.group-pagination') : null;
 
     if (!container || !prevBtn || !nextBtn) return;
 
@@ -1367,10 +1368,16 @@ function initializeHomePageFeatures() {
     let moveToken = 0;
     let isPointerDown = false;
     let isDragging = false;
+    let suppressClick = false;
     let dragStartX = 0;
     let dragCurrentX = 0;
     let dragRawStartX = 0;
     let dragPrevPrepends = 0;
+    let dragPointerId = null;
+    let itemCount = 0;
+    let perPage = 1;
+    let pageCount = 0;
+    let logicalIndex = 0;
     const controller = new AbortController();
     const { signal } = controller;
 
@@ -1379,9 +1386,74 @@ function initializeHomePageFeatures() {
       nextBtn.classList.toggle('hidden', !visible);
     };
 
+    // Gira o track sem perder a noção de onde estamos na ordem original,
+    // para a paginação continuar correta depois de N voltas do loop.
+    const rotateForward = () => {
+      const first = track.firstElementChild;
+      if (!first) return false;
+      track.appendChild(first);
+      if (itemCount > 0) logicalIndex = (logicalIndex + 1) % itemCount;
+      return true;
+    };
+
+    const rotateBackward = () => {
+      const last = track.lastElementChild;
+      if (!last) return false;
+      track.insertBefore(last, track.firstElementChild);
+      if (itemCount > 0) logicalIndex = (logicalIndex - 1 + itemCount) % itemCount;
+      return true;
+    };
+
+    const syncPagination = () => {
+      if (!pagination) return;
+      const activePage = pageCount > 0
+        ? Math.min(pageCount - 1, Math.floor(logicalIndex / perPage))
+        : 0;
+      Array.from(pagination.children).forEach((dot, i) => {
+        const isActive = i === activePage;
+        dot.classList.toggle('active', isActive);
+        dot.setAttribute('aria-selected', isActive ? 'true' : 'false');
+      });
+    };
+
+    const renderPagination = () => {
+      if (!pagination) return;
+
+      // Só existe indicador se realmente houver mais de uma "rolada" — e
+      // acima de ~12 páginas ele vira ruído, aí some.
+      if (!cachedCanScroll || pageCount <= 1 || pageCount > 12) {
+        pagination.hidden = true;
+        pagination.innerHTML = '';
+        return;
+      }
+
+      pagination.hidden = false;
+      if (pagination.children.length !== pageCount) {
+        pagination.innerHTML = '';
+        for (let i = 0; i < pageCount; i++) {
+          const dot = document.createElement('button');
+          dot.type = 'button';
+          dot.className = 'group-page-dot';
+          dot.dataset.page = String(i);
+          dot.setAttribute('role', 'tab');
+          dot.setAttribute('aria-label', `Página ${i + 1} de ${pageCount}`);
+          pagination.appendChild(dot);
+        }
+      }
+      syncPagination();
+    };
+
+    // Largura útil: clientWidth inclui o padding que existe só para o glow
+    // não ser cortado, então ele não conta como espaço de card.
+    const viewportWidth = () => {
+      const cs = getComputedStyle(container);
+      const pad = (parseFloat(cs.paddingLeft) || 0) + (parseFloat(cs.paddingRight) || 0);
+      return Math.max(0, container.clientWidth - pad);
+    };
+
     const measureStep = () => {
       const items = Array.from(track.children).filter(el => el.nodeType === 1);
-      if (items.length === 0) return { stepCount: 0, shiftPx: 0, canScroll: false };
+      if (items.length === 0) return { stepCount: 0, shiftPx: 0, canScroll: false, count: 0 };
 
       let shiftPx = 0;
       const firstEl = items[0];
@@ -1397,8 +1469,16 @@ function initializeHomePageFeatures() {
       }
 
       const stepCount = 1;
-      const canScroll = track.scrollWidth > container.clientWidth + 1;
-      return { stepCount, shiftPx, canScroll };
+      const canScroll = track.scrollWidth > viewportWidth() + 1;
+      return { stepCount, shiftPx, canScroll, count: items.length };
+    };
+
+    // Setar transition e transform no mesmo tick faz o browser ignorar a
+    // transição (o estilo "antes" já tem duration 0) e o transitionend nunca
+    // dispara. Forçar um reflow no meio resolve.
+    const armTransition = (value) => {
+      track.style.transition = value;
+      void track.offsetWidth;
     };
 
     const moveBySteps = (dir, steps) => {
@@ -1412,13 +1492,27 @@ function initializeHomePageFeatures() {
       const duration = Math.min(450, Math.max(140, transitionMs + (steps - 1) * 20));
 
       let done = false;
+      let committed = false;
       let fallbackId = null;
+
+      // O reposicionamento real do loop não pode depender do transitionend:
+      // aba em segundo plano / animação suprimida nunca dispara o evento.
+      const commit = () => {
+        if (committed) return;
+        committed = true;
+        track.style.transition = 'none';
+        if (dir > 0) {
+          for (let i = 0; i < steps; i++) rotateForward();
+        }
+        track.style.transform = 'translateX(0px)';
+      };
 
       const finalize = () => {
         if (done || thisMove !== moveToken) return;
         done = true;
         if (fallbackId) clearTimeout(fallbackId);
 
+        commit();
         track.style.transition = 'none';
         track.style.transform = 'translateX(0px)';
 
@@ -1441,29 +1535,23 @@ function initializeHomePageFeatures() {
       };
 
       if (dir > 0) {
-        track.style.transition = `transform ${duration}ms ease-out`;
+        armTransition(`transform ${duration}ms ease-out`);
         track.style.transform = `translateX(-${shift}px)`;
-        track.addEventListener('transitionend', () => {
+        track.addEventListener('transitionend', (e) => {
           if (thisMove !== moveToken) return;
-          track.style.transition = 'none';
-          for (let i = 0; i < steps; i++) {
-            const first = track.firstElementChild;
-            if (first) track.appendChild(first);
-          }
-          track.style.transform = 'translateX(0px)';
+          if (e && e.target !== track) return;
+          if (e && e.propertyName && e.propertyName !== 'transform') return;
+          commit();
           finalize();
         }, { once: true, signal });
       } else {
         track.style.transition = 'none';
-        for (let i = 0; i < steps; i++) {
-          const last = track.lastElementChild;
-          if (last) track.insertBefore(last, track.firstElementChild);
-        }
+        for (let i = 0; i < steps; i++) rotateBackward();
         track.style.transform = `translateX(-${shift}px)`;
         requestAnimationFrame(() => {
           requestAnimationFrame(() => {
             if (thisMove !== moveToken) return;
-            track.style.transition = `transform ${duration}ms ease-out`;
+            armTransition(`transform ${duration}ms ease-out`);
             track.style.transform = 'translateX(0px)';
           });
         });
@@ -1479,16 +1567,47 @@ function initializeHomePageFeatures() {
     const goPrev = () => moveBySteps(-1, 1);
 
     const update = () => {
-      const { canScroll, shiftPx } = measureStep();
+      const { canScroll, shiftPx, count } = measureStep();
       cachedCanScroll = canScroll;
       cachedShiftPx = shiftPx;
+      itemCount = count;
+
+      const visibleWidth = viewportWidth();
+      perPage = (shiftPx > 0 && visibleWidth > 0)
+        ? Math.max(1, Math.floor(visibleWidth / shiftPx))
+        : 1;
+      pageCount = (canScroll && itemCount > 0) ? Math.ceil(itemCount / perPage) : 0;
+      logicalIndex = itemCount > 0 ? ((logicalIndex % itemCount) + itemCount) % itemCount : 0;
+
       setArrowsVisible(cachedCanScroll);
+      renderPagination();
+
       if (!cachedCanScroll) {
         track.style.transition = 'none';
         track.style.transform = 'translateX(0px)';
         isAnimating = false;
       }
     };
+
+    const goToPage = (page) => {
+      if (!cachedCanScroll || pageCount <= 1 || itemCount <= 0) return;
+      const target = Math.min(page * perPage, itemCount - 1);
+      let delta = target - logicalIndex;
+      // caminho mais curto pelo loop
+      if (delta > itemCount / 2) delta -= itemCount;
+      if (delta < -itemCount / 2) delta += itemCount;
+      if (delta === 0) return;
+      moveBySteps(delta > 0 ? 1 : -1, Math.abs(delta));
+    };
+
+    if (pagination) {
+      pagination.addEventListener('click', e => {
+        const dot = e.target.closest('.group-page-dot');
+        if (!dot) return;
+        e.preventDefault();
+        goToPage(Number(dot.dataset.page) || 0);
+      }, { signal });
+    }
 
     prevBtn.addEventListener('click', e => {
       e.preventDefault();
@@ -1511,6 +1630,9 @@ function initializeHomePageFeatures() {
     const getPointerX = (e) => (typeof e.clientX === 'number' ? e.clientX : 0);
 
     const onPointerDown = (e) => {
+      // Sempre limpa: se um arraste anterior não gerou click, a trava não pode
+      // sobrar e engolir o próximo clique de verdade.
+      suppressClick = false;
       if (e.button != null && e.button !== 0) return;
       if (e.target && (e.target.closest('.nav-arrow') || e.target.closest('.favorite-button') || e.target.closest('.watch-button'))) {
         return;
@@ -1525,26 +1647,34 @@ function initializeHomePageFeatures() {
       dragStartX = dragRawStartX;
       dragCurrentX = dragRawStartX;
       dragPrevPrepends = 0;
-      try { container.setPointerCapture(e.pointerId); } catch {}
+      dragPointerId = e.pointerId;
+      // NÃO capturar o ponteiro aqui: a captura retargeta o `click` para o
+      // container e o card nunca recebe o clique. Só captura se virar arraste.
       track.style.transition = 'none';
     };
 
     const onPointerMove = (e) => {
       if (!isPointerDown) return;
+      // Sem captura antes do limiar, o pointerup pode acontecer fora do
+      // container; se o botão já foi solto, encerra em vez de "arrastar sozinho".
+      if (!isDragging && e.buttons === 0) {
+        isPointerDown = false;
+        return;
+      }
       const x = getPointerX(e);
       dragCurrentX = x;
       let dx = x - dragStartX;
       if (!isDragging) {
         if (Math.abs(x - dragRawStartX) < 6) return;
         isDragging = true;
+        // agora sim: passou do limiar, é arraste — segura o ponteiro
+        try { container.setPointerCapture(e.pointerId); } catch {}
       }
       e.preventDefault();
 
       let guard = 0;
       while (dx > 0 && guard < 20) {
-        const last = track.lastElementChild;
-        if (!last) break;
-        track.insertBefore(last, track.firstElementChild);
+        if (!rotateBackward()) break;
         dragPrevPrepends += 1;
         dragStartX += cachedShiftPx;
         dx = x - dragStartX;
@@ -1553,14 +1683,13 @@ function initializeHomePageFeatures() {
 
       guard = 0;
       while (dx < -cachedShiftPx && guard < 20) {
-        const first = track.firstElementChild;
-        if (!first) break;
-        track.appendChild(first);
+        if (!rotateForward()) break;
         dragStartX -= cachedShiftPx;
         dx = x - dragStartX;
         guard += 1;
       }
 
+      syncPagination();
       track.style.transform = `translateX(${dx}px)`;
     };
 
@@ -1574,9 +1703,7 @@ function initializeHomePageFeatures() {
 
       let guard = 0;
       while (dx > 0 && guard < 20) {
-        const last = track.lastElementChild;
-        if (!last) break;
-        track.insertBefore(last, track.firstElementChild);
+        if (!rotateBackward()) break;
         dragPrevPrepends += 1;
         dragStartX += cachedShiftPx;
         dx = dragCurrentX - dragStartX;
@@ -1585,9 +1712,7 @@ function initializeHomePageFeatures() {
 
       guard = 0;
       while (dx < -cachedShiftPx && guard < 20) {
-        const first = track.firstElementChild;
-        if (!first) break;
-        track.appendChild(first);
+        if (!rotateForward()) break;
         dragStartX -= cachedShiftPx;
         dx = dragCurrentX - dragStartX;
         guard += 1;
@@ -1600,13 +1725,15 @@ function initializeHomePageFeatures() {
       }
 
       isDragging = false;
+      // arrastou: não deixa virar clique no card
+      suppressClick = true;
       const threshold = cachedShiftPx * 0.25;
       const onDone = () => {
         update();
       };
 
       const snapTo = (targetX, durationMs, after) => {
-        track.style.transition = `transform ${durationMs}ms ease-out`;
+        armTransition(`transform ${durationMs}ms ease-out`);
         track.style.transform = `translateX(${targetX}px)`;
         let done = false;
         const finalize = () => {
@@ -1633,10 +1760,7 @@ function initializeHomePageFeatures() {
           });
         } else {
           snapTo(-cachedShiftPx, transitionMs, () => {
-            for (let i = 0; i < dragPrevPrepends; i++) {
-              const first = track.firstElementChild;
-              if (first) track.appendChild(first);
-            }
+            for (let i = 0; i < dragPrevPrepends; i++) rotateForward();
             dragPrevPrepends = 0;
             track.style.transform = 'translateX(0px)';
           });
@@ -1646,17 +1770,13 @@ function initializeHomePageFeatures() {
         const commitNext = nextProgress >= threshold;
         if (commitNext) {
           snapTo(-cachedShiftPx, transitionMs, () => {
-            const first = track.firstElementChild;
-            if (first) track.appendChild(first);
+            rotateForward();
             track.style.transform = 'translateX(0px)';
           });
         } else {
           snapTo(0, 140, () => {
             if (dragPrevPrepends > 0) {
-              for (let i = 0; i < dragPrevPrepends; i++) {
-                const first = track.firstElementChild;
-                if (first) track.appendChild(first);
-              }
+              for (let i = 0; i < dragPrevPrepends; i++) rotateForward();
               dragPrevPrepends = 0;
             }
             track.style.transform = 'translateX(0px)';
@@ -1665,19 +1785,44 @@ function initializeHomePageFeatures() {
       }
     };
 
+    container.addEventListener('click', (e) => {
+      if (!suppressClick) return;
+      suppressClick = false;
+      e.preventDefault();
+      e.stopPropagation();
+    }, { capture: true, signal });
+
     container.addEventListener('pointerdown', onPointerDown, { signal });
     container.addEventListener('pointermove', onPointerMove, { signal });
     container.addEventListener('pointerup', onPointerUp, { signal });
     container.addEventListener('pointercancel', onPointerUp, { signal });
 
-    window.addEventListener('resize', () => {
-      update();
-    }, { signal });
+    let resizeRaf = 0;
+    const scheduleUpdate = () => {
+      if (resizeRaf) return;
+      resizeRaf = requestAnimationFrame(() => {
+        resizeRaf = 0;
+        if (isAnimating || isPointerDown) return;
+        update();
+      });
+    };
+
+    window.addEventListener('resize', scheduleUpdate, { signal });
+
+    // Pega também mudanças de largura que não passam pelo resize da janela
+    // (sidebar abrindo/fechando, zoom, fontes carregando).
+    let resizeObserver = null;
+    if (typeof ResizeObserver !== 'undefined') {
+      resizeObserver = new ResizeObserver(scheduleUpdate);
+      resizeObserver.observe(container);
+    }
 
     update();
 
     header._loopingScrollerCleanup = () => {
       controller.abort();
+      if (resizeRaf) cancelAnimationFrame(resizeRaf);
+      if (resizeObserver) resizeObserver.disconnect();
       isAnimating = false;
     };
   };
@@ -1788,6 +1933,8 @@ function renderGroupSection(groupItem, isHomePage, skipHeader = false) {
     
     if (isHomePage && !groupItem.group_name.includes('favoritos')) {
       html += `
+      <div class="group-header-actions">
+      <div class="group-pagination" role="tablist" aria-label="Páginas de ${displayGroupName}" hidden></div>
       <button class="explore-button" data-group="${groupSlug}">
         <svg xmlns="http://www.w3.org/2000/svg" class="arr-2" viewBox="0 0 24 24">
           <path
@@ -1802,6 +1949,7 @@ function renderGroupSection(groupItem, isHomePage, skipHeader = false) {
           ></path>
         </svg>
       </button>
+      </div>
       `;
     }
     html += `</header>`;

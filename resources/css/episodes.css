@@ -74,7 +74,13 @@
 #continue-episode-button h1 {
 	font-size: 13px;
 	text-align: center;
-	left: 50%;
+	/* Sem `left: 50%`: o h1 já ocupa a largura do card, então deslocar meia
+	   largura jogava o texto em cima do badge de duração e pra fora do card.
+	   `text-align: center` sozinho é o que centraliza. */
+	padding: 0 10px;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
 	font-weight: bold;
 	background: linear-gradient(to bottom, rgb(250, 247, 228), rgb(226, 179, 127));
 	text-shadow: 2px 2px 5px rgba(145, 87, 33, 0.7);
@@ -89,7 +95,8 @@
 #episode-button p {
 	font-size: 13px;
 	text-align: center;
-	left: 50%;
+	/* idem h1: nada de `left: 50%` */
+	padding: 0 10px;
 	font-weight: bold;
 	background: linear-gradient(to bottom, rgb(250, 247, 228), rgb(226, 179, 127));
 	text-shadow: 2px 2px 5px rgba(145, 87, 33, 0.7);

@@ -36,5 +36,6 @@
 
 /* Mobile placeholder (sidebar still 300px — not yet adapted) */
 @media (max-width: 768px) {
-	/* reserved for future mobile pass */
+	/* Pouco espaço no header e uma página por card: o indicador vira ruído */
+	.group-pagination { display: none; }
 }

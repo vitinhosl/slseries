@@ -3905,6 +3905,78 @@ export const biblicalData = [
                 },
             ]
           },
+
+          //AMOR EM RUÍNAS
+          {
+            name: "Amor em Ruínas",
+            card_buttons: [
+                {
+                    name: "Amor em Ruínas",
+                    enabled: true,
+                    visible: true,
+                    acumulative: false,
+                    info: true,
+                    badge: "NOVIDADE",
+                    thumb_buttons: {
+                        url: [
+                            "https://i.imgur.com/fEACKEt.jpeg",
+                        ],
+                    },
+                },
+            ],
+
+            carrousel: {
+                visible: true,
+                homepage: true,
+                favorite: true,
+                logo: { title: "AMOR EM RUÍNAS", enabled: false, minimalist: false, url: "" },
+                thumb: ["https://i.imgur.com/8Q5m92e.jpeg"],
+                description: `
+                    Será que conhecemos o verdadeiro amor? Gomer, uma mulher de prostituições, não o conhece, mas intimamente o deseja. De outro lado, o profeta Oseias, recebe a dura missão de amar aquela que é o oposto de tudo o que ele crê. Em um romance distante do ideal, quando tudo desmoronar, pode este amor permanecer?
+                `,
+                info: { enabled: true, text: "", season: false, episodes: true, finalized: false }
+            },
+
+            description: {
+                visible: true,
+                logo: { title: "AMOR EM RUÍNAS", enabled: false, minimalist: false, grayscale: false, url: "" },
+                thumb: [
+                    "https://www.univervideo.com/pt/serie/amor-em-ruinas/assets/img/img-002.jpg"
+                    // "https://i.imgur.com/8Q5m92e.jpeg", //MESMA DE CIMA IMGUR
+                ],
+                effect: [
+                    {
+                        hover: false,
+                        fade: 2,
+                        subtitle: "", duration: 16,
+                        opacity: 0.5,
+                        mixBlend: 'color-dodge',
+                        background: { description: [0.0, 0.0, 0.0, 0.0], overlay: [0.0, 0.0, 0.0, 1.4]},
+                        links: [
+                            "https://i.imgur.com/pGx6LNd.mp4" //16sec
+                        ],
+                    },
+                ],
+                sinopse:  `
+                    Será que conhecemos o verdadeiro amor? Gomer, uma mulher de prostituições, não o conhece, mas intimamente o deseja. De outro lado, o profeta Oseias, recebe a dura missão de amar aquela que é o oposto de tudo o que ele crê. Em um romance distante do ideal, quando tudo desmoronar, pode este amor permanecer?
+                `
+            },
+
+            season: [
+                {
+                    name: "Temporada 01",
+                    thumb_season: "https://i.imgur.com/MQSmO47.jpeg",
+                    movies: false,
+                    episodes: [
+                        { title: "Episódio 001", subtitle: "", duration: "54:29"  , thumb: "" , url: ["https://23rzv4udpdbv8t6.cdn-novflix.com/storage7/AMRNS/AMRNS-001.mp4", ] },
+                        { title: "Episódio 002", subtitle: "", duration: "55:31"  , thumb: "" , url: ["https://23rzv4udpdbv8t6.cdn-novflix.com/storage7/AMRNS/AMRNS-002.mp4", ] },
+                        { title: "Episódio 003", subtitle: "", duration: "56:45"  , thumb: "" , url: ["https://23rzv4udpdbv8t6.cdn-novflix.com/storage7/AMRNS/AMRNS-003.mp4", ] },
+                        { title: "Episódio 004", subtitle: "", duration: "1:00:50", thumb: "" , url: ["https://23rzv4udpdbv8t6.cdn-novflix.com/storage7/AMRNS/AMRNS-004.mp4", ] },
+                        { title: "Episódio 005", subtitle: "", duration: "1:02:02", thumb: "" , url: ["https://23rzv4udpdbv8t6.cdn-novflix.com/storage7/AMRNS/AMRNS-005.mp4", ] },
+                    ]
+                },
+            ]
+          },
       ]
     },
 ];
