@@ -145,6 +145,12 @@ body.video-overlay-open {
 	overflow: hidden;
 }
 
+/* Quem rola a página é o <html>: travar só o body deixava a barra de rolagem
+   aparecendo ao lado do player. */
+html:has(body.video-overlay-open) {
+	overflow: hidden;
+}
+
 #video-overlay {
 	position: fixed;
 	inset: 0;
@@ -163,77 +169,163 @@ body.video-overlay-open {
 	position: relative;
 	width: 100%;
 	height: 100%;
-	background: #000;
+	background: var(--sl-bg);
+	display: flex;
+	flex-direction: column;
+	min-height: 0;
 }
 
+/* Barra própria no topo, com borda — o vídeo não passa por baixo dela */
 #video-overlay-header {
-	position: absolute;
-	top: 0;
-	left: 0;
-	right: 0;
+	position: relative;
+	flex: 0 0 auto;
 	z-index: 3;
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
 	gap: 12px;
 	padding: 12px;
-	background: linear-gradient(to bottom, rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0));
+	background: linear-gradient(
+		to bottom,
+		color-mix(in srgb, var(--sl-bg) 88%, var(--sl-text)),
+		color-mix(in srgb, var(--sl-bg) 94%, var(--sl-text))
+	);
+	border-bottom: 1px solid color-mix(in srgb, var(--sl-text) 12%, transparent);
+	box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35);
+}
+
+/* Palco do vídeo: centrado, abaixo do header e com folga nas bordas */
+#video-stage {
+	position: relative;
+	flex: 1 1 auto;
+	min-height: 0;
+	margin: 16px;
+	border-radius: 14px;
+	border: 1px solid color-mix(in srgb, var(--sl-text) 14%, transparent);
+	background: #000;
+	overflow: hidden;
 }
 
 #toggle-buttons-container {
 	display: flex;
 	gap: 8px;
 	align-items: center;
+	flex-wrap: wrap;
+	min-width: 0;
 }
 
 .toggle-button {
-	border: 1px solid color-mix(in srgb, var(--sl-text) 18%, transparent);
-	background: color-mix(in srgb, var(--sl-bg) 65%, transparent);
-	color: var(--sl-text);
-	padding: 8px 12px;
-	border-radius: 10px;
+	border: 1px solid color-mix(in srgb, var(--sl-text) 12%, transparent);
+	background: color-mix(in srgb, var(--sl-text) 5%, transparent);
+	color: color-mix(in srgb, var(--sl-text) 70%, transparent);
+	padding: 8px 15px;
+	border-radius: var(--sl-radius-pill);
 	font-weight: 700;
-	font-size: 12px;
+	font-size: 11px;
+	letter-spacing: 0.07em;
+	text-transform: uppercase;
 	cursor: pointer;
 	user-select: none;
+	transition: color 0.2s ease, background 0.2s ease, border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.toggle-button:hover {
+	color: var(--sl-text);
+	border-color: color-mix(in srgb, var(--sl-text) 28%, transparent);
+	background: color-mix(in srgb, var(--sl-text) 10%, transparent);
+	transform: translateY(-1px);
 }
 
 .toggle-button.active {
-	border-color: color-mix(in srgb, var(--sl-text) 45%, transparent);
-	background: color-mix(in srgb, var(--sl-text) 12%, transparent);
+	border-color: transparent;
+	background: var(--sl-accent);
+	color: #fff;
+	box-shadow: 0 4px 14px color-mix(in srgb, var(--sl-accent) 40%, transparent);
+}
+
+.toggle-button.active:hover {
+	background: var(--sl-accent);
+	transform: translateY(-1px);
 }
 
 #video-overlay-dropdown {
 	display: flex;
 	gap: 10px;
 	align-items: center;
+	/* fica na direita mesmo quando o bloco de opções da esquerda está vazio
+	   (com `space-between` sozinho ele escorregava para a esquerda) */
+	margin-left: auto;
 }
 
 #overlay-season-dropdown,
-#overlay-episodes-dropdown {
-	border: 1px solid color-mix(in srgb, var(--sl-text) 18%, transparent);
-	background: color-mix(in srgb, var(--sl-bg) 65%, transparent);
-	color: var(--sl-text);
-	padding: 8px 10px;
-	border-radius: 10px;
+#overlay-episodes-dropdown,
+#overlay-source-dropdown {
+	appearance: none;
+	-webkit-appearance: none;
+	border: 1px solid color-mix(in srgb, var(--sl-text) 12%, transparent);
+	background-color: color-mix(in srgb, var(--sl-text) 5%, transparent);
+	color: color-mix(in srgb, var(--sl-text) 85%, transparent);
+	padding: 9px 34px 9px 15px;
+	border-radius: var(--sl-radius-pill);
 	font-weight: 700;
-	font-size: 12px;
+	font-size: 11px;
+	letter-spacing: 0.06em;
+	text-transform: uppercase;
 	outline: none;
 	cursor: pointer;
+	max-width: 260px;
+	text-overflow: ellipsis;
+	transition: color 0.2s ease, background-color 0.2s ease, border-color 0.2s ease;
+
+	/* seta desenhada em CSS (herda a cor do texto, então serve aos 3 temas) */
+	background-image:
+		linear-gradient(45deg, transparent 50%, currentColor 50%),
+		linear-gradient(135deg, currentColor 50%, transparent 50%);
+	background-position: calc(100% - 19px) calc(50% + 1px), calc(100% - 14px) calc(50% + 1px);
+	background-size: 5px 5px, 5px 5px;
+	background-repeat: no-repeat;
+
+	&:hover {
+		color: var(--sl-text);
+		border-color: color-mix(in srgb, var(--sl-text) 28%, transparent);
+		background-color: color-mix(in srgb, var(--sl-text) 10%, transparent);
+	}
+
+	&:focus-visible {
+		border-color: var(--sl-accent);
+		box-shadow: 0 0 0 3px color-mix(in srgb, var(--sl-accent) 25%, transparent);
+	}
+
+	/* a lista aberta é desenhada pelo SO: garante contraste nos temas escuros */
+	option {
+		background: var(--sl-bg);
+		color: var(--sl-text);
+		text-transform: none;
+		letter-spacing: normal;
+	}
 }
 
 #close-overlay-button {
-	border: 1px solid color-mix(in srgb, var(--sl-text) 18%, transparent);
-	background: color-mix(in srgb, var(--sl-bg) 65%, transparent);
-	color: var(--sl-text);
-	width: 40px;
-	height: 40px;
-	border-radius: 12px;
+	border: 1px solid color-mix(in srgb, var(--sl-text) 12%, transparent);
+	background: color-mix(in srgb, var(--sl-text) 5%, transparent);
+	color: color-mix(in srgb, var(--sl-text) 70%, transparent);
+	width: 38px;
+	height: 38px;
+	border-radius: 50%;
+	font-size: 14px;
 	cursor: pointer;
 	display: flex;
 	align-items: center;
 	justify-content: center;
 	user-select: none;
+	transition: color 0.2s ease, background 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+
+	&:hover {
+		color: #fff;
+		background: var(--sl-accent);
+		border-color: transparent;
+		transform: rotate(90deg);
+	}
 }
 
 #video-iframe,

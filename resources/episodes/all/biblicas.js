@@ -3332,7 +3332,7 @@ export const biblicalData = [
                     visible: true,
                     acumulative: false,
                     info: true,
-                    badge: "NOVIDAD",
+                    badge: "",
                     thumb_buttons: {
                         url: [
                             // "https://i.imgur.com/clkVNbb.jpeg",

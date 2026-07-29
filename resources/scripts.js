@@ -2637,6 +2637,16 @@ function resolvePlayableUrls(subgroupName, seasonIndex, episodeIndex, urls) {
 let videoOverlayState = null;
 let videoOverlayKeyListenerAttached = false;
 
+// Acima disso as fontes do episódio deixam de ser botões e viram dropdown.
+const OVERLAY_MAX_OPTION_BUTTONS = 7;
+
+// Nome do filme para o dropdown: os dados trazem título e subtítulo separados
+// em `movies.episodes` e já juntos em `movies.move_list`.
+function getMovieLabel(episode) {
+  if (!episode) return '';
+  return [episode.title, episode.subtitle].filter(Boolean).join(' ').trim();
+}
+
 function ensureVideoOverlay() {
   if (document.getElementById('video-overlay')) return;
 
@@ -2691,11 +2701,17 @@ function ensureVideoOverlay() {
   nextButton.id = 'next-video-button';
   nextButton.textContent = '❯';
 
+  // O vídeo mora num palco próprio, abaixo do header e com folga nas bordas,
+  // em vez de ficar por baixo dele ocupando a tela inteira.
+  const stage = document.createElement('div');
+  stage.id = 'video-stage';
+  stage.appendChild(iframe);
+  stage.appendChild(video);
+  stage.appendChild(prevButton);
+  stage.appendChild(nextButton);
+
   container.appendChild(header);
-  container.appendChild(iframe);
-  container.appendChild(video);
-  container.appendChild(prevButton);
-  container.appendChild(nextButton);
+  container.appendChild(stage);
 
   overlay.appendChild(container);
   document.body.appendChild(overlay);
@@ -2710,6 +2726,13 @@ function ensureVideoOverlay() {
     if (!btn || !videoOverlayState) return;
     const url = btn.getAttribute('data-url') || '';
     setOverlayUrl(url, { activateButton: true });
+  });
+
+  // acima de OVERLAY_MAX_OPTION_BUTTONS as opções viram um dropdown
+  toggleButtonsContainer.addEventListener('change', (e) => {
+    const select = e.target.closest('#overlay-source-dropdown');
+    if (!select || !videoOverlayState) return;
+    setOverlayUrl(select.value, { activateButton: true });
   });
 
   seasonDropdown.addEventListener('change', () => {
@@ -2795,10 +2818,11 @@ function setOverlayUrl(url, { activateButton }) {
   }
 
   if (activateButton) {
-    document.querySelectorAll('#toggle-buttons-container .toggle-button').forEach(b => b.classList.remove('active'));
     document.querySelectorAll('#toggle-buttons-container .toggle-button').forEach(b => {
-      if ((b.getAttribute('data-url') || '') === clean) b.classList.add('active');
+      b.classList.toggle('active', (b.getAttribute('data-url') || '') === clean);
     });
+    const sourceDropdown = document.getElementById('overlay-source-dropdown');
+    if (sourceDropdown && sourceDropdown.value !== clean) sourceDropdown.value = clean;
   }
 }
 
@@ -2869,46 +2893,72 @@ function renderVideoOverlay() {
   const { subgroup, season, urls } = episodeData;
   const seasonKey = typeof episodeData.seasonKey === 'number' ? episodeData.seasonKey : seasonIndex;
 
+  // ---------- Esquerda: as fontes do episode.url ----------
   toggleButtonsContainer.innerHTML = '';
-  const showOptions = urls.length > 1;
-  toggleButtonsContainer.style.display = showOptions ? 'flex' : 'none';
+  toggleButtonsContainer.style.display = urls.length > 0 ? 'flex' : 'none';
 
-  if (showOptions) {
-    urls.forEach((u, idx) => {
+  if (urls.length > OVERLAY_MAX_OPTION_BUTTONS) {
+    // opções demais para caber em botões: vira dropdown
+    const select = document.createElement('select');
+    select.id = 'overlay-source-dropdown';
+    urls.forEach((url, idx) => {
+      const opt = document.createElement('option');
+      opt.value = url;
+      opt.textContent = `Opção ${idx + 1}`;
+      select.appendChild(opt);
+    });
+    toggleButtonsContainer.appendChild(select);
+  } else {
+    urls.forEach((url, idx) => {
       const btn = document.createElement('button');
       btn.className = `toggle-button${idx === 0 ? ' active' : ''}`;
-      btn.setAttribute('data-url', u);
-      btn.textContent = idx === 0 ? 'PRINCIPAL' : `OPÇÃO ${idx + 1}`;
+      btn.setAttribute('data-url', url);
+      btn.textContent = `OPÇÃO ${idx + 1}`;
       toggleButtonsContainer.appendChild(btn);
     });
   }
 
-  seasonDropdown.innerHTML = '';
+  // ---------- Direita: temporadas/filmes ----------
   const entries = getOverlaySeasonEntries(subgroup);
-  const showSeasonDropdown = entries.length > 1;
+  const seasonEntries = entries.filter(e => !e.isMovies);
+  const moviesEntry = entries.find(e => e.isMovies) || null;
+  const onlyMovies = seasonEntries.length === 0 && !!moviesEntry;
+
+  seasonDropdown.innerHTML = '';
+  // Só aparece quando há mais de uma coisa para escolher: várias temporadas,
+  // ou temporada + filmes. Uma temporada só (ou só filmes) não vira dropdown.
+  const seasonOptions = seasonEntries.map(e => ({ key: e.key, label: e.label }));
+
+  // filmes só entram aqui quando a série também tem temporadas
+  if (moviesEntry && !onlyMovies) seasonOptions.push({ key: moviesEntry.key, label: 'Filmes' });
+
+  const showSeasonDropdown = seasonOptions.length > 1;
   seasonDropdown.style.display = showSeasonDropdown ? 'block' : 'none';
   if (showSeasonDropdown) {
-    entries.forEach(e => {
+    seasonOptions.forEach(entry => {
       const opt = document.createElement('option');
-      opt.value = String(e.key);
-      opt.textContent = e.label;
+      opt.value = String(entry.key);
+      opt.textContent = entry.label;
       seasonDropdown.appendChild(opt);
     });
     seasonDropdown.value = String(seasonKey);
   }
 
+  // ---------- Direita: episódios (ou nomes dos filmes) ----------
   episodeDropdown.innerHTML = '';
-  const epCount = (season.episodes || []).length;
-  const showEpisodeDropdown = epCount > 1;
+  const episodes = season.episodes || [];
+  const showEpisodeDropdown = episodes.length > 1;
   episodeDropdown.style.display = showEpisodeDropdown ? 'block' : 'none';
   if (showEpisodeDropdown) {
-    const labelPrefix = seasonKey === -1 ? 'Filme' : 'Episódio';
-    for (let i = 0; i < epCount; i++) {
+    const isMoviesList = seasonKey === -1;
+    episodes.forEach((episode, i) => {
       const opt = document.createElement('option');
       opt.value = String(i);
-      opt.textContent = `${labelPrefix} ${String(i + 1).padStart(3, '0')}`;
+      opt.textContent = isMoviesList
+        ? (getMovieLabel(episode) || `Filme ${String(i + 1).padStart(3, '0')}`)
+        : `Episódio ${String(i + 1).padStart(3, '0')}`;
       episodeDropdown.appendChild(opt);
-    }
+    });
     episodeDropdown.value = String(episodeIndex);
   }
 
