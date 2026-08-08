@@ -3976,6 +3976,9 @@ export const biblicalData = [
                         { title: "Episódio 006", subtitle: "", duration: "1:01:58", thumb: "https://i.imgur.com/4LOwZpW.png" , url: ["https://23rzv4udpdbv8t6.cdn-novflix.com/storage7/AMRNS/AMRNS-006.mp4", ] },
                         { title: "Episódio 007", subtitle: "", duration: "51:10"  , thumb: "https://i.imgur.com/izMJT5d.png" , url: ["https://23rzv4udpdbv8t6.cdn-novflix.com/storage7/AMRNS/AMRNS-007.mp4", ] },
                         { title: "Episódio 008", subtitle: "", duration: "1:09:55", thumb: "https://i.imgur.com/NuNzcZ6.png" , url: ["https://23rzv4udpdbv8t6.cdn-novflix.com/storage7/AMRNS/AMRNS-008.mp4", ] },
+                        { title: "Episódio 009", subtitle: "", duration: "54:58"  , thumb: "https://i.imgur.com/8NvY0Nq.png" , url: ["https://23rzv4udpdbv8t6.cdn-novflix.com/storage7/AMRNS/AMRNS-009.mp4", ] },
+                        { title: "Episódio 010", subtitle: "", duration: "1:04:15", thumb: "https://i.imgur.com/PNrD25v.png" , url: ["https://23rzv4udpdbv8t6.cdn-novflix.com/storage7/AMRNS/AMRNS-010.mp4", ] },
+                        { title: "Episódio 011", subtitle: "", duration: "57:47"  , thumb: "https://i.imgur.com/rv7Zfmx.png" , url: ["https://23rzv4udpdbv8t6.cdn-novflix.com/storage7/AMRNS/AMRNS-011.mp4", ] },
                     ]
                 },
             ]
