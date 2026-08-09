@@ -3,5 +3,7 @@
 // NOVOS EPISÓDIOS e pelo sino de novidades.
 export const addedIndex = {
   "series": {},
-  "episodes": {}
+  "episodes": {
+    "Amor em Ruínas|0|Episódio Teste": "2026-08-08"
+  }
 };
