@@ -3,7 +3,5 @@
 // NOVOS EPISÓDIOS e pelo sino de novidades.
 export const addedIndex = {
   "series": {},
-  "episodes": {
-
-  }
+  "episodes": {}
 };
