@@ -492,3 +492,222 @@ body {
 	visibility: visible;
 	transform: translateY(0);
 }
+
+/* ---------------------------------------------------------------------
+   Sino de novidades (navbar)
+   - Mesmo desenho do seletor de tema: pílula com borda que acende no
+     accent, painel flutuante ancorado à direita.
+   --------------------------------------------------------------------- */
+.notif-dropdown {
+	position: relative;
+	display: inline-flex;
+}
+
+.notif-toggle {
+	position: relative;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	/* mesmo padding/linha do .theme-dropdown-toggle para os dois botões
+	   fecharem exatamente na mesma altura */
+	padding: 9px 14px;
+	font-size: 0.875rem;
+	line-height: 1;
+	background-color: color-mix(in srgb, var(--sl-text) 6%, transparent);
+	border: 1px solid color-mix(in srgb, var(--sl-text) 22%, transparent);
+	border-radius: var(--sl-radius-sm);
+	color: var(--sl-text);
+	cursor: pointer;
+	appearance: none;
+	transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+
+	i { font-size: 0.95rem; }
+
+	&:hover {
+		background-color: color-mix(in srgb, var(--sl-text) 12%, transparent);
+		border-color: color-mix(in srgb, var(--sl-accent) 50%, transparent);
+	}
+
+	&[aria-expanded="true"] {
+		background-color: color-mix(in srgb, var(--sl-accent) 14%, transparent);
+		border-color: color-mix(in srgb, var(--sl-accent) 55%, transparent);
+		color: var(--sl-accent);
+	}
+
+	&.has-unread i { animation: notifRing 2.4s ease-in-out infinite; }
+}
+
+@keyframes notifRing {
+	0%, 82%, 100% { transform: rotate(0); }
+	86% { transform: rotate(12deg); }
+	90% { transform: rotate(-10deg); }
+	94% { transform: rotate(6deg); }
+}
+
+.notif-count {
+	position: absolute;
+	top: -6px;
+	right: -6px;
+	min-width: 18px;
+	height: 18px;
+	padding: 0 5px;
+	border-radius: 999px;
+	background: var(--sl-accent);
+	color: #fff;
+	font-size: 10px;
+	font-weight: 700;
+	line-height: 18px;
+	text-align: center;
+	box-shadow: 0 2px 8px color-mix(in srgb, var(--sl-accent) 55%, transparent);
+}
+
+.notif-menu {
+	position: absolute;
+	top: calc(100% + 10px);
+	right: 0;
+	width: 380px;
+	max-width: min(380px, calc(100vw - 32px));
+	padding: 6px;
+	background: color-mix(in srgb, var(--color-top_bar) 97%, var(--sl-text));
+	border: 1px solid color-mix(in srgb, var(--sl-text) 20%, transparent);
+	border-radius: var(--sl-radius-md);
+	box-shadow: 0 16px 48px rgba(0, 0, 0, 0.5), 0 4px 12px rgba(0, 0, 0, 0.3);
+	opacity: 0;
+	visibility: hidden;
+	transform: translateY(-6px);
+	transition: opacity 0.18s ease, transform 0.18s ease, visibility 0.18s ease;
+	z-index: 150;
+}
+
+.notif-dropdown.open .notif-menu {
+	opacity: 1;
+	visibility: visible;
+	transform: translateY(0);
+}
+
+.notif-menu-header {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 10px;
+	padding: 10px 12px 12px;
+	border-bottom: 1px solid color-mix(in srgb, var(--sl-text) 12%, transparent);
+	font-size: 0.8rem;
+	font-weight: 700;
+	letter-spacing: 0.06em;
+	text-transform: uppercase;
+	color: color-mix(in srgb, var(--sl-text) 70%, transparent);
+}
+
+.notif-mark-read {
+	background: none;
+	border: none;
+	padding: 0;
+	color: var(--sl-accent);
+	font-family: inherit;
+	font-size: 0.7rem;
+	font-weight: 700;
+	letter-spacing: 0.04em;
+	text-transform: none;
+	cursor: pointer;
+	opacity: 0.85;
+
+	&:hover { opacity: 1; text-decoration: underline; }
+}
+
+.notif-list {
+	max-height: 420px;
+	overflow-y: auto;
+	scrollbar-width: thin;
+	scrollbar-color: color-mix(in srgb, var(--sl-text) 25%, transparent) transparent;
+}
+
+.notif-empty {
+	margin: 0;
+	padding: 26px 14px;
+	text-align: center;
+	font-size: 0.85rem;
+	color: color-mix(in srgb, var(--sl-text) 55%, transparent);
+}
+
+.notif-item {
+	position: relative;
+	display: flex;
+	align-items: center;
+	gap: 12px;
+	width: 100%;
+	padding: 10px;
+	background: transparent;
+	border: none;
+	border-radius: var(--sl-radius-sm);
+	color: var(--sl-text);
+	font-family: inherit;
+	text-align: left;
+	cursor: pointer;
+	transition: background-color 0.2s ease;
+
+	&:hover { background-color: color-mix(in srgb, var(--sl-text) 9%, transparent); }
+
+	&.unread::before {
+		content: '';
+		position: absolute;
+		left: 2px;
+		top: 50%;
+		width: 4px;
+		height: 4px;
+		border-radius: 50%;
+		background: var(--sl-accent);
+		transform: translateY(-50%);
+	}
+}
+
+.notif-thumb {
+	flex: 0 0 auto;
+	width: 74px;
+	height: 44px;
+	border-radius: 6px;
+	background-color: color-mix(in srgb, var(--sl-text) 12%, transparent);
+	background-size: cover;
+	background-position: center;
+}
+
+.notif-info {
+	display: flex;
+	flex-direction: column;
+	gap: 2px;
+	min-width: 0;
+	flex: 1 1 auto;
+}
+
+.notif-serie {
+	font-size: 0.85rem;
+	font-weight: 700;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.notif-ep {
+	font-size: 0.75rem;
+	color: color-mix(in srgb, var(--sl-text) 65%, transparent);
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.notif-sub {
+	font-size: 0.72rem;
+	color: color-mix(in srgb, var(--sl-text) 50%, transparent);
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.notif-when {
+	flex: 0 0 auto;
+	align-self: flex-start;
+	font-size: 0.68rem;
+	font-weight: 600;
+	color: color-mix(in srgb, var(--sl-text) 45%, transparent);
+	white-space: nowrap;
+}

@@ -1,4 +1,5 @@
 import { seriesAll } from './episodes/index.js';
+import { addedIndex } from './episodes/added.js';
 const seriesData = seriesAll;
 
 const seriesData2 = [
@@ -246,6 +247,10 @@ let randomImagesCards       = false; //AS IMAGENS ALEATÓRIAS DOS BOTÕES
 let randomImagesCarrousel   = false; //AS IMAGENS ALEATÓRIAS DO CARROUSEL
 let speedCarrouselBar       = 5;     //VELOCIDADE DAS ANIMAÇÕES DO CARROUSEL
 let searchBarSuggestions    = 20;    //QUANTIDADE DE ITENS NAS SUGESTÕES DA BARRA DE PESQUISA
+let newEpisodeBadgeDays     = 7;     //POR QUANTOS DIAS O EPISÓDIO FICA MARCADO COMO "NOVO"
+let newSeriesBadgeDays      = 14;    //POR QUANTOS DIAS A SÉRIE NOVA FICA COM O BADGE "NOVIDADE"
+let newEpisodeFeedDays      = 30;    //JANELA (EM DIAS) DAS NOVIDADES NO SINO DE NOTIFICAÇÕES
+let newEpisodeFeedMax       = 40;    //MÁXIMO DE ITENS LISTADOS NAS NOTIFICAÇÕES
 
 // localStorage.clear();
 
@@ -727,6 +732,41 @@ function findSubgroupByGroupAndSlug(groupSlug, subgroupSlug) {
   return null;
 }
 
+// O botão de voltar é reaproveitado entre páginas, então o comportamento é
+// definido aqui em um lugar só: volta no histórico de verdade (categoria ->
+// série volta para a categoria) e cai no início quando não há para onde voltar
+// (link direto, aba nova).
+let internalNavigationCount = 0;
+window.addEventListener('hashchange', () => { internalNavigationCount += 1; });
+
+function navigateBackOrHome() {
+  if (internalNavigationCount > 0) {
+    internalNavigationCount -= 1;
+    history.back();
+    return;
+  }
+  window.location.hash = `#${generateSlug('Início')}`;
+}
+
+function ensureNavbarBackButton({ withLabel }) {
+  const navbar = document.querySelector('header.navbar');
+  if (!navbar) return;
+
+  let backButton = navbar.querySelector('.back-button');
+  if (!backButton) {
+    backButton = document.createElement('button');
+    backButton.className = 'back-button';
+    const searchBar = navbar.querySelector('.search-bar');
+    if (searchBar) navbar.insertBefore(backButton, searchBar);
+    else navbar.insertBefore(backButton, navbar.firstChild);
+  }
+
+  backButton.innerHTML = withLabel
+    ? '<i class="fas fa-arrow-left"></i> Voltar'
+    : '<i class="fas fa-arrow-left"></i>';
+  backButton.onclick = navigateBackOrHome;
+}
+
 function attachSeriesNavigationListeners(container = document) {
   const seriesButtons = container.querySelectorAll('#group-series-button[data-subgroup-slug][data-group-slug]');
   
@@ -744,6 +784,64 @@ function attachSeriesNavigationListeners(container = document) {
       const groupSlug = this.getAttribute('data-group-slug');
       const subgroupSlug = this.getAttribute('data-subgroup-slug');
       window.location.hash = `#${groupSlug}/${subgroupSlug}`;
+    });
+  });
+}
+
+// Mini-header de ordenação dentro de cada temporada. Reordena os cards já
+// renderizados (cada um carrega `data-episode-index` e `data-added`), então
+// não precisa re-render nem mexe na ordem real dos dados.
+function renderEpisodeSortControls() {
+  return `
+    <div class="episode-sort" role="group" aria-label="Ordenar episódios">
+      <button type="button" class="episode-sort-option active" data-sort="asc">Crescente</button>
+      <button type="button" class="episode-sort-option" data-sort="desc">Decrescente</button>
+      <button type="button" class="episode-sort-option" data-sort="new">Novos</button>
+    </div>
+  `;
+}
+
+function sortEpisodeCards(container, mode) {
+  const cards = Array.from(container.querySelectorAll('.episodes-container-card'));
+  if (cards.length === 0) return;
+
+  const indexOf = card => Number(card.getAttribute('data-episode-index')) || 0;
+  const addedOf = card => parseAddedDate(card.getAttribute('data-added'))?.getTime() || 0;
+
+  const sorted = cards.slice().sort((a, b) => {
+    if (mode === 'desc') return indexOf(b) - indexOf(a);
+    // "novos": episódios com data entram primeiro, do mais recente para o mais
+    // antigo; o resto segue na ordem normal logo atrás
+    if (mode === 'new') {
+      const diff = addedOf(b) - addedOf(a);
+      if (diff !== 0) return diff;
+      return indexOf(a) - indexOf(b);
+    }
+    return indexOf(a) - indexOf(b);
+  });
+
+  sorted.forEach(card => container.appendChild(card));
+}
+
+function attachEpisodeSortListeners(container = document) {
+  container.querySelectorAll('.episode-sort').forEach(group => {
+    if (group.getAttribute('data-sort-init') === '1') return;
+    group.setAttribute('data-sort-init', '1');
+
+    const section = group.closest('.season-section');
+    const list = section ? section.querySelector('.episodes-container') : null;
+    if (!list) return;
+
+    group.addEventListener('click', e => {
+      const button = e.target.closest('.episode-sort-option');
+      if (!button) return;
+      e.preventDefault();
+      e.stopPropagation();
+
+      group.querySelectorAll('.episode-sort-option').forEach(option => {
+        option.classList.toggle('active', option === button);
+      });
+      sortEpisodeCards(list, button.dataset.sort);
     });
   });
 }
@@ -772,6 +870,7 @@ function attachSeasonToggleListeners(container = document) {
 
     header.addEventListener('click', e => {
       if (e.target.closest('.toggle-season-cards')) return;
+      if (e.target.closest('.episode-sort')) return;
       toggle();
     });
 
@@ -843,6 +942,107 @@ function attachHistoryToggleListeners(container = document) {
       });
     }
   });
+}
+
+//=======================================================================
+// NOVIDADES (episódios recém-adicionados)
+//=======================================================================
+// Um episódio é "novo" porque os dados dizem quando ele entrou:
+//   { title: "Episódio 012", ..., added: "2026-07-29" }
+// Sem `added` o episódio simplesmente nunca é anunciado — episódios antigos
+// seguem funcionando sem precisar de nenhuma alteração.
+function parseAddedDate(value) {
+  if (!value) return null;
+  const raw = String(value).trim();
+  // "2026-07-29" é interpretado como UTC pelo Date; força hora local para o
+  // dia não "voltar" um em fusos negativos
+  const simple = raw.match(/^(\d{4})-(\d{2})-(\d{2})$/);
+  const date = simple
+    ? new Date(Number(simple[1]), Number(simple[2]) - 1, Number(simple[3]))
+    : new Date(raw);
+  return isNaN(date.getTime()) ? null : date;
+}
+
+function daysSinceAdded(value) {
+  const date = parseAddedDate(value);
+  if (!date) return null;
+  return Math.floor((Date.now() - date.getTime()) / 86400000);
+}
+
+function isRecentDate(value, days) {
+  const elapsed = daysSinceAdded(value);
+  return elapsed !== null && elapsed >= 0 && elapsed < days;
+}
+
+// A data pode vir de dois lugares: escrita à mão no episódio (`added: "..."`,
+// que sempre vence) ou carimbada pela Action em episodes/added.js. As chaves
+// aqui precisam ser idênticas às de tools/stamp-novidades.mjs.
+function episodeAddedKey(subgroupName, seasonIndex, episode) {
+  return `${subgroupName}|${seasonIndex}|${episode?.title || ''}`;
+}
+
+function resolveEpisodeAdded(subgroupName, seasonIndex, episode) {
+  if (episode?.added) return episode.added;
+  return addedIndex?.episodes?.[episodeAddedKey(subgroupName, seasonIndex, episode)] || '';
+}
+
+function resolveSeriesAdded(subgroup, card) {
+  return card?.added || subgroup?.added || addedIndex?.series?.[subgroup?.name] || '';
+}
+
+function isRecentEpisode(subgroupName, seasonIndex, episode, days) {
+  return isRecentDate(resolveEpisodeAdded(subgroupName, seasonIndex, episode), days);
+}
+
+function formatAddedLabel(value) {
+  const elapsed = daysSinceAdded(value);
+  if (elapsed === null) return '';
+  if (elapsed <= 0) return 'hoje';
+  if (elapsed === 1) return 'ontem';
+  if (elapsed < 7) return `há ${elapsed} dias`;
+  if (elapsed < 14) return 'há 1 semana';
+  if (elapsed < 30) return `há ${Math.floor(elapsed / 7)} semanas`;
+  return `há ${Math.floor(elapsed / 30)} ${Math.floor(elapsed / 30) === 1 ? 'mês' : 'meses'}`;
+}
+
+// Varre todos os grupos atrás de episódios/filmes com `added` dentro da janela.
+function collectNewEpisodes(days = newEpisodeFeedDays) {
+  const items = [];
+
+  seriesData.forEach(groupItem => {
+    (groupItem.group || []).forEach(subgroup => {
+      const pushItem = (episode, seasonIndex, episodeIndex, seasonThumb, seasonName) => {
+        const added = resolveEpisodeAdded(subgroup.name, seasonIndex, episode);
+        if (!isRecentDate(added, days)) return;
+        items.push({
+          groupName: groupItem.group_name,
+          subgroupName: subgroup.name,
+          seasonIndex,
+          episodeIndex,
+          seasonName,
+          title: episode.title || '',
+          subtitle: episode.subtitle || '',
+          thumb: episode.thumb || seasonThumb || '',
+          urls: episode.url || [],
+          added,
+          addedAt: parseAddedDate(added)?.getTime() || 0
+        });
+      };
+
+      (Array.isArray(subgroup.season) ? subgroup.season : []).forEach((season, seasonIndex) => {
+        (Array.isArray(season.episodes) ? season.episodes : []).forEach((episode, episodeIndex) => {
+          pushItem(episode, seasonIndex, episodeIndex, season.thumb_season, season.name);
+        });
+      });
+
+      getMoviesEpisodes(subgroup).forEach((episode, episodeIndex) => {
+        pushItem(episode, -1, episodeIndex, getMoviesThumb(subgroup), 'Filmes');
+      });
+    });
+  });
+
+  items.sort((a, b) => (b.addedAt - a.addedAt) || a.subgroupName.localeCompare(b.subgroupName));
+  return items.slice(0, newEpisodeFeedMax);
 }
 
 function findSubgroupByName(subgroupName) {
@@ -974,20 +1174,7 @@ function loadPageContent(path) {
     const subgroup = filteredItems[0].data;
     html += renderSubgroupDescription(subgroup);
 
-    const navbar = document.querySelector('header.navbar');
-    if (navbar && !navbar.querySelector('.back-button')) {
-      const backButton = document.createElement('button');
-      backButton.className = 'back-button';
-      backButton.innerHTML = '<i class="fas fa-arrow-left"></i>';
-      backButton.onclick = function() { history.back(); };
-
-      const searchBar = navbar.querySelector('.search-bar');
-      if (searchBar) {
-        navbar.insertBefore(backButton, searchBar);
-      } else {
-        navbar.insertBefore(backButton, navbar.firstChild);
-      }
-    }
+    ensureNavbarBackButton({ withLabel: false });
 
     contentContainer.setAttribute('data-subgroup-json', JSON.stringify(subgroup));
 
@@ -1014,6 +1201,7 @@ function loadPageContent(path) {
           <header class="group-title-header" data-collapsible="1">
             <button class="toggle-season-cards expanded" type="button" aria-label="Expandir/ocultar"></button>
             <h3>${seasonHeaderText}</h3>
+            ${seasonEpisodeCount > 1 ? renderEpisodeSortControls() : ''}
           </header>
           <div class="episodes-container">
       `;
@@ -1038,6 +1226,7 @@ function loadPageContent(path) {
               data-urls='${JSON.stringify(episode.url || [])}'
               data-season-index="${seasonIndex}"
               data-episode-index="${episodeIndex}"
+              data-added="${resolveEpisodeAdded(subgroup.name, seasonIndex, episode)}"
               onclick="playEpisode(this)">
             <div id="episode-button" 
                 class="${buttonClasses}" 
@@ -1052,6 +1241,7 @@ function loadPageContent(path) {
                   style="opacity: 0; transition: opacity 0.3s ease-in;">
               ` : ''}
               <span class="icon-btn"></span>
+              ${isRecentEpisode(subgroup.name, seasonIndex, episode, newEpisodeBadgeDays) ? '<span class="badge-new">NOVO</span>' : ''}
               ${isWatched ? '<span class="badge-watched">▶ ASSISTIDO</span>' : ''}
               <span class="badge-duration">${episode.duration}</span>
             </div>
@@ -1076,6 +1266,7 @@ function loadPageContent(path) {
           <header class="group-title-header" data-collapsible="1">
             <button class="toggle-season-cards expanded" type="button" aria-label="Expandir/ocultar"></button>
             <h3>${moviesHeaderText}</h3>
+            ${moviesEpisodes.length > 1 ? renderEpisodeSortControls() : ''}
           </header>
           <div class="episodes-container">
       `;
@@ -1099,6 +1290,7 @@ function loadPageContent(path) {
               data-urls='${JSON.stringify(episode.url || [])}'
               data-season-index="-1"
               data-episode-index="${episodeIndex}"
+              data-added="${resolveEpisodeAdded(subgroup.name, -1, episode)}"
               onclick="playEpisode(this)">
             <div id="episode-button" 
                 class="${buttonClasses}" 
@@ -1113,6 +1305,7 @@ function loadPageContent(path) {
                   style="opacity: 0; transition: opacity 0.3s ease-in;">
               ` : ''}
               <span class="icon-btn"></span>
+              ${isRecentEpisode(subgroup.name, -1, episode, newEpisodeBadgeDays) ? '<span class="badge-new">NOVO</span>' : ''}
               ${isWatched ? '<span class="badge-watched">▶ ASSISTIDO</span>' : ''}
               <span class="badge-duration">${episode.duration || ''}</span>
             </div>
@@ -1139,22 +1332,7 @@ function loadPageContent(path) {
   } else if (isHistoryPage) {
      html += renderHistoryPage();
   } else if (isCategoryPage) {
-    const navbar = document.querySelector('header.navbar');
-    if (navbar && !navbar.querySelector('.back-button')) {
-      const backButton = document.createElement('button');
-      backButton.className = 'back-button';
-      backButton.innerHTML = '<i class="fas fa-arrow-left"></i> Voltar';
-      backButton.onclick = function() { 
-        window.location.hash = `#${generateSlug('Início')}`;
-      };
-
-      const searchBar = navbar.querySelector('.search-bar');
-      if (searchBar) {
-        navbar.insertBefore(backButton, searchBar);
-      } else {
-        navbar.insertBefore(backButton, navbar.firstChild);
-      }
-    }
+    ensureNavbarBackButton({ withLabel: true });
 
     if (filteredItems.length > 0) {
       filteredItems.forEach(groupItem => {
@@ -1191,6 +1369,7 @@ function loadPageContent(path) {
     updateEpisodeUI();
     updateSubgroupContinueWatching();
     attachSeasonToggleListeners(contentContainer);
+    attachEpisodeSortListeners(contentContainer);
 
     const subgroup = filteredItems[0].data;
     const seasons = Array.isArray(subgroup.season) ? subgroup.season : [];
@@ -1855,28 +2034,70 @@ function calculateTotalCards(groupItem) {
   return totalCards;
 }
 
-// Badges do card ("NOVIDADE", etc). Aceita string ou lista; vazios são
-// ignorados e a lista sai sempre em ordem alfabética.
-function getCardBadges(card) {
+// Badges manuais do card: `badge: "..."` ou `badge: ["...", "..."]`.
+function getManualCardBadges(card) {
   if (!card || !card.badge) return [];
   const list = Array.isArray(card.badge) ? card.badge : [card.badge];
   return list
     .map(badge => (typeof badge === 'string' ? badge.trim() : ''))
-    .filter(Boolean)
-    .sort((a, b) => a.localeCompare(b));
+    .filter(Boolean);
+}
+
+// A série tem episódio (ou filme) adicionado dentro da janela do selo NOVO?
+// Memorizado porque a ordenação e o render perguntam isso várias vezes.
+const subgroupNewEpisodeCache = new WeakMap();
+function subgroupHasNewEpisodes(subgroup) {
+  if (!subgroup) return false;
+  if (subgroupNewEpisodeCache.has(subgroup)) return subgroupNewEpisodeCache.get(subgroup);
+
+  const seasons = Array.isArray(subgroup.season) ? subgroup.season : [];
+  const result =
+    seasons.some((season, seasonIndex) =>
+      (Array.isArray(season.episodes) ? season.episodes : [])
+        .some(episode => isRecentEpisode(subgroup.name, seasonIndex, episode, newEpisodeBadgeDays))) ||
+    getMoviesEpisodes(subgroup).some(episode => isRecentEpisode(subgroup.name, -1, episode, newEpisodeBadgeDays));
+
+  subgroupNewEpisodeCache.set(subgroup, result);
+  return result;
+}
+
+// Badges automáticos, derivados das datas:
+//   `added` na série (ou no card)  -> NOVIDADE        (série que não existia)
+//   `added` em algum episódio      -> NOVOS EPISÓDIOS (série que já existia)
+// Série nova não ganha os dois: NOVIDADE já diz que tudo ali é novo.
+function getAutoCardBadges(subgroup, card) {
+  if (isRecentDate(resolveSeriesAdded(subgroup, card), newSeriesBadgeDays)) {
+    return ['NOVIDADE'];
+  }
+  return subgroupHasNewEpisodes(subgroup) ? ['NOVOS EPISÓDIOS'] : [];
+}
+
+// Lista final do card: manuais + automáticos, sem repetir, em ordem alfabética.
+function getCardBadges(card, subgroup) {
+  const badges = [...getManualCardBadges(card), ...getAutoCardBadges(subgroup, card)];
+  const unique = [...new Set(badges)];
+
+  // NOVIDADE manda: não faz sentido anunciar episódio novo numa série que
+  // acabou de entrar no catálogo
+  const final = unique.includes('NOVIDADE')
+    ? unique.filter(badge => badge !== 'NOVOS EPISÓDIOS')
+    : unique;
+
+  return final.sort((a, b) => a.localeCompare(b));
 }
 
 // Chave de ordenação: cards com badge vêm primeiro (entre eles, pelo badge em
-// ordem alfabética); sem badge fica depois de todos.
-function getBadgeSortKey(card) {
-  return getCardBadges(card)[0] || '';
+// ordem alfabética — o que põe NOVIDADE antes de NOVOS EPISÓDIOS); sem badge
+// fica depois de todos.
+function getBadgeSortKey(card, subgroup) {
+  return getCardBadges(card, subgroup)[0] || '';
 }
 
 function getSubgroupBadgeSortKey(subgroup) {
   if (!subgroup || !Array.isArray(subgroup.card_buttons)) return '';
   const keys = subgroup.card_buttons
     .filter(card => card.visible !== false)
-    .map(getBadgeSortKey)
+    .map(card => getBadgeSortKey(card, subgroup))
     .filter(Boolean)
     .sort((a, b) => a.localeCompare(b));
   return keys[0] || '';
@@ -1930,7 +2151,7 @@ function renderGroupSection(groupItem, isHomePage, skipHeader = false) {
         const enabledOrder = (a.enabled === false ? 1 : 0) - (b.enabled === false ? 1 : 0);
         if (enabledOrder !== 0) return enabledOrder;
 
-        const badgeOrder = compareBadgeKeys(getBadgeSortKey(a), getBadgeSortKey(b));
+        const badgeOrder = compareBadgeKeys(getBadgeSortKey(a, subgroup), getBadgeSortKey(b, subgroup));
         if (badgeOrder !== 0) return badgeOrder;
 
         return a.name.localeCompare(b.name);
@@ -2040,9 +2261,9 @@ function renderGroupSection(groupItem, isHomePage, skipHeader = false) {
         const infoClass = shouldShowInfo ? 'info' : '';
         const hasInfoClass = shouldShowInfo ? 'has-info' : '';
         const cardMeta = buildCardMetaLines(subgroup);
-        const badges = getCardBadges(card);
+        const badges = getCardBadges(card, subgroup);
         const badgesHtml = badges.length
-          ? `<div class="card-badges">${badges.map(badge => `<span class="card-badge">${badge}</span>`).join('')}</div>`
+          ? `<div class="card-badges">${badges.map(badge => `<span class="card-badge card-badge-${generateSlug(badge)}">${badge}</span>`).join('')}</div>`
           : '';
 
         html += `
@@ -4939,6 +5160,115 @@ window.confirmClearAll = confirmClearAll;
   window.addEventListener('resize', hide);
 })();
 
+/* ---------- Sino de novidades (navbar) ----------
+   Lista os episódios com `added` recente (ver collectNewEpisodes). O contador
+   vermelho conta só o que entrou depois da última vez que o painel foi aberto,
+   guardado em localStorage — por isso é por visitante, não global. */
+(function initNotifications() {
+  const SEEN_KEY = 'slseries_notifications_seen';
+  const dropdown = document.querySelector('.notif-dropdown');
+  if (!dropdown) return;
+
+  const toggle = dropdown.querySelector('.notif-toggle');
+  const list = dropdown.querySelector('[data-notif-list]');
+  const counter = dropdown.querySelector('[data-notif-count]');
+  const markButton = dropdown.querySelector('[data-notif-mark]');
+
+  const getSeenAt = () => {
+    const stored = Number(localStorage.getItem(SEEN_KEY) || 0);
+    return Number.isFinite(stored) ? stored : 0;
+  };
+
+  const setSeenAt = (value) => {
+    try { localStorage.setItem(SEEN_KEY, String(value)); } catch (e) {}
+  };
+
+  const render = () => {
+    const items = collectNewEpisodes();
+    const seenAt = getSeenAt();
+    const unread = items.filter(item => item.addedAt > seenAt).length;
+
+    counter.textContent = unread > 99 ? '99+' : String(unread);
+    counter.hidden = unread === 0;
+    toggle.classList.toggle('has-unread', unread > 0);
+
+    if (items.length === 0) {
+      list.innerHTML = '<p class="notif-empty">Nenhum episódio novo por enquanto.</p>';
+      return;
+    }
+
+    list.innerHTML = items.map((item, index) => {
+      const meta = [item.seasonName, item.title].filter(Boolean).join(' · ');
+      return `
+        <button type="button" class="notif-item${item.addedAt > seenAt ? ' unread' : ''}" data-notif-index="${index}">
+          <span class="notif-thumb"${item.thumb ? ` style="background-image: url('${item.thumb}')"` : ''}></span>
+          <span class="notif-info">
+            <span class="notif-serie">${item.subgroupName}</span>
+            <span class="notif-ep">${meta}</span>
+            ${item.subtitle ? `<span class="notif-sub">${item.subtitle}</span>` : ''}
+          </span>
+          <span class="notif-when">${formatAddedLabel(item.added)}</span>
+        </button>
+      `;
+    }).join('');
+
+    list.__items = items;
+  };
+
+  const setOpen = (open) => {
+    dropdown.classList.toggle('open', open);
+    toggle.setAttribute('aria-expanded', String(open));
+    if (open) {
+      render();
+      // some com o contador assim que o painel é aberto, mas mantém o
+      // destaque dos itens até fechar
+      setTimeout(() => {
+        setSeenAt(Date.now());
+        counter.hidden = true;
+        toggle.classList.remove('has-unread');
+      }, 400);
+    }
+  };
+
+  // sem stopPropagation: o clique precisa chegar ao document para o seletor
+  // de tema (que escuta lá) se fechar sozinho — e vice-versa
+  toggle.addEventListener('click', () => {
+    setOpen(!dropdown.classList.contains('open'));
+  });
+
+  markButton.addEventListener('click', () => {
+    setSeenAt(Date.now());
+    render();
+  });
+
+  list.addEventListener('click', (e) => {
+    const button = e.target.closest('.notif-item');
+    if (!button) return;
+    const item = (list.__items || [])[Number(button.dataset.notifIndex)];
+    if (!item) return;
+
+    setOpen(false);
+    markEpisodeAsWatched(item.subgroupName, item.seasonIndex, item.episodeIndex);
+    addHistoryLog(item.subgroupName, item.seasonIndex, item.episodeIndex, item.title, item.thumb);
+    showVideoOverlayForEpisode(
+      item.subgroupName,
+      item.seasonIndex,
+      item.episodeIndex,
+      resolvePlayableUrls(item.subgroupName, item.seasonIndex, item.episodeIndex, item.urls)
+    );
+  });
+
+  document.addEventListener('click', (e) => {
+    if (!dropdown.contains(e.target)) setOpen(false);
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') setOpen(false);
+  });
+
+  render();
+})();
+
 /* ---------- Theme switcher (navbar dropdown) ----------
    The initial theme is set by inline JS in index.html (before
    stylesheets paint, to avoid flash). This block wires up the dropdown
@@ -4983,8 +5313,7 @@ window.confirmClearAll = confirmClearAll;
     setTimeout(() => root.classList.remove('theme-transitioning'), 250);
   };
 
-  toggleBtn.addEventListener('click', (e) => {
-    e.stopPropagation();
+  toggleBtn.addEventListener('click', () => {
     setOpen(!dropdown.classList.contains('open'));
   });
 

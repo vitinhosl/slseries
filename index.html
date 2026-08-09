@@ -97,8 +97,19 @@
                     </button>
                 </div>
             </div>
-            <button class="btn-assinatura">Assinatura</button>
-            <button class="btn-login">Fazer login</button>
+            <div class="notif-dropdown" aria-label="Novidades">
+                <button type="button" class="notif-toggle" aria-expanded="false" aria-haspopup="menu" title="Novidades">
+                    <i class="fas fa-bell" aria-hidden="true"></i>
+                    <span class="notif-count" data-notif-count hidden>0</span>
+                </button>
+                <div class="notif-menu" role="menu">
+                    <header class="notif-menu-header">
+                        <span>Novidades</span>
+                        <button type="button" class="notif-mark-read" data-notif-mark>Marcar como lidas</button>
+                    </header>
+                    <div class="notif-list" data-notif-list></div>
+                </div>
+            </div>
         </div>
     </header>
 

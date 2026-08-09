@@ -3909,6 +3909,7 @@ export const biblicalData = [
           //AMOR EM RUÍNAS
           {
             name: "Amor em Ruínas",
+            //added: "2026-08-06", //SÉRIE NOVA: GERA O BADGE "NOVIDADE" SOZINHO
             card_buttons: [
                 {
                     name: "Amor em Ruínas",
@@ -3916,7 +3917,7 @@ export const biblicalData = [
                     visible: true,
                     acumulative: false,
                     info: true,
-                    badge: "NOVIDADE",
+                    badge: "",
                     thumb_buttons: {
                         url: [
                             "https://i.imgur.com/fEACKEt.jpeg",
@@ -3979,6 +3980,7 @@ export const biblicalData = [
                         { title: "Episódio 009", subtitle: "", duration: "54:58"  , thumb: "https://i.imgur.com/8NvY0Nq.png" , url: ["https://23rzv4udpdbv8t6.cdn-novflix.com/storage7/AMRNS/AMRNS-009.mp4", ] },
                         { title: "Episódio 010", subtitle: "", duration: "1:04:15", thumb: "https://i.imgur.com/PNrD25v.png" , url: ["https://23rzv4udpdbv8t6.cdn-novflix.com/storage7/AMRNS/AMRNS-010.mp4", ] },
                         { title: "Episódio 011", subtitle: "", duration: "57:47"  , thumb: "https://i.imgur.com/rv7Zfmx.png" , url: ["https://23rzv4udpdbv8t6.cdn-novflix.com/storage7/AMRNS/AMRNS-011.mp4", ] },
+                        { title: "Episódio Teste", subtitle: "", duration: "00:00"  , thumb: "" , url: ["", ] },
                     ]
                 },
             ]
