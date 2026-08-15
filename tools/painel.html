@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Painel — SL Séries</title>
+<!-- =====================================================================
+     painel.html — ferramenta interna de catálogo.
+
+     Duas abas:
+       • Catálogo  — lê resources/episodes/index.js e lista o que já existe,
+                     por categoria, com contagens e pendências. Só leitura.
+       • Adicionar — busca no TMDB e monta o bloco de código no formato de
+                     resources/episodes/all/*.js para você copiar e colar.
+
+     Nunca escreve em arquivo nenhum. O campo url dos episódios sai vazio
+     de propósito: o TMDB não fornece vídeo, isso continua sendo manual.
+
+     A chave do TMDB fica só no localStorage deste navegador — não entra
+     no repositório.
+
+     Abra por http (node tools/painel.mjs), não por file://.
+     ===================================================================== -->
+<style>
+  :root {
+    --bg: rgb(20, 20, 20);
+    --bg-2: rgb(28, 28, 28);
+    --bg-3: rgb(38, 38, 38);
+    --linha: rgb(51, 51, 51);
+    --texto: rgb(239, 239, 239);
+    --fraco: rgb(151, 151, 151);
+    --accent: rgb(255, 2, 102);
+    --alerta: rgb(255, 160, 60);
+    --erro: rgb(255, 80, 80);
+    --ok: rgb(80, 200, 140);
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; padding: 0 0 60px;
+    background: var(--bg); color: var(--texto);
+    font: 14px/1.5 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  }
+  header {
+    position: sticky; top: 0; z-index: 5;
+    background: rgb(14, 14, 14); border-bottom: 1px solid var(--linha);
+    padding: 14px 24px;
+  }
+  .topo { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
+  .marca { font-size: 16px; font-weight: 600; color: var(--accent); letter-spacing: .5px; }
+  .abas { display: flex; gap: 4px; margin-left: 8px; }
+  .aba {
+    background: none; border: 0; border-radius: 6px; cursor: pointer;
+    color: var(--fraco); font: inherit; padding: 7px 14px;
+  }
+  .aba:hover { background: var(--bg-3); color: var(--texto); }
+  .aba[aria-selected="true"] { background: var(--accent); color: #fff; }
+  .chave { display: flex; align-items: center; gap: 6px; margin-left: auto; }
+  main { padding: 22px 24px; max-width: 1180px; }
+  h2 { font-size: 15px; font-weight: 600; margin: 0 0 12px; }
+  input, select, button, textarea { font: inherit; }
+  input[type="text"], input[type="password"], select {
+    background: var(--bg-2); border: 1px solid var(--linha); border-radius: 6px;
+    color: var(--texto); padding: 8px 10px;
+  }
+  input:focus, select:focus { outline: 2px solid var(--accent); outline-offset: -1px; }
+  button {
+    background: var(--bg-3); border: 1px solid var(--linha); border-radius: 6px;
+    color: var(--texto); cursor: pointer; padding: 8px 14px;
+  }
+  button:hover { border-color: var(--accent); }
+  button.principal { background: var(--accent); border-color: var(--accent); color: #fff; }
+  button.principal:hover { filter: brightness(1.12); }
+  button:disabled { cursor: not-allowed; opacity: .45; }
+  .painel { display: none; }
+  .painel.ativo { display: block; }
+
+  .resumo { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 10px; margin-bottom: 20px; }
+  .caixa { background: var(--bg-2); border-radius: 8px; padding: 12px 14px; }
+  .caixa b { display: block; font-size: 22px; font-weight: 600; }
+  .caixa span { color: var(--fraco); font-size: 12px; }
+
+  .filtros { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 14px; }
+  .filtros input[type="text"] { flex: 1; min-width: 200px; }
+
+  .grupo-titulo {
+    align-items: center; border-bottom: 1px solid var(--linha); color: var(--accent);
+    display: flex; font-size: 12px; font-weight: 600; gap: 8px;
+    letter-spacing: 1px; margin: 22px 0 8px; padding-bottom: 6px; text-transform: uppercase;
+  }
+  .grupo-titulo small { color: var(--fraco); font-weight: 400; letter-spacing: 0; text-transform: none; }
+
+  .linha {
+    align-items: center; border-radius: 8px; display: flex; gap: 12px; padding: 8px 10px;
+  }
+  .linha:hover { background: var(--bg-2); }
+  .linha img { background: var(--bg-3); border-radius: 4px; height: 42px; object-fit: cover; width: 74px; }
+  .linha .nome { font-weight: 500; }
+  .linha .meta { color: var(--fraco); font-size: 12px; }
+  .linha .dir { margin-left: auto; display: flex; gap: 6px; flex-wrap: wrap; justify-content: flex-end; }
+  .tag { background: var(--bg-3); border-radius: 4px; color: var(--fraco); font-size: 11px; padding: 3px 7px; white-space: nowrap; }
+  .tag.aviso { background: rgba(255, 160, 60, .15); color: var(--alerta); }
+  .tag.off { background: rgba(255, 80, 80, .13); color: var(--erro); }
+
+  .aviso-caixa {
+    background: rgba(255, 160, 60, .1); border: 1px solid rgba(255, 160, 60, .4);
+    border-radius: 8px; color: var(--alerta); margin-bottom: 18px; padding: 14px 16px;
+  }
+  .aviso-caixa code { background: rgba(0, 0, 0, .35); border-radius: 4px; padding: 2px 6px; }
+  .erro-texto { color: var(--erro); }
+
+  .resultados { display: grid; gap: 8px; margin-top: 14px; }
+  .card {
+    align-items: center; background: var(--bg-2); border: 1px solid transparent;
+    border-radius: 8px; cursor: pointer; display: flex; gap: 12px; padding: 10px; text-align: left; width: 100%;
+  }
+  .card:hover { border-color: var(--linha); }
+  .card[aria-pressed="true"] { border-color: var(--accent); }
+  .card img { background: var(--bg-3); border-radius: 4px; height: 78px; object-fit: cover; width: 54px; }
+  .card .sin { color: var(--fraco); display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; font-size: 12px; overflow: hidden; }
+
+  .temporadas { display: grid; gap: 6px; margin: 10px 0 14px; }
+  .temporadas label { align-items: center; background: var(--bg-2); border-radius: 6px; cursor: pointer; display: flex; gap: 10px; padding: 8px 10px; }
+  .temporadas small { color: var(--fraco); margin-left: auto; }
+
+  pre {
+    background: rgb(12, 12, 12); border: 1px solid var(--linha); border-radius: 8px;
+    font: 12px/1.65 ui-monospace, "Cascadia Code", Consolas, monospace;
+    margin: 0; max-height: 460px; overflow: auto; padding: 14px; white-space: pre;
+  }
+  .barra-saida { align-items: center; display: flex; gap: 10px; margin: 14px 0 10px; }
+  .barra-saida .dica { color: var(--fraco); font-size: 12px; }
+  .carregando { color: var(--fraco); padding: 10px 0; }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="topo">
+    <span class="marca">SL Séries — painel</span>
+    <div class="abas" role="tablist">
+      <button class="aba" role="tab" aria-selected="true" data-painel="catalogo">Catálogo</button>
+      <button class="aba" role="tab" aria-selected="false" data-painel="adicionar">Adicionar</button>
+    </div>
+    <div class="chave">
+      <label for="tmdb-chave" style="color: var(--fraco); font-size: 12px;">Chave TMDB</label>
+      <input type="password" id="tmdb-chave" placeholder="cole aqui" style="width: 190px;" autocomplete="off">
+      <button id="salvar-chave">Salvar</button>
+    </div>
+  </div>
+</header>
+
+<main>
+
+  <!-- ============================ CATÁLOGO ============================ -->
+  <section class="painel ativo" id="painel-catalogo">
+    <div id="catalogo-erro"></div>
+    <div class="resumo" id="resumo"></div>
+
+    <div class="filtros">
+      <input type="text" id="busca-catalogo" placeholder="Filtrar por nome…">
+      <select id="filtro-categoria"><option value="">Todas as categorias</option></select>
+      <select id="ordem">
+        <option value="az">Nome (A → Z)</option>
+        <option value="za">Nome (Z → A)</option>
+        <option value="eps">Mais episódios</option>
+        <option value="eps-menos">Menos episódios</option>
+        <option value="temps">Mais temporadas</option>
+        <option value="pendentes">Pendências primeiro</option>
+      </select>
+    </div>
+
+    <div id="lista" class="carregando">Carregando catálogo…</div>
+  </section>
+
+  <!-- =========================== ADICIONAR ============================ -->
+  <section class="painel" id="painel-adicionar">
+    <h2>1 — procurar no TMDB</h2>
+    <div class="filtros">
+      <input type="text" id="busca-tmdb" placeholder="Nome da série…">
+      <button class="principal" id="botao-buscar">Buscar</button>
+    </div>
+    <div id="busca-erro"></div>
+    <div class="resultados" id="resultados"></div>
+
+    <div id="etapa-temporadas" hidden>
+      <h2 style="margin-top: 26px;">2 — escolher temporadas</h2>
+      <div class="temporadas" id="lista-temporadas"></div>
+
+      <h2>3 — como gerar</h2>
+      <div class="filtros">
+        <select id="modo">
+          <option value="serie">Série nova — bloco completo</option>
+          <option value="temporada">Só as temporadas — para série que já existe</option>
+        </select>
+        <select id="destino"></select>
+        <button class="principal" id="botao-gerar">Gerar bloco</button>
+      </div>
+    </div>
+
+    <div id="etapa-saida" hidden>
+      <div class="barra-saida">
+        <button id="botao-copiar">Copiar bloco</button>
+        <span class="dica" id="dica-saida"></span>
+      </div>
+      <pre id="saida"></pre>
+    </div>
+  </section>
+
+</main>
+
+<script type="module">
+/* ---------------------------------------------------------------------
+   Categorias — precisam bater com resources/episodes/index.js.
+   --------------------------------------------------------------------- */
+const CATEGORIAS = [
+  { exp: 'seriesData',    rotulo: 'Séries',          arquivo: 'series.js'    },
+  { exp: 'biblicalData',  rotulo: 'Séries Bíblicas', arquivo: 'biblicas.js'  },
+  { exp: 'novelsData',    rotulo: 'Novelas',         arquivo: 'novelas.js'   },
+  { exp: 'animesData',    rotulo: 'Animes',          arquivo: 'animes.js'    },
+  { exp: 'minecraftData', rotulo: 'Minecraft',       arquivo: 'minecraft.js' },
+  { exp: 'channelData',   rotulo: 'Canais',          arquivo: 'canais.js'    },
+  { exp: 'moviesData',    rotulo: 'Filmes',          arquivo: 'movies.js'    },
+  { exp: 'streamsData',   rotulo: 'Streams',         arquivo: 'streams.js'   },
+];
+
+const $ = (sel) => document.querySelector(sel);
+const criar = (tag, props = {}) => Object.assign(document.createElement(tag), props);
+
+/* ---------------------------------------------------------------------
+   Abas
+   --------------------------------------------------------------------- */
+document.querySelectorAll('.aba').forEach((aba) => {
+  aba.addEventListener('click', () => {
+    document.querySelectorAll('.aba').forEach((b) => b.setAttribute('aria-selected', String(b === aba)));
+    document.querySelectorAll('.painel').forEach((p) => p.classList.toggle('ativo', p.id === 'painel-' + aba.dataset.painel));
+  });
+});
+
+/* ---------------------------------------------------------------------
+   Chave do TMDB — fica só neste navegador.
+   --------------------------------------------------------------------- */
+const campoChave = $('#tmdb-chave');
+campoChave.value = localStorage.getItem('tmdb_key') || '';
+$('#salvar-chave').addEventListener('click', () => {
+  localStorage.setItem('tmdb_key', campoChave.value.trim());
+  $('#salvar-chave').textContent = 'Salva';
+  setTimeout(() => { $('#salvar-chave').textContent = 'Salvar'; }, 1400);
+});
+
+async function tmdb(caminho, params = {}) {
+  const chave = campoChave.value.trim();
+  if (!chave) throw new Error('Cole a chave do TMDB no topo da página primeiro.');
+  const url = new URL('https://api.themoviedb.org/3' + caminho);
+  url.searchParams.set('api_key', chave);
+  for (const [k, v] of Object.entries(params)) url.searchParams.set(k, v);
+  const resposta = await fetch(url);
+  if (resposta.status === 401) throw new Error('O TMDB recusou a chave (401). Confira se copiou a chave da API v3.');
+  if (!resposta.ok) throw new Error('O TMDB respondeu ' + resposta.status + '.');
+  return resposta.json();
+}
+
+const imagem = (caminho, tamanho = 'original') => (caminho ? `https://image.tmdb.org/t/p/${tamanho}${caminho}` : '');
+
+/* =====================================================================
+   ABA CATÁLOGO
+   ===================================================================== */
+let catalogo = [];
+
+const temLink = (ep) => {
+  const u = ep?.url;
+  if (Array.isArray(u)) return u.some((x) => typeof x === 'string' && x.trim() !== '');
+  return typeof u === 'string' && u.trim() !== '';
+};
+
+function analisar(serie) {
+  const temporadas = Array.isArray(serie.season) ? serie.season : [];
+  let episodios = 0, semLink = 0, semNome = 0;
+  for (const t of temporadas) {
+    for (const ep of (Array.isArray(t.episodes) ? t.episodes : [])) {
+      episodios++;
+      if (!temLink(ep)) semLink++;
+      if (!String(ep.subtitle || '').trim()) semNome++;
+    }
+  }
+  const botoes = Array.isArray(serie.card_buttons) ? serie.card_buttons : [];
+  return {
+    temporadas: temporadas.length,
+    episodios, semLink, semNome,
+    desativada: botoes.length > 0 && botoes.every((b) => b.enabled === false),
+    thumb: botoes[0]?.thumb_buttons?.url?.[0] || serie.thumb_buttons?.url?.[0]
+        || serie.description?.thumb?.[0] || serie.carrousel?.thumb?.[0] || '',
+  };
+}
+
+async function carregarCatalogo() {
+  try {
+    const dados = await import('../resources/episodes/index.js');
+    catalogo = [];
+    for (const cat of CATEGORIAS) {
+      for (const grupo of (dados[cat.exp] || [])) {
+        for (const serie of (grupo.group || [])) {
+          catalogo.push({
+            nome: serie.name || '(sem nome)',
+            categoria: cat.rotulo,
+            arquivo: cat.arquivo,
+            grupo: grupo.group_name || cat.rotulo,
+            grupoVisivel: grupo.visible !== false,
+            ...analisar(serie),
+          });
+        }
+      }
+    }
+    montarFiltros();
+    desenharResumo();
+    desenharLista();
+  } catch (erro) {
+    $('#lista').innerHTML = '';
+    $('#catalogo-erro').innerHTML = `
+      <div class="aviso-caixa">
+        <b>Não consegui ler o catálogo.</b><br>
+        Isso acontece quando o painel é aberto com duplo clique (<code>file://</code>) — o navegador
+        bloqueia módulos nesse modo. Abra por um servidor local:<br><br>
+        <code>node tools/painel.mjs</code><br><br>
+        e acesse <code>http://localhost:4123/tools/painel.html</code>.
+        A aba <b>Adicionar</b> funciona nos dois modos.<br><br>
+        <span class="erro-texto">${erro.message}</span>
+      </div>`;
+  }
+}
+
+function montarFiltros() {
+  const select = $('#filtro-categoria');
+  for (const cat of CATEGORIAS) {
+    if (catalogo.some((s) => s.categoria === cat.rotulo)) {
+      select.append(criar('option', { value: cat.rotulo, textContent: cat.rotulo }));
+    }
+  }
+  const destino = $('#destino');
+  for (const cat of CATEGORIAS) {
+    destino.append(criar('option', { value: cat.arquivo, textContent: `Colar em ${cat.arquivo}` }));
+  }
+}
+
+function desenharResumo() {
+  const total = (f) => catalogo.reduce((soma, s) => soma + f(s), 0);
+  const caixas = [
+    ['Séries no catálogo', catalogo.length],
+    ['Temporadas', total((s) => s.temporadas)],
+    ['Episódios', total((s) => s.episodios)],
+    ['Episódios sem link', total((s) => s.semLink)],
+    ['Episódios sem nome', total((s) => s.semNome)],
+  ];
+  $('#resumo').innerHTML = caixas
+    .map(([rotulo, valor]) => `<div class="caixa"><b>${valor.toLocaleString('pt-BR')}</b><span>${rotulo}</span></div>`)
+    .join('');
+}
+
+function desenharLista() {
+  const termo = $('#busca-catalogo').value.trim().toLowerCase();
+  const categoria = $('#filtro-categoria').value;
+  const ordem = $('#ordem').value;
+
+  let itens = catalogo.filter((s) =>
+    (!categoria || s.categoria === categoria) && (!termo || s.nome.toLowerCase().includes(termo)));
+
+  const porNome = (a, b) => a.nome.localeCompare(b.nome, 'pt-BR');
+  const ordenadores = {
+    az: porNome,
+    za: (a, b) => porNome(b, a),
+    eps: (a, b) => b.episodios - a.episodios || porNome(a, b),
+    'eps-menos': (a, b) => a.episodios - b.episodios || porNome(a, b),
+    temps: (a, b) => b.temporadas - a.temporadas || porNome(a, b),
+    pendentes: (a, b) => (b.semLink > 0) - (a.semLink > 0) || b.semLink - a.semLink || porNome(a, b),
+  };
+  itens = itens.sort(ordenadores[ordem]);
+
+  const lista = $('#lista');
+  lista.className = '';
+  lista.innerHTML = '';
+
+  if (!itens.length) {
+    lista.className = 'carregando';
+    lista.textContent = 'Nada encontrado com esse filtro.';
+    return;
+  }
+
+  // Agrupa por categoria mantendo a ordem escolhida dentro de cada uma.
+  for (const cat of CATEGORIAS) {
+    const doGrupo = itens.filter((s) => s.categoria === cat.rotulo);
+    if (!doGrupo.length) continue;
+
+    const eps = doGrupo.reduce((soma, s) => soma + s.episodios, 0);
+    const titulo = criar('div', { className: 'grupo-titulo' });
+    titulo.innerHTML = `${cat.rotulo} <small>${doGrupo.length} séries · ${eps.toLocaleString('pt-BR')} episódios · ${cat.arquivo}</small>`;
+    lista.append(titulo);
+
+    for (const s of doGrupo) {
+      const linha = criar('div', { className: 'linha' });
+      const tags = [
+        `<span class="tag">${s.temporadas} temp.</span>`,
+        `<span class="tag">${s.episodios} ep.</span>`,
+        s.semLink ? `<span class="tag aviso">${s.semLink} sem link</span>` : '',
+        s.semNome === s.episodios && s.episodios ? `<span class="tag aviso">sem nomes</span>` : '',
+        s.desativada ? '<span class="tag off">desativada</span>' : '',
+        !s.grupoVisivel ? '<span class="tag off">grupo oculto</span>' : '',
+      ].join('');
+      linha.innerHTML = `
+        <img src="${s.thumb}" alt="" loading="lazy" onerror="this.style.visibility='hidden'">
+        <div>
+          <div class="nome">${s.nome}</div>
+          <div class="meta">${s.grupo}</div>
+        </div>
+        <div class="dir">${tags}</div>`;
+      lista.append(linha);
+    }
+  }
+}
+
+['#busca-catalogo', '#filtro-categoria', '#ordem'].forEach((sel) =>
+  $(sel).addEventListener('input', () => { if (catalogo.length) desenharLista(); }));
+
+carregarCatalogo();
+
+/* =====================================================================
+   ABA ADICIONAR
+   ===================================================================== */
+let escolhida = null;   // detalhes da série escolhida no TMDB
+
+$('#botao-buscar').addEventListener('click', buscar);
+$('#busca-tmdb').addEventListener('keydown', (e) => { if (e.key === 'Enter') buscar(); });
+
+async function buscar() {
+  const termo = $('#busca-tmdb').value.trim();
+  $('#busca-erro').innerHTML = '';
+  $('#etapa-temporadas').hidden = true;
+  $('#etapa-saida').hidden = true;
+  if (!termo) return;
+
+  const caixa = $('#resultados');
+  caixa.innerHTML = '<div class="carregando">Procurando…</div>';
+  try {
+    const dados = await tmdb('/search/tv', { query: termo, language: 'pt-BR', include_adult: 'false' });
+    caixa.innerHTML = '';
+    if (!dados.results.length) {
+      caixa.innerHTML = '<div class="carregando">Nenhuma série encontrada.</div>';
+      return;
+    }
+    for (const item of dados.results.slice(0, 8)) {
+      const ano = (item.first_air_date || '').slice(0, 4) || 's/ ano';
+      const botao = criar('button', { className: 'card', type: 'button' });
+      botao.setAttribute('aria-pressed', 'false');
+      botao.innerHTML = `
+        <img src="${imagem(item.poster_path, 'w154')}" alt="" onerror="this.style.visibility='hidden'">
+        <div>
+          <div style="font-weight: 500;">${item.name}</div>
+          <div class="meta" style="color: var(--fraco); font-size: 12px;">${ano} · TMDB ${item.id}</div>
+          <div class="sin">${item.overview || 'Sem sinopse em português no TMDB.'}</div>
+        </div>`;
+      botao.addEventListener('click', () => {
+        caixa.querySelectorAll('.card').forEach((c) => c.setAttribute('aria-pressed', 'false'));
+        botao.setAttribute('aria-pressed', 'true');
+        escolher(item.id);
+      });
+      caixa.append(botao);
+    }
+  } catch (erro) {
+    caixa.innerHTML = '';
+    $('#busca-erro').innerHTML = `<div class="aviso-caixa"><span class="erro-texto">${erro.message}</span></div>`;
+  }
+}
+
+async function escolher(id) {
+  const lista = $('#lista-temporadas');
+  $('#etapa-temporadas').hidden = false;
+  $('#etapa-saida').hidden = true;
+  lista.innerHTML = '<div class="carregando">Carregando temporadas…</div>';
+  try {
+    const detalhes = await tmdb(`/tv/${id}`, { language: 'pt-BR' });
+
+    // O TMDB costuma ter a ficha em pt-BR mas a sinopse vazia; cai para o inglês.
+    if (!detalhes.overview) {
+      const emIngles = await tmdb(`/tv/${id}`, { language: 'en-US' });
+      detalhes.overview = emIngles.overview || '';
+    }
+    const imagens = await tmdb(`/tv/${id}/images`, { include_image_language: 'pt,en,null' });
+    escolhida = { detalhes, imagens };
+
+    lista.innerHTML = '';
+    for (const t of detalhes.seasons) {
+      const rotulo = criar('label');
+      const marcada = t.season_number !== 0 ? 'checked' : '';
+      rotulo.innerHTML = `
+        <input type="checkbox" value="${t.season_number}" ${marcada}>
+        <span>${t.name}</span>
+        <small>${t.episode_count} episódios${t.air_date ? ' · ' + t.air_date.slice(0, 4) : ''}</small>`;
+      lista.append(rotulo);
+    }
+  } catch (erro) {
+    lista.innerHTML = `<div class="aviso-caixa"><span class="erro-texto">${erro.message}</span></div>`;
+  }
+}
+
+/* ---------------------------------------------------------------------
+   Geração do código
+   --------------------------------------------------------------------- */
+const emAspas = (txt) => String(txt ?? '').replace(/\\/g, '\\\\').replace(/"/g, '\\"');
+const emCrase = (txt) => String(txt ?? '').replace(/\\/g, '\\\\').replace(/`/g, '\\`').replace(/\$\{/g, '\\${');
+const zero = (n, casas) => String(n).padStart(casas, '0');
+
+// O TMDB só informa a duração em minutos, então os segundos saem zerados.
+function duracao(minutos) {
+  if (!minutos) return '';
+  const h = Math.floor(minutos / 60), m = minutos % 60;
+  return h ? `${h}:${zero(m, 2)}:00` : `${m}:00`;
+}
+
+// "Episode 4" / "Episódio 4" não acrescentam nada ao título que já geramos.
+const nomeGenerico = (nome) => !nome || /^(epis[oó]dio|episode)\s*\d+$/i.test(nome.trim());
+
+function blocoEpisodios(episodios, recuo) {
+  return episodios.map((ep) => {
+    const nome = nomeGenerico(ep.name) ? '' : ep.name;
+    return `${recuo}{ title: "Episódio ${zero(ep.episode_number, 3)}", subtitle: "${emAspas(nome)}", `
+         + `duration: "${duracao(ep.runtime)}", thumb: "${imagem(ep.still_path, 'w500')}", url: [""] },`;
+  }).join('\n');
+}
+
+function blocoTemporada(temporada, recuo) {
+  const r = recuo + '  ';
+  return [
+    `${recuo}{`,
+    `${r}name: "Temporada ${zero(temporada.season_number, 2)}",`,
+    `${r}thumb_season: "${imagem(temporada.poster_path, 'w500')}",`,
+    `${r}movies: false,`,
+    `${r}episodes: [`,
+    blocoEpisodios(temporada.episodes || [], r + '  '),
+    `${r}]`,
+    `${recuo}},`,
+  ].join('\n');
+}
+
+function blocoSerie(detalhes, temporadas, imagens) {
+  const nome = detalhes.name;
+  const caixaAlta = nome.toUpperCase();
+  const fundos = (imagens.backdrops || []).slice(0, 3).map((b) => imagem(b.file_path));
+  const logo = imagem((imagens.logos || [])[0]?.file_path);
+  const listaFundos = (fundos.length ? fundos : ['']);
+
+  return [
+    `        //${caixaAlta}`,
+    `        {`,
+    `            name: "${emAspas(nome)}",`,
+    `            card_buttons: [`,
+    `              {`,
+    `                name: "${emAspas(nome)}",`,
+    `                enabled: true,`,
+    `                visible: true,`,
+    `                acumulative: false,`,
+    `                info: true,`,
+    `                badge: "",`,
+    `                thumb_buttons: {`,
+    `                  url: [`,
+    ...listaFundos.map((u) => `                    "${u}",`),
+    `                  ],`,
+    `                },`,
+    `              },`,
+    `            ],`,
+    ``,
+    `            carrousel: {`,
+    `                enabled: false,`,
+    `                homepage: false,`,
+    `                favorite: true,`,
+    `                title: "${emAspas(caixaAlta)}",`,
+    `                logo: {`,
+    `                  enabled: false,`,
+    `                  url: "${logo}",`,
+    `                  minimalist: false,`,
+    `                },`,
+    `                thumb: [""],`,
+    `                text: "",`,
+    `                description: \``,
+    `                    `,
+    `                \`,`,
+    `                info: { enabled: false, text: "", season: true, episodes: true, finalized: true }`,
+    `            },`,
+    ``,
+    `            description: {`,
+    `                visible: true,`,
+    `                logo: { title: "${emAspas(caixaAlta)}", enabled: false, minimalist: false, grayscale: false, url: "${logo}" },`,
+    `                thumb: [`,
+    ...listaFundos.map((u) => `                  "${u}",`),
+    `                ],`,
+    `                effect: [`,
+    `                    {`,
+    `                        hover: false,`,
+    `                        fade: 2,`,
+    `                        subtitle: "", duration: 60,`,
+    `                        opacity: 0.5,`,
+    `                        mixBlend: 'soft-light',`,
+    `                        background: { description: [0.0, 0.0, 0.0, 0.0], overlay: [0.0, 0.0, 0.0, 1.4]},`,
+    `                        links: [`,
+    `                            ""`,
+    `                        ],`,
+    `                    },`,
+    `                ],`,
+    `                sinopse:  \``,
+    `                ${emCrase(detalhes.overview).trim()}`,
+    `                \``,
+    `            },`,
+    ``,
+    `            season: [`,
+    temporadas.map((t) => blocoTemporada(t, '                ')).join('\n\n'),
+    `            ]`,
+    `        },`,
+  ].join('\n');
+}
+
+$('#botao-gerar').addEventListener('click', async () => {
+  if (!escolhida) return;
+  const numeros = [...$('#lista-temporadas').querySelectorAll('input:checked')].map((i) => Number(i.value));
+  if (!numeros.length) {
+    $('#dica-saida').innerHTML = '<span class="erro-texto">Marque pelo menos uma temporada.</span>';
+    $('#etapa-saida').hidden = false;
+    $('#saida').textContent = '';
+    return;
+  }
+
+  const botao = $('#botao-gerar');
+  botao.disabled = true;
+  botao.textContent = 'Buscando episódios…';
+  try {
+    const id = escolhida.detalhes.id;
+    const temporadas = [];
+    for (const n of numeros) {
+      temporadas.push(await tmdb(`/tv/${id}/season/${n}`, { language: 'pt-BR' }));
+    }
+
+    const modo = $('#modo').value;
+    const codigo = modo === 'serie'
+      ? blocoSerie(escolhida.detalhes, temporadas, escolhida.imagens)
+      : temporadas.map((t) => blocoTemporada(t, '                ')).join('\n\n');
+
+    const totalEps = temporadas.reduce((soma, t) => soma + (t.episodes || []).length, 0);
+    $('#saida').textContent = codigo;
+    $('#etapa-saida').hidden = false;
+    $('#dica-saida').textContent = modo === 'serie'
+      ? `${totalEps} episódios. Cole dentro de group: [ … ] no arquivo escolhido e preencha os url.`
+      : `${totalEps} episódios. Cole dentro de season: [ … ] da série que já existe e preencha os url.`;
+    $('#etapa-saida').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  } catch (erro) {
+    $('#etapa-saida').hidden = false;
+    $('#saida').textContent = '';
+    $('#dica-saida').innerHTML = `<span class="erro-texto">${erro.message}</span>`;
+  } finally {
+    botao.disabled = false;
+    botao.textContent = 'Gerar bloco';
+  }
+});
+
+$('#botao-copiar').addEventListener('click', async () => {
+  const botao = $('#botao-copiar');
+  try {
+    await navigator.clipboard.writeText($('#saida').textContent);
+    botao.textContent = 'Copiado';
+  } catch {
+    botao.textContent = 'Não consegui copiar — selecione o texto';
+  }
+  setTimeout(() => { botao.textContent = 'Copiar bloco'; }, 1800);
+});
+</script>
+
+</body>
+</html>
