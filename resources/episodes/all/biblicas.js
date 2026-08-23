@@ -3983,6 +3983,9 @@ export const biblicalData = [
                         { title: "Episódio 012", subtitle: "A mamãe já acordou"                         , duration: "59:49"   , thumb: "https://i.imgur.com/ID1I6f1.png" , url: ["https://23rzv4udpdbv8t6.cdn-novflix.com/storage7/AMRNS/AMRNS-012.mp4", ] },
                         { title: "Episódio 013", subtitle: "Eu te vejo"                                 , duration: "1:00:28" , thumb: "https://i.imgur.com/zhTQvzg.png" , url: ["https://23rzv4udpdbv8t6.cdn-novflix.com/storage7/AMRNS/AMRNS-013.mp4", ] },
                         { title: "Episódio 014", subtitle: "Eu sempre vou voltar"                       , duration: "1:03:25" , thumb: "https://i.imgur.com/bOrSkzz.png" , url: ["https://23rzv4udpdbv8t6.cdn-novflix.com/storage7/AMRNS/AMRNS-014.mp4", ] },
+                        { title: "Episódio 015", subtitle: "Hoje você é só minha"                       , duration: "51:25"   , thumb: "https://i.imgur.com/iDC4ccj.png" , url: ["https://23rzv4udpdbv8t6.cdn-novflix.com/storage7/AMRNS/AMRNS-015.mp4", ] },
+                        { title: "Episódio 016", subtitle: "Se eu pudesse te moldar"                    , duration: "49:23"   , thumb: "https://i.imgur.com/gvMl5WD.png" , url: ["https://23rzv4udpdbv8t6.cdn-novflix.com/storage7/AMRNS/AMRNS-016.mp4", ] },
+                        { title: "Episódio 017", subtitle: "O que isso tem a ver?"                      , duration: "54:05"   , thumb: "https://i.imgur.com/msH9668.png" , url: ["https://23rzv4udpdbv8t6.cdn-novflix.com/storage7/AMRNS/AMRNS-017.mp4", ] },
                     ]
                 },
             ]
