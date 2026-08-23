@@ -6,6 +6,9 @@ export const addedIndex = {
   "episodes": {
     "Amor em Ruínas|0|Episódio 012": "2026-08-15",
     "Amor em Ruínas|0|Episódio 013": "2026-08-15",
-    "Amor em Ruínas|0|Episódio 014": "2026-08-15"
+    "Amor em Ruínas|0|Episódio 014": "2026-08-15",
+    "Amor em Ruínas|0|Episódio 015": "2026-08-23",
+    "Amor em Ruínas|0|Episódio 016": "2026-08-23",
+    "Amor em Ruínas|0|Episódio 017": "2026-08-23"
   }
 };
