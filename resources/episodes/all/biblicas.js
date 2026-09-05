@@ -3989,6 +3989,9 @@ export const biblicalData = [
                         { title: "Episódio 018", subtitle: "Que colar é esse?"                          , duration: "57:50"   , thumb: "https://i.imgur.com/fhOsJn0.png" , url: ["https://23rzv4udpdbv8t6.cdn-novflix.com/storage7/AMRNS/AMRNS-018.mp4", ] },
                         { title: "Episódio 019", subtitle: "Tal pai, tal sacerdote"                     , duration: "49:51"   , thumb: "https://i.imgur.com/SLoDEgI.png" , url: ["https://23rzv4udpdbv8t6.cdn-novflix.com/storage7/AMRNS/AMRNS-019.mp4", ] },
                         { title: "Episódio 020", subtitle: "Filha, me escuta"                           , duration: "59:20"   , thumb: "https://i.imgur.com/UkbD5yS.png" , url: ["https://23rzv4udpdbv8t6.cdn-novflix.com/storage7/AMRNS/AMRNS-020.mp4", ] },
+                        { title: "Episódio 021", subtitle: "Os Dardos"                                  , duration: "44:36"   , thumb: "https://i.imgur.com/N3xLjSc.png" , url: ["https://23rzv4udpdbv8t6.cdn-novflix.com/storage7/AMRNS/AMRNS-021.mp4", ] },
+                        { title: "Episódio 022", subtitle: "O Escudo da Fé"                             , duration: "56:05"   , thumb: "https://i.imgur.com/Zt0xkhP.png" , url: ["https://23rzv4udpdbv8t6.cdn-novflix.com/storage7/AMRNS/AMRNS-022.mp4", ] },
+                        { title: "Episódio 023", subtitle: "Aquela Palavra Hoje Nós"                    , duration: "54:51"   , thumb: "https://i.imgur.com/JZnw69p.png" , url: ["https://23rzv4udpdbv8t6.cdn-novflix.com/storage7/AMRNS/AMRNS-023.mp4", ] },
                     ]
                 },
             ]
