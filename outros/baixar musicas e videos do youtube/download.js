@@ -13,7 +13,7 @@ const cookiesPath = path.join(__dirname, 'cookies.txt');
 const destDir = path.join(__dirname, video ? videoPath : musicPath);
 
 const videoURLs = [
-  'https://www.youtube.com/watch?v=dfh03TW1RLA',
+  'https://ok.ru/video/312763288253',
 
 ];
 

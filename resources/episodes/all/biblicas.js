@@ -3991,7 +3991,10 @@ export const biblicalData = [
                         { title: "Episódio 020", subtitle: "Filha, me escuta"                           , duration: "59:20"   , thumb: "https://i.imgur.com/UkbD5yS.png" , url: ["https://23rzv4udpdbv8t6.cdn-novflix.com/storage7/AMRNS/AMRNS-020.mp4", ] },
                         { title: "Episódio 021", subtitle: "Os Dardos"                                  , duration: "44:36"   , thumb: "https://i.imgur.com/N3xLjSc.png" , url: ["https://23rzv4udpdbv8t6.cdn-novflix.com/storage7/AMRNS/AMRNS-021.mp4", ] },
                         { title: "Episódio 022", subtitle: "O Escudo da Fé"                             , duration: "56:05"   , thumb: "https://i.imgur.com/Zt0xkhP.png" , url: ["https://23rzv4udpdbv8t6.cdn-novflix.com/storage7/AMRNS/AMRNS-022.mp4", ] },
-                        { title: "Episódio 023", subtitle: "Aquela Palavra Hoje Nós"                    , duration: "54:51"   , thumb: "https://i.imgur.com/JZnw69p.png" , url: ["https://23rzv4udpdbv8t6.cdn-novflix.com/storage7/AMRNS/AMRNS-023.mp4", ] },
+                        { title: "Episódio 023", subtitle: "Aquela Palavra Hoje Nós"                    , duration: "54:41"   , thumb: "https://i.imgur.com/JZnw69p.png" , url: ["https://23rzv4udpdbv8t6.cdn-novflix.com/storage7/AMRNS/AMRNS-023.mp4", ] },
+                        { title: "Episódio 024", subtitle: "Oseias abala profundamente Gomer"           , duration: "55:17"   , thumb: "https://i.imgur.com/Dm2Ys1s.png" , url: ["https://23rzv4udpdbv8t6.cdn-novflix.com/storage7/AMRNS/AMRNS-024.mp4", ] },
+                        { title: "Episódio 025", subtitle: "Diante de conversa difícil"                 , duration: "48:58"   , thumb: "https://i.imgur.com/U2fzyeH.png" , url: ["https://23rzv4udpdbv8t6.cdn-novflix.com/storage7/AMRNS/AMRNS-025.mp4", ] },
+                        { title: "Episódio 026", subtitle: "Enquanto decisão Samaria, leva remete"      , duration: "53:57"   , thumb: "https://i.imgur.com/CDUGbAT.png" , url: ["https://23rzv4udpdbv8t6.cdn-novflix.com/storage7/AMRNS/AMRNS-026.mp4", ] },
                     ]
                 },
             ]
