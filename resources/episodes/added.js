@@ -28,6 +28,8 @@ export const addedIndex = {
     "Amor em Ruínas|0|Episódio 031": "2026-10-01",
     "Amor em Ruínas|0|Episódio 032": "2026-10-01",
     "Amor em Ruínas|0|Episódio 033": "2026-10-01",
+    "Amor em Ruínas|0|Episódio 034": "2026-10-03",
+    "Amor em Ruínas|0|Episódio 035": "2026-10-03",
     "Casa de Davi|0|Episódio 001": "2026-08-31",
     "Casa de Davi|0|Episódio 002": "2026-08-31",
     "Casa de Davi|0|Episódio 003": "2026-08-31",
