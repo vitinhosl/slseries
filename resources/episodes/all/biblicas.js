@@ -3935,7 +3935,7 @@ export const biblicalData = [
                 description: `
                     Será que conhecemos o verdadeiro amor? Gomer, uma mulher de prostituições, não o conhece, mas intimamente o deseja. De outro lado, o profeta Oseias, recebe a dura missão de amar aquela que é o oposto de tudo o que ele crê. Em um romance distante do ideal, quando tudo desmoronar, pode este amor permanecer?
                 `,
-                info: { enabled: true, text: "", season: false, episodes: true, finalized: false }
+                info: { enabled: true, text: "", season: false, episodes: true, finalized: true }
             },
 
             description: {
